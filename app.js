@@ -209,13 +209,14 @@ app.get('/auth/steam/callback', passport.authorize('openid', { failureRedirect: 
 /**
  * Error Handler.
  */
+ 
 app.use(errorHandler());
 
 /**
  * Start Express server.
  */
-app.listen(app.get('port'), function() {
-  console.log('Express server listening on port %d in %s mode', app.get('port'), app.get('env'));
+app.listen(app.get('port'), function(){
+  console.log(("Express server listening on port " + app.get('port')))
 });
 
 module.exports = app;
