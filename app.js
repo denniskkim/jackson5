@@ -26,7 +26,7 @@ var _ = require('lodash');
  *
  * Default path: .env (You can remove the path argument entirely, after renaming `.env.example` to `.env`)
  */
-dotenv.load({ path: '.env' });
+dotenv.load();
 
 /**
  * Controllers (route handlers).
