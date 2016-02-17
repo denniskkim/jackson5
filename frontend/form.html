@@ -1,0 +1,251 @@
+<html>
+	<head>
+		<title>Form Builder</title>
+    	<link rel="stylesheet" type="text/css" href="Sign_in.css">
+    	<!-- Bootstrap Core CSS -->
+    	<link href="css/bootstrap.min.css" rel="stylesheet">
+
+    	<!-- Custom CSS -->
+        <link href="css/form.css" rel="stylesheet">
+        <link href="css/landing-page.css" rel="stylesheet">
+
+
+    	<!-- Custom Fonts -->
+    	<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    	<link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+      
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script>
+            function allowDrop(ev) {
+                ev.preventDefault();
+            }
+
+            function drag(ev) {
+                ev.dataTransfer.setData("text", ev.target.id);
+            }
+
+            function drop(ev) {
+                ev.preventDefault();
+                var data = ev.dataTransfer.getData("text");
+                ev.target.appendChild(document.getElementById(data));
+            }
+        </script>
+    </head>
+
+	<body>
+
+    <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+            <div class="container topnav">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand topnav" href="#">Form Builder</a>
+                </div>
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>
+                            <a href="#about">About</a>
+                        </li>
+                        <li>
+                            <a href="#services">Services</a>
+                        </li>
+                        <li>
+                            <a href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container -->
+        </nav>
+
+        <!-- FORM START -->
+        <form class="form-horizontal">
+        <fieldset>
+
+        <!-- Form Name -->
+        <legend>Form Builder</legend>
+
+        <!-- First Name -->
+        <div id="firstnamedrag" class="form-group" draggable="true" ondragstart="drag(event)">
+            <label class="col-md-4 control-label" for="textinput">First Name</label>  
+            <div class="col-md-4" >
+            <input id="textinput" name="textinput" type="text" placeholder="John" class="form-control pull-right">
+            </div>
+        </div>
+        
+        <!-- Last Name -->
+        <div id="lastnamedrag" class="form-group" draggable="true" ondragstart="drag(event)">
+            <label class="col-md-4 control-label" for="textinput">Last Name</label>  
+            <div class="col-md-4" >
+            <input id="textinput" name="textinput" type="text" placeholder="Doe" class="form-control input-md">
+            </div>
+        </div>
+
+        <!-- Email -->
+        <div id="emaildrag" class="form-group" draggable="true" ondragstart="drag(event)">
+            <label class="control-label col-md-4" for="email">Email</label>
+            <div class="col-md-4">
+              <input type="email" class="form-control" id="email" placeholder="johndoe@gmail.com">
+            </div>
+        </div>
+
+        <!-- Phone Number -->
+        <div id="phonedrag" class="form-group" draggable="true" ondragstart="drag(event)">
+            <label class="control-label col-md-4" for="phone">Phone Number</label>
+            <div class="col-md-4">
+              <input type="phone" class="form-control" id="phone" placeholder="+1 (555) 555-5555" data-format="+1(ddd)ddd-dddd">
+            </div>
+        </div>
+
+        <!-- Choose Doctor -->
+        <div id="doctordrop" class="form-group" data-toggle="modal" data-target="#myModal" draggable="true" ondragstart="drag(event)">
+          <label class="col-md-4 control-label" for="buttondropdown">Choose Doctor</label>
+          <div class="col-md-4">
+            <div class="input-group">
+              <input id="buttondropdown" name="buttondropdown" class="form-control" placeholder="placeholder" type="text">
+              <div class="input-group-btn">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                  Action
+                  <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu pull-right">
+                  <li><a href="#">Dr. Powell</a></li>
+                  <li><a href="#">Dr. Tran</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-body">
+                <form role="form" data-title="Button Drop Down" data-trigger="manual" data-html="true">
+                    <div class="form-group">
+                    <label class="col-md-12 control-label"> ID / Name </label>
+                    <div class="col-md-10">
+                        <input class='form-control field' data-type="input" type='text' name='id' id='id' value ='buttondropdown' />
+                    </div>
+                </div><div class="form-group">
+                    <label class="col-md-12 control-label"> Label Text </label>
+                    <div class="col-md-10">
+                        <input class='form-control field' data-type="input" type='text' name='label' id='label' value ='Button Drop Down' />
+                    </div>
+                </div><div class="form-group">
+                    <label class="col-md-12 control-label"> Placeholder </label>
+                    <div class="col-md-10">
+                        <input class='form-control field' data-type="input" type='text' name='placeholder' id='placeholder' value ='placeholder' />
+                    </div>
+                </div><div class="form-group">
+                    <label class="col-md-12 control-label"> Button Text </label>
+                    <div class="col-md-10">
+                        <input class='form-control field' data-type="input" type='text' name='buttontext' id='buttontext' value ='Action' />
+                    </div>
+                </div><div class="form-group">
+                    <label class="col-md-12 control-label"> Options </label>
+                    <div class="col-md-10">
+                    <textarea class="form-control field" data-type="textarea-split" id='buttonoptions'>
+                    Option one 
+                    Option two </textarea>
+                    </div>
+                </div><div class="checkbox">
+                    <label>
+                      <input type="checkbox" data-type="checkbox" class="field" name="required" id="required">
+                      Required
+                    </label>
+                </div>
+            <hr/>
+            <button id="save" class='btn btn-info col-md-4'>Save</button>&nbsp;
+            <button id="cancel" class='btn btn-danger' data-dismiss="modal">Cancel</button>
+            </form>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Multiple Radios -->
+        <div id="doctorsdrop" class="form-group" data-toggle="modal" data-target="#myModal" draggable="true" ondragstart="drag(event)">
+          <label class="col-md-4 control-label" for="radios">Multiple Radios</label>
+          <div class="col-md-4">
+          <div class="radio">
+            <label for="radios-0">
+              <input type="radio" name="radios" id="radios-0" value="1" checked="checked">
+              Option one
+            </label>
+            </div>
+          <div class="radio">
+            <label for="radios-1">
+              <input type="radio" name="radios" id="radios-1" value="2">
+              Option two
+            </label>
+            </div>
+          </div>
+        </div>
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-body">
+                <form role="form" data-title="Button Drop Down" data-trigger="manual" data-html="true">
+                    <div class="form-group">
+                    <label class="col-md-12 control-label"> Group Name </label>
+                    <div class="col-md-10">
+                        <input class='form-control field' data-type="input" type='text' name='id' id='id' value ='buttondropdown' />
+                    </div>
+                </div><div class="form-group">
+                    <label class="col-md-12 control-label"> Label Text </label>
+                    <div class="col-md-10">
+                        <input class='form-control field' data-type="input" type='text' name='label' id='label' value ='Button Drop Down' />
+                    </div>
+                </div><div class="form-group">
+                    <label class="col-md-12 control-label"> Options </label>
+                    <div class="col-md-10">
+                    <textarea class="form-control field" data-type="textarea-split" id='buttonoptions'>
+                    Option one 
+                    Option two </textarea>
+                    </div>
+                </div><div class="checkbox">
+                    <label>
+                      <input type="checkbox" data-type="checkbox" class="field" name="required" id="required">
+                      Required
+                    </label>
+                </div>
+            <hr/>
+            <button id="save" class='btn btn-info col-md-4'>Save</button>&nbsp;
+            <button id="cancel" class='btn btn-danger' data-dismiss="modal">Cancel</button>
+            </form>
+            </div>
+            </div>
+          </div>
+        </div>
+
+        </fieldset>
+        </form>
+
+        <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+        <div class="form-group"> 
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-default">Submit</button>
+        </div>
+        </div>
+
+	</body>
+</html>
+
+
+<!--
+<iframe src="http://bootsnipp.com/j87klPolka/formbuilder3.html" style="width:100%; height:1000px;" frameborder="0"></iframe>
+-->

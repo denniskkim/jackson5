@@ -1,0 +1,16 @@
+div{ 
+	padding-left: 10px;
+	padding-right: 20px;
+}
+
+legend{
+	padding-left: 10px;
+	padding-right: 20px;
+}
+
+#div1 {
+	width:25%; 
+   	min-height:10%; 
+   	margin:50%; 
+   	border:1px solid #aaaaaa;
+}
