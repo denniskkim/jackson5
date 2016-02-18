@@ -145,7 +145,9 @@ app.get('/patientqueue' , function(request, response){
 app.get('/overview' , function(request, response){
 	response.render('overview', {layout: 'sidebar_layout'});
 });
-
+app.get('/settings' , function(request, response){
+	response.render('settings', {layout: 'sidebar_layout'});
+});
 
 /**
  * API examples routes.
