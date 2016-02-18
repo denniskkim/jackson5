@@ -9,8 +9,13 @@ legend{
 }
 
 #div1 {
-	width:25%; 
-   	min-height:10%; 
+	width:35%; 
+   	min-height:30%; 
    	margin-left:50px; 
    	border:1px solid #aaaaaa;
+}
+
+#singlebutton {
+	position: relative;
+	left: 50%;
 }
