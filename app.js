@@ -142,6 +142,9 @@ app.get('/form' , function(request, response){
 app.get('/patientqueue' , function(request, response){
 	response.render('patient_queue', {layout: 'sidebar_layout'});
 });
+app.get('/overview' , function(request, response){
+	response.render('overview', {layout: 'sidebar_layout'});
+});
 
 
 /**
