@@ -136,6 +136,12 @@ app.get('/account/unlink/:provider', passportConf.isAuthenticated, userControlle
 app.get('/addemployees' , function(request, response){
 	response.render('add_employees', {layout: 'sidebar_layout'});
 });
+app.get('/form' , function(request, response){
+	response.render('form', {layout: 'sidebar_layout'});
+});
+app.get('/patientqueue' , function(request, response){
+	response.render('patient_queue', {layout: 'sidebar_layout'});
+});
 
 
 /**
