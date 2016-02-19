@@ -140,6 +140,22 @@ app.get('/account/unlink/:provider', passportConf.isAuthenticated, userControlle
 app.get('/api', apiController.getApi);
 app.get('/api/facebook', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.getFacebook);
 
+app.get('/Billing_info', function(req, res){
+  res.render('Billing_info', { user: req.user });
+});
+app.get('/add_employees', function(req, res){
+  res.render('add_employees', { user: req.user });
+});
+app.get('/form', function(req, res){
+  res.render('form', { user: req.user });
+});
+app.get('/patient_queue', function(req, res){
+  res.render('patient_queue', { user: req.user });
+});
+app.get('/management', function(req, res){
+  res.render('management', { user: req.user });
+});
+
 
 /**
  * OAuth authentication routes. (Sign in)
