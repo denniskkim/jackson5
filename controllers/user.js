@@ -46,6 +46,51 @@ exports.postLogin = function(req, res, next) {
         return next(err);
       }
       req.flash('success', { msg: 'Success! You are logged in.' });
+      res.redirect('/verify');
+    });
+  })(req, res, next);
+};
+
+
+/**
+ * GET /verify
+ * For logging in as an admin or user
+ * @param req
+ * @param res
+ */
+exports.getVerify = function(req,res) {
+  res.render('verify.handlebars', {
+    title: 'Verify'
+  });
+};
+
+
+/**
+ * TODO: We need to figure out to authenticate a user JUST based on password instead of with password + email.
+ */
+exports.postVerify = function(req, res, next) {
+  req.assert('password', 'Password cannot be blank').notEmpty();
+
+  var errors = req.validationErrors();
+
+  if (errors) {
+    req.flash('errors', errors);
+    return res.redirect('/verify');
+  }
+
+  passport.authenticate('local', function(err, user, info) {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      req.flash('errors', { msg: info.message });
+      return res.redirect('/verify');
+    }
+    req.logIn(user, function(err) {
+      if (err) {
+        return next(err);
+      }
+      req.flash('success', { msg: 'Success! You are logged in.' });
       res.redirect('/');
     });
   })(req, res, next);
