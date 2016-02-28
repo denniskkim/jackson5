@@ -9,7 +9,7 @@ exports.getEmployees = function(req, res){
     Employee.find({_admin_id: req.user.id/*, name: "Jane Doe"*/}, function (err, employees) {
 
         if (err) { return next(err);  }
-        if(!results) { return next(new Error('Error finding employee'));}
+        if(!employees) { return next(new Error('Error finding employee'));}
 
         //console.log(employee);
         res.render('add_employees',{title: 'Add Employees', employees: employees});
