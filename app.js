@@ -8,7 +8,6 @@ var cookieParser = require('cookie-parser');
 var compress = require('compression');
 var favicon = require('serve-favicon');
 var session = require('express-session');
-var bodyParser = require('body-parser');
 var logger = require('morgan');
 var async = require('async');
 var errorHandler = require('errorhandler');
@@ -136,7 +135,8 @@ app.post('/account/profile', passportConf.isAuthenticated, userController.postUp
 app.post('/account/password', passportConf.isAuthenticated, userController.postUpdatePassword);
 app.post('/account/delete', passportConf.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConf.isAuthenticated, userController.getOauthUnlink);
-app.get('/add_Employees', employeeController.get);
+app.get('/add_Employees', employeeController.getEmployees);
+app.post('/add_Employees', employeeController.addEmployee);
 
 /**
  * API examples routes.

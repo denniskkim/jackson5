@@ -14,7 +14,7 @@
 	</head>
 	<body>
 		<script src="js/moment.min.js"></script>
-		<script src="js/bootstrap-sortable.js"></script
+		<script src="js/bootstrap-sortable.js"></script>
 		<center>
 			
 			
@@ -32,7 +32,7 @@
 										<h2 class="modal-title" id="exampleModalLabel">ADD EMPLOYEE</h2>
 									</div>
 									<div class="modal-body">
-										<form name="modalForm" class="form-horizontal" novalidate="" id="addEmployeeForm">
+										<form method="POST" name="modalForm" class="form-horizontal" novalidate="" id="addEmployeeForm">
 											<div class="form-group">
         										<label for="modalName" class="col-sm-2 control-label">Name</label>
 												<div class="col-sm-10">
@@ -43,7 +43,7 @@
     										<div class="form-group">
         										<label for="modalNumber" class="col-sm-2 control-label">Number</label>
     											<div class="col-sm-10">
-          											<input type="text" name="number" class="form-control" id="modalNumber" required="">
+          											<input type="tel" name="number" class="form-control" id="modalNumber" required="">
         											<p class="help-block" id="invalidNumber">Please enter a valid phone number Ex: 1234567890</p>
         										</div>
     										</div>
@@ -54,10 +54,12 @@
         											<p class="help-block" id="invalidEmail">Please enter a valid email Ex: email@address.com</p>
     											</div>
     										</div>
-    										<div class="modal-footer">
-    											<button class="btn btn-primary" id="okbutton" disabled="disabled" data-dismiss="modal">OK</button>
-    											<button class="btn btn-default" id="cancelbutton" data-dismiss="modal">Cancel</button>
-    										</div>
+                                            <div class="form-group">
+                                                <div class="col-sm-offset-3 col-sm-7">
+                                                    <button type="submit" class="btn btn-primary" id="okbutton">OK</button>
+                                                    <button class="btn btn-default" id="cancelbutton">Cancel</button>
+                                                </div>
+                                            </div>
 										</form>
 									</div>
 								</div>
@@ -91,46 +93,7 @@
 					</div>
 				</div>
 			</div>
-			
 		</center>
-		<script type = "text/javascript">
-			$('input[name=name]').on('input', function () {
-				if($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val())
-					$('#okbutton').prop('disabled', false);
-				else
-					$('#okbutton').prop('disabled', true);
-			});
-			$('input[name=number]').on('input', function () {
-				if($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val())
-					$('#okbutton').prop('disabled', false);
-				else
-					$('#okbutton').prop('disabled', true);
-			});
-			$('input[name=email]').on('input', function () {
-				if($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val())
-					$('#okbutton').prop('disabled', false);
-				else
-					$('#okbutton').prop('disabled', true);
-			});
-			/*var pathname = window.location.href;
-			var indexOfName = pathname.indexOf('name=');
-			var indexOfNumber = pathname.indexOf('number=');
-			var indexOfEmail = pathname.indexOf('email=');
-			if(indexOfName != -1 && indexOfNumber != -1 && indexOfEmail != -1)
-			{
-				var name = pathname.substring(indexOfName+5, indexOfNumber-1);
-				var number = pathname.substring(indexOfNumber+7, indexOfEmail-1);
-				var email = pathname.substring(indexOfEmail+6);
-				$('#employees').find('tbody').append('<tr><th style="width: 25%">' + name + '</th><th style="width: 25%">'  + number + '</th><th style="width: 50%">' + email + '</th></tr>');
-			}*/
-			$('#okbutton').click(function(){
-				$('#employees').find('tbody').append('<tr><th style="width: 25%">' + $('#modalName').val() + '</th><th style="width: 25%">'  + $('#modalNumber').val() + '</th><th style="width: 50%">' + $('#modalEmail').val() + '</th></tr>');
-				$("#addEmployeeForm")[0].reset();
-			});
-			$('#cancelbutton').click(function(){
-				$("#addEmployeeForm")[0].reset();
-			});
-		</script>
 	</body>
 
 </html>
