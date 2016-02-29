@@ -39,6 +39,7 @@ var userController = require('./controllers/user');
 var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
 var employeeController = require('./controllers/employee');
+var patientController = require('./controllers/patient');
 
 /**
  * API keys and Passport configuration.
@@ -138,6 +139,9 @@ app.get('/account/unlink/:provider', passportConf.isAuthenticated, userControlle
 app.get('/add_Employees', employeeController.getEmployees);
 app.post('/add_Employees', employeeController.addEmployee);
 
+app.post('/add_patient', patientController.addPatient);
+app.get('/patient_queue', patientController.getPatients);
+
 /**
  * API examples routes.
  */
@@ -152,9 +156,6 @@ app.get('/add_employees', function(req, res){
 });
 app.get('/form', function(req, res){
   res.render('form', { user: req.user });
-});
-app.get('/patient_queue', function(req, res){
-  res.render('patient_queue', { user: req.user });
 });
 app.get('/management', function(req, res){
   res.render('management', { user: req.user });
