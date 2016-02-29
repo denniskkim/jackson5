@@ -8,7 +8,6 @@ var cookieParser = require('cookie-parser');
 var compress = require('compression');
 var favicon = require('serve-favicon');
 var session = require('express-session');
-var bodyParser = require('body-parser');
 var logger = require('morgan');
 var async = require('async');
 var errorHandler = require('errorhandler');
@@ -39,6 +38,7 @@ var homeController = require('./controllers/home');
 var userController = require('./controllers/user');
 var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
+var employeeController = require('./controllers/employee');
 
 /**
  * API keys and Passport configuration.
@@ -119,6 +119,8 @@ app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }))
 app.get('/', homeController.index);
 app.get('/login', userController.getLogin);
 app.post('/login', userController.postLogin);
+app.get('/verify', userController.getVerify);
+app.post('/verify', userController.postVerify);
 app.get('/logout', userController.logout);
 app.get('/forgot', userController.getForgot);
 app.post('/forgot', userController.postForgot);
@@ -133,6 +135,8 @@ app.post('/account/profile', passportConf.isAuthenticated, userController.postUp
 app.post('/account/password', passportConf.isAuthenticated, userController.postUpdatePassword);
 app.post('/account/delete', passportConf.isAuthenticated, userController.postDeleteAccount);
 app.get('/account/unlink/:provider', passportConf.isAuthenticated, userController.getOauthUnlink);
+app.get('/add_Employees', employeeController.getEmployees);
+app.post('/add_Employees', employeeController.addEmployee);
 
 /**
  * API examples routes.

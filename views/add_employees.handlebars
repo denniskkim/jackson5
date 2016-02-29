@@ -1,126 +1,59 @@
 <!DOCTYPE html>
-<html>
-	<head>
-		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,200italic,300italic,400italic,600italic' rel='stylesheet' type='text/css'>
-		<title>Add Employees</title>
-		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="text/css" href="css/bootstrap-sortable.css" />
-		<link rel="stylesheet" type="text/css" href="css/entry.css" />
-		<script src="js/moment.min.js"></script>
-		<script src="js/bootstrap-sortable.js"></script>
-
-
-	</head>
-	<body>
-		<center>
-			
-			
-			
-			<div id = "section1" class = "section">
-				<div id = "s1container">
-					<div class = "container-fluid">
-						<button type = "button" class = "btn btn-secondary" data-toggle="modal" data-target="#addEmployee">Add Employee</button>
-
-						<div class="modal fade" id="addEmployee" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-							<div class="modal-dialog" role="document">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-										<h2 class="modal-title" id="exampleModalLabel">ADD EMPLOYEE</h2>
-									</div>
-									<div class="modal-body">
-										<form name="modalForm" class="form-horizontal" novalidate="" id="addEmployeeForm">
-											<div class="form-group">
-        										<label for="modalName" class="col-sm-2 control-label">Name</label>
-												<div class="col-sm-10">
-          											<input name="name" type="text" class="form-control" id="modalName" placeholder="Jane Doe" required="">
-          											<p class="help-block" id="invalidName">Please enter first and last name. Ex: First Last</p>
-        										</div>
-      										</div>
-    										<div class="form-group">
-        										<label for="modalNumber" class="col-sm-2 control-label">Number</label>
-    											<div class="col-sm-10">
-          											<input type="text" name="number" class="form-control" id="modalNumber" required="">
-        											<p class="help-block" id="invalidNumber">Please enter a valid phone number Ex: 1234567890</p>
-        										</div>
-    										</div>
-    										<div class="form-group">
-        										<label class="col-sm-2 control-label" for="modalEmail">Email</label>
-    											<div class="col-sm-10">
-        											<input type="email" required="" class="form-control" id="modalEmail" placeholder="jane.doe@example.com" name="email">
-        											<p class="help-block" id="invalidEmail">Please enter a valid email Ex: email@address.com</p>
-    											</div>
-    										</div>
-    										<div class="modal-footer">
-    											<button class="btn btn-primary" id="okbutton" disabled="disabled" data-dismiss="modal">OK</button>
-    											<button class="btn btn-default" id="cancelbutton" data-dismiss="modal">Cancel</button>
-    										</div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-						<br><br>
-						<table class = "table table-striped sortable" id = "employees">
-							<thead>
-								<tr>
-									<th style="width: 25%" id = "nameHead">
-										Name
-									</th>
-									<th style="width: 25%" id = "numberHead">
-										Number
-									</th>
-									<th style="width: 50%" id = "emailHead">
-										Email
-									</th>
-								</tr>
-							</thead>
-							<tbody>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-			
-		</center>
-		<script type = "text/javascript">
-			$('input[name=name]').on('input', function () {
-				if($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val())
-					$('#okbutton').prop('disabled', false);
-				else
-					$('#okbutton').prop('disabled', true);
-			});
-			$('input[name=number]').on('input', function () {
-				if($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val())
-					$('#okbutton').prop('disabled', false);
-				else
-					$('#okbutton').prop('disabled', true);
-			});
-			$('input[name=email]').on('input', function () {
-				if($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val())
-					$('#okbutton').prop('disabled', false);
-				else
-					$('#okbutton').prop('disabled', true);
-			});
-			/*var pathname = window.location.href;
-			var indexOfName = pathname.indexOf('name=');
-			var indexOfNumber = pathname.indexOf('number=');
-			var indexOfEmail = pathname.indexOf('email=');
-			if(indexOfName != -1 && indexOfNumber != -1 && indexOfEmail != -1)
-			{
-				var name = pathname.substring(indexOfName+5, indexOfNumber-1);
-				var number = pathname.substring(indexOfNumber+7, indexOfEmail-1);
-				var email = pathname.substring(indexOfEmail+6);
-				$('#employees').find('tbody').append('<tr><th style="width: 25%">' + name + '</th><th style="width: 25%">'  + number + '</th><th style="width: 50%">' + email + '</th></tr>');
-			}*/
-			$('#okbutton').click(function(){
-				$('#employees').find('tbody').append('<tr><th style="width: 25%">' + $('#modalName').val() + '</th><th style="width: 25%">'  + $('#modalNumber').val() + '</th><th style="width: 50%">' + $('#modalEmail').val() + '</th></tr>');
-				$("#addEmployeeForm")[0].reset();
-			});
-			$('#cancelbutton').click(function(){
-				$("#addEmployeeForm")[0].reset();
-			});
-		</script>
-	</body>
+<html lang="en" class="body-full-height">
+    <head>        
+        <!-- META SECTION -->
+        <title>Atlant - Responsive Bootstrap Admin Template</title>            
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <!-- END META SECTION -->
+        
+        <!-- CSS INCLUDE -->        
+        <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
+        <!-- EOF CSS INCLUDE -->                                     
+    </head>
+    <body>
+        
+        <div class="login-container lightmode">
+        
+            <div class="login-box animated fadeInDown">
+                <div class="login-logo"></div>
+                <div class="login-body">
+                    <div class="login-title"><strong>Log In</strong> to your account</div>
+                    <form class="form-horizontal" method="POST">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="text" name="name" id="subdomain" class="form-control" placeholder="Your Company Subdomain"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="number" name="phone" id="companyname" class="form-control" placeholder="Company Name"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <button class="btn btn-info btn-block">Login</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <div class="login-footer">
+                    <div class="pull-left">
+                        &copy; 2014 AppName
+                    </div>
+                    <div class="pull-right">
+                        <a href="/about">About</a> |
+                        <a href="#">Privacy</a> |
+                        <a href="/contact">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+    </body>
 </html>
+
