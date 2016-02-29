@@ -37,24 +37,38 @@
 									<div class="modal-body">
 										<form name="modalForm" class="form-horizontal" novalidate="" id="addEmployeeForm">
 											<div class="form-group">
-        										<label for="modalName" class="col-sm-2 control-label">Name</label>
-												<div class="col-sm-10">
+        										<label for="modalName" class="col-sm-3 control-label">Name</label>
+												<div class="col-sm-9">
           											<input name="name" type="text" class="form-control" id="modalName" placeholder="Jane Doe" required="">
           											<p class="help-block" id="invalidName">Please enter first and last name. Ex: First Last</p>
         										</div>
       										</div>
     										<div class="form-group">
-        										<label for="modalNumber" class="col-sm-2 control-label">Number</label>
-    											<div class="col-sm-10">
+        										<label for="modalNumber" class="col-sm-3 control-label">Number</label>
+    											<div class="col-sm-9">
           											<input type="text" name="number" class="form-control" id="modalNumber" required="">
         											<p class="help-block" id="invalidNumber">Please enter a valid phone number Ex: 1234567890</p>
         										</div>
     										</div>
     										<div class="form-group">
-        										<label class="col-sm-2 control-label" for="modalEmail">Email</label>
-    											<div class="col-sm-10">
+        										<label class="col-sm-3 control-label" for="modalEmail">Email</label>
+    											<div class="col-sm-9">
         											<input type="email" required="" class="form-control" id="modalEmail" placeholder="jane.doe@example.com" name="email">
         											<p class="help-block" id="invalidEmail">Please enter a valid email Ex: email@address.com</p>
+    											</div>
+    										</div>
+    										<div class="form-group">
+        										<label class="col-sm-3 control-label" for="modalPassword">Password</label>
+    											<div class="col-sm-9">
+        											<input type="password" required="" class="form-control" id="modalPassword" name="password">
+        											<p class="help-block" id="invalidPassword">Please enter a valid email Ex: email@address.com</p>
+    											</div>
+    										</div>
+    										<div class="form-group">
+        										<label class="col-sm-3 control-label" for="modalConfirm" style="display:inline-block; font-size:0.7em">Confirm Password</label>
+    											<div class="col-sm-9">
+        											<input type="password" required="" class="form-control" id="modalConfirm" name="confirm">
+        											<p class="help-block" id="invalidPassword">Please enter a valid email Ex: email@address.com</p>
     											</div>
     										</div>
     										<div class="modal-footer">
@@ -76,7 +90,7 @@
 									<th style="width: 25%" id = "numberHead">
 										Number
 									</th>
-									<th style="width: 50%" id = "emailHead">
+									<th style="width: 50%" id = "emailHead" colspan = "2">
 										Email
 									</th>
 								</tr>
@@ -90,43 +104,71 @@
 			
 		</center>
 		<script type = "text/javascript">
-			$('input[name=name]').on('input', function () {
-				if($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val())
-					$('#okbutton').prop('disabled', false);
-				else
-					$('#okbutton').prop('disabled', true);
-			});
-			$('input[name=number]').on('input', function () {
-				if($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val())
-					$('#okbutton').prop('disabled', false);
-				else
-					$('#okbutton').prop('disabled', true);
-			});
-			$('input[name=email]').on('input', function () {
-				if($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val())
-					$('#okbutton').prop('disabled', false);
-				else
-					$('#okbutton').prop('disabled', true);
-			});
-			/*var pathname = window.location.href;
-			var indexOfName = pathname.indexOf('name=');
-			var indexOfNumber = pathname.indexOf('number=');
-			var indexOfEmail = pathname.indexOf('email=');
-			if(indexOfName != -1 && indexOfNumber != -1 && indexOfEmail != -1)
-			{
-				var name = pathname.substring(indexOfName+5, indexOfNumber-1);
-				var number = pathname.substring(indexOfNumber+7, indexOfEmail-1);
-				var email = pathname.substring(indexOfEmail+6);
-				$('#employees').find('tbody').append('<tr><th style="width: 25%">' + name + '</th><th style="width: 25%">'  + number + '</th><th style="width: 50%">' + email + '</th></tr>');
-			}*/
-			$('#okbutton').click(function(){
-				$('#employees').find('tbody').append('<tr><th style="width: 25%">' + $('#modalName').val() + '</th><th style="width: 25%">'  + $('#modalNumber').val() + '</th><th style="width: 50%">' + $('#modalEmail').val() + '</th></tr>');
-				$("#addEmployeeForm")[0].reset();
+			$(function(){
+				$('input[name=name]').on('input', function () {
+					if($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val() && $('#modalPassword').val() && $('#modalConfirm').val())
+						$('#okbutton').prop('disabled', false);
+					else
+						$('#okbutton').prop('disabled', true);
+				});
+				$('input[name=number]').on('input', function () {
+					if($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val() && $('#modalPassword').val() && $('#modalConfirm').val())
+						$('#okbutton').prop('disabled', false);
+					else
+						$('#okbutton').prop('disabled', true);
+				});
+				$('input[name=email]').on('input', function () {
+					if($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val() && $('#modalPassword').val() && $('#modalConfirm').val())
+						$('#okbutton').prop('disabled', false);
+					else
+						$('#okbutton').prop('disabled', true);
+				});
+				$('input[name=password]').on('input', function () {
+					if($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val() && $('#modalPassword').val() && $('#modalConfirm').val())
+						$('#okbutton').prop('disabled', false);
+					else
+						$('#okbutton').prop('disabled', true);
+				});
+				$('input[name=confirm]').on('input', function () {
+					if($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val() && $('#modalPassword').val() && $('#modalConfirm').val())
+						$('#okbutton').prop('disabled', false);
+					else
+						$('#okbutton').prop('disabled', true);
+				});
+				/*var pathname = window.location.href;
+				var indexOfName = pathname.indexOf('name=');
+				var indexOfNumber = pathname.indexOf('number=');
+				var indexOfEmail = pathname.indexOf('email=');
+				if(indexOfName != -1 && indexOfNumber != -1 && indexOfEmail != -1)
+				{
+					var name = pathname.substring(indexOfName+5, indexOfNumber-1);
+					var number = pathname.substring(indexOfNumber+7, indexOfEmail-1);
+					var email = pathname.substring(indexOfEmail+6);
+					$('#employees').find('tbody').append('<tr><th style="width: 25%">' + name + '</th><th style="width: 25%">'  + number + '</th><th style="width: 50%">' + email + '</th></tr>');
+				}*/
+				var rownumber = 0;
+				$('#okbutton').click(function(){
+					$('#employees').find('tbody').append('<tr id ="row' + rownumber + '"><td style="width: 25%">' + $('#modalName').val() + '</td><td style="width: 25%">'  + $('#modalNumber').val() + '</td><td style="width: 40%">' + $('#modalEmail').val() + '</td><td style="width:10%;text-align:right"><a href = "#"><span class = "glyphicon glyphicon-pencil" id = "edit' + rownumber + '"></span></a><a href = "#" class = "delete"><span class = "glyphicon glyphicon-trash" id = "delete' + rownumber + '"></span></a><a href = "#"></a></td></tr>');
+					rownumber++;
+					$.bootstrapSortable(true);
+					$("#addEmployeeForm")[0].reset();
 
-			});
-			$('#cancelbutton').click(function(){
-				$("#addEmployeeForm")[0].reset();
-			});
+
+				});
+				$('#cancelbutton').click(function(){
+					$("#addEmployeeForm")[0].reset();
+				});
+				/*$('.delete').click(function(){
+					console.log("hi");
+				});
+
+				$('tr').mouseover(
+					function() {
+						alert('hi');
+					}, function() {
+					}
+				);
+			}	);*/
 
 		</script>
 	</body>
