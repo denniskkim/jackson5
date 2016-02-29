@@ -46,7 +46,7 @@ exports.postLogin = function(req, res, next) {
         return next(err);
       }
       req.flash('success', { msg: 'Success! You are logged in.' });
-      return res.redirect('/');
+      res.redirect(req.session.returnTo || '/');
     });
   })(req, res, next);
 };
@@ -92,9 +92,6 @@ exports.postSignup = function(req, res, next) {
   var user = new User({
     email: req.body.email,
     password: req.body.password
-    subdomain: req.body.subdomainurl,
-    companyName: req.body.companyname
-
   });
 
   User.findOne({ email: req.body.email }, function(err, existingUser) {

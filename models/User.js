@@ -5,15 +5,21 @@ var mongoose = require('mongoose');
 var userSchema = new mongoose.Schema({
   email: { type: String, unique: true, lowercase: true },
   password: String,
-    subdomain : { type: String, unique: true, lowercase: true },
-    companyName : String,
-    pricingPlanLevel : Number,
-    phone_number: String, /* or Number */
-    id: String,
-    _admin_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Admin', required: true},
+
+  //facebook: String,
+  //twitter: String,
+  //google: String,
+  //github: String,
+  //instagram: String,
+  //linkedin: String,
+  //steam: String,
+  //tokens: Array,
 
   profile: {
     name: { type: String, default: '' },
+    gender: { type: String, default: '' },
+    location: { type: String, default: '' },
+    website: { type: String, default: '' },
     picture: { type: String, default: '' }
   },
 
