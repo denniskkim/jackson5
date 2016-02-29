@@ -84,7 +84,7 @@ h1{
 }
 h2{
 	font-family: 'Source Sans Pro', sans-serif;
-	font-size: 2em;
+	font-size: 1.5em;
 	font-weight: lighter;
 }
 h4{
@@ -97,14 +97,18 @@ h4{
 }
 #addEmployee .control-label, th{
 	font-weight:normal;
+	font-size:0.75em;
 }
-th{
+th, td{
 	font-size:0.75em;
 }
 button {
 	text-transform:uppercase;
 }
-
+#employees .glyphicon{
+	margin-left:10%;
+	display:none;
+}
 
 
 

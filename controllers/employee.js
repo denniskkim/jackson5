@@ -7,10 +7,6 @@ var baby = require('babyparse');
  */
 exports.getEmployees = function(req, res){
     Employee.find({_admin_id: req.user.id/*, name: "Jane Doe"*/}, function (err, employees) {
-
-        if (err) { return next(err);  }
-        if(!employees) { return next(new Error('Error finding employee'));}
-
         //console.log(employee);
         res.render('add_employees',{title: 'Add Employees', employees: employees});
     });
