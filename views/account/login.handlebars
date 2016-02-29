@@ -1,38 +1,78 @@
-<div class="page-header">
-  <h3>Sign in</h3>
-</div>
-<form method="POST" class="form-horizontal">
-  <input type="hidden" name="_csrf"/>
-  <div class="form-group">
-    <label for="email" class="col-sm-3 control-label">Email</label>
-    <div class="col-sm-7">
-      <input type="email" name="email" id="email" placeholder="Email" autofocus="autofocus" class="form-control"/>
-    </div>
-  </div>
-  <div class="form-group">
-    <label for="password" class="col-sm-3 control-label">Password</label>
-    <div class="col-sm-7">
-      <input type="password" name="password" id="password" placeholder="Password" class="form-control"/>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-3 col-sm-7">
-      <button type="submit" class="col-sm-3 btn btn-primary">
-      <i class="fa fa-user">
-      </i>Login</button>
-      <a href="/forgot" class="btn btn-link">Forgot your password?</a>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-3 col-sm-7">
-      <hr/>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="col-sm-offset-3 col-sm-7">
-      <a href="/auth/facebook" class="btn btn-block btn-facebook btn-social">
-        <i class="fa fa-facebook">
-        </i>Sign in with Facebook</a>
-    </div>
-  </div>
-</form>
+<!DOCTYPE html>
+<html lang="en" class="body-full-height">
+    <head>        
+        <!-- META SECTION -->
+        <title>Atlant - Responsive Bootstrap Admin Template</title>            
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <!-- END META SECTION -->
+        
+        <!-- CSS INCLUDE -->        
+        <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
+        <!-- EOF CSS INCLUDE -->                                     
+    </head>
+    <body>
+        
+        <div class="login-container lightmode">
+        
+            <div class="login-box animated fadeInDown">
+                <div class="login-logo"></div>
+                <div class="login-body">
+                    <div class="login-title"><strong>Log In</strong> to your account</div>
+                    <form class="form-horizontal" method="POST">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="email" name="email" id="email" class="form-control" placeholder="E-mail"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="password" name="password" id="password" class="form-control" placeholder="Password"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <a href="/forgot" class="btn btn-link btn-block">Forgot your password?</a>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-info btn-block">Log In</button>
+                        </div>
+                    </div>
+                    <div class="login-or">OR</div>
+                    <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-7">
+                      <a href="/auth/facebook" class="btn btn-block btn-facebook btn-social">
+                        <i class="fa fa-facebook">
+                        </i>Sign in with Facebook</a>
+                    </div>
+                    </div>
+                    <div class="login-subtitle">
+                        Don't have an account yet? <a href="/signup">Create an account</a>
+                    </div>
+                    </form>
+                </div>
+                <div class="login-footer">
+                    <div class="pull-left">
+                        &copy; 2014 AppName
+                    </div>
+                    <div class="pull-right">
+                        <a href="/about">About</a> |
+                        <a href="#">Privacy</a> |
+                        <a href="/contact">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+    </body>
+</html>
+
+
+
+
+
+

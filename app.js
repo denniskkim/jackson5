@@ -156,6 +156,46 @@ app.get('/management', function(req, res){
   res.render('management', { user: req.user });
 });
 
+app.get('/about', function(req, res){
+  res.render('about', { user: req.user });
+});
+
+app.get('/dashboard', function(req, res){
+  res.render('dashboard', { user: req.user });
+});
+
+// Twilio Credentials 
+var accountSid = 'AC3008bf6b293131cc5a4c8410a1a5ceb8'; 
+var authToken = '63d3c91c8c7f774d0733ea16ccea533b'; 
+ 
+//require the Twilio module and create a REST client 
+var client = require('twilio')(accountSid, authToken); 
+
+  app.post('/test', function(req, res) {
+        console.log(accountSid);
+        console.log(authToken);
+      client.sendSms({ 
+        body: req.body.message,
+        to: req.body.to,
+        from: "+18583467675"
+      }, function(err, message) { 
+        console.log(message); 
+        if(err){
+          console.log(err.message);
+          console.log(err.message); 
+          res.render('test', { messageinfo: "fail sent" });
+        }
+      });
+
+      res.render('test', { messageinfo: " sent" });
+
+  });
+
+
+
+app.get('/test', function(req, res){
+  res.render('test', { user: req.user });
+});
 
 /**
  * OAuth authentication routes. (Sign in)

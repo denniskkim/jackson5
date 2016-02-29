@@ -1,50 +1,80 @@
-<div class="page-header">
-  <h3>Sign up</h3>
-</div>
-<form id="signup-form" method="POST" class="form-horizontal">
-  <input type="hidden" name="_csrf"/>
+<!DOCTYPE html>
+<html lang="en" class="body-full-height">
+    <head>        
+        <!-- META SECTION -->
+        <title>Sign-up</title>            
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- TODO: Change tab icon -->
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <!-- END META SECTION -->
+        
+        <!-- CSS INCLUDE -->        
+        <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
+        <!-- EOF CSS INCLUDE -->                                     
+    </head>
+    <body>
+        
+        <div class="login-container lightmode">
+        
+            <div class="login-box animated fadeInDown">
+                <div class="login-logo"></div>
+                <div class="login-body">
+                    <div class="login-title"><strong>Sign-Up</strong> for your account</div>
+                    <form id="signup-form" class="form-horizontal" method="POST">
+                      <input type="hidden" name="_csrf"/>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="text" name="companyname" id="companyname" class="form-control" placeholder="Company Name"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="email" name="email" id="email" class="form-control" placeholder="E-mail"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="password" name="password" id="password" class="form-control" placeholder="Password"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="Confirm Password"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="text" name="companyphone" id="companyphone" class="form-control" placeholder="Company Phone"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <button type="submit" class="btn btn-info btn-block">Sign Up</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+                <div class="login-footer">
+                    <div class="pull-left">
+                        &copy; 2014 AppName
+                    </div>
+                    <div class="pull-right">
+                        <a href="/about">About</a> |
+                        <a href="#">Privacy</a> |
+                        <a href="/contact">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        
+    </body>
+</html>
 
-  <div class="form-group">
-    <label for="name" class="col-sm-3 control-label">Company Name</label>
-    <div class="col-sm-7">
-      <input type="name" name="name" id="name" placeholder="Company Name" autofocus="autofocus" class="form-control"/>
-    </div>
-  </div>
 
-  <div class="form-group">
-    <label for="email" class="col-sm-3 control-label">Company Email</label>
-    <div class="col-sm-7">
-      <input type="email" name="email" id="email" placeholder="Email" autofocus="autofocus" class="form-control"/>
-    </div>
-  </div>
 
-  <div class="form-group">
-    <label for="password" class="col-sm-3 control-label">Password</label>
-    <div class="col-sm-7">
-      <input type="password" name="password" id="password" placeholder="Password" class="form-control"/>
-    </div>
-  </div>
 
-  <div class="form-group">
-    <label for="confirmPassword" class="col-sm-3 control-label">Confirm Password</label>
-    <div class="col-sm-7">
-      <input type="password" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password" class="form-control"/>
-    </div>
-  </div>
 
-  <div class="form-group">
-    <label for="phone" class="col-sm-3 control-label">Company Phone</label>
-    <div class="col-sm-7">
-      <input type="phone" name="phone" id="phone" placeholder="Company Phone Number" autofocus="autofocus" class="form-control"/>
-    </div>
-  </div>
 
-  <div class="form-group">
-    <div class="col-sm-offset-3 col-sm-7">
-      <button type="submit" class="btn btn-success"><i class="fa fa-user-plus"></i>Signup</button>
-    </div>
-  </div>
-  <div>
-  <a href="Billing_info" class="btn btn-default btn-md"> <span class="network-name">Upgrade to Premium!</span></a>
-  </div>
-</form>
