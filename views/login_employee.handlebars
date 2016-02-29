@@ -2,7 +2,7 @@
 <html lang="en" class="body-full-height">
     <head>        
         <!-- META SECTION -->
-        <title>Admin Login</title>            
+        <title>Employee Login</title>            
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -12,45 +12,34 @@
         
         <!-- CSS INCLUDE -->        
         <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
-        <!-- EOF CSS INCLUDE -->                                     
+        <!-- EOF CSS INCLUDE -->                                    
     </head>
     <body>
         
-        <div class="login-container lightmode">
+        <div class="login-container">
         
             <div class="login-box animated fadeInDown">
                 <div class="login-logo"></div>
                 <div class="login-body">
-                    <div class="login-title"><strong>Log In</strong> 
-                    <form class="form-horizontal" method="POST">
+                    <div class="login-title"><strong>Employee Login</strong></div>
+                    <form action="index.html" class="form-horizontal" method="post">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <input type="email" name="email" id="email" class="form-control" placeholder="E-mail"/>
+                            <input type="text" class="form-control" placeholder="Username"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-12">
-                            <input type="password" name="password" id="password" class="form-control" placeholder="Password"/>
+                            <input type="password" class="form-control" placeholder="Password"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-6">
-                            <a href="/forgot" class="btn btn-link btn-block">Forgot your password?</a>
+                            <a href="#" class="btn btn-link btn-block">Forgot your password?</a>
                         </div>
                         <div class="col-md-6">
                             <button class="btn btn-info btn-block">Log In</button>
                         </div>
-                    </div>
-                    <div class="login-or">OR</div>
-                    <div class="form-group">
-                    <div class="col-sm-offset-3 col-sm-7">
-                      <a href="/auth/facebook" class="btn btn-block btn-facebook btn-social">
-                        <i class="fa fa-facebook">
-                        </i>Sign in with Facebook</a>
-                    </div>
-                    </div>
-                    <div class="login-subtitle">
-                        Don't have an account yet? <a href="/signup">Create an account</a>
                     </div>
                     </form>
                 </div>
@@ -59,9 +48,9 @@
                         &copy; 2014 AppName
                     </div>
                     <div class="pull-right">
-                        <a href="/about">About</a> |
+                        <a href="#">About</a> |
                         <a href="#">Privacy</a> |
-                        <a href="/contact">Contact Us</a>
+                        <a href="#">Contact Us</a>
                     </div>
                 </div>
             </div>
