@@ -5,7 +5,13 @@ var mongoose = require('mongoose');
 var userSchema = new mongoose.Schema({
   email: { type: String, unique: true, lowercase: true },
   password: String,
-
+  companyname: String,
+  subdomainurl: String,
+  phonenumber: String,
+  signupdate: Date,
+  pricingplanlevel: Number,
+  name: { type: String, default: '' },
+  picture: { type: String, default: '' },
   //facebook: String,
   //twitter: String,
   //google: String,
@@ -14,15 +20,6 @@ var userSchema = new mongoose.Schema({
   //linkedin: String,
   //steam: String,
   //tokens: Array,
-
-  profile: {
-    name: { type: String, default: '' },
-    gender: { type: String, default: '' },
-    location: { type: String, default: '' },
-    website: { type: String, default: '' },
-    picture: { type: String, default: '' }
-  },
-
   resetPasswordToken: String,
   resetPasswordExpires: Date
 });

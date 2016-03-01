@@ -92,7 +92,12 @@ exports.postSignup = function(req, res, next) {
 
   var user = new User({
     email: req.body.email,
-    password: req.body.password
+    password: req.body.password,
+    companyname: req.body.companyname,
+    phonenumber: req.body.phonenumber,
+    subdomainurl: req.body.subdomainurl,
+    signupdate: Date.now(),
+    name: req.body.name
   });
 
   User.findOne({ email: req.body.email }, function(err, existingUser) {
@@ -134,10 +139,7 @@ exports.postUpdateProfile = function(req, res, next) {
       return next(err);
     }
     user.email = req.body.email || '';
-    user.profile.name = req.body.name || '';
-    user.profile.gender = req.body.gender || '';
-    user.profile.location = req.body.location || '';
-    user.profile.website = req.body.website || '';
+    username = req.body.name || '';
     user.save(function(err) {
       if (err) {
         return next(err);
