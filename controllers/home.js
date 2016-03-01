@@ -13,7 +13,7 @@ exports.index = function(req, res) {
       return res.redirect('/dashboard_employee');
     }
     else{
-      res.redirect('/home');
+      res.redirect('/');
     }
 
   }
