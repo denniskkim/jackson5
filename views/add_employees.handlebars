@@ -1,165 +1,236 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,200italic,300italic,400italic,600italic' rel='stylesheet' type='text/css'>
-		<title>Add Employees</title>
-		<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-		<link rel="stylesheet" type="text/css" href="css/bootstrap-sortable.css" />
-		<link rel="stylesheet" type="text/css" href="css/entry.css" />
+<head>
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,200italic,300italic,400italic,600italic'
+          rel='stylesheet' type='text/css'>
+    <title>Add Employees</title>
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
+
+    <link rel="stylesheet" type="text/css"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-sortable.css"/>
+    <link rel="stylesheet" type="text/css" href="css/entry.css"/>
 
 
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-		<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-		<script src="js/moment.min.js"></script>
-		<script src="js/bootstrap-sortable.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="js/bootstrap-sortable.js"></script>
 
 
-	</head>
-	<body>
-		<center>
-			
-			<div id = "section1" class = "section">
-				<div id = "s1container">
-					<div class = "container-fluid">
-						<button type = "button" class = "btn btn-secondary" data-toggle="modal" data-target="#addEmployee">Add Employee</button>
+</head>
 
-						<div class="modal fade" id="addEmployee" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-							<div class="modal-dialog" role="document">
-								<div class="modal-content">
-									<div class="modal-header">
-										<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-										<h2 class="modal-title" id="exampleModalLabel">ADD EMPLOYEE</h2>
-									</div>
-									<div class="modal-body">
-										<form method="POST" name="modalForm" class="form-horizontal" novalidate="" id="addEmployeeForm">
-											<div class="form-group">
-        										<label for="modalName" class="col-sm-2 control-label">Name</label>
-												<div class="col-sm-10">
-          											<input name="name" type="text" class="form-control" id="modalName" placeholder="Jane Doe" required="">
-          											<p class="help-block" id="invalidName">Please enter first and last name. Ex: First Last</p>
-        										</div>
-      										</div>
-    										<div class="form-group">
-        										<label for="modalNumber" class="col-sm-2 control-label">Number</label>
-    											<div class="col-sm-10">
-          											<input type="tel" name="number" class="form-control" id="modalNumber" required="">
-        											<p class="help-block" id="invalidNumber">Please enter a valid phone number Ex: 1234567890</p>
-        										</div>
-    										</div>
-    										<div class="form-group">
-        										<label class="col-sm-2 control-label" for="modalEmail">Email</label>
-    											<div class="col-sm-10">
-        											<input type="email" required="" class="form-control" id="modalEmail" placeholder="jane.doe@example.com" name="email">
-        											<p class="help-block" id="invalidEmail">Please enter a valid email Ex: email@address.com</p>
-    											</div>
-    										</div>
-                                            <div class="form-group">
-                                                <div class="col-sm-offset-3 col-sm-7">
-                                                    <button type="submit" class="btn btn-primary" id="okbutton">OK</button>
-                                                    <button class="btn btn-default" id="cancelbutton">Cancel</button>
-                                                </div>
-                                            </div>
-										</form>
-									</div>
-								</div>
-							</div>
-						</div>
-						<br><br>
-						<table class = "table table-striped sortable" id = "employees">
-							<thead>
-								<tr>
-									<th style="width: 25%" id = "nameHead">
-										Name
-									</th>
-									<th style="width: 25%" id = "numberHead">
-										Number
-									</th>
-									<th style="width: 50%" id = "emailHead">
-										Email
-									</th>
-								</tr>
-							</thead>
-                            {{#employees}}
+<div class="modal fade" id="addEmployee" tabindex="-1" role="dialog"
+     aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h2 class="modal-title" id="exampleModalLabel">ADD EMPLOYEE</h2>
+            </div>
+            <div class="modal-body">
+                <form method="POST" name="modalForm" class="form-horizontal" novalidate=""
+                      id="addEmployeeForm">
+                    <div class="form-group">
+                        <label for="modalName" class="col-sm-2 control-label">Name</label>
+                        <div class="col-sm-10">
+                            <input name="name" type="text" class="form-control" id="modalName"
+                                   placeholder="Jane Doe" required="">
+                            <p class="help-block" id="invalidName">Please enter first and last
+                                name. Ex: First Last</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="modalNumber" class="col-sm-2 control-label">Number</label>
+                        <div class="col-sm-10">
+                            <input type="tel" name="number" class="form-control"
+                                   id="modalNumber" required="">
+                            <p class="help-block" id="invalidNumber">Please enter a valid phone
+                                number Ex: 1234567890</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="modalEmail">Email</label>
+                        <div class="col-sm-10">
+                            <input type="email" required="" class="form-control" id="modalEmail"
+                                   placeholder="jane.doe@example.com" name="email">
+                            <p class="help-block" id="invalidEmail">Please enter a valid email
+                                Ex: email@address.com</p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-7">
+                            <button type="submit" class="btn btn-primary" id="okbutton">OK
+                            </button>
+                            <button class="btn btn-default" id="cancelbutton">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<body>
+
+<!-- START PAGE CONTAINER -->
+<div class="page-container">
+
+
+
+    <!-- START PAGE SIDEBAR -->
+    <div class="page-sidebar">
+        <!-- START X-NAVIGATION -->
+        <ul class="x-navigation">
+            <li class="xn-logo">
+                <a href="index.html">[Company Name]</a>
+                <a href="#" class="x-navigation-control"></a>
+            </li>
+            <li class="xn-profile">
+                <a href="#" class="profile-mini">
+                    <img src="assets/images/users/avatar.jpg" alt="John Doe"/>
+                </a>
+                <div class="profile">
+                    <div class="profile-image">
+                        <img src="assets/images/users/avatar.jpg" alt="John Doe"/>
+                    </div>
+                    <div class="profile-data">
+                        <div class="profile-data-name">[name]</div>
+                        <div class="profile-data-title">Owner</div>
+                    </div>
+                </div>
+            </li>
+            <li class="xn-title">Navigation</li>
+            <li class="active">
+                <a href="employee"><span class="fa fa-desktop"></span> <span class="xn-text">Overview</span></a>
+            </li>
+            <li class="active">
+                <a href="index"><span class="fa fa-desktop"></span> <span class="xn-text">Patient Queue</span></a>
+            </li>
+            <li class="active">
+                <a href="add_employees"><span class="fa fa-desktop"></span> <span class="xn-text">Employees</span></a>
+            </li>
+            <li class="active">
+                <a href="index"><span class="fa fa-desktop"></span> <span class="xn-text">Edit Form</span></a>
+            </li>
+            <li class="active">
+                <a href="index"><span class="fa fa-desktop"></span> <span class="xn-text">[Slack]</span></a>
+            </li>
+            <li class="active">
+                <a href="index"><span class="fa fa-desktop"></span> <span class="xn-text">Settings</span></a>
+            </li>
+        </ul>
+        <!-- END X-NAVIGATION -->
+    </div>
+    <!-- END PAGE SIDEBAR -->
+
+    <div class="page-content">
+
+        <div id="section1" class="section">
+            <div id="s1container">
+                <div class="container-fluid">
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#addEmployee">
+                        Add Employee
+                    </button>
+
+                    <br><br>
+                    <table class="table table-striped sortable" id="employees">
+                        <thead>
+                        <tr>
+                            <th style="width: 25%" id="nameHead">
+                                Name
+                            </th>
+                            <th style="width: 25%" id="numberHead">
+                                Number
+                            </th>
+                            <th style="width: 50%" id="emailHead">
+                                Email
+                            </th>
+                        </tr>
+                        </thead>
+                        {{#employees}}
                             <tr>
                                 <td>{{name}}</td>
                                 <td>{{phone_number}}</td>
                                 <td>{{email}}</td>
                             </tr>
-                            {{/employees}}
-							<tbody>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</div>
-			
-		</center>
-		<script type = "text/javascript">
-			$(function(){
-				$('input[name=name]').on('input', function () {
-					if($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val() && $('#modalPassword').val() && $('#modalConfirm').val())
-						$('#okbutton').prop('disabled', false);
-					else
-						$('#okbutton').prop('disabled', true);
-				});
-				$('input[name=number]').on('input', function () {
-					if($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val() && $('#modalPassword').val() && $('#modalConfirm').val())
-						$('#okbutton').prop('disabled', false);
-					else
-						$('#okbutton').prop('disabled', true);
-				});
-				$('input[name=email]').on('input', function () {
-					if($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val() && $('#modalPassword').val() && $('#modalConfirm').val())
-						$('#okbutton').prop('disabled', false);
-					else
-						$('#okbutton').prop('disabled', true);
-				});
-				$('input[name=password]').on('input', function () {
-					if($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val() && $('#modalPassword').val() && $('#modalConfirm').val())
-						$('#okbutton').prop('disabled', false);
-					else
-						$('#okbutton').prop('disabled', true);
-				});
-				$('input[name=confirm]').on('input', function () {
-					if($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val() && $('#modalPassword').val() && $('#modalConfirm').val())
-						$('#okbutton').prop('disabled', false);
-					else
-						$('#okbutton').prop('disabled', true);
-				});
-				/*var pathname = window.location.href;
-				var indexOfName = pathname.indexOf('name=');
-				var indexOfNumber = pathname.indexOf('number=');
-				var indexOfEmail = pathname.indexOf('email=');
-				if(indexOfName != -1 && indexOfNumber != -1 && indexOfEmail != -1)
-				{
-					var name = pathname.substring(indexOfName+5, indexOfNumber-1);
-					var number = pathname.substring(indexOfNumber+7, indexOfEmail-1);
-					var email = pathname.substring(indexOfEmail+6);
-					$('#employees').find('tbody').append('<tr><th style="width: 25%">' + name + '</th><th style="width: 25%">'  + number + '</th><th style="width: 50%">' + email + '</th></tr>');
-				}*/
-				var rownumber = 0;
-				$('#okbutton').click(function(){
-					$('#employees').find('tbody').append('<tr id ="row' + rownumber + '"><td style="width: 25%">' + $('#modalName').val() + '</td><td style="width: 25%">'  + $('#modalNumber').val() + '</td><td style="width: 40%">' + $('#modalEmail').val() + '</td><td style="width:10%;text-align:right"><a href = "#"><span class = "glyphicon glyphicon-pencil" id = "edit' + rownumber + '"></span></a><a href = "#" class = "delete"><span class = "glyphicon glyphicon-trash" id = "delete' + rownumber + '"></span></a><a href = "#"></a></td></tr>');
-					rownumber++;
-					$.bootstrapSortable(true);
-					$("#addEmployeeForm")[0].reset();
-				});
-				$('#cancelbutton').click(function(){
-					$("#addEmployeeForm")[0].reset();
-				});
-				/*$('.delete').click(function(){
-					console.log("hi");
-				});
-				$('tr').mouseover(
-					function() {
-						alert('hi');
-					}, function() {
-					}
-				);
-			}	);*/
-		</script>
-	</body>
+                        {{/employees}}
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <script type="text/javascript">
+            $(function () {
+                $('input[name=name]').on('input', function () {
+                    if ($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val() && $('#modalPassword').val() && $('#modalConfirm').val())
+                        $('#okbutton').prop('disabled', false);
+                    else
+                        $('#okbutton').prop('disabled', true);
+                });
+                $('input[name=number]').on('input', function () {
+                    if ($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val() && $('#modalPassword').val() && $('#modalConfirm').val())
+                        $('#okbutton').prop('disabled', false);
+                    else
+                        $('#okbutton').prop('disabled', true);
+                });
+                $('input[name=email]').on('input', function () {
+                    if ($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val() && $('#modalPassword').val() && $('#modalConfirm').val())
+                        $('#okbutton').prop('disabled', false);
+                    else
+                        $('#okbutton').prop('disabled', true);
+                });
+                $('input[name=password]').on('input', function () {
+                    if ($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val() && $('#modalPassword').val() && $('#modalConfirm').val())
+                        $('#okbutton').prop('disabled', false);
+                    else
+                        $('#okbutton').prop('disabled', true);
+                });
+                $('input[name=confirm]').on('input', function () {
+                    if ($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val() && $('#modalPassword').val() && $('#modalConfirm').val())
+                        $('#okbutton').prop('disabled', false);
+                    else
+                        $('#okbutton').prop('disabled', true);
+                });
+                /*var pathname = window.location.href;
+                var indexOfName = pathname.indexOf('name=');
+                var indexOfNumber = pathname.indexOf('number=');
+                var indexOfEmail = pathname.indexOf('email=');
+                if(indexOfName != -1 && indexOfNumber != -1 && indexOfEmail != -1)
+                {
+                    var name = pathname.substring(indexOfName+5, indexOfNumber-1);
+                    var number = pathname.substring(indexOfNumber+7, indexOfEmail-1);
+                    var email = pathname.substring(indexOfEmail+6);
+                    $('#employees').find('tbody').append('<tr><th style="width: 25%">' + name + '</th><th style="width: 25%">'  + number + '</th><th style="width: 50%">' + email + '</th></tr>');
+                }*/
+                var rownumber = 0;
+                $('#okbutton').click(function () {
+                    $('#employees').find('tbody').append('<tr id ="row' + rownumber + '"><td style="width: 25%">' + $('#modalName').val() + '</td><td style="width: 25%">' + $('#modalNumber').val() + '</td><td style="width: 40%">' + $('#modalEmail').val() + '</td><td style="width:10%;text-align:right"><a href = "#"><span class = "glyphicon glyphicon-pencil" id = "edit' + rownumber + '"></span></a><a href = "#" class = "delete"><span class = "glyphicon glyphicon-trash" id = "delete' + rownumber + '"></span></a><a href = "#"></a></td></tr>');
+                    rownumber++;
+                    $.bootstrapSortable(true);
+                    $("#addEmployeeForm")[0].reset();
+                });
+                $('#cancelbutton').click(function () {
+                    $("#addEmployeeForm")[0].reset();
+                });
+            /*$('.delete').click(function(){
+                console.log("hi");
+            });
+            $('tr').mouseover(
+                function() {
+                    alert('hi');
+                }, function() {
+                }
+            );
+        }	);*/
+        </script>
+    </div>
+</div>
+
+</body>
 
 </html>

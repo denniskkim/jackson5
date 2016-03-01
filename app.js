@@ -40,6 +40,7 @@ var apiController = require('./controllers/api');
 var contactController = require('./controllers/contact');
 var employeeController = require('./controllers/employee');
 var patientController = require('./controllers/patient');
+var dashboardController = require('./controllers/dashboard');
 
 /**
  * API keys and Passport configuration.
@@ -136,9 +137,14 @@ app.post('/account/delete', passportConf.isAuthenticated, userController.postDel
 app.get('/account/unlink/:provider', passportConf.isAuthenticated, userController.getOauthUnlink);
 app.get('/add_Employees', employeeController.getEmployees);
 app.post('/add_Employees', employeeController.addEmployee);
+app.get('/login_employee', employeeController.getEmployeeLogin);
+app.post('/login_employee', employeeController.postEmployeeLogin);
 
 app.post('/add_patient', patientController.addPatient);
 app.get('/patient_queue', patientController.getPatients);
+
+app.get('/dashboard_admin', dashboardController.getBusinessOwnerDashboard);
+app.get('/dashboard_employee', dashboardController.getEmployeeDashboard);
 
 /**
  * API examples routes.

@@ -9,13 +9,21 @@ exports.index = function(req, res) {
 
   if(subDomain.length > 1){
     subDomain = subDomain[0].split("-").join(" ");
+    if (req.user) {
+      return res.redirect('/dashboard_employee');
+    }
+    else{
+      res.redirect('/login_employee');
+    }
 
-    res.render('account/login', {
-      companyname: subDomain
-    })
   }
   else{
-    res.render('home');
+    if (req.user) {
+      return res.redirect('/dashboard_admin');
+    }
+    else{
+      res.render('home');
+    }
   }
 
 
