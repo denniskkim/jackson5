@@ -13,14 +13,27 @@ var OAuthStrategy = require('passport-oauth').OAuthStrategy;
 var OAuth2Strategy = require('passport-oauth').OAuth2Strategy;
 
 var User = require('../models/User');
+var Employee = require('../models/Employee');
 
 passport.serializeUser(function(user, done) {
-  done(null, user.id);
+  console.log(user);
+    done(null, user._id);
 });
 
 passport.deserializeUser(function(id, done) {
+
+  // very hacky way. Should modify the serialized user to include type. Then based upon type, get either user or employee
   User.findById(id, function(err, user) {
-    done(err, user);
+
+    if(err) done(err);
+    if(user){
+      done(null, user);
+    } else {
+      Employee.findById(id, function (err, user) {
+        if (err) done(err);
+        done(null, user);
+      })
+    }
   });
 });
 
@@ -75,9 +88,9 @@ passport.use(new InstagramStrategy({
 }));
 
 /**
- * Sign in using Email and Password.
+ * Sign in using Email and Password. User (Business owner) login
  */
-passport.use(new LocalStrategy({ usernameField: 'email' }, function(email, password, done) {
+passport.use("business_owner",new LocalStrategy({ usernameField: 'email' }, function(email, password, done) {
   email = email.toLowerCase();
   User.findOne({ email: email }, function(err, user) {
     if (!user) {
@@ -86,6 +99,25 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, function(email, passw
     user.comparePassword(password, function(err, isMatch) {
       if (isMatch) {
         return done(null, user);
+      } else {
+        return done(null, false, { message: 'Invalid email or password.' });
+      }
+    });
+  });
+}));
+
+/**
+ * Sign in using Email and Password. User (Business owner) login
+ */
+passport.use("employee",new LocalStrategy({ usernameField: 'email' }, function(email, password, done) {
+  email = email.toLowerCase();
+  Employee.findOne({ email: email }, function(err, employee) {
+    if (!employee) {
+      return done(null, false, { message: 'Email ' + email + ' not found'});
+    }
+    employee.comparePassword(password, function(err, isMatch) {
+      if (isMatch) {
+        return done(null, employee);
       } else {
         return done(null, false, { message: 'Invalid email or password.' });
       }

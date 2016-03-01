@@ -33,7 +33,7 @@ exports.postLogin = function(req, res, next) {
     return res.redirect('/login');
   }
 
-  passport.authenticate('local', function(err, user, info) {
+  passport.authenticate('business_owner', function(err, user, info) {
     if (err) {
       return next(err);
     }
@@ -46,7 +46,8 @@ exports.postLogin = function(req, res, next) {
         return next(err);
       }
       req.flash('success', { msg: 'Success! You are logged in.' });
-      res.redirect(req.session.returnTo || '/');
+      //res.redirect(req.session.returnTo || '/dashboard_admin');
+      res.redirect('/dashboard_admin');
     });
   })(req, res, next);
 };
