@@ -1,23 +1,26 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="kbVvSFA0FeOU53dEI1g6hA+S13No4sPlWW+I8=">
+    <!-- META SECTION -->
     <title>Settings</title>
     <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
 
     <link rel="stylesheet" href="css/bootstrap.css">
-</head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
+    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+    <!-- END META SECTION -->
+
+    <!-- CSS INCLUDE -->
+    <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
+    <!-- EOF CSS INCLUDE -->
+</head>
 <body>
 
 <!-- START PAGE CONTAINER -->
 <div class="page-container">
-
 
     <!-- START PAGE SIDEBAR -->
     <div class="page-sidebar">
@@ -56,10 +59,13 @@
             </li>
             {{#if user.companyname}}
                 <li class="active">
-                    <a href="add_employees"><span class="fa fa-users"></span> <span class="xn-text">Employees</span></a>
+                    <a href="add_employees"><span class="fa fa-users"></span> <span class="xn-text">Manage Employees</span></a>
                 </li>
                 <li class="active">
                     <a href="form"><span class="fa fa-pencil"></span> <span class="xn-text">Edit Form</span></a>
+                </li>
+                <li class="active">
+                    <a href="viewform"><span class="fa fa-pencil"></span> <span class="xn-text">View Form</span></a>
                 </li>
             {{/if}}
             <li class="active">
@@ -142,7 +148,7 @@
         <!-- START BREADCRUMB -->
         <ul class="breadcrumb">
             <li><a href="/">Home</a></li>
-            <li class="active">Employees</li>
+            <li class="active">Settings</li>
         </ul>
         <!-- END BREADCRUMB -->
 
@@ -233,50 +239,110 @@
                     <input type="hidden" name="_csrf" value="kbVvSFA0FeOU53dEI1g6hA+S13No4sPlWW+I8=">
                     <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i>Delete my account</button>
                 </form>
-                <div class="page-header">
-                    <h3>Linked Accounts</h3>
-                </div>
 
-            </div>
+                <footer>
 
-            <footer>
+                </footer>
+                <!--<script src="js/jquery-2.1.3.min.js"></script>
+                <script src="js/bootstrap.min.js"></script>
+                -->
+                <script type="text/javascript"
+                        src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 
-            </footer>
-            <!--<script src="js/jquery-2.1.3.min.js"></script>
-            <script src="js/bootstrap.min.js"></script>
-            -->
-            <script type="text/javascript"
-                    src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                <script>
+                    //TODO: Validate Current password to allow password change
 
-            <script>
-                //TODO: Validate Current password to allow password change
-
-                // Check for New Password Match
-                function checkPass() {
-                    var password = document.getElementById("#newPassword");
-                    var confirmPassword = document.getElementById("#confirmPassword");
-                    var msg = document.getElementById('confirmMessage');
-                    //Set the colors we will be using ...
-                    var goodColor = "#66cc66";
-                    var badColor = "#ff6666";
-                    if (password != confirmPassword) {
-                        confirmPassword.style.backgroundColor = badColor;
-                        msg.style.color = badColor;
-                        msg.innerHTML = "Passwords Do Not Match!"
-                        return false;
-                    } else {
-                        confirmPassword.style.backgroundColor = goodColor;
-                        msg.style.color = goodColor;
-                        msg.innerHTML = "Passwords Match!"
+                    // Check for New Password Match
+                    function checkPass() {
+                        var password = document.getElementById("#newPassword");
+                        var confirmPassword = document.getElementById("#confirmPassword");
+                        var msg = document.getElementById('confirmMessage');
+                        //Set the colors we will be using ...
+                        var goodColor = "#66cc66";
+                        var badColor = "#ff6666";
+                        if (password != confirmPassword) {
+                            confirmPassword.style.backgroundColor = badColor;
+                            msg.style.color = badColor;
+                            msg.innerHTML = "Passwords Do Not Match!"
+                            return false;
+                        } else {
+                            confirmPassword.style.backgroundColor = goodColor;
+                            msg.style.color = goodColor;
+                            msg.innerHTML = "Passwords Match!"
+                        }
                     }
-                }
-                ;
-            </script>
+                    ;
+                </script>
+            </div>
+        </div>
+    </div>
+
+    <!-- END DASHBOARD CHART -->
+
+</div>
+<!-- END PAGE CONTENT WRAPPER -->
+</div>
+<!-- END PAGE CONTENT -->
+</div>
+<!-- END PAGE CONTAINER -->
+
+<!-- MESSAGE BOX-->
+<div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
+    <div class="mb-container">
+        <div class="mb-middle">
+            <div class="mb-title"><span class="fa fa-sign-out"></span> Log <strong>Out</strong> ?</div>
+            <div class="mb-content">
+                <p>Are you sure you want to log out?</p>
+                <p>Press No if youwant to continue work. Press Yes to logout current user.</p>
+            </div>
+            <div class="mb-footer">
+                <div class="pull-right">
+                    <a href="pages-login.html" class="btn btn-success btn-lg">Yes</a>
+                    <button class="btn btn-default btn-lg mb-control-close">No</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
+<!-- END MESSAGE BOX-->
+
+<!-- START PRELOADS -->
+<audio id="audio-alert" src="audio/alert.mp3" preload="auto"></audio>
+<audio id="audio-fail" src="audio/fail.mp3" preload="auto"></audio>
+<!-- END PRELOADS -->
+
+<!-- START SCRIPTS -->
+<!-- START PLUGINS -->
+<script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="js/plugins/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- END PLUGINS -->
+
+<!-- START THIS PAGE PLUGINS-->
+<script type='text/javascript' src='js/plugins/icheck/icheck.min.js'></script>
+<script type="text/javascript" src="js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+<script type="text/javascript" src="js/plugins/scrolltotop/scrolltopcontrol.js"></script>
 
 
+<script type="text/javascript" src="js/plugins/owl/owl.carousel.min.js"></script>
+
+<script type="text/javascript" src="js/plugins/moment.min.js"></script>
+<!-- END THIS PAGE PLUGINS-->
+
+<!-- START TEMPLATE -->
+<script type="text/javascript" src="js/settings.js"></script>
+
+<script type="text/javascript" src="js/plugins.js"></script>
+<script type="text/javascript" src="js/actions.js"></script>
+
+
+<!-- END TEMPLATE -->
+<!-- END SCRIPTS -->
 </body>
-
 </html>
+
+
+
+
+
+

@@ -20,8 +20,6 @@
 
 <!-- START PAGE CONTAINER -->
 <div class="page-container">
-
-
     <!-- START PAGE SIDEBAR -->
     <div class="page-sidebar">
         <!-- START X-NAVIGATION -->
@@ -54,15 +52,19 @@
                 <a href="/"><span class="fa fa-dashboard"></span> <span class="xn-text">Overview</span></a>
             </li>
             <li class="active">
-                <a href="patient_queue"><span class="fa fa-clock-o"></span> <span class="xn-text">Patient Queue</span></a>
+                <a href="patient_queue"><span class="fa fa-clock-o"></span> <span
+                        class="xn-text">Patient Queue</span></a>
             </li>
             {{#if user.companyname}}
-            <li class="active">
-                <a href="add_employees"><span class="fa fa-users"></span> <span class="xn-text">Employees</span></a>
-            </li>
-            <li class="active">
-                <a href="form"><span class="fa fa-pencil"></span> <span class="xn-text">Edit Form</span></a>
-            </li>
+                <li class="active">
+                    <a href="add_employees"><span class="fa fa-users"></span> <span class="xn-text">Manage Employees</span></a>
+                </li>
+                <li class="active">
+                    <a href="form"><span class="fa fa-pencil"></span> <span class="xn-text">Edit Form</span></a>
+                </li>
+                <li class="active">
+                    <a href="viewform"><span class="fa fa-pencil"></span> <span class="xn-text">View Form</span></a>
+                </li>
             {{/if}}
             <li class="active">
                 <a href="#"><span class="fa fa-comments-o"></span> <span class="xn-text">[Slack]</span></a>
@@ -144,7 +146,7 @@
         <!-- START BREADCRUMB -->
         <ul class="breadcrumb">
             <li><a href="/">Home</a></li>
-            <li class="active">Employees</li>
+            <li class="active">Patient Queue</li>
         </ul>
         <!-- END BREADCRUMB -->
 

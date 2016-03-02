@@ -5,6 +5,7 @@ var nodemailer = require('nodemailer');
 var passport = require('passport');
 var User = require('../models/User');
 
+
 /**
  * GET /login
  * Login page.
@@ -99,6 +100,16 @@ exports.postSignup = function(req, res, next) {
     signupdate: Date.now(),
     name: req.body.name
   });
+
+  /**
+   * changes I made for sub-domain implementation
+   */
+  //console.log('This is the company name ' + req.body.companyname );
+  //var router = express.Router();
+  //router.get('/', function(req, res) {
+  //  res.send('Welcome to our API!' + req.body.companyname);
+  //});
+
 
   User.findOne({ email: req.body.email }, function(err, existingUser) {
     if (existingUser) {
