@@ -151,6 +151,28 @@ exports.postUpdateProfile = function(req, res, next) {
 };
 
 /**
+ * POST /account/profile
+ * Update profile information.
+ */
+exports.postUpdateForm = function(req, res, next) {
+  User.findById(req.user.id, function(err, user) {
+    if (err) {
+      console.log(err);
+      return next(err);
+    }
+    user.form = req.body.form || '';
+    user.save(function(err) {
+      if (err) {
+        console.log(err);
+        return next(err);
+      }
+      req.flash('success', { msg: 'Form information updated.' });
+      res.redirect('/form');
+    });
+  });
+};
+
+/**
  * POST /account/password
  * Update current password.
  */

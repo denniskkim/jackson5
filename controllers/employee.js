@@ -170,10 +170,12 @@ exports.postEmployeeLogin = function(req, res, next) {
     }
 
     passport.authenticate('employee', function(err, employee, info) {
+        console.log(info);
         if (err) {
             return next(err);
         }
         if (!employee) {
+            console.log(err);
             req.flash('errors', { msg: info.message });
             return res.redirect('/login');
         }
