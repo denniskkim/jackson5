@@ -238,7 +238,7 @@
                 <h2 class="modal-title" id="exampleModalLabel">ADD EMPLOYEES</h2>
             </div>
             <div class="modal-body">
-                <form method="POST" action="/add_EmployeesCSV" name="modalCSVInput" class="form-horizontal ws-validate" id="addEmployeeCSVForm">
+                <form method="POST" action="/add_EmployeesCSV" name="modalCSVInput" class="form-horizontal ws-validate" enctype="multipart/form-data" id="addEmployeeCSVForm">
                     <div class="form-group">
                         <div class="col-sm-10">
                             <p>Upload a CSV file containing your employees.</p>
