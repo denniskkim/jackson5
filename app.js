@@ -116,6 +116,7 @@ app.use(function(req, res, next) {
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
 
 //grabbing subdomain
+/* TODO: check if the account was verified */
 //app.use(subdomain('api', router));
 
 /**
