@@ -3,7 +3,30 @@
  * Home page.
  */
 exports.index = function(req, res) {
-  res.render('home', {
-    title: 'Home'
-  });
+
+  var domain = req.headers.host,
+      subDomain = domain.split('.');
+
+  if(subDomain.length > 1){
+    subDomain = subDomain[0].split("-").join(" ");
+    if (req.user) {
+      return res.redirect('/dashboard_employee');
+    }
+    else{
+      res.redirect('/login_employee');
+    }
+
+  }
+  else{
+    if (req.user) {
+      return res.redirect('/dashboard_admin');
+    }
+    else{
+      res.render('home');
+    }
+  }
+
+
+
+
 };
