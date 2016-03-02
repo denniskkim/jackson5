@@ -47,36 +47,8 @@ exports.addEmployee = function(req, res) {
         } else {
             //console.log('Creating new employee: ' + employee);
             res.redirect('add_employees');
-        }
-    });
 
-    // TODO: send email notification
-    // Create SMTP transporter object
-    var options = {
-        service: 'gmail',
-        auth: {
-            user: 'donotreply.receptional@gmail.com',
-            pass: 'nightowls1'
-        }
-    };
-    var companyname = req.user.companyname;
-    var subdomainurl = req.user.subdomainurl;
-    var transporter = nodemailer.createTransport(options);
-    // Setup email data
-    var mailOptions = {
-        from: '"Receptional.xyz" <donotreply.receptional@gmail.com>',
-        to: /*email **Hard coded for now */ 'donotreply.receptional@gmail.com',
-        subject: 'Welcome to Receptional',
-        text: 'Hello ' + name + '\n\nWelcome to receptional. You have been added to the company: ' + companyname + '. You can access your company receptional website at: ' + subdomainurl + 'receptional.xyz. You\'re password is ' + password + '.',
-        html: 'Hello ' + name + '\n\nWelcome to receptional. You have been added to the company: ' + companyname + '. You can access your company receptional website at: ' + subdomainurl + 'receptional.xyz. You\'re password is ' + password + '.'
-    };
-    // Send email
-    transporter.sendMail(mailOptions, function(error, info) {
-        if(error) {
-            console.log(error);
-        }
-        else {
-            console.log('Message sent: ' + info.response);
+            emailEmployee(employee, req.user, password);
         }
     });
 };
@@ -97,16 +69,16 @@ exports.addEmployeesThroughCSV = function(req, res) {
             name: name,
             phone_number: phone,
             email: email,
+            password: password,
             _admin_id: admin_id
         }, function (err, employee) {
             if (err) {
                 console.log("ERROR creating employee: ");
                 //res.send("There was a problem adding the employee to the databaase");
+            } else {
+                emailEmployee(employee, req.user, password);
             }}
         );
-
-
-        // TODO: send email notification
     }
     res.redirect('/add_employees');
 };
@@ -234,4 +206,37 @@ function generateRandomString() {
         text += possible.charAt(Math.floor(Math.random() * possible.length));
 
     return text;
+}
+
+function emailEmployee(employee, admin, password) {
+    // Create SMTP transporter object
+    var options = {
+        service: 'gmail',
+        auth: {
+            user: 'donotreply.receptional@gmail.com',
+            pass: 'nightowls1'
+        }
+    };
+    var companyname = admin.companyname;
+    var subdomainurl = admin.subdomainurl;
+    var emailtext = "Hello " + employee.name + "! Welcome to receptional. You have been added to the company: " + companyname + ". You can access your company receptional website at: " + subdomainurl + ".receptional.xyz. You're password is " + password + ".";
+    var transporter = nodemailer.createTransport(options);
+    // Setup email data
+    var mailOptions = {
+        from: '"Receptional.xyz" <donotreply.receptional@gmail.com>',
+        to: /*employee.email **Hard coded for now */ 'donotreply.receptional@gmail.com',
+        subject: "Welcome to Receptional",
+        text: emailtext,
+        html: emailtext
+    };
+    // Send email
+    transporter.sendMail(mailOptions, function(error, info) {
+        if(error) {
+            console.log(error);
+        }
+        else {
+            console.log('Message sent: ' + info.response);
+            console.log(emailtext);
+        }
+    });
 }
