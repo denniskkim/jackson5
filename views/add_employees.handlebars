@@ -191,7 +191,7 @@
                 <h2 class="modal-title" id="exampleModalLabel">ADD EMPLOYEE</h2>
             </div>
             <div class="modal-body">
-                <form method="POST" name="modalForm" class="form-horizontal" novalidate="" id="addEmployeeForm">
+                <form method="POST" name="modalForm" class="form-horizontal ws-validate" id="addEmployeeForm">
                     <div class="form-group">
                         <label for="modalName" class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-10">
@@ -209,15 +209,14 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="modalEmail">Email</label>
                         <div class="col-sm-10">
-                            <input type="email" class="form-control" id="modalEmail" placeholder="jane.doe@example.com" name="email" required>
+                            <input type="email" name="email" class="form-control" id="modalEmail" placeholder="jane.doe@example.com" required>
                             <p class="help-block" id="invalidEmail">Please enter a valid email Ex: email@address.com</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-7">
-                            <button type="submit" class="btn btn-primary" id="okbutton">OK
-                            </button>
-                            <button class="btn btn-default" id="cancelbutton">Cancel</button>
+                            <button type="submit" class="btn btn-primary" id="okbutton" disabled>OK</button>
+                            <button class="btn btn-default" data-dismiss="modal" id="cancelbutton">Cancel</button>
                         </div>
                     </div>
                 </form>
@@ -286,32 +285,25 @@
 <!-- START ADD EMPLOYEE  SCRIPT -->
 <script type="text/javascript">
     $(function () {
+        // Reset form when form is hidden
+        $('.modal').on('hidden.bs.modal', function(){
+            $(this).find('form')[0].reset();
+        });
+        // Require fields to be filled out
         $('input[name=name]').on('input', function () {
-            if ($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val() && $('#modalPassword').val() && $('#modalConfirm').val())
+            if ($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val())
                 $('#okbutton').prop('disabled', false);
             else
                 $('#okbutton').prop('disabled', true);
         });
-        $('input[name=number]').on('input', function () {
-            if ($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val() && $('#modalPassword').val() && $('#modalConfirm').val())
+        $('input[name=tel]').on('input', function () {
+            if ($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val())
                 $('#okbutton').prop('disabled', false);
             else
                 $('#okbutton').prop('disabled', true);
         });
         $('input[name=email]').on('input', function () {
-            if ($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val() && $('#modalPassword').val() && $('#modalConfirm').val())
-                $('#okbutton').prop('disabled', false);
-            else
-                $('#okbutton').prop('disabled', true);
-        });
-        $('input[name=password]').on('input', function () {
-            if ($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val() && $('#modalPassword').val() && $('#modalConfirm').val())
-                $('#okbutton').prop('disabled', false);
-            else
-                $('#okbutton').prop('disabled', true);
-        });
-        $('input[name=confirm]').on('input', function () {
-            if ($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val() && $('#modalPassword').val() && $('#modalConfirm').val())
+            if ($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val())
                 $('#okbutton').prop('disabled', false);
             else
                 $('#okbutton').prop('disabled', true);
@@ -327,16 +319,16 @@
             var email = pathname.substring(indexOfEmail+6);
             $('#employees').find('tbody').append('<tr><th style="width: 25%">' + name + '</th><th style="width: 25%">'  + number + '</th><th style="width: 50%">' + email + '</th></tr>');
         }*/
-        var rownumber = 0;
-        $('#okbutton').click(function () {
-            $('#employees').find('tbody').append('<tr id ="row' + rownumber + '"><td style="width: 25%">' + $('#modalName').val() + '</td><td style="width: 25%">' + $('#modalNumber').val() + '</td><td style="width: 40%">' + $('#modalEmail').val() + '</td><td style="width:10%;text-align:right"><a href = "#"><span class = "glyphicon glyphicon-pencil" id = "edit' + rownumber + '"></span></a><a href = "#" class = "delete"><span class = "glyphicon glyphicon-trash" id = "delete' + rownumber + '"></span></a><a href = "#"></a></td></tr>');
-            rownumber++;
-            $.bootstrapSortable(true);
-            $("#addEmployeeForm")[0].reset();
-        });
-        $('#cancelbutton').click(function () {
-            $("#addEmployeeForm")[0].reset();
-        });
+//        var rownumber = 0;
+//        $('#okbutton').click(function () {
+//            $('#employees').find('tbody').append('<tr id ="row' + rownumber + '"><td style="width: 25%">' + $('#modalName').val() + '</td><td style="width: 25%">' + $('#modalNumber').val() + '</td><td style="width: 40%">' + $('#modalEmail').val() + '</td><td style="width:10%;text-align:right"><a href = "#"><span class = "glyphicon glyphicon-pencil" id = "edit' + rownumber + '"></span></a><a href = "#" class = "delete"><span class = "glyphicon glyphicon-trash" id = "delete' + rownumber + '"></span></a><a href = "#"></a></td></tr>');
+//            rownumber++;
+//            $.bootstrapSortable(true);
+//            $("#addEmployeeForm")[0].reset();
+//        });
+//        $('#cancelbutton').click(function () {
+//            $("#addEmployeeForm")[0].reset();
+//        });
     /*$('.delete').click(function(){
 console.log("hi");
 });
@@ -345,8 +337,8 @@ function() {
 alert('hi');
 }, function() {
 }
-);
-}	);*/
+); */
+}	);
 </script>
 <!-- END ADD EMPLOYEE SCRIPT -->
 <!-- END SCRIPTS -->
