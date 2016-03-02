@@ -141,6 +141,7 @@ app.post('/account/delete', passportConf.isAuthenticated, userController.postDel
 app.get('/account/unlink/:provider', passportConf.isAuthenticated, userController.getOauthUnlink);
 app.get('/add_Employees', employeeController.getEmployees);
 app.post('/add_Employees', employeeController.addEmployee);
+app.post('/add_EmployeesCSV', employeeController.addEmployeesThroughCSV);
 app.get('/login_employee', employeeController.getEmployeeLogin);
 app.post('/login_employee', employeeController.postEmployeeLogin);
 app.post('/form', passportConf.isAuthenticated, userController.postUpdateForm);

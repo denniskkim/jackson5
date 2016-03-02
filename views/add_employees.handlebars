@@ -110,6 +110,9 @@
                             <h3 class="panel-title">Manage Employees</h3>
                             <ul class="panel-controls">
                                 <li>
+                                    <button class="btn btn-default" data-toggle="modal" data-target="#addEmployeeCSV"> Import Data</button>
+                                </li>
+                                <li>
                                     <button class="btn btn-default" data-toggle="modal" data-target="#addEmployee">Add Employee</button>
                                 </li>
                             </ul>
@@ -226,7 +229,36 @@
 </div>
 <!-- END ADD MODAL-->
 
-<!-- SIGN OUT MESSAGE BOX-->
+<div class="modal fade" id="addEmployeeCSV" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h2 class="modal-title" id="exampleModalLabel">ADD EMPLOYEES</h2>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="/add_EmployeesCSV" name="modalCSVInput" class="form-horizontal ws-validate" id="addEmployeeCSVForm">
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <p>Upload a CSV file containing your employees.</p>
+                            <p class="help-block">Each line should formatted:<br>name, phone number, email</p>
+                            <input type="file" name="file" class="form-control" accept="application/csv" id="modalFile" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-7">
+                            <button type="submit" class="btn btn-primary" id="okbuttonCSV" >OK</button>
+                            <button class="btn btn-default" data-dismiss="modal" id="cancelbuttonCSV">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+                <!-- SIGN OUT MESSAGE BOX-->
 <div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
     <div class="mb-container">
         <div class="mb-middle">
@@ -296,7 +328,7 @@
             else
                 $('#okbutton').prop('disabled', true);
         });
-        $('input[name=tel]').on('input', function () {
+        $('input[name=number]').on('input', function () {
             if ($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val())
                 $('#okbutton').prop('disabled', false);
             else
@@ -307,6 +339,12 @@
                 $('#okbutton').prop('disabled', false);
             else
                 $('#okbutton').prop('disabled', true);
+        });
+        $('input[name=file]').on('input', function () {
+            if ($('#modalFile').val())
+                $('#okbuttonCSV').prop('disabled', false);
+            else
+                $('#okbuttonCSV').prop('disabled', true);
         });
         /*var pathname = window.location.href;
         var indexOfName = pathname.indexOf('name=');

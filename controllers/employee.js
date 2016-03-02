@@ -55,10 +55,9 @@ exports.addEmployee = function(req, res) {
 
 // TODO: create a file input in html
 exports.addEmployeesThroughCSV = function(req, res) {
-    var parsed = baby.parse(req.body.file);
+    var parsed = baby.parseFiles(req.body.file);
     var rows = parsed.data;
     var admin_id = req.user.id;
-
 
     for(var i = 0; i < rows.length; i++){
         var name = rows[i][0];
@@ -76,7 +75,8 @@ exports.addEmployeesThroughCSV = function(req, res) {
                 console.log("ERROR creating employee: ");
                 //res.send("There was a problem adding the employee to the databaase");
             } else {
-                emailEmployee(employee, req.user, password);
+                console.log(employee);
+                //emailEmployee(employee, req.user, password);
             }}
         );
     }
