@@ -4,6 +4,8 @@ var _ = require('lodash');
 var async = require('async');
 var nodemailer = require('nodemailer');
 var passport = require('passport');
+var fs = require('fs');
+
 /**
  * GET /add_employees
  * Employees page.
@@ -53,9 +55,9 @@ exports.addEmployee = function(req, res) {
     });
 };
 
-// TODO: create a file input in html
 exports.addEmployeesThroughCSV = function(req, res) {
-    var parsed = baby.parseFiles(req.body.file);
+    var content = fs.readFileSync(req.file.path, { encoding: 'binary' });
+    var parsed = baby.parse(content);
     var rows = parsed.data;
     var admin_id = req.user.id;
 
