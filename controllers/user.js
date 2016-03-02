@@ -95,7 +95,7 @@ exports.postSignup = function(req, res, next) {
     email: req.body.email,
     password: req.body.password,
     companyname: req.body.companyname,
-    phonenumber: req.body.phonenumber,
+    phonenumber: req.body.companyphone,
     subdomainurl: req.body.subdomainurl,
     signupdate: Date.now(),
     name: req.body.name
