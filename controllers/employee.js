@@ -1,4 +1,3 @@
-var crypto = require('crypto');
 var Employee = require('../models/Employee');
 var baby = require('babyparse');
 var _ = require('lodash');
@@ -21,15 +20,24 @@ exports.getEmployees = function(req, res){
  * Add an employee using form.
  */
 exports.addEmployee = function(req, res) {
+    var name = req.body.name;
+    var number = req.body.number;
+    var email = req.body.email;
+    var password = generateRandomString();
+    var company_id = req.user.id;
+
+    req.assert('email', 'Email is not valid').isEmail();
+    //req.assert('number', 'Phone number is invalid').isMobilePhone('en-US'); // not a good validator
+
     Employee.create({
-        name: req.body.name,
-        phone_number: req.body.number,
-        email: req.body.email,
-        password: "12345",
-        _admin_id: req.user.id
+        name: name,
+        phone_number: number,
+        email: email,
+        password: password,
+        _admin_id: company_id
     }, function (err, employee) {
         if (err) {
-            console.log("ERROR creating employee: " + employee);
+            console.log("ERROR creating employee: ");
             console.log(err);
 
             //TODO - display error message
@@ -43,7 +51,34 @@ exports.addEmployee = function(req, res) {
     });
 
     // TODO: send email notification
-
+    // Create SMTP transporter object
+    var options = {
+        service: 'gmail',
+        auth: {
+            user: 'donotreply.receptional@gmail.com',
+            pass: 'nightowls1'
+        }
+    };
+    var companyname = req.user.companyname;
+    var subdomainurl = req.user.subdomainurl;
+    var transporter = nodemailer.createTransport(options);
+    // Setup email data
+    var mailOptions = {
+        from: '"Receptional.xyz" <donotreply.receptional@gmail.com>',
+        to: /*email **Hard coded for now */ 'donotreply.receptional@gmail.com',
+        subject: 'Welcome to Receptional',
+        text: 'Hello ' + name + '\n\nWelcome to receptional. You have been added to the company: ' + companyname + '. You can access your company receptional website at: ' + subdomainurl + 'receptional.xyz. You\'re password is ' + password + '.',
+        html: 'Hello ' + name + '\n\nWelcome to receptional. You have been added to the company: ' + companyname + '. You can access your company receptional website at: ' + subdomainurl + 'receptional.xyz. You\'re password is ' + password + '.'
+    };
+    // Send email
+    transporter.sendMail(mailOptions, function(error, info) {
+        if(error) {
+            console.log(error);
+        }
+        else {
+            console.log('Message sent: ' + info.response);
+        }
+    });
 };
 
 // TODO: create a file input in html
@@ -57,6 +92,7 @@ exports.addEmployeesThroughCSV = function(req, res) {
         var name = rows[i][0];
         var phone = rows[i][1];
         var email = rows[i][2];
+        var password = generateRandomString();
         Employee.create({
             name: name,
             phone_number: phone,
@@ -64,7 +100,7 @@ exports.addEmployeesThroughCSV = function(req, res) {
             _admin_id: admin_id
         }, function (err, employee) {
             if (err) {
-                console.log("ERROR creating employee: " + employee);
+                console.log("ERROR creating employee: ");
                 //res.send("There was a problem adding the employee to the databaase");
             }}
         );
@@ -189,3 +225,13 @@ exports.postEmployeeLogin = function(req, res, next) {
         });
     })(req, res, next);
 };
+
+function generateRandomString() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < 8; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+}
