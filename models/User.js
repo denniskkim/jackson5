@@ -12,6 +12,7 @@ var userSchema = new mongoose.Schema({
   pricingplanlevel: Number,
   name: { type: String, default: '' },
   picture: { type: String, default: '' },
+  form: { type: String, default: '' },
   //facebook: String,
   //twitter: String,
   //google: String,

@@ -143,6 +143,7 @@ app.get('/add_Employees', employeeController.getEmployees);
 app.post('/add_Employees', employeeController.addEmployee);
 app.get('/login_employee', employeeController.getEmployeeLogin);
 app.post('/login_employee', employeeController.postEmployeeLogin);
+app.post('/form', passportConf.isAuthenticated, userController.postUpdateForm);
 
 app.post('/add_patient', patientController.addPatient);
 app.get('/patient_queue', patientController.getPatients);
@@ -175,6 +176,14 @@ app.get('/about', function(req, res){
 
 app.get('/dashboard', function(req, res){
   res.render('dashboard', { user: req.user });
+});
+
+app.get('/settings', function(req, res){
+  res.render('settings', { user: req.user });
+});
+
+app.get('/viewform', function(req, res){
+  res.render('viewform', { form: req.user.form });
 });
 
 // Twilio Credentials 
