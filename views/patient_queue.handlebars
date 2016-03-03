@@ -15,11 +15,6 @@
     <script src="js/bootstrap-sortable.js"></script>
 </head>
 
-<body>
-
-<!-- START PAGE CONTAINER -->
-<div class="page-container">
-
         <!-- START BREADCRUMB -->
         <ul class="breadcrumb">
             <li><a href="/">Home</a></li>
@@ -29,53 +24,61 @@
 
         <!-- PAGE CONTENT WRAPPER -->
         <div class="page-content-wrap">
-            <div class="container">
-                <h2>Patient Queue</h2>
-                <table class="table">
-                    <thead style="font-size: 20px;">
-                    <tr>
-                        <th>#</th>
-                        <th>First name</th>
-                        <th>Last name</th>
-                        <th>Phone</th>
-                        <th>Email</th>
-                        <th>Time in</th>
-                        <th>Time out</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Anthony</td>
-                        <td>(123)456-7890</td>
-                        <td>markanthony@hotmail.com</td>
-                        <td>8:50 A.M.</td>
-                        <td>9:40 A.M.</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Sam</td>
-                        <td>Wise</td>
-                        <td>(098)765-4321</td>
-                        <td>samwise@yahoo.com</td>
-                        <td>10:10 A.M.</td>
-                        <td>12:10 P.M.</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Valentino</td>
-                        <td>Do</td>
-                        <td>(141)854-3948</td>
-                        <td>valentinodo@aim.com</td>
-                        <td>1:30 P.M.</td>
-                        <td>2:10 P.M.</td>
-                    </tr>
-                    </tbody>
-                </table>
+            <div class="row">
+                <div class="col-md-12">
+                    <!-- START MANAGE EMPLOYEES DATATABLE -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Patient Queue</h3>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table datatable">
+                            <thead style="font-size: 20px;">
+                            <tr>
+                                <th id="patientNum">#</th>
+                                <th id="patientFN">First name</th>
+                                <th id="patientLast">Last name</th>
+                                <th id="patientTel">Phone</th>
+                                <th id="patientEmail">Email</th>
+                                <th id="patientIn">Time in</th>
+                                <th id="patientOut">Time out</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Anthony</td>
+                                <td>(123)456-7890</td>
+                                <td>markanthony@hotmail.com</td>
+                                <td>8:50 A.M.</td>
+                                <td>9:40 A.M.</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Sam</td>
+                                <td>Wise</td>
+                                <td>(098)765-4321</td>
+                                <td>samwise@yahoo.com</td>
+                                <td>10:10 A.M.</td>
+                                <td>12:10 P.M.</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Valentino</td>
+                                <td>Do</td>
+                                <td>(141)854-3948</td>
+                                <td>valentinodo@aim.com</td>
+                                <td>1:30 P.M.</td>
+                                <td>2:10 P.M.</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
-</div>
 
 
 </body>

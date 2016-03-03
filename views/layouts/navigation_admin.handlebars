@@ -37,8 +37,8 @@
                             <img src="assets/images/users/avatar.jpg" alt="John Doe" />
                         </div>
                         <div class="profile-data">
-                            <div class="profile-data-name">[name]</div>
-                            <div class="profile-data-title">Owner</div>
+                            <div class="profile-data-name">{{user.name}}</div>
+                            <div class="profile-data-title">Owner of [insert company name]</div>
                         </div>
                     </div>
                 </li>
@@ -53,7 +53,7 @@
                     <a href="add_employees"><span class="fa fa-users"></span> <span class="xn-text">Manage Employees</span></a>
                 </li>
                 <li class="active">
-                    <a href="index"><span class="fa fa-pencil"></span> <span class="xn-text">Edit Form</span></a>
+                    <a href="form"><span class="fa fa-pencil"></span> <span class="xn-text">Edit Form</span></a>
                 </li>
                 <li class="active">
                     <a href="index"><span class="fa fa-comments-o"></span> <span class="xn-text">[Slack]</span></a>
@@ -74,6 +74,9 @@
                 <!-- TOGGLE NAVIGATION -->
                 <li class="xn-icon-button">
                     <a href="#" class="x-navigation-minimize"><span class="fa fa-dedent"></span></a>
+                </li>
+                <li class="active">
+                    <a href="viewform"> <span class="xn-text">Patient Mode</span></a>
                 </li>
                 <!-- END TOGGLE NAVIGATION -->
                 <!-- SEARCH -->
