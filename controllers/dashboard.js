@@ -5,7 +5,7 @@
 exports.getEmployeeDashboard = function(req, res) {
     if (!req.user) {
 
-        return res.redirect('/login');
+        return res.redirect('/login_employee');
     }
     res.render('dashboard_employee',{user : req.user});
 };
