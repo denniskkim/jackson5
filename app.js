@@ -84,6 +84,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
 app.use(methodOverride());
+app.use(methodOverride('_method'));
 app.use(cookieParser());
 app.use(session({
   resave: true,
@@ -144,6 +145,7 @@ app.get('/account/unlink/:provider', passportConf.isAuthenticated, userControlle
 app.get('/add_Employees', employeeController.getEmployees);
 app.post('/add_Employees', employeeController.addEmployee);
 app.post('/add_EmployeesCSV', upload.single('file'), employeeController.addEmployeesThroughCSV);
+app.delete('/delete/:id', employeeController.removeEmployee);
 app.get('/login_employee', employeeController.getEmployeeLogin);
 app.post('/login_employee', employeeController.postEmployeeLogin);
 app.post('/form', passportConf.isAuthenticated, userController.postUpdateForm);
