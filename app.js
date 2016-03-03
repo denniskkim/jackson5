@@ -161,6 +161,8 @@ app.get('/dashboard_employee', dashboardController.getEmployeeDashboard);
 /**
  * API examples routes.
  */
+
+app.get('/viewbusinesses', userController.viewBusinesses);
 app.get('/api', apiController.getApi);
 app.get('/api/facebook', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.getFacebook);
 
