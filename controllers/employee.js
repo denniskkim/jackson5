@@ -13,7 +13,7 @@ var fs = require('fs');
 exports.getEmployees = function(req, res){
     Employee.find({_admin_id: req.user.id/*, name: "Jane Doe"*/}, function (err, employees) {
         //console.log(employee);
-        res.render('add_employees',{title: 'Add Employees', employees: employees});
+        res.render('add_employees',{title: 'Add Employees', employees: employees, layout: 'navigation_admin'});
     });
 };
 

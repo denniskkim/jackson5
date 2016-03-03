@@ -152,6 +152,8 @@ app.post('/form', passportConf.isAuthenticated, userController.postUpdateForm);
 
 app.post('/add_patient', patientController.addPatient);
 app.get('/patient_queue', patientController.getPatients);
+app.get('/patient_queueE', patientController.getPatientsE);
+
 
 app.get('/dashboard_admin', dashboardController.getBusinessOwnerDashboard);
 app.get('/dashboard_employee', dashboardController.getEmployeeDashboard);
