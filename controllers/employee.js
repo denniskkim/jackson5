@@ -5,6 +5,7 @@ var async = require('async');
 var nodemailer = require('nodemailer');
 var passport = require('passport');
 var fs = require('fs');
+var validator = require('validator');
 
 /**
  * GET /add_employees
@@ -62,30 +63,32 @@ exports.addEmployeesThroughCSV = function(req, res) {
     var admin_id = req.user.id;
 
     for(var i = 0; i < rows.length; i++){
-        var name = rows[i][0];
-        var phone = rows[i][1];
-        var email = rows[i][2];
-        var password = generateRandomString();
+        var name = rows[i][0].trim();
+        var phone = rows[i][1].trim();
+        var email = rows[i][2].trim();
 
-        if (!isEmail(email, 'Email is not valid')) {
-            console.log("Employee #" + i + " " + name + " does not have a valid email")
+        if (!validator.isEmail(email)) {
+            console.log("Employee #" + i + " " + name + " does not have a valid email: " + email + ".")
+        } else {
+            (function(password) { //anonymous function to enforce password is not outside closure
+                Employee.create({
+                        name: name,
+                        phone_number: phone,
+                        email: email,
+                        password: password,
+                        _admin_id: admin_id
+                    }, function (err, employee) {
+                        if (err) {
+                            console.log("ERROR creating employee");
+                            console.log(err);
+                            //res.send("There was a problem adding the employee to the database");
+                        } else {
+                            //emailEmployee(employee, req.user, password);
+                        }
+                    }
+                );
+            })(generateRandomString());
         }
-
-        Employee.create({
-            name: name,
-            phone_number: phone,
-            email: email,
-            password: password,
-            _admin_id: admin_id
-        }, function (err, employee) {
-            if (err) {
-                console.log("ERROR creating employee");
-                console.log(err);
-                //res.send("There was a problem adding the employee to the database");
-            } else {
-                emailEmployee(employee, req.user, password);
-            }}
-        );
     }
     res.redirect('/add_employees');
 };
