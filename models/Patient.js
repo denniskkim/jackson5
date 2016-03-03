@@ -10,7 +10,7 @@ var patientSchema = new mongoose.Schema({
     id: String,
     checkinTime: Date,
     checkoutTime: Date,
-    _admin_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Admin', required: true }
+    subdomainurl: String
 });
 
 module.exports = mongoose.model('Patient', patientSchema);

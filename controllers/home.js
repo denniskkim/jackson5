@@ -29,7 +29,10 @@ exports.index = function(req, res) {
   //}
   //else{
     if (req.user) {
-      return res.redirect('/dashboard_admin');
+      if(req.user._admin_id)
+        return res.redirect('/dashboard_employee');
+      else
+        return res.redirect('/dashboard_admin');
     }
     else{
       res.render('home');

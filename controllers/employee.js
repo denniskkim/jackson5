@@ -1,4 +1,5 @@
 var Employee = require('../models/Employee');
+var Owner = require('../models/User');
 var baby = require('babyparse');
 var _ = require('lodash');
 var async = require('async');
@@ -7,13 +8,38 @@ var passport = require('passport');
 var fs = require('fs');
 
 /**
+ * GET /subdomain login
+ * Employees page.
+ */
+exports.postSubdomain = function(req, res){
+
+    Owner.findOne({subdomainurl: req.body.subdomain}, function(err, domain) {
+        if (err) {
+            console.log("ERROR find subDomain: " + domain);
+            res.redirect('/subdomain_login');
+        } 
+        if(domain) {
+           console.log("success: " + domain);
+            req.flash('success', { msg: 'Success! You are logged in.' });
+            res.redirect('/login_employee'); 
+        }
+        else {
+            res.render('subdomain_login', { msg: 'Cannot Find Your Company' }); 
+        }
+    });
+};
+
+
+
+
+/**
  * GET /add_employees
  * Employees page.
  */
 exports.getEmployees = function(req, res){
     Employee.find({_admin_id: req.user.id/*, name: "Jane Doe"*/}, function (err, employees) {
         //console.log(employee);
-        res.render('add_employees',{title: 'Add Employees', employees: employees, layout: 'navigation_admin'});
+        res.render('add_employees',{title: 'Add Employees', employees: employees});
     });
 };
 
@@ -27,7 +53,7 @@ exports.addEmployee = function(req, res) {
     var email = req.body.email;
     var password = generateRandomString();
     var company_id = req.user.id;
-
+    var subdomainurl = req.user.subdomainurl;
     req.assert('email', 'Email is not valid').isEmail();
     //req.assert('number', 'Phone number is invalid').isMobilePhone('en-US'); // not a good validator
 
@@ -36,6 +62,7 @@ exports.addEmployee = function(req, res) {
         phone_number: number,
         email: email,
         password: password,
+        subdomainurl: subdomainurl,
         _admin_id: company_id
     }, function (err, employee) {
         if (err) {
@@ -66,11 +93,9 @@ exports.addEmployeesThroughCSV = function(req, res) {
         var phone = rows[i][1];
         var email = rows[i][2];
         var password = generateRandomString();
-
-        if (!isEmail(email, 'Email is not valid')) {
+         if (!isEmail(email, 'Email is not valid')) {
             console.log("Employee #" + i + " " + name + " does not have a valid email")
-        }
-
+       }
         Employee.create({
             name: name,
             phone_number: phone,
@@ -79,9 +104,8 @@ exports.addEmployeesThroughCSV = function(req, res) {
             _admin_id: admin_id
         }, function (err, employee) {
             if (err) {
-                console.log("ERROR creating employee");
-                console.log(err);
-                //res.send("There was a problem adding the employee to the database");
+                console.log("ERROR creating employee: ");
+                //res.send("There was a problem adding the employee to the databaase");
             } else {
                 console.log(employee);
                 //emailEmployee(employee, req.user, password);
