@@ -25,6 +25,8 @@ exports.addPatient = function(req, res) {
 
 };
 
+
+
 exports.getPatients = function(req, res) {
 
 
@@ -34,7 +36,23 @@ exports.getPatients = function(req, res) {
         if(!patients) { return next(new Error('Error finding patients'));}
 
         console.log(patients);
-        res.render('patient_queue',{patients : patients});
+        res.render('patient_queue',{patients : patients, layout: 'navigation_admin'});
+    });
+
+
+}
+
+
+exports.getPatientsE = function(req, res) {
+
+
+    Patient.find({_admin_id: req.user.id}, function (err, patients) {
+
+        if (err) { return next(err);  }
+        if(!patients) { return next(new Error('Error finding patients'));}
+
+        console.log(patients);
+        res.render('patient_queue',{patients : patients, layout: 'navigation_employee'});
     });
 
 
