@@ -34,12 +34,12 @@
                         <img src="assets/images/users/avatar.jpg" alt="John Doe"/>
                     </div>
                     <div class="profile-data">
-                        {{#if user.companyname}}
-                            <div class="profile-data-name">{{user.companyname}}</div>
-                            <div class="profile-data-title">Owner</div>
+                        {{#if user._adminid}}
+                            <div class="profile-data-name">{{user._adminid}}</div>
+                            <div class="profile-data-title">Employee</div>
                         {{else}}
                             <div class="profile-data-name">{{user.name}}</div>
-                            <div class="profile-data-title">Employee</div>
+                            <div class="profile-data-title">Owner</div>
                         {{/if}}
                     </div>
                 </div>
@@ -54,7 +54,6 @@
             <li class="active">
                 <a href="patient_queue"><span class="fa fa-clock-o"></span> <span class="xn-text">Patient Queue</span></a>
             </li>
-            {{#if user.companyname}}
                 <li class="active">
                     <a href="add_employees"><span class="fa fa-users"></span> <span class="xn-text">Manage Employees</span></a>
                 </li>
@@ -64,7 +63,6 @@
                 <li class="active">
                     <a href="viewform"><span class="fa fa-pencil"></span> <span class="xn-text">View Form</span></a>
                 </li>
-            {{/if}}
             <li class="active">
                 <a href="#"><span class="fa fa-comments-o"></span> <span class="xn-text">[Slack]</span></a>
             </li>

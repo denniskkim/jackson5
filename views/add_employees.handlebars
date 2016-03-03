@@ -1,8 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <!-- META SECTION -->
     <title>Manage Employees</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <!-- END META SECTION -->
+
+    <!-- CSS INCLUDE -->
+    <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css" />
+    <!-- EOF CSS INCLUDE -->
 </head>
 
+<body>
         <!-- START BREADCRUMB -->
         <ul class="breadcrumb">
             <li><a href="dashboard_admin">Overview</a></li>
@@ -63,13 +77,12 @@
                             </div>
                         </div>
                         <div class="panel-body">
-                            <table id="employeesList" class="table datatable sortable">
+                            <table id="employeesList" class="table datatable">
                                 <thead>
                                 <tr>
                                     <th id="nameHead">Name</th>
                                     <th id="numberHead">Number</th>
                                     <th id="emailHead">Email</th>
-                                    <th></th>
                                 </tr>
                                 </thead>
                                 {{#employees}}
@@ -77,11 +90,6 @@
                                         <td>{{name}}</td>
                                         <td>{{phone_number}}</td>
                                         <td>{{email}}</td>
-                                        <td>
-                                            <form method="POST" action="/delete/{{_id}}?_method=DELETE">
-                                                <button type="submit">Delete</button>
-                                            </form>
-                                        </td>
                                     </tr>
                                 {{/employees}}
                                 <tbody>
@@ -96,7 +104,7 @@
         </div>
         <!-- END CONTENT WRAPPER -->
 
-<!-- START ADD EMPLOYEE MODAL-->
+<!-- START ADD MODAL-->
 <div class="modal fade" id="addEmployee" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -139,9 +147,8 @@
         </div>
     </div>
 </div>
-<!-- END ADD EMPLOYEE MODAL-->
+<!-- END ADD MODAL-->
 
-<!-- START CSV IMPORT MODAL -->
 <div class="modal fade" id="addEmployeeCSV" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -170,9 +177,8 @@
         </div>
     </div>
 </div>
-<!-- END CSV IMPORT MODAL -->
 
-<!-- START SIGN OUT MESSAGE BOX-->
+<!-- SIGN OUT MESSAGE BOX-->
 <div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
     <div class="mb-container">
         <div class="mb-middle">
@@ -192,6 +198,39 @@
 </div>
 <!-- END SIGN OUT MESSAGE BOX-->
 
+<!-- START PRELOADS -->
+<audio id="audio-alert" src="audio/alert.mp3" preload="auto"></audio>
+<audio id="audio-fail" src="audio/fail.mp3" preload="auto"></audio>
+<!-- END PRELOADS -->
+
+<!-- START SCRIPTS -->
+<!-- START PLUGINS -->
+<script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="js/plugins/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="js/plugins/bootstrap/bootstrap.min.js"></script>
+<!-- END PLUGINS -->
+
+<!-- THIS PAGE PLUGINS -->
+<script type='text/javascript' src='js/plugins/icheck/icheck.min.js'></script>
+<script type="text/javascript" src="js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+<script type="text/javascript" src="js/plugins/scrolltotop/scrolltopcontrol.js"></script>
+
+<script type="text/javascript" src="js/plugins/datatables/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="js/plugins/tableexport/tableExport.js"></script>
+<script type="text/javascript" src="js/plugins/tableexport/jquery.base64.js"></script>
+<script type="text/javascript" src="js/plugins/tableexport/html2canvas.js"></script>
+<script type="text/javascript" src="js/plugins/tableexport/jspdf/libs/sprintf.js"></script>
+<script type="text/javascript" src="js/plugins/tableexport/jspdf/jspdf.js"></script>
+<script type="text/javascript" src="js/plugins/tableexport/jspdf/libs/base64.js"></script>
+<!-- END PAGE PLUGINS -->
+
+<!-- START TEMPLATE -->
+<script type="text/javascript" src="js/plugins.js"></script>
+<script type="text/javascript" src="js/actions.js"></script>
+<!-- END TEMPLATE -->
+
+<script type="text/javascript" src="js/moment.min.js"></script>
+<script type="text/javascript" src="js/bootstrap-sortable.js"></script>
 
 <!-- START ADD EMPLOYEE  SCRIPT -->
 <script type="text/javascript">
@@ -246,17 +285,18 @@
 //        $('#cancelbutton').click(function () {
 //            $("#addEmployeeForm")[0].reset();
 //        });
-    /*$('.delete').click(function(){
-console.log("hi");
-});
-$('tr').mouseover(
-function() {
-alert('hi');
-}, function() {
-}
-); */
-}	);
+        /*$('.delete').click(function(){
+    console.log("hi");
+    });
+    $('tr').mouseover(
+    function() {
+    alert('hi');
+    }, function() {
+    }
+    ); */
+    }	);
 </script>
 <!-- END ADD EMPLOYEE SCRIPT -->
-
+<!-- END SCRIPTS -->
+</body>
 </html>
