@@ -84,6 +84,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(expressValidator());
 app.use(methodOverride());
+app.use(methodOverride('_method'));
 app.use(cookieParser());
 app.use(session({
   resave: true,

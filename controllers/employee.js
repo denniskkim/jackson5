@@ -90,6 +90,11 @@ exports.addEmployeesThroughCSV = function(req, res) {
         var phone = rows[i][1];
         var email = rows[i][2];
         var password = generateRandomString();
+
+        if (!isEmail(email, 'Email is not valid')) {
+            console.log("Employee #" + i + " " + name + " does not have a valid email")
+        }
+
         Employee.create({
             name: name,
             phone_number: phone,
@@ -98,8 +103,9 @@ exports.addEmployeesThroughCSV = function(req, res) {
             _admin_id: admin_id
         }, function (err, employee) {
             if (err) {
-                console.log("ERROR creating employee: ");
-                //res.send("There was a problem adding the employee to the databaase");
+                console.log("ERROR creating employee");
+                console.log(err);
+                //res.send("There was a problem adding the employee to the database");
             } else {
                 console.log(employee);
                 //emailEmployee(employee, req.user, password);
@@ -147,7 +153,7 @@ exports.editEmployee = function(req, res) {
 };
 
 exports.removeEmployee = function(req, res) {
-    Employee.findById(req.id, function(err, employee) {
+    Employee.findById(req.params.id, function(err, employee) {
         if (err) {
             console.log("ERROR selecting employee: " + employee);
             //res.send("There was an error selecting the employee");
