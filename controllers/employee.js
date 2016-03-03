@@ -83,8 +83,7 @@ exports.addEmployeesThroughCSV = function(req, res) {
                 console.log(err);
                 //res.send("There was a problem adding the employee to the database");
             } else {
-                console.log(employee);
-                //emailEmployee(employee, req.user, password);
+                emailEmployee(employee, req.user, password);
             }}
         );
     }
