@@ -109,13 +109,25 @@
             <!-- START BREADCRUMB -->
             <ul class="breadcrumb">
                 <li><a href="dashboard_admin">Overview</a></li>
-                <li class="active">Manage Employees</li>
+                <li class="active">View Form</li>
             </ul>
             <!-- END BREADCRUMB -->
 
             <!-- PAGE CONTENT WRAPPER -->
             <div class="page-content-wrap">
-                    {{{form}}}
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Existing Forms</h3>
+                            </div>
+                            <div class="panel-body">
+                                {{{form}}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
             <!-- END CONTENT WRAPPER -->
         </div>
