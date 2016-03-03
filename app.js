@@ -24,8 +24,8 @@ var sass = require('node-sass-middleware');
 var _ = require('lodash');
 var http = require('http');
 var subdomain = require('express-subdomain');
-var multer  = require('multer')
-var upload = multer({ dest: 'uploads/' })
+var multer  = require('multer');
+var upload = multer({ dest: 'uploads/' });
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
