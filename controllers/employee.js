@@ -1,10 +1,11 @@
-var crypto = require('crypto');
 var Employee = require('../models/Employee');
 var baby = require('babyparse');
 var _ = require('lodash');
 var async = require('async');
 var nodemailer = require('nodemailer');
 var passport = require('passport');
+var fs = require('fs');
+
 /**
  * GET /add_employees
  * Employees page.
@@ -21,15 +22,24 @@ exports.getEmployees = function(req, res){
  * Add an employee using form.
  */
 exports.addEmployee = function(req, res) {
+    var name = req.body.name;
+    var number = req.body.number;
+    var email = req.body.email;
+    var password = generateRandomString();
+    var company_id = req.user.id;
+
+    req.assert('email', 'Email is not valid').isEmail();
+    //req.assert('number', 'Phone number is invalid').isMobilePhone('en-US'); // not a good validator
+
     Employee.create({
-        name: req.body.name,
-        phone_number: req.body.number,
-        email: req.body.email,
-        password: "12345",
-        _admin_id: req.user.id
+        name: name,
+        phone_number: number,
+        email: email,
+        password: password,
+        _admin_id: company_id
     }, function (err, employee) {
         if (err) {
-            console.log("ERROR creating employee: " + employee);
+            console.log("ERROR creating employee: ");
             console.log(err);
 
             //TODO - display error message
@@ -39,38 +49,38 @@ exports.addEmployee = function(req, res) {
         } else {
             //console.log('Creating new employee: ' + employee);
             res.redirect('add_employees');
+
+            emailEmployee(employee, req.user, password);
         }
     });
-
-    // TODO: send email notification
-
 };
 
-// TODO: create a file input in html
 exports.addEmployeesThroughCSV = function(req, res) {
-    var parsed = baby.parse(req.body.file);
+    var content = fs.readFileSync(req.file.path, { encoding: 'binary' });
+    var parsed = baby.parse(content);
     var rows = parsed.data;
     var admin_id = req.user.id;
-
 
     for(var i = 0; i < rows.length; i++){
         var name = rows[i][0];
         var phone = rows[i][1];
         var email = rows[i][2];
+        var password = generateRandomString();
         Employee.create({
             name: name,
             phone_number: phone,
             email: email,
+            password: password,
             _admin_id: admin_id
         }, function (err, employee) {
             if (err) {
-                console.log("ERROR creating employee: " + employee);
+                console.log("ERROR creating employee: ");
                 //res.send("There was a problem adding the employee to the databaase");
+            } else {
+                console.log(employee);
+                //emailEmployee(employee, req.user, password);
             }}
         );
-
-
-        // TODO: send email notification
     }
     res.redirect('/add_employees');
 };
@@ -189,3 +199,46 @@ exports.postEmployeeLogin = function(req, res, next) {
         });
     })(req, res, next);
 };
+
+function generateRandomString() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < 8; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+}
+
+function emailEmployee(employee, admin, password) {
+    // Create SMTP transporter object
+    var options = {
+        service: 'gmail',
+        auth: {
+            user: 'donotreply.receptional@gmail.com',
+            pass: 'nightowls1'
+        }
+    };
+    var companyname = admin.companyname;
+    var subdomainurl = admin.subdomainurl;
+    var emailtext = "Hello " + employee.name + "! Welcome to receptional. You have been added to the company: " + companyname + ". You can access your company receptional website at: " + subdomainurl + ".receptional.xyz. You're password is " + password + ".";
+    var transporter = nodemailer.createTransport(options);
+    // Setup email data
+    var mailOptions = {
+        from: '"Receptional.xyz" <donotreply.receptional@gmail.com>',
+        to: /*employee.email **Hard coded for now */ 'donotreply.receptional@gmail.com',
+        subject: "Welcome to Receptional",
+        text: emailtext,
+        html: emailtext
+    };
+    // Send email
+    transporter.sendMail(mailOptions, function(error, info) {
+        if(error) {
+            console.log(error);
+        }
+        else {
+            console.log('Message sent: ' + info.response);
+            console.log(emailtext);
+        }
+    });
+}

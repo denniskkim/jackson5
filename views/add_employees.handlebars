@@ -110,6 +110,9 @@
                             <h3 class="panel-title">Manage Employees</h3>
                             <ul class="panel-controls">
                                 <li>
+                                    <button class="btn btn-default" data-toggle="modal" data-target="#addEmployeeCSV"> Import Data</button>
+                                </li>
+                                <li>
                                     <button class="btn btn-default" data-toggle="modal" data-target="#addEmployee">Add Employee</button>
                                 </li>
                             </ul>
@@ -134,10 +137,10 @@
                                     </li>
                                     <li class="divider"></li>
                                     <li>
-                                        <a href="#" onClick="$('#employeesList').tableExport({type:'csv',escape:'false'});"><img src='img/icons/csv.png' width="24" /> CSV</a>
+                                        <a href="#" onClick="$('#employeesList').tableExport({type:'csv',escape:'false'});"><img src='img/icons/csv.png' width="40" /> CSV</a>
                                     </li>
                                     <li>
-                                        <a href="#" onClick="$('#employeesList').tableExport({type:'txt',escape:'false'});"><img src='img/icons/txt.png' width="24" /> TXT</a>
+                                        <a href="#" onClick="$('#employeesList').tableExport({type:'txt',escape:'false'});"><img src='img/icons/txt.png' width="40" /> TXT</a>
                                     </li>
                                     <li class="divider"></li>
                                     <li>
@@ -191,7 +194,7 @@
                 <h2 class="modal-title" id="exampleModalLabel">ADD EMPLOYEE</h2>
             </div>
             <div class="modal-body">
-                <form method="POST" name="modalForm" class="form-horizontal" novalidate="" id="addEmployeeForm">
+                <form method="POST" name="modalForm" class="form-horizontal ws-validate" id="addEmployeeForm">
                     <div class="form-group">
                         <label for="modalName" class="col-sm-2 control-label">Name</label>
                         <div class="col-sm-10">
@@ -209,15 +212,14 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label" for="modalEmail">Email</label>
                         <div class="col-sm-10">
-                            <input type="email" class="form-control" id="modalEmail" placeholder="jane.doe@example.com" name="email" required>
+                            <input type="email" name="email" class="form-control" id="modalEmail" placeholder="jane.doe@example.com" required>
                             <p class="help-block" id="invalidEmail">Please enter a valid email Ex: email@address.com</p>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-7">
-                            <button type="submit" class="btn btn-primary" id="okbutton">OK
-                            </button>
-                            <button class="btn btn-default" id="cancelbutton">Cancel</button>
+                            <button type="submit" class="btn btn-primary" id="okbutton" disabled>OK</button>
+                            <button class="btn btn-default" data-dismiss="modal" id="cancelbutton">Cancel</button>
                         </div>
                     </div>
                 </form>
@@ -227,7 +229,36 @@
 </div>
 <!-- END ADD MODAL-->
 
-<!-- SIGN OUT MESSAGE BOX-->
+<div class="modal fade" id="addEmployeeCSV" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h2 class="modal-title" id="exampleModalLabel">ADD EMPLOYEES</h2>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="/add_EmployeesCSV" name="modalCSVInput" class="form-horizontal ws-validate" enctype="multipart/form-data" id="addEmployeeCSVForm">
+                    <div class="form-group">
+                        <div class="col-sm-10">
+                            <p>Upload a CSV file containing your employees.</p>
+                            <p class="help-block">Each line should formatted:<br>name, phone number, email</p>
+                            <input type="file" name="file" class="form-control" accept="application/csv" id="modalFile" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-7">
+                            <button type="submit" class="btn btn-primary" id="okbuttonCSV" >OK</button>
+                            <button class="btn btn-default" data-dismiss="modal" id="cancelbuttonCSV">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+                <!-- SIGN OUT MESSAGE BOX-->
 <div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
     <div class="mb-container">
         <div class="mb-middle">
@@ -274,8 +305,6 @@
 <!-- END PAGE PLUGINS -->
 
 <!-- START TEMPLATE -->
-<script type="text/javascript" src="js/settings.js"></script>
-
 <script type="text/javascript" src="js/plugins.js"></script>
 <script type="text/javascript" src="js/actions.js"></script>
 <!-- END TEMPLATE -->
@@ -286,35 +315,34 @@
 <!-- START ADD EMPLOYEE  SCRIPT -->
 <script type="text/javascript">
     $(function () {
+        // Reset form when form is hidden
+        $('.modal').on('hidden.bs.modal', function(){
+            $(this).find('form')[0].reset();
+        });
+        // Require fields to be filled out
         $('input[name=name]').on('input', function () {
-            if ($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val() && $('#modalPassword').val() && $('#modalConfirm').val())
+            if ($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val())
                 $('#okbutton').prop('disabled', false);
             else
                 $('#okbutton').prop('disabled', true);
         });
         $('input[name=number]').on('input', function () {
-            if ($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val() && $('#modalPassword').val() && $('#modalConfirm').val())
+            if ($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val())
                 $('#okbutton').prop('disabled', false);
             else
                 $('#okbutton').prop('disabled', true);
         });
         $('input[name=email]').on('input', function () {
-            if ($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val() && $('#modalPassword').val() && $('#modalConfirm').val())
+            if ($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val())
                 $('#okbutton').prop('disabled', false);
             else
                 $('#okbutton').prop('disabled', true);
         });
-        $('input[name=password]').on('input', function () {
-            if ($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val() && $('#modalPassword').val() && $('#modalConfirm').val())
-                $('#okbutton').prop('disabled', false);
+        $('input[name=file]').on('input', function () {
+            if ($('#modalFile').val())
+                $('#okbuttonCSV').prop('disabled', false);
             else
-                $('#okbutton').prop('disabled', true);
-        });
-        $('input[name=confirm]').on('input', function () {
-            if ($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val() && $('#modalPassword').val() && $('#modalConfirm').val())
-                $('#okbutton').prop('disabled', false);
-            else
-                $('#okbutton').prop('disabled', true);
+                $('#okbuttonCSV').prop('disabled', true);
         });
         /*var pathname = window.location.href;
         var indexOfName = pathname.indexOf('name=');
@@ -327,16 +355,16 @@
             var email = pathname.substring(indexOfEmail+6);
             $('#employees').find('tbody').append('<tr><th style="width: 25%">' + name + '</th><th style="width: 25%">'  + number + '</th><th style="width: 50%">' + email + '</th></tr>');
         }*/
-        var rownumber = 0;
-        $('#okbutton').click(function () {
-            $('#employees').find('tbody').append('<tr id ="row' + rownumber + '"><td style="width: 25%">' + $('#modalName').val() + '</td><td style="width: 25%">' + $('#modalNumber').val() + '</td><td style="width: 40%">' + $('#modalEmail').val() + '</td><td style="width:10%;text-align:right"><a href = "#"><span class = "glyphicon glyphicon-pencil" id = "edit' + rownumber + '"></span></a><a href = "#" class = "delete"><span class = "glyphicon glyphicon-trash" id = "delete' + rownumber + '"></span></a><a href = "#"></a></td></tr>');
-            rownumber++;
-            $.bootstrapSortable(true);
-            $("#addEmployeeForm")[0].reset();
-        });
-        $('#cancelbutton').click(function () {
-            $("#addEmployeeForm")[0].reset();
-        });
+//        var rownumber = 0;
+//        $('#okbutton').click(function () {
+//            $('#employees').find('tbody').append('<tr id ="row' + rownumber + '"><td style="width: 25%">' + $('#modalName').val() + '</td><td style="width: 25%">' + $('#modalNumber').val() + '</td><td style="width: 40%">' + $('#modalEmail').val() + '</td><td style="width:10%;text-align:right"><a href = "#"><span class = "glyphicon glyphicon-pencil" id = "edit' + rownumber + '"></span></a><a href = "#" class = "delete"><span class = "glyphicon glyphicon-trash" id = "delete' + rownumber + '"></span></a><a href = "#"></a></td></tr>');
+//            rownumber++;
+//            $.bootstrapSortable(true);
+//            $("#addEmployeeForm")[0].reset();
+//        });
+//        $('#cancelbutton').click(function () {
+//            $("#addEmployeeForm")[0].reset();
+//        });
     /*$('.delete').click(function(){
 console.log("hi");
 });
@@ -345,8 +373,8 @@ function() {
 alert('hi');
 }, function() {
 }
-);
-}	);*/
+); */
+}	);
 </script>
 <!-- END ADD EMPLOYEE SCRIPT -->
 <!-- END SCRIPTS -->
