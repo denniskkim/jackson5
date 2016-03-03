@@ -12,30 +12,47 @@ exports.addPatient = function(req, res) {
         phone_number: req.body.number,
         email: req.body.email,
         checkinTime: Date.now(),
-        subdomainurl: req.user.subdomainurl,
         _admin_id: req.user.id
     }, function (err, patient) {
         if (err) {
-            console.log("ERROR creating patient: " + err);
+            console.log("ERROR creating patient: " + patient);
             //res.send("There was a problem adding the employee to the databaase");
         } else {
             //console.log('Creating new patient: ' + patient);
-            res.render('patients_mode',{msg: 'Thanks for checking in, please wait!!!'});
+            res.redirect('add_patient');
         }
     });
 
 };
 
+
+
 exports.getPatients = function(req, res) {
 
 
-    Patient.find({subdomainurl: req.user.subdomainurl }, function (err, patients) {
+    Patient.find({_admin_id: req.user.id}, function (err, patients) {
 
         if (err) { return next(err);  }
         if(!patients) { return next(new Error('Error finding patients'));}
 
         console.log(patients);
-        res.render('patient_queue',{patients : patients});
+        res.render('patient_queue',{patients : patients, layout: 'navigation_admin'});
+    });
+
+
+}
+
+
+exports.getPatientsE = function(req, res) {
+
+
+    Patient.find({_admin_id: req.user.id}, function (err, patients) {
+
+        if (err) { return next(err);  }
+        if(!patients) { return next(new Error('Error finding patients'));}
+
+        console.log(patients);
+        res.render('patient_queue',{patients : patients, layout: 'navigation_employee'});
     });
 
 
