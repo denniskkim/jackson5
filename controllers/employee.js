@@ -1,10 +1,32 @@
 var Employee = require('../models/Employee');
+var Owner = require('../models/User');
 var baby = require('babyparse');
 var _ = require('lodash');
 var async = require('async');
 var nodemailer = require('nodemailer');
 var passport = require('passport');
 var fs = require('fs');
+
+/**
+ + * GET /subdomain login
+ + * Employees page.
+ + */
+exports.postSubdomain = function(req, res){
+    Owner.findOne({subdomainurl: req.body.subdomain}, function(err, domain) {
+        if (err) {
+            console.log("ERROR find subDomain: " + domain);
+            res.redirect('/subdomain_login');
+        }
+        if(domain) {
+            console.log("success: " + domain);
+            req.flash('success', { msg: 'Success! You are logged in.' });
+            res.redirect('/login_employee');
+        }
+        else {
+            res.render('subdomain_login', { msg: 'Cannot Find Your Company' });
+        }
+    });
+};
 
 /**
  * GET /add_employees
@@ -28,6 +50,7 @@ exports.addEmployee = function(req, res) {
     var password = generateRandomString();
     var company_id = req.user.id;
 
+    var subdomainurl = req.user.subdomainurl;
     req.assert('email', 'Email is not valid').isEmail();
     //req.assert('number', 'Phone number is invalid').isMobilePhone('en-US'); // not a good validator
 
@@ -36,6 +59,7 @@ exports.addEmployee = function(req, res) {
         phone_number: number,
         email: email,
         password: password,
+        subdomainurl: subdomainurl,
         _admin_id: company_id
     }, function (err, employee) {
         if (err) {

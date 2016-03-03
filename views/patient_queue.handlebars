@@ -1,17 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
-    <link rel="stylesheet" type="text/css"
-          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
-    <link rel="stylesheet" type="text/css" href="css/bootstrap-sortable.css"/>
-    <link rel="stylesheet" type="text/css" href="css/entry.css"/>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <title>Patient Queue</title>
     <script src="js/bootstrap-sortable.js"></script>
 </head>
 
@@ -22,64 +12,44 @@
         </ul>
         <!-- END BREADCRUMB -->
 
-        <!-- PAGE CONTENT WRAPPER -->
-        <div class="page-content-wrap">
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- START MANAGE EMPLOYEES DATATABLE -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Patient Queue</h3>
-                        </div>
-                    </div>
-                    <div class="panel-body">
-                        <table class="table datatable">
-                            <thead style="font-size: 20px;">
-                            <tr>
-                                <th id="patientNum">#</th>
-                                <th id="patientFN">First name</th>
-                                <th id="patientLast">Last name</th>
-                                <th id="patientTel">Phone</th>
-                                <th id="patientEmail">Email</th>
-                                <th id="patientIn">Time in</th>
-                                <th id="patientOut">Time out</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Anthony</td>
-                                <td>(123)456-7890</td>
-                                <td>markanthony@hotmail.com</td>
-                                <td>8:50 A.M.</td>
-                                <td>9:40 A.M.</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Sam</td>
-                                <td>Wise</td>
-                                <td>(098)765-4321</td>
-                                <td>samwise@yahoo.com</td>
-                                <td>10:10 A.M.</td>
-                                <td>12:10 P.M.</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Valentino</td>
-                                <td>Do</td>
-                                <td>(141)854-3948</td>
-                                <td>valentinodo@aim.com</td>
-                                <td>1:30 P.M.</td>
-                                <td>2:10 P.M.</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div>
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- START MANAGE EMPLOYEES DATATABLE -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Patient Queue</h3>
+                    <ul class="panel-controls">
+                    </ul>
+                </div>
+                <div class="panel-body">
+                    <table class="table datatable sortable">
+                        <thead>
+                        <tr>
+                            <th id="patientNum">#</th>
+                            <th id="patientFN">First name</th>
+                            <th id="patientLast">Last name</th>
+                            <th id="patientTel">Phone</th>
+                            <th id="patientEmail">Email</th>
+                            <th id="patientIn">Time in</th>
+                            <!--<th id="patientOut">Time out</th>-->
+                        </tr>
+                        </thead>
+                        {{#patients}}
+                        <tr>
+                            <td>{{name}}</td>
+                            <td>{{phone_number}}</td>
+                            <td>{{email}}</td>
+                            <td>{{checkinTime}}</td>
+                        </tr>
+                        {{/patients}}
+                        <tbody>
+                        </tbody>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
-
-</body>
 </html>
