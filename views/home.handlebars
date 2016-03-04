@@ -55,13 +55,14 @@
                 <!-- navigation -->
                 <ul class="navigation">
                     <li><a href="/">Home</a></li>
-                    <li><a href="/about">About Us</a></li>
-                    <li><a href="/contact">Contact Us</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/contact">Contact</a></li>
                     {{#if user}}
                         <li><a href="/logout">Log Out</a></li>
                     {{else}}
                         <li><a href="/signup">Sign Up</a></li>
-                        <li><a href="/login">Login As Owner</a></li>
+                        <li><a href="/login">Owner Login</a></li>
+                        <li><a href="/subdomain_login">Find Your Company</a></li>
                     {{/if}}
                 </ul>
                 <!-- ./navigation -->
@@ -208,7 +209,7 @@
 
                 <div class="page-content-holder padding-v-40">
                     <div class="row row-centered">
-                        <div class="col-md-3 col-centered">
+                        <div class="col-md-4">
 
                             <div class="pricing-block">
                                 <div class="pb-block">
@@ -226,7 +227,7 @@
                             </div>
 
                         </div>
-                        <div class="col-md-3 col-centered">
+                        <div class="col-md-4">
 
                             <div class="pricing-block">
                                 <div class="pb-block">
@@ -244,7 +245,7 @@
                             </div>
 
                         </div>
-                        <div class="col-md-3 col-centered">
+                        <div class="col-md-4">
 
                             <div class="pricing-block">
                                 <div class="pb-block">

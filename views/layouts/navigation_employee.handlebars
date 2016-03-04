@@ -23,7 +23,7 @@
                 <!-- START X-NAVIGATION -->
                 <ul class="x-navigation">
                     <li class="xn-logo">
-                        <a href="/home">Receptional</a>
+                        <a href="index.html">[Company Name]</a>
                         <a href="#" class="x-navigation-control"></a>
                     </li>
                     <li class="xn-profile">
@@ -35,24 +35,43 @@
                                 <img src="assets/images/users/avatar.jpg" alt="John Doe"/>
                             </div>
                             <div class="profile-data">
-                                <div class="profile-data-name">{{user.name}}</div>
-                                <div class="profile-data-title">Employee</div>
+                                {{#if user.companyname}}
+                                    <div class="profile-data-name">{{user.companyname}}</div>
+                                    <div class="profile-data-title">Owner</div>
+                                {{else}}
+                                    <div class="profile-data-name">{{user.name}}</div>
+                                    <div class="profile-data-title">Employee</div>
+                                {{/if}}
                             </div>
-                        </div>                                                                        
+                        </div>
                     </li>
                     <li class="xn-title">Navigation</li>
                     <li class="active">
-                        <a href="dashboard_employee"><span class="fa fa-dashboard"></span> <span class="xn-text">Dashboard</span></a>
-                    </li>                    
-                    <li class="active">
-                        <a href="patient_queueE"><span class="fa fa-clock-o"></span> <span class="xn-text">Patient Queue</span></a>
+                        <a href="/"><span class="fa fa-dashboard"></span> <span class="xn-text">Overview</span></a>
                     </li>
                     <li class="active">
+                        <a href="patients_mode"><span class="fa fa-pencil"></span> <span class="xn-text">Patient Mode</span></a>
+                    </li>
+                    <li class="active">
+                        <a href="patient_queue"><span class="fa fa-clock-o"></span> <span class="xn-text">Patient Queue</span></a>
+                    </li>
+                    {{#if user.companyname}}
+                        <li class="active">
+                            <a href="add_employees"><span class="fa fa-users"></span> <span class="xn-text">Manage Employees</span></a>
+                        </li>
+                        <li class="active">
+                            <a href="form"><span class="fa fa-pencil"></span> <span class="xn-text">Edit Form</span></a>
+                        </li>
+                        <li class="active">
+                            <a href="viewform"><span class="fa fa-pencil"></span> <span class="xn-text">View Form</span></a>
+                        </li>
+                    {{/if}}
+                    <li class="active">
                         <a href="#"><span class="fa fa-comments-o"></span> <span class="xn-text">[Slack]</span></a>
-                    </li>       
+                    </li>
                     <li class="active">
                         <a href="settings"><span class="fa fa-cogs"></span> <span class="xn-text">Settings</span></a>
-                    </li>  
+                    </li>
                 </ul>
                 <!-- END X-NAVIGATION -->
             </div>
@@ -81,16 +100,15 @@
                     </li> 
                     <!-- END SIGN OUT -->
                 </ul>
-                <!-- END X-NAVIGATION VERTICAL --> 
-				
-				        <!-- START PRELOADS -->
-        <audio id="audio-alert" src="audio/alert.mp3" preload="auto"></audio>
-        <audio id="audio-fail" src="audio/fail.mp3" preload="auto"></audio>
-        <!-- END PRELOADS -->     
+                <!-- END X-NAVIGATION VERTICAL -->
 
 		{{{body}}}
         
     <!-- START SCRIPTS -->
+        <!-- START PRELOADS -->
+        <audio id="audio-alert" src="audio/alert.mp3" preload="auto"></audio>
+        <audio id="audio-fail" src="audio/fail.mp3" preload="auto"></audio>
+        <!-- END PRELOADS -->
         <!-- START PLUGINS -->
         <script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
         <script type="text/javascript" src="js/plugins/jquery/jquery-ui.min.js"></script>

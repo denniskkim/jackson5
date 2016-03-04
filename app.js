@@ -24,8 +24,8 @@ var sass = require('node-sass-middleware');
 var _ = require('lodash');
 var http = require('http');
 var subdomain = require('express-subdomain');
-var multer  = require('multer');
-var upload = multer({ dest: 'uploads/' });
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -145,22 +145,39 @@ app.get('/account/unlink/:provider', passportConf.isAuthenticated, userControlle
 app.get('/add_Employees', employeeController.getEmployees);
 app.post('/add_Employees', employeeController.addEmployee);
 app.post('/add_EmployeesCSV', upload.single('file'), employeeController.addEmployeesThroughCSV);
-app.delete('/delete/:id', employeeController.removeEmployee);
+
 app.get('/login_employee', employeeController.getEmployeeLogin);
 app.post('/login_employee', employeeController.postEmployeeLogin);
+app.delete('/delete/:id', employeeController.removeEmployee);
+
 app.post('/form', passportConf.isAuthenticated, userController.postUpdateForm);
 
+/**
 app.post('/add_patient', patientController.addPatient);
 app.get('/patient_queue', patientController.getPatients);
 app.get('/patient_queueE', patientController.getPatientsE);
+**/
+app.post('/patients_mode', patientController.addPatient);
+app.get('/patients_mode', function(req, res){
+  res.render('patients_mode');
+});
 
+app.get('/patient_queue', patientController.getPatients);
 
 app.get('/dashboard_admin', dashboardController.getBusinessOwnerDashboard);
 app.get('/dashboard_employee', dashboardController.getEmployeeDashboard);
 
+app.get('/subdomain_login', function(req, res){
+  res.render('subdomain_login', { employee: req.employee });
+});
+app.post('/subdomain_login', employeeController.postSubdomain);
+
+
 /**
  * API examples routes.
  */
+
+app.get('/viewbusinesses', userController.viewBusinesses);
 app.get('/api', apiController.getApi);
 app.get('/api/facebook', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.getFacebook);
 

@@ -55,13 +55,14 @@
                 <!-- navigation -->
                 <ul class="navigation">
                     <li><a href="/">Home</a></li>
-                    <li><a href="/about">About Us</a></li>
-                    <li><a href="/contact">Contact Us</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="#">Contact</a></li>
                     {{#if user}}
                         <li><a href="/logout">Log Out</a></li>
                     {{else}}
                         <li><a href="/signup">Sign Up</a></li>
-                        <li><a href="/login">Login As Owner</a></li>
+                        <li><a href="/login">Owner Login</a></li>
+                        <li><a href="/subdomain_login">Find Your Company</a></li>
                     {{/if}}
                 </ul>
                 <!-- ./navigation -->
@@ -170,7 +171,7 @@
                                 <div class="text-column-icon">
                                     <span class="fa fa-clock-o"></span>
                                 </div>
-                                <h4>Bussines Hours</h4>
+                                <h4>Business Hours</h4>
                                 <div class="text-column-info">
                                     <p><strong>Monday &mdash; Friday</strong>: 10:00am - 6:00pm</p>
                                     <p><strong>Saturday &mdash; Sunday</strong>: 10:00am - 2:00pm</p>
