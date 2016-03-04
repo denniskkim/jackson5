@@ -7,6 +7,10 @@ describe('User Model', function() {
     var user = new User({
       email: 'test@gmail.com',
       password: 'password'
+      companyname: 'jackson5',
+      subdomainurl: 'jackson5',
+      phonenumber: '1234567890',
+      name: 'jackson5'
     });
     user.save(function(err) {
       if (err) return done(err);
@@ -18,6 +22,10 @@ describe('User Model', function() {
     var user = new User({
       email: 'test@gmail.com',
       password: 'password'
+      companyname: 'jackson5',
+      subdomainurl: 'jackson5',
+      phonenumber: '1234567890',
+      name: 'jackson5'
     });
     user.save(function(err) {
       if (err) err.code.should.equal(11000);
