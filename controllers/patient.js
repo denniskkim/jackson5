@@ -3,10 +3,12 @@
  */
 var Patient = require('../models/Patient');
 
+
 /**
  * Add an patient using form.
  */
 exports.addPatient = function(req, res) {
+
     Patient.create({
         name: req.body.name,
         phone_number: req.body.number,

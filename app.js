@@ -24,8 +24,8 @@ var sass = require('node-sass-middleware');
 var _ = require('lodash');
 var http = require('http');
 var subdomain = require('express-subdomain');
-var multer  = require('multer')
-var upload = multer({ dest: 'uploads/' })
+var multer  = require('multer');
+var upload = multer({ dest: 'uploads/' });
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -44,6 +44,7 @@ var contactController = require('./controllers/contact');
 var employeeController = require('./controllers/employee');
 var patientController = require('./controllers/patient');
 var dashboardController = require('./controllers/dashboard');
+var appointmentController = require('./controllers/getAppointment');
 
 /**
  * API keys and Passport configuration.
@@ -176,7 +177,7 @@ app.post('/subdomain_login', employeeController.postSubdomain);
 /**
  * API examples routes.
  */
-
+app.get('/getAppointments', appointmentController.getAppointment);
 app.get('/viewbusinesses', userController.viewBusinesses);
 app.get('/api', apiController.getApi);
 app.get('/api/facebook', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.getFacebook);
