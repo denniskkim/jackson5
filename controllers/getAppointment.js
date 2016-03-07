@@ -3,14 +3,9 @@
  */
 
 var Patient = require('../models/Patient');
-/**
- *
- * @param req
- * @param res
- */
 
 exports.getAppointment = function(req,res){
-    Patient.find({}, function(err,patients) {
+    Patient.find({ _id : req.query.id}, function(err,patients) {
        if(err){
            res.status(500);
            res.json({
@@ -21,12 +16,11 @@ exports.getAppointment = function(req,res){
         else{
            if(patients){
                var appointments = [];
+               console.log(patients.length);
                for(var i = 0; i < patients.length; i++){
                    appointments.push(patients[i].name, patients[i].checkinTime);
                }
                res.json(appointments);
-               res.json({type: true,
-                        data: "Test" + req.text});
            }
            else{
                res.json({

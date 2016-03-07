@@ -3,6 +3,8 @@
  */
 var Patient = require('../models/Patient');
 
+var moment = require('moment');
+
 
 /**
  * Add an patient using form.
@@ -13,6 +15,8 @@ exports.addPatient = function(req, res) {
         name: req.body.name,
         phone_number: req.body.number,
         email: req.body.email,
+        checkinDay: moment().format('MMMM Do YYYY') ,
+        checkinHour: moment().format('h:mm:ss a'),
         checkinTime: Date.now(),
         subdomainurl: req.user.subdomainurl,
         _admin_id: req.user.id

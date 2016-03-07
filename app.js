@@ -180,7 +180,7 @@ app.post('/subdomain_login', employeeController.postSubdomain);
  * API examples routes.
  */
 app.get('/getAppointments', appointmentController.getAppointment);
-app.get('/viewbusinesses', userController.viewBusinesses);
+//app.get('/viewbusinesses', userController.viewBusinesses);
 app.get('/api', apiController.getApi);
 app.get('/api/facebook', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.getFacebook);
 

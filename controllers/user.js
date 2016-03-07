@@ -178,34 +178,54 @@ exports.postSignup = function(req, res, next) {
 //  })
 //};
 
-/**
- * API Call - Returns all business names
- * /viewbusinesses
- */
-exports.viewBusinesses = function(req,res,next){
-  User.find({} , function(err, users) {
-    if(err) {
-      res.status(500);
-      res.json({
-        type: false,
-        data: "Error occured: " + err
-      })
-    } else {
-      if(users) {
-        var business = [];
-        for(var i = 0; i < users.length; i++ ){
-          business.push(users[i].companyname);
-        }
-        res.json(business);
-      } else {
-        res.json({
-          type: false,
-          data: "Bad"
-        })
-      }
-    }
-  })
-};
+///**
+// * API Call - Returns all business names
+// * /viewbusinesses
+// */
+//exports.viewBusinesses = function(req,res,next){
+//  User.find({} , function(err, users) {
+//    if(err) {
+//      res.status(500);
+//      res.json({
+//        type: false,
+//        data: "Error occured: " + err
+//      })
+//    } else {
+//      if(users) {
+//        var business = [];
+//        for(var i = 0; i < users.length; i++ ){
+//          business.push(users[i].companyname);
+//        }
+//        res.json(business);
+//      } else {
+//        res.json({
+//          type: false,
+//          data: "Bad"
+//        })
+//      }
+//    }
+//  })
+//};
+
+
+
+
+//TODO
+//exports.viewEmployees = function(req, res) {
+//  Users.find({userId : req.id}, function(err, users) {
+//    if(err) {
+//      res.status(500);
+//      res.json({
+//        type: false,
+//        data: "Error occured: " + err
+//      })
+//    } else {
+//      if(users) {
+//        var employees = [];
+//      }
+//    }
+//  })
+//}
 
 /**
  * GET /account
