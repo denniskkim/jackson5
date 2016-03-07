@@ -3,6 +3,11 @@
  */
 
 var Patient = require('../models/Patient');
+/**
+ *
+ * @param req
+ * @param res
+ */
 
 exports.getAppointment = function(req,res){
     Patient.find({}, function(err,patients) {
@@ -20,6 +25,8 @@ exports.getAppointment = function(req,res){
                    appointments.push(patients[i].name, patients[i].checkinTime);
                }
                res.json(appointments);
+               res.json({type: true,
+                        data: "Test" + req.text});
            }
            else{
                res.json({
