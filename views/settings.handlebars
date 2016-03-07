@@ -3,12 +3,7 @@
 <head>
     <!-- META SECTION -->
     <title>Settings</title>
-    <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
 
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <link rel="icon" href="favicon.ico" type="image/x-icon"/>
     <!-- END META SECTION -->
@@ -39,12 +34,12 @@
                         <img src="assets/images/users/avatar.jpg" alt="John Doe"/>
                     </div>
                     <div class="profile-data">
-                        {{#if user.companyname}}
-                            <div class="profile-data-name">{{user.companyname}}</div>
-                            <div class="profile-data-title">Owner</div>
+                        {{#if user._adminid}}
+                            <div class="profile-data-name">{{user._adminid}}</div>
+                            <div class="profile-data-title">Employee</div>
                         {{else}}
                             <div class="profile-data-name">{{user.name}}</div>
-                            <div class="profile-data-title">Employee</div>
+                            <div class="profile-data-title">Owner</div>
                         {{/if}}
                     </div>
                 </div>
@@ -54,10 +49,11 @@
                 <a href="/"><span class="fa fa-dashboard"></span> <span class="xn-text">Overview</span></a>
             </li>
             <li class="active">
-                <a href="patient_queue"><span class="fa fa-clock-o"></span> <span
-                        class="xn-text">Patient Queue</span></a>
+                <a href="patients_mode"><span class="fa fa-pencil"></span> <span class="xn-text">Patient Mode</span></a>
             </li>
-            {{#if user.companyname}}
+            <li class="active">
+                <a href="patient_queue"><span class="fa fa-clock-o"></span> <span class="xn-text">Patient Queue</span></a>
+            </li>
                 <li class="active">
                     <a href="add_employees"><span class="fa fa-users"></span> <span class="xn-text">Manage Employees</span></a>
                 </li>
@@ -67,7 +63,6 @@
                 <li class="active">
                     <a href="viewform"><span class="fa fa-pencil"></span> <span class="xn-text">View Form</span></a>
                 </li>
-            {{/if}}
             <li class="active">
                 <a href="#"><span class="fa fa-comments-o"></span> <span class="xn-text">[Slack]</span></a>
             </li>
@@ -99,49 +94,6 @@
                 <a href="/logout" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>
             </li>
             <!-- END SIGN OUT -->
-            <!-- MESSAGES -->
-            <li class="xn-icon-button pull-right">
-                <a href="#"><span class="fa fa-comments"></span></a>
-                <div class="informer informer-danger">4</div>
-                <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
-                    <div class="panel-heading">
-                        <h3 class="panel-title"><span class="fa fa-comments"></span> Messages</h3>
-                        <div class="pull-right">
-                            <span class="label label-danger">4 new</span>
-                        </div>
-                    </div>
-                    <div class="panel-body list-group list-group-contacts scroll" style="height: 200px;">
-                        <a href="#" class="list-group-item">
-                            <div class="list-group-status status-online"></div>
-                            <img src="assets/images/users/user2.jpg" class="pull-left" alt="John Doe"/>
-                            <span class="contacts-title">John Doe</span>
-                            <p>Praesent placerat tellus id augue condimentum</p>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <div class="list-group-status status-away"></div>
-                            <img src="assets/images/users/user.jpg" class="pull-left" alt="Dmitry Ivaniuk"/>
-                            <span class="contacts-title">Dmitry Ivaniuk</span>
-                            <p>Donec risus sapien, sagittis et magna quis</p>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <div class="list-group-status status-away"></div>
-                            <img src="assets/images/users/user3.jpg" class="pull-left" alt="Nadia Ali"/>
-                            <span class="contacts-title">Nadia Ali</span>
-                            <p>Mauris vel eros ut nunc rhoncus cursus sed</p>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <div class="list-group-status status-offline"></div>
-                            <img src="assets/images/users/user6.jpg" class="pull-left" alt="Darth Vader"/>
-                            <span class="contacts-title">Darth Vader</span>
-                            <p>I want my money back!</p>
-                        </a>
-                    </div>
-                    <div class="panel-footer text-center">
-                        <a href="pages-messages.html">Show all messages</a>
-                    </div>
-                </div>
-            </li>
-            <!-- END MESSAGES -->
         </ul>
         <!-- END X-NAVIGATION VERTICAL -->
 
@@ -171,16 +123,6 @@
                             <input type="text" name="name" id="name" value="" class="form-control">
                         </div>
                     </div>
-                    <!--
-                    <div class="form-group">
-                        <label for="gender" class="col-sm-2 control-label">Gender</label>
-                        <div class="col-sm-4">
-                            <label class="radio col-sm-4">
-                                <input type="radio" name="gender" value="male" data-toggle="radio"><span>Male</span></label>
-                            <label class="radio col-sm-4">
-                                <input type="radio" name="gender" value="female" data-toggle="radio"><span>Female</span></label>
-                        </div>
-                    </div>-->
                     <div class="form-group">
                         <label for="location" class="col-sm-2 control-label">Location</label>
                         <div class="col-sm-4">

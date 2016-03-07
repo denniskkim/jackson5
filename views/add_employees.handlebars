@@ -17,82 +17,6 @@
 </head>
 
 <body>
-<!-- START PAGE CONTAINER -->
-<div class="page-container">
-    <!-- START PAGE SIDEBAR -->
-    <div class="page-sidebar">
-        <!-- START SIDE-NAVIGATION -->
-        <ul class="x-navigation">
-            <li class="xn-logo">
-                <a href="home">[Company Name]</a>
-                <a href="#" class="x-navigation-control"></a>
-            </li>
-            <li class="xn-profile">
-                <a href="#" class="profile-mini">
-                    <img src="assets/images/users/avatar.jpg" alt="John Doe" />
-                </a>
-                <div class="profile">
-                    <div class="profile-image">
-                        <img src="assets/images/users/avatar.jpg" alt="John Doe" />
-                    </div>
-                    <div class="profile-data">
-                        <div class="profile-data-name">{{user.companyname}}</div>
-                        <div class="profile-data-title">Owner</div>
-                    </div>
-                </div>
-            </li>
-            <li class="xn-title">Navigation</li>
-            <li class="active">
-                <a href="dashboard_admin"><span class="fa fa-dashboard"></span> <span class="xn-text">Overview</span></a>
-            </li>
-            <li class="active">
-                <a href="patient_queue"><span class="fa fa-clock-o"></span> <span class="xn-text">Patient Queue</span></a>
-            </li>
-            <li class="active">
-                <a href="add_employees"><span class="fa fa-users"></span> <span class="xn-text">Manage Employees</span></a>
-            </li>
-            <li class="active">
-                <a href="form"><span class="fa fa-pencil"></span> <span class="xn-text">Edit Form</span></a>
-            </li>
-            <li class="active">
-                <a href="viewform"><span class="fa fa-pencil"></span> <span class="xn-text">View Form</span></a>
-            </li>
-            <li class="active">
-                <a href="#"><span class="fa fa-comments-o"></span> <span class="xn-text">[Slack]</span></a>
-            </li>
-            <li class="active">
-                <a href="settings"><span class="fa fa-cogs"></span> <span class="xn-text">Settings</span></a>
-            </li>
-        </ul>
-        <!-- END SIDE-NAVIGATION -->
-    </div>
-    <!-- END PAGE SIDEBAR -->
-
-    <!-- PAGE CONTENT -->
-    <div class="page-content">
-
-        <!-- START X-NAVIGATION VERTICAL -->
-        <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
-            <!-- TOGGLE NAVIGATION -->
-            <li class="xn-icon-button">
-                <a href="#" class="x-navigation-minimize"><span class="fa fa-dedent"></span></a>
-            </li>
-            <!-- END TOGGLE NAVIGATION -->
-            <!-- SEARCH -->
-            <li class="xn-search">
-                <form role="form">
-                    <input type="text" name="search" placeholder="Search..." />
-                </form>
-            </li>
-            <!-- END SEARCH -->
-            <!-- SIGN OUT -->
-            <li class="xn-icon-button pull-right">
-                <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>
-            </li>
-            <!-- END SIGN OUT -->
-        </ul>
-        <!-- END X-NAVIGATION VERTICAL -->
-
         <!-- START BREADCRUMB -->
         <ul class="breadcrumb">
             <li><a href="dashboard_admin">Overview</a></li>
@@ -159,6 +83,7 @@
                                     <th id="nameHead">Name</th>
                                     <th id="numberHead">Number</th>
                                     <th id="emailHead">Email</th>
+                                    <th id="action">Action</th>
                                 </tr>
                                 </thead>
                                 {{#employees}}
@@ -166,6 +91,14 @@
                                         <td>{{name}}</td>
                                         <td>{{phone_number}}</td>
                                         <td>{{email}}</td>
+                                        <td>
+                                        <form method="POST"  action="/delete/{{_id}}?_method=DELETE">
+                                                <button class="btn btn-danger" type="submit">Delete</button>
+                                        </form>
+                                        <form method="POST">
+                                                <button class="btn btn-info" type="submit">Email</button>
+                                        </form>
+                                        </td>
                                     </tr>
                                 {{/employees}}
                                 <tbody>
@@ -179,10 +112,6 @@
             </div>
         </div>
         <!-- END CONTENT WRAPPER -->
-    </div>
-    <!-- END PAGE CONTENT -->
-</div>
-<!-- END PAGE CONTAINER -->
 
 <!-- START ADD MODAL-->
 <div class="modal fade" id="addEmployee" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
@@ -258,7 +187,7 @@
     </div>
 </div>
 
-                <!-- SIGN OUT MESSAGE BOX-->
+<!-- SIGN OUT MESSAGE BOX-->
 <div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
     <div class="mb-container">
         <div class="mb-middle">
@@ -365,16 +294,16 @@
 //        $('#cancelbutton').click(function () {
 //            $("#addEmployeeForm")[0].reset();
 //        });
-    /*$('.delete').click(function(){
-console.log("hi");
-});
-$('tr').mouseover(
-function() {
-alert('hi');
-}, function() {
-}
-); */
-}	);
+        /*$('.delete').click(function(){
+    console.log("hi");
+    });
+    $('tr').mouseover(
+    function() {
+    alert('hi');
+    }, function() {
+    }
+    ); */
+    }	);
 </script>
 <!-- END ADD EMPLOYEE SCRIPT -->
 <!-- END SCRIPTS -->

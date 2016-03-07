@@ -74,6 +74,9 @@
                     <a href="/"><span class="fa fa-dashboard"></span> <span class="xn-text">Overview</span></a>
                 </li>
                 <li class="active">
+                    <a href="patients_mode"><span class="fa fa-dashboard"></span> <span class="xn-text">Patient Mode</span></a>
+                </li>
+                <li class="active">
                     <a href="patient_queue"><span class="fa fa-clock-o"></span> <span class="xn-text">Patient Queue</span></a>
                 </li>
                 <li class="active">
@@ -96,6 +99,7 @@
         </div>
         <!-- END PAGE SIDEBAR -->
 
+        <!--Start Page Content-->
         <div class="page-content">
             <!-- START X-NAVIGATION VERTICAL -->
             <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
@@ -116,49 +120,6 @@
                     <a href="/logout" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>
                 </li>
                 <!-- END SIGN OUT -->
-                <!-- MESSAGES -->
-                <li class="xn-icon-button pull-right">
-                    <a href="#"><span class="fa fa-comments"></span></a>
-                    <div class="informer informer-danger">4</div>
-                    <div class="panel panel-primary animated zoomIn xn-drop-left xn-panel-dragging">
-                        <div class="panel-heading">
-                            <h3 class="panel-title"><span class="fa fa-comments"></span> Messages</h3>
-                            <div class="pull-right">
-                                <span class="label label-danger">4 new</span>
-                            </div>
-                        </div>
-                        <div class="panel-body list-group list-group-contacts scroll" style="height: 200px;">
-                            <a href="#" class="list-group-item">
-                                <div class="list-group-status status-online"></div>
-                                <img src="assets/images/users/user2.jpg" class="pull-left" alt="John Doe"/>
-                                <span class="contacts-title">John Doe</span>
-                                <p>Praesent placerat tellus id augue condimentum</p>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <div class="list-group-status status-away"></div>
-                                <img src="assets/images/users/user.jpg" class="pull-left" alt="Dmitry Ivaniuk"/>
-                                <span class="contacts-title">Dmitry Ivaniuk</span>
-                                <p>Donec risus sapien, sagittis et magna quis</p>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <div class="list-group-status status-away"></div>
-                                <img src="assets/images/users/user3.jpg" class="pull-left" alt="Nadia Ali"/>
-                                <span class="contacts-title">Nadia Ali</span>
-                                <p>Mauris vel eros ut nunc rhoncus cursus sed</p>
-                            </a>
-                            <a href="#" class="list-group-item">
-                                <div class="list-group-status status-offline"></div>
-                                <img src="assets/images/users/user6.jpg" class="pull-left" alt="Darth Vader"/>
-                                <span class="contacts-title">Darth Vader</span>
-                                <p>I want my money back!</p>
-                            </a>
-                        </div>
-                        <div class="panel-footer text-center">
-                            <a href="pages-messages.html">Show all messages</a>
-                        </div>
-                    </div>
-                </li>
-                <!-- END MESSAGES -->
             </ul>
             <!-- END X-NAVIGATION VERTICAL -->
 
@@ -171,58 +132,77 @@
 
             <!-- PAGE CONTENT WRAPPER -->
             <div class="page-content-wrap">
-                <!--<iframe id="formbuilder_iframe" src="http://bootsnipp.com/j87klPolka/formbuilder3.html" style="width:100%; height:1000px;" frameborder="0"></iframe>-->
-                <div class="container">
-                    <div class="row clearfix">
-
-                        <!-- Components -->
-                        <div class="col-md-7">
-                            <h2>Drag & Drop components</h2>
-                            <hr><hr>
-                            <div class="tabbable">
-                                <ul class="nav nav-tabs" id="formtabs">
-                                    <!-- Tab nav -->
-                                </ul>
-                                <hr>
-                                <form class="form-horizontal" id="components">
-                                    <fieldset>
-                                        <div class="tab-content">
-                                            <!-- Tabs of snippets go here -->
-                                        </div>
-                                    </fieldset>
-                                </form>
+                <!-- Start Form Builder-->
+                <div class="row clearfix">
+                    <!--<iframe id="formbuilder_iframe" src="http://bootsnipp.com/j87klPolka/formbuilder3.html" style="width:100%; height:1000px;" frameborder="0"></iframe>-->
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Edit Forms</h3>
                             </div>
-                        </div>
-                        <!-- / Components -->
-                        <!-- Building Form. -->
-                        <div class="col-md-5">
-                            <div class="clearfix">
-                                <h2>Your Form</h2>
-                                <hr>
-                                <div id="build">
-                                    <form id="target" class="form-horizontal">
+                            <div class="panel-body">
+                                <!-- Components -->
+                                <div class="col-md-6">
+                                    <p>Drag and drop components from the left side of the right side to create your patient form! </p>
+                                    <div class="tabbable" style="padding-top: 50px;">
+                                        <ul class="nav nav-tabs" id="formtabs">
+                                            <!-- Tab nav -->
+                                        </ul>
+                                        <hr>
+                                        <form class="form-horizontal" id="components">
+                                            <fieldset>
+                                                <div class="tab-content">
+                                                    <!-- Tabs of snippets go here -->
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                </div>
+                                <!-- / Components -->
+                                <!-- Building Form. -->
+                                <div class="col-md-6">
+                                    <div class="clearfix">
+                                        <h2 style="padding-top: 75px;">Your Form</h2>
+                                        <hr>
+                                        <div id="build">
+                                            <form id="target" class="form-horizontal">
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <form class="form-horizontal" method="POST">
+                                        <div class="form-group">
+                                            <input type="hidden" id="hiddenformhtml" name="form">
+                                        </div>
+                                        <div>
+                                            <div class="col-lg-12 col-lg-offset-5">
+                                                <button id="saveform" class="btn btn-success" onclick="test()">Save Form</button>
+                                            </div>
+                                        </div>
+
                                     </form>
                                 </div>
+                                <!-- / Building Form. -->
                             </div>
-                            <form method="POST">
-                                <input type="hidden" id="hiddenformhtml" name="form">
-                                <button id="saveform" onclick="test()">Save</button>
-                            </form>
                         </div>
-                        <!-- / Building Form. -->
                     </div>
-                    </div>
+                </div>
+                <!-- End form builder-->
                 <script data-main="http://bootsnipp.com/j87klPolka/assets3/js/main-built.js" src="http://bootsnipp.com/j87klPolka/assets3/js/lib/require.js" ></script>
 
-                </div>
+            </div>
         </div>
+        <!--End Page Content-->
     </div>
+    <!-- End Page Container-->
 
+    <!-- Start This Page Script-->
     <script>
         test = function(){
             document.getElementById("hiddenformhtml").value = document.getElementById("render").value;
         };
     </script>
+    <!-- End This Page Script-->
+
 	</body>
 </html>
 

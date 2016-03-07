@@ -55,13 +55,14 @@
                 <!-- navigation -->
                 <ul class="navigation">
                     <li><a href="/">Home</a></li>
-                    <li><a href="/about">About Us</a></li>
-                    <li><a href="/contact">Contact Us</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="#">Contact</a></li>
                     {{#if user}}
                         <li><a href="/logout">Log Out</a></li>
                     {{else}}
                         <li><a href="/signup">Sign Up</a></li>
-                        <li><a href="/login">Login As Owner</a></li>
+                        <li><a href="/login">Owner Login</a></li>
+                        <li><a href="/subdomain_login">Find Your Company</a></li>
                     {{/if}}
                 </ul>
                 <!-- ./navigation -->
@@ -121,7 +122,7 @@
                             <div class="text-column">
                                 <h4>Contact Us</h4>
                                 <div class="text-column-info">
-                                    Proin luctus nulla fringilla massa euismod commodo. Donec sit amet elementum libero. Curabitur ut lorem id tellus malesuada tincidunt et eget purus.
+                                    If you have any questions, feel free to send us an email using the form below!
                                 </div>
                             </div>
 
@@ -160,9 +161,9 @@
                                 </div>
                                 <h4>Our Office</h4>
                                 <div class="text-column-info">
-                                    <p><strong><span class="fa fa-map-marker"></span> Address: </strong> 000 StreetName, Suite 111, City Name, ST 01234</p>
-                                    <p><strong><span class="fa fa-phone"></span> Phone: </strong> (012) 345-67-89</p>
-                                    <p><strong><span class="fa fa-envelope"></span> E-mail: </strong> <a href="#">johndoe@domain.com</a></p>
+                                    <p><strong><span class="fa fa-map-marker"></span> Address: </strong> 9500 Gilman Drive, La Jolla, CA 92092</p>
+                                    <p><strong><span class="fa fa-phone"></span> Phone: </strong> (111) 111-1111</p>
+                                    <p><strong><span class="fa fa-envelope"></span> E-mail: </strong> <a href="#">petervenkmen@ghostbusters.com</a></p>
                                 </div>
                             </div>
 
@@ -170,7 +171,7 @@
                                 <div class="text-column-icon">
                                     <span class="fa fa-clock-o"></span>
                                 </div>
-                                <h4>Bussines Hours</h4>
+                                <h4>Business Hours</h4>
                                 <div class="text-column-info">
                                     <p><strong>Monday &mdash; Friday</strong>: 10:00am - 6:00pm</p>
                                     <p><strong>Saturday &mdash; Sunday</strong>: 10:00am - 2:00pm</p>

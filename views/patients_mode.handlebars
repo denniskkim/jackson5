@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" class="body-full-height">
+    <head>        
+        <!-- META SECTION -->
+        <title>Patient Check-in</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+        <script type="text/javascript" src="js/plugins/daterangepicker/daterangepicker.js"></script>
+        <script type='text/javascript' src='js/plugins/bootstrap/bootstrap-datepicker.js'></script>
+        <script type="text/javascript" src="js/plugins.js"></script>
+        <script type="text/javascript" src="js/actions.js"></script>
+
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <!-- END META SECTION -->
+        
+        <!-- CSS INCLUDE -->        
+        <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
+        <!-- EOF CSS INCLUDE -->                                     
+    </head>
+    <body>
+        
+        <div class="login-container lightmode">
+            <div class="col-md-1">
+                <button class="btn btn-info btn-block" onclick="location.href='/logout'" >Home</button>
+            </div>
+            {{#if msg}}
+            <div class="alert alert-success">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>{{msg}}</strong>
+            </div>
+            {{/if}}
+            <div class="login-box animated fadeInDown">
+                <!-- START CLOCK WRAPPER -->
+                <div class="page-content-wrap">
+
+                    <!-- START WIDGETS -->
+                    <div class="row">
+
+                        <div class="col-md-12">
+
+                            <!-- START WIDGET CLOCK -->
+                            <div class="widget widget-danger widget-padding-sm">
+                                <div class="widget-big-int plugin-clock">00:00</div>
+                                <div class="widget-subtitle plugin-date">Loading...</div>
+                            </div>
+                            <!-- END WIDGET CLOCK -->
+
+                        </div>
+                    </div>
+                </div>
+                <!-- END CLOCK WRAPPER-->
+                <div class="login-logo"></div>
+                <div class="login-body">
+                    <div class="login-title"><strong>Check In</strong></div>
+                    <form class="form-horizontal" method="POST">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="text" name="name" id="name" class="form-control" placeholder="Your Name"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="text" name="number" id="number" class="form-control" placeholder="Your Phone Number in Form +1858123456"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="text" name="email" id="email" class="form-control" placeholder="Your Email"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-lg-6 col-lg-offset-3">
+                            <button class="btn btn-info btn-block">Check In</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+
+                <div class="login-footer">
+                    <div class="pull-left">
+                        &copy; 2016 Receptional
+                    </div>
+                    <div class="pull-right">
+                        <a href="/about">About</a> |
+                        <a href="#">Privacy</a> |
+                        <a href="/contact">Contact Us</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
+
+
+
+
+
