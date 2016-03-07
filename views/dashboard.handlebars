@@ -12,7 +12,14 @@
         
         <!-- CSS INCLUDE -->        
         <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
-        <!-- EOF CSS INCLUDE -->                                    
+        <!-- EOF CSS INCLUDE -->
+        <!-- Scripts for Logentries -->
+        <script src="frontend/js/le.min.js"></script>
+        <script>
+            // Set up le.js
+            LE.init({token: '02da12dd-d09a-4c93-86da-ec1deb507831', page_info: 'per-entry'})
+        </script>
+
     </head>
     <body>
         <!-- START PAGE CONTAINER -->
@@ -750,7 +757,12 @@
         
         <script type="text/javascript" src="js/demo_dashboard.js"></script>
         <!-- END TEMPLATE -->
-    <!-- END SCRIPTS -->         
+    <!-- END SCRIPTS -->
+
+        <script>
+            LE.log("Home page was loaded");
+        </script>
+
     </body>
 </html>
 

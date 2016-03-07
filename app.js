@@ -72,6 +72,8 @@ app.set('port', process.env.PORT || 3000);
 app.engine('handlebars', handlebars({defaultLayout: 'layout'}));
 app.set('view engine', 'handlebars');
 app.set('views', __dirname + '/views');
+app.use(express.static(__dirname, '/js'));
+
 
 app.use(compress());
 app.use(sass({
@@ -206,6 +208,8 @@ app.get('/dashboard', function(req, res){
 app.get('/settings', function(req, res){
   res.render('settings', { user: req.user });
 });
+
+app.post('/settings',passportConf.isAuthenticated, userController.postUpdateProfile );
 
 app.get('/viewform', function(req, res){
   res.render('viewform', { form: req.user.form });
