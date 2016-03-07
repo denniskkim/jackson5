@@ -72,6 +72,8 @@ app.set('port', process.env.PORT || 3000);
 app.engine('handlebars', handlebars({defaultLayout: 'layout'}));
 app.set('view engine', 'handlebars');
 app.set('views', __dirname + '/views');
+app.use(express.static(__dirname, '/js'));
+
 
 app.use(compress());
 app.use(sass({

@@ -10,10 +10,11 @@
     <!-- END META SECTION -->
 
     <link rel="stylesheet" type="text/css" href="css/styles.css" media="screen" />
-    <script src="/frontend/js/le.min.js"></script>
+    <!-- Scripts for Logentries -->
+    <script src="frontend/js/le.min.js"></script>
     <script>
         // Set up le.js
-        LE.init('02da12dd-d09a-4c93-86da-ec1deb507831');
+        LE.init({token: '02da12dd-d09a-4c93-86da-ec1deb507831', page_info: 'per-entry'})
     </script>
 
 </head>

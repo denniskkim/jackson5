@@ -7,7 +7,7 @@ var User = require('../models/User');
 
 var Logger = require('le_node');
 var logger = new Logger({
-  token:'02da12dd-d09a-4c93-86da-ec1deb507831'
+  token:'4ed0e98c-c21f-42f0-82ee-0031f09ca161'
 });
 
 /**
@@ -34,22 +34,38 @@ exports.postLogin = function(req, res, next) {
   var errors = req.validationErrors();
 
   if (errors) {
+    // Send logs to logentries
+    logger.log(4,"User login Failed:" + errors);
+
     req.flash('errors', errors);
     return res.redirect('/login');
   }
 
   passport.authenticate('business_owner', function(err, user, info) {
     if (err) {
+      // Send logs to logentries
+      logger.log(4,"User login Failed:" + err);
+
       return next(err);
     }
     if (!user) {
+
+      // Send logs to logentries
+      logger.log(4,"User login Failed: user was null");
+
       req.flash('errors', { msg: info.message });
       return res.redirect('/login');
     }
     req.logIn(user, function(err) {
       if (err) {
+        // Send logs to logentries
+        logger.log(4,"User login Failed:" + errors);
         return next(err);
       }
+
+      // Send logs to logentries
+      logger.log(2,"User login Success:");
+
       req.flash('success', { msg: 'Success! You are logged in.' });
       //res.redirect(req.session.returnTo || '/dashboard_admin');
       res.redirect('/dashboard_admin');
@@ -109,19 +125,29 @@ exports.postSignup = function(req, res, next) {
 
   User.findOne({ email: req.body.email }, function(err, existingUser) {
     if (existingUser) {
+
+      // Send logs to logentries
+      logger.log(4,"New user create Business owner account failed" + "Account with that email address already exists");
+
       req.flash('errors', { msg: 'Account with that email address already exists.' });
       return res.redirect('/signup');
     }
     user.save(function(err) {
       if (err) {
+        // Send logs to logentries
+        logger.log(4,"New user create Business owner account failed" + err);
+
         return next(err);
       }
       req.logIn(user, function(err) {
         if (err) {
+          // Send logs to logentries
+          logger.log(4,"New user create Business owner account failed" + err);
+
           return next(err);
         }
         // Send logs to logentries
-        logger.log("New user successfully created Business owner account");
+        logger.log(2,"New user successfully created Business owner account");
         res.redirect('/');
       });
     });
@@ -199,14 +225,22 @@ exports.getAccount = function(req, res) {
 exports.postUpdateProfile = function(req, res, next) {
   User.findById(req.user.id, function(err, user) {
     if (err) {
+      // Send logs to logentries
+      logger.log(4,"Edit profile failed: " + err);
+
       return next(err);
     }
     user.email = req.body.email || '';
     username = req.body.name || '';
     user.save(function(err) {
       if (err) {
+        // Send logs to logentries
+        logger.log(4,"Edit profile failed: " + err);
         return next(err);
       }
+      // Send logs to logentries
+      logger.log(2,"Edit profile Success");
+
       req.flash('success', { msg: 'Profile information updated.' });
       res.redirect('/settings');
     });
@@ -220,15 +254,23 @@ exports.postUpdateProfile = function(req, res, next) {
 exports.postUpdateForm = function(req, res, next) {
   User.findById(req.user.id, function(err, user) {
     if (err) {
+      // Send logs to logentries
+      logger.log(4,"Update Profile failed: " + err);
+
       console.log(err);
       return next(err);
     }
     user.form = req.body.form || '';
     user.save(function(err) {
       if (err) {
+        // Send logs to logentries
+        logger.log(4,"Update Profile failed: " + err);
         console.log(err);
         return next(err);
       }
+      // Send logs to logentries
+      logger.log(2,"Update Profile Success");
+
       req.flash('success', { msg: 'Form information updated.' });
       res.redirect('/form');
     });
@@ -272,8 +314,15 @@ exports.postUpdatePassword = function(req, res, next) {
 exports.postDeleteAccount = function(req, res, next) {
   User.remove({ _id: req.user.id }, function(err) {
     if (err) {
+      // Send logs to logentries
+      logger.log(4,"Delete account failed: "+err);
+
       return next(err);
     }
+
+    // Send logs to logentries
+    logger.log(2,"Delete account Success");
+
     req.logout();
     req.flash('info', { msg: 'Your account has been deleted.' });
     res.redirect('/');
