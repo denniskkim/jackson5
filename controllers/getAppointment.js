@@ -12,27 +12,29 @@ var moment = require('moment');
 
 exports.getAppointment = function(req,res){
     Patient.find({}, function(err,patients) {
-       if(err){
-           res.status(500);
-           res.json({
-               type: false,
-               data: "Error occured: " + err
-           })
-       }
-       if(req.token !== N9Gr8XZR1N4jvC5wWw09Khui){
 
-
-       }
+       //if(req.token !== N9Gr8XZR1N4jvC5wWw09Khui){
+       //
+       //
+       //}
+        if(err){
+            res.status(500);
+            res.json({
+                type: false,
+                data: "Error occured: " + err
+            })
+        }
         else{
            if(patients){
                var appointments = [];
-               var appointmentCheck = moment.format('MMMM Do YYYY');
+               var appointmentCheck = moment().format('MMMM Do YYYY');
 
                for(var i = 0; i < patients.length; i++){
+                   var name
                    appointments.push(patients[i].name, patients[i].checkinTime);
                }
-               res.json(appointments.toString());
-               res.send('Divider');
+               //res.json(appointments.toString());
+               //res.send('Divider');
                res.send(appointments.toString());
                //res.json({type: true,
                //         data: "Test" + req.text});
