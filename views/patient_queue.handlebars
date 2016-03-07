@@ -31,7 +31,7 @@
                             <th id="patientTel">Phone</th>
                             <th id="patientEmail">Email</th>
                             <th id="patientIn">Time in</th>
-                            <!--<th id="patientOut">Time out</th>-->
+                            <th id="patientOut">Check Out</th>
                         </tr>
                         </thead>
                         {{#patients}}
@@ -40,6 +40,11 @@
                             <td>{{phone_number}}</td>
                             <td>{{email}}</td>
                             <td>{{checkinTime}}</td>
+                            <td>
+                                <form method="POST"  action="/delete/{{_id}}?_method=DELETE">
+                                        <button class="btn btn-danger" type="submit">Check Out</button>
+                                </form>
+                            </td>
                         </tr>
                         {{/patients}}
                         <tbody>
