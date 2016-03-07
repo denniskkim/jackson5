@@ -185,6 +185,8 @@ app.get('/settings', function(req, res){
   res.render('settings', { user: req.user });
 });
 
+app.post('/settings',passportConf.isAuthenticated, userController.postUpdateProfile );
+
 app.get('/viewform', function(req, res){
   res.render('viewform', { form: req.user.form });
 });

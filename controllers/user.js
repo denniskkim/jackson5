@@ -5,6 +5,10 @@ var nodemailer = require('nodemailer');
 var passport = require('passport');
 var User = require('../models/User');
 
+var Logger = require('le_node');
+var logger = new Logger({
+  token:'02da12dd-d09a-4c93-86da-ec1deb507831'
+});
 
 /**
  * GET /login
@@ -124,6 +128,8 @@ exports.postSignup = function(req, res, next) {
         if (err) {
           return next(err);
         }
+        // Send logs to logentries
+        logger.log("New user successfully created Business owner account");
         res.redirect('/');
       });
     });
@@ -156,7 +162,7 @@ exports.postUpdateProfile = function(req, res, next) {
         return next(err);
       }
       req.flash('success', { msg: 'Profile information updated.' });
-      res.redirect('/account');
+      res.redirect('/settings');
     });
   });
 };
