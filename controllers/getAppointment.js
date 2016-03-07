@@ -3,6 +3,7 @@
  */
 
 var Patient = require('../models/Patient');
+var moment = require('moment');
 /**
  *
  * @param req
@@ -18,15 +19,23 @@ exports.getAppointment = function(req,res){
                data: "Error occured: " + err
            })
        }
+       if(req.token !== N9Gr8XZR1N4jvC5wWw09Khui){
+
+
+       }
         else{
            if(patients){
                var appointments = [];
+               var appointmentCheck = moment.format('MMMM Do YYYY');
+
                for(var i = 0; i < patients.length; i++){
                    appointments.push(patients[i].name, patients[i].checkinTime);
                }
-               res.json(appointments);
-               res.json({type: true,
-                        data: "Test" + req.text});
+               res.json(appointments.toString());
+               res.send('Divider');
+               res.send(appointments.toString());
+               //res.json({type: true,
+               //         data: "Test" + req.text});
            }
            else{
                res.json({
