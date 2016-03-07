@@ -83,6 +83,7 @@
                                     <th id="nameHead">Name</th>
                                     <th id="numberHead">Number</th>
                                     <th id="emailHead">Email</th>
+                                    <th id="action">Action</th>
                                 </tr>
                                 </thead>
                                 {{#employees}}
@@ -90,6 +91,14 @@
                                         <td>{{name}}</td>
                                         <td>{{phone_number}}</td>
                                         <td>{{email}}</td>
+                                        <td>
+                                        <form method="POST"  action="/delete/{{_id}}?_method=DELETE">
+                                                <button class="btn btn-danger" type="submit">Delete</button>
+                                        </form>
+                                        <form method="POST">
+                                                <button class="btn btn-info" type="submit">Email</button>
+                                        </form>
+                                        </td>
                                     </tr>
                                 {{/employees}}
                                 <tbody>
