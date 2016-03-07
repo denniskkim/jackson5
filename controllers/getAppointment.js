@@ -6,7 +6,8 @@ var moment = require('moment');
 var Patient = require('../models/Patient');
 
 exports.getAppointment = function(req,res) {
-    Patient.find({_id: req.query.id}, function (err, patients) {
+    //_id: req.query.id
+    Patient.find({}, function (err, patients) {
         if (err) {
             res.status(500);
             res.json({
@@ -17,12 +18,22 @@ exports.getAppointment = function(req,res) {
         else {
             if (patients) {
                 var appointments = [];
-                var appointmentCheck = moment().format("MMMM Do YYYY");
+                var current_appointment = moment().format("MMMM Do YYYY");
                 console.log(patients.length);
                 for (var i = 0; i < patients.length; i++) {
-                    appointments.push(patients[i].name, patients[i].checkinDay, patients[i].checkinHour);
+                    var patientName = patients[i].name;
+                    var patient = 'Name: ' + patientName;
+
+                    var checkin_time = patients[i].checkinHour;
+                    //if(checkin_time === null){
+                    //    checkin_time = 'Error when checked-in';
+                    //    //add log message TODO
+                    //}
+                    var checkin = 'Check-in Time: ' + checkin_time;
+                   // appointments.push(patients[i].name, patients[i].checkinHour);
+                    appointments.push(patient, checkin);
                 }
-                res.json(appointments);
+                res.send(appointments);
 
             }
             else {
