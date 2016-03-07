@@ -17,6 +17,10 @@ exports.addPatient = function(req, res) {
         email: req.body.email,
         checkinDay: moment().format('MMMM Do YYYY') ,
         checkinHour: moment().format('h:mm:ss a'),
+        /*
+         checkinDay: moment().format('MMMM Do YYYY') ,
+         checkinHour: moment().subtract(Date.now().getTimezoneOffset(),'hour').format('h:mm:ss a'),
+         */
         checkinTime: Date.now(),
         subdomainurl: req.user.subdomainurl,
         _admin_id: req.user.id
