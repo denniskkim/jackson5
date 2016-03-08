@@ -45,6 +45,7 @@ var employeeController = require('./controllers/employee');
 var patientController = require('./controllers/patient');
 var dashboardController = require('./controllers/dashboard');
 var appointmentController = require('./controllers/getAppointment');
+var restAPIController = require('./controllers/restapi');
 
 /**
  * API keys and Passport configuration.
@@ -179,6 +180,8 @@ app.post('/subdomain_login', employeeController.postSubdomain);
 /**
  * API examples routes.
  */
+app.get('/getPatients', restAPIController.getPatients);
+app.get('/getEmployees', restAPIController.getEmployees);
 app.get('/getAppointments', appointmentController.getAppointment);
 //app.get('/viewbusinesses', userController.viewBusinesses);
 app.get('/api', apiController.getApi);

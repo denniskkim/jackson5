@@ -12,7 +12,8 @@ var patientSchema = new mongoose.Schema({
     checkinHour: String,  /* grabs the time of appointment */
     checkinTime: Date,
     checkoutTime: Date,
-    subdomainurl: String
+    subdomainurl: String,
+    _admin_id: String
 });
 
 module.exports = mongoose.model('Patient', patientSchema);
