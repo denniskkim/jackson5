@@ -7,6 +7,10 @@ var nodemailer = require('nodemailer');
 var passport = require('passport');
 var fs = require('fs');
 var validator = require('validator');
+var Logger = require('le_node');
+var logger = new Logger({
+    token:'4ed0e98c-c21f-42f0-82ee-0031f09ca161'
+});
 
 /**
  + * GET /subdomain login
@@ -15,10 +19,16 @@ var validator = require('validator');
 exports.postSubdomain = function(req, res){
     Owner.findOne({subdomainurl: req.body.subdomain}, function(err, domain) {
         if (err) {
+            // Send logs to logentries
+            logger.log(4,"Find subDomain Error:" + domain);
+
             console.log("ERROR find subDomain: " + domain);
             res.redirect('/subdomain_login');
         }
         if(domain) {
+            // Send logs to logentries
+            logger.log(2,"Find subDomain Success:" + domain);
+
             console.log("success: " + domain);
             req.flash('success', { msg: 'Success! You are logged in.' });
             res.redirect('/login_employee');
@@ -36,6 +46,9 @@ exports.postSubdomain = function(req, res){
 exports.getEmployees = function(req, res){
     Employee.find({_admin_id: req.user.id/*, name: "Jane Doe"*/}, function (err, employees) {
         //console.log(employee);
+        // Send logs to logentries
+        logger.log(2,"Find Employee Success:" + employees);
+
         res.render('add_employees',{title: 'Add Employees', employees: employees, layout: 'navigation_admin'});
     });
 };
@@ -64,6 +77,9 @@ exports.addEmployee = function(req, res) {
         _admin_id: company_id
     }, function (err, employee) {
         if (err) {
+            // Send logs to logentries
+            logger.log(4,"Create employee failed: "+err);
+
             console.log("ERROR creating employee: ");
             console.log(err);
 
@@ -72,6 +88,9 @@ exports.addEmployee = function(req, res) {
 
             //res.send("There was a problem adding the employee to the databaase");
         } else {
+            // Send logs to logentries
+            logger.log(2,"Create employee Success: "+err);
+
             //console.log('Creating new employee: ' + employee);
             res.redirect('add_employees');
 

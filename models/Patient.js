@@ -8,6 +8,8 @@ var patientSchema = new mongoose.Schema({
     phone_number: String, /* or Number */
     email: String,
     id: String,
+    checkinDay: String,   /* grabs the day of appointment */
+    checkinHour: String,  /* grabs the time of appointment */
     checkinTime: Date,
     checkoutTime: Date,
     subdomainurl: String

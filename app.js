@@ -72,6 +72,8 @@ app.set('port', process.env.PORT || 3000);
 app.engine('handlebars', handlebars({defaultLayout: 'layout'}));
 app.set('view engine', 'handlebars');
 app.set('views', __dirname + '/views');
+app.use(express.static(__dirname, '/js'));
+
 
 app.use(compress());
 app.use(sass({
@@ -181,7 +183,7 @@ app.post('/subdomain_login', employeeController.postSubdomain);
  * API examples routes.
  */
 app.get('/getAppointments', appointmentController.getAppointment);
-app.get('/viewbusinesses', userController.viewBusinesses);
+//app.get('/viewbusinesses', userController.viewBusinesses);
 app.get('/api', apiController.getApi);
 app.get('/api/facebook', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.getFacebook);
 
@@ -209,6 +211,8 @@ app.get('/dashboard', function(req, res){
 app.get('/settings', function(req, res){
   res.render('settings', { user: req.user });
 });
+
+app.post('/settings',passportConf.isAuthenticated, userController.postUpdateProfile );
 
 app.get('/viewform', function(req, res){
   res.render('viewform', { form: req.user.form });
