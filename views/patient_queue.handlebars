@@ -4,7 +4,36 @@
     <title>Patient Queue</title>
 
 </head>
+<script  src="http://code.jquery.com/jquery-1.9.1.min.js" ></script>   
+<script type="text/javascript">
 
+    $(function (){
+    	var currentID;
+    	var name;
+        $('button').on('click', function(event) {
+        	alert("testing" + event.currentTarget.name);
+        	name = event.currentTarget.name;
+        	currentID = event.currentTarget.id;
+        	event.preventdefault();
+        	
+		});
+
+        alert("testing" + currentID);
+
+		if(name=="notify") {
+		    	$.post('/patient_queue', { // use the route here
+					currentID: currentID
+				}, function (currentID, status){
+
+				});
+
+        }
+
+
+    });
+
+
+</script>
         <!-- START BREADCRUMB -->
         <ul class="breadcrumb">
             <li><a href="/">Home</a></li>
@@ -24,7 +53,7 @@
                     </ul>
                 </div>
                 <div class="panel-body">
-                    <table class="table datatable sortable">
+                    <table class="table datatable sortable" id="patientqueue">
                         <thead>
                         <tr>
                             <th id="patientName">Name</th>
@@ -32,6 +61,7 @@
                             <th id="patientEmail">Email</th>
                             <th id="patientIn">Time in</th>
                             <th id="patientOut">Check Out</th>
+                            <th id="action">Action</th>
                         </tr>
                         </thead>
                         {{#patients}}
@@ -41,9 +71,16 @@
                             <td>{{email}}</td>
                             <td>{{checkinTime}}</td>
                             <td>
-                                <form method="POST"  action="/delete/{{_id}}?_method=DELETE">
-                                        <button class="btn btn-danger" type="submit">Check Out</button>
+                                <form method="POST"  action="/delete_patient/{{_id}}?_method=DELETE">
+                                        <button class="btn btn-danger"  type="submit">Check Out</button>
                                 </form>
+
+                            </td>
+                            <td>
+                                <form method="POST"  >
+                                    <button class="btn btn-info" id="{{_id}}" name="notify" type="submit">Notify</button>
+                                </form>
+
                             </td>
                         </tr>
                         {{/patients}}
@@ -54,5 +91,9 @@
         </div>
     </div>
 </div>
+
+
+
+
 
 </html>
