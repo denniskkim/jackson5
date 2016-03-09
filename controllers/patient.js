@@ -95,14 +95,11 @@ exports.removePatient = function(req, res) {
 
 exports.notifyPatients = function(req, res) {
     
-    Patient.find({_id: req.body.currentID}, function(err, patient) {
+    Patient.find({email: req.body.currentID}, function(err, patient) {
         if (err) {
             console.log("ERROR selecting patient: " + patient);
             //res.send("There was an error selecting the employee");
         } else {
-            console.log("THis testing for " + req.body.currentID);
-            if(patient.name) {
-            console.log("patient: " + patient);
             var options = {
                 service: 'gmail',
                 auth: {
@@ -110,12 +107,12 @@ exports.notifyPatients = function(req, res) {
                 pass: 'nightowls1'
                 }
             };
-            var emailtext = "Hello " +patient.name + " You are next. Please Come Forward !!!";
+            var emailtext = "Hello " +req.body.name + " You are next. Please Come Forward !!!";
             var transporter = nodemailer.createTransport(options);
             // Setup email data
             var mailOptions = {
                 from: '"Receptional.xyz" <donotreply.receptional@gmail.com>',
-                to: patient.email,
+                to: req.body.currentID,
                 subject: "Welcome to Receptional",
                 text: emailtext,
                 html: emailtext
@@ -138,7 +135,7 @@ exports.notifyPatients = function(req, res) {
             //require the Twilio module and create a REST client 
             var client = require('twilio')(accountSid, authToken); 
               client.sendSms({ 
-                body: "Hello " +patient.name + " You are next. Please Come Forward !!!",
+                body: "Hello " +req.body.name + " You are next. Please Come Forward !!!",
                 to: "+18583808909",
                 from: "+18583467675"
               }, function(err, message) { 
@@ -146,8 +143,6 @@ exports.notifyPatients = function(req, res) {
                   console.log(err.message); 
                 }
               });
-
-            }
             res.redirect("/patient_queue");
         }
     });

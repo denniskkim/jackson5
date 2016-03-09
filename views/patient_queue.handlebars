@@ -4,32 +4,28 @@
     <title>Patient Queue</title>
 
 </head>
-<script  src="http://code.jquery.com/jquery-1.9.1.min.js" ></script>   
+<script  src="http://code.jquery.com/jquery-1.9.1.min.js" ></script> 
+<script src ="js/sweetalert.min.js"> </script> 
+<link rel="stylesheet" type="text/css" href="css/sweetalert.css">  
 <script type="text/javascript">
-
     $(function (){
     	var currentID;
     	var name;
         $('button').on('click', function(event) {
-        	alert("testing" + event.currentTarget.name);
-        	name = event.currentTarget.name;
+        	name = event.currentTarget.value;
         	currentID = event.currentTarget.id;
-        	event.preventdefault();
+            if(event.currentTarget.name=="notify") {
+                swal("Just notified the Patient!", "You clicked the button!", "success");
+                $.post('/patient_queue', { // use the route here
+                    currentID: currentID,
+                    name: name
+                }, function (currentID, status){
+
+                });
+
+            }
         	
 		});
-
-        alert("testing" + currentID);
-
-		if(name=="notify") {
-		    	$.post('/patient_queue', { // use the route here
-					currentID: currentID
-				}, function (currentID, status){
-
-				});
-
-        }
-
-
     });
 
 
@@ -45,6 +41,12 @@
 <div class="page-content-wrap">
     <div class="row">
         <div class="col-md-12">
+            {{#if msg}}
+                        <div class="alert alert-success">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
+                            <strong>{{msg}}</strong>
+                        </div>
+             {{/if}}
             <!-- START MANAGE EMPLOYEES DATATABLE -->
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -53,6 +55,7 @@
                     </ul>
                 </div>
                 <div class="panel-body">
+                        
                     <table class="table datatable sortable" id="patientqueue">
                         <thead>
                         <tr>
@@ -77,9 +80,7 @@
 
                             </td>
                             <td>
-                                <form method="POST"  >
-                                    <button class="btn btn-info" id="{{_id}}" name="notify" type="submit">Notify</button>
-                                </form>
+                                <button class="btn btn-info" id="{{email}}" name="notify" value= "{{name}}" type="submit">Notify</button>
 
                             </td>
                         </tr>

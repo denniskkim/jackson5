@@ -21,8 +21,17 @@
             LE.init('02da12dd-d09a-4c93-86da-ec1deb507831');
         </script>
 
+        
 
     </head>
+
+    <script  src="http://code.jquery.com/jquery-1.9.1.min.js" ></script> 
+    <script type="text/javascript">
+            $(function (){
+                 document.getElementById("subdomain").innerHTML = localStorage.getItem("subdomain");
+            });
+    </script>
+
     <body>
         
         <div class="login-container">
@@ -30,8 +39,7 @@
             <div class="login-box animated fadeInDown">
                 <div class=""></div>
                 <div class="login-body">
-                    <div class="login-title"><strong>{{subdomain}} - Employee Login</strong></div>
-                    <div class="login-title"><strong> {{success.msg}} - Employee Login</strong></div>
+                    <div class="login-title"><strong id="subdomain"> </strong> <strong> - Employee Login</strong></div>
                     <form class="form-horizontal" method="post">
                     <div class="form-group">
                         <div class="col-md-12">

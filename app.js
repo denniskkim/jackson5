@@ -152,6 +152,7 @@ app.post('/add_EmployeesCSV', upload.single('file'), employeeController.addEmplo
 app.get('/login_employee', employeeController.getEmployeeLogin);
 app.post('/login_employee', employeeController.postEmployeeLogin);
 app.delete('/delete/:id', employeeController.removeEmployee);
+app.post('/email_employee', employeeController.emailEmployee);
 
 app.post('/form', passportConf.isAuthenticated, userController.postUpdateForm);
 
