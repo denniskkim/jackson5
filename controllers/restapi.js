@@ -47,8 +47,10 @@ exports.getPatients = function(req,res) {
  * @param res
  */
 exports.createEmployee = function(req, res) {
-        Employee.find({email: req.query.email, _admin_id : req.query.id}, function (err, employee) {
-            if (!employee) {
+    console.log("Created method");
+        Employee.find({email: req.query.email}, function (err, employee) {
+            if (employee.length == 0) {
+                console.log("Hi");
                 var name = req.query.name;
                 var number = req.query.number;
                 var email = req.query.email;
@@ -62,31 +64,31 @@ exports.createEmployee = function(req, res) {
                     email: email,
                     password: password,
                     subdomainurl: subdomainurl,
-                    _admin_id: company_id
+                    _admin_id: new Object(company_id)
                 }, function (err, employee) {
                     if (err) {
                         // Send logs to logentries
-                        logger.log(4,"Create employee failed: "+err);
+                        //logger.log(4,"Create employee failed: "+err);
 
                         console.log("ERROR creating employee: ");
                         console.log(err);
 
                         //TODO - display error message
-                        res.redirect('add_employees');
+                        res.redirect('/');
 
                         //res.send("There was a problem adding the employee to the databaase");
                     } else {
                         // Send logs to logentries
-                        logger.log(2,"Create employee Success: "+err);
+                        //logger.log(2,"Create employee Success: "+err);
 
                         //console.log('Creating new employee: ' + employee);
-                        res.redirect('add_employees');
+                        console.log("Success!");
 
                         //emailEmployee(employee, req.user, password);
                     }
                 });
             }
-            if(err) {
+            else if(err) {
                 res.json({"message" : err});
             }
             else {

@@ -180,9 +180,7 @@ app.post('/subdomain_login', employeeController.postSubdomain);
 /**
  * API examples routes.
  */
-app.post('createEmployee', restAPIController.createEmployee, function(req,res){
-  res.render('add_employees', {user : req.user});
-});
+app.post('/createEmployee', restAPIController.createEmployee);
 app.get('/getPatients', restAPIController.getPatients);
 app.get('/getEmployees', restAPIController.getEmployees);
 app.get('/getAppointments', appointmentController.getAppointment);
