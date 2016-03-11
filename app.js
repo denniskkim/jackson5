@@ -153,6 +153,7 @@ app.post('/add_EmployeesCSV', upload.single('file'), employeeController.addEmplo
 app.get('/login_employee', employeeController.getEmployeeLogin);
 app.post('/login_employee', employeeController.postEmployeeLogin);
 app.delete('/delete/:id', employeeController.removeEmployee);
+app.post('/email_employee', employeeController.emailEmployee);
 
 app.post('/form', passportConf.isAuthenticated, userController.postUpdateForm);
 
@@ -167,6 +168,9 @@ app.get('/patients_mode', function(req, res){
 });
 
 app.get('/patient_queue', patientController.getPatients);
+app.post('/patient_queue', patientController.notifyPatients);
+app.delete('/delete_patient/:id', patientController.removePatient);
+
 
 app.get('/dashboard_admin', dashboardController.getBusinessOwnerDashboard);
 app.get('/dashboard_employee', dashboardController.getEmployeeDashboard);

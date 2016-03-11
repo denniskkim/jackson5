@@ -173,6 +173,40 @@ exports.editEmployee = function(req, res) {
     })
 };
 
+exports.emailEmployee = function(req, res) {
+            var options = {
+                service: 'gmail',
+                auth: {
+                user: 'donotreply.receptional@gmail.com',
+                pass: 'nightowls1'
+                }
+            };
+            var emailtext = req.body.message;
+            var transporter = nodemailer.createTransport(options);
+            // Setup email data
+            var mailOptions = {
+                from: '"Receptional.xyz" <donotreply.receptional@gmail.com>',
+                to: req.body.to,
+                subject: "Receptional",
+                text: emailtext,
+                html: emailtext
+            };
+            // Send email
+            transporter.sendMail(mailOptions, function(error, info) {
+                if(error) {
+                    console.log("Fail sending" + error);
+                }
+                else {
+                    console.log('Message sent: ' + info);
+                    console.log(emailtext);
+                }
+            });
+
+            res.redirect("/add_employees");
+};
+
+
+
 exports.removeEmployee = function(req, res) {
     Employee.findById(req.params.id, function(err, employee) {
         if (err) {

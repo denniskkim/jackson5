@@ -15,6 +15,22 @@
         <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
         <!-- EOF CSS INCLUDE -->                                     
     </head>
+
+<script type="text/javascript">
+
+    $(function (){
+        $('button').on('click', function(event) {
+
+            if(event.currentTarget.name=="search") {    
+                localStorage.setItem("subdomain", document.getElementById("subdomain").value);
+            }
+            
+        });
+    });
+
+
+</script>
+
     <body>
         {{#if msg}}
             <div class="alert alert-danger">
@@ -36,7 +52,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-lg-6 col-lg-offset-3">
-                            <button class="btn btn-primary btn-block">Search</button>
+                            <button class="btn btn-primary btn-block" name="search" >Search</button>
                         </div>
                     </div>
                     </form>

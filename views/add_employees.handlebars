@@ -15,6 +15,36 @@
     <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css" />
     <!-- EOF CSS INCLUDE -->
 </head>
+<script  src="http://code.jquery.com/jquery-1.9.1.min.js" ></script>   
+<script type="text/javascript">
+
+    $(function (){
+        $('button').on('click', function(event) {
+
+            // if(event.currentTarget.name=="send") {
+            //     alert(document.getElementById("message").value);
+
+            //     $.post('/email_employee', { // use the route here
+            //         email: localStorage.getItem("employee_email"),
+            //         message: message
+            //     }, function (message, status){
+
+            //     });
+
+            // }
+
+
+            if(event.currentTarget.name=="email") {        
+                localStorage.setItem("employee_email", event.currentTarget.id);
+                document.getElementById("to").value =localStorage.getItem("employee_email");
+            }
+            
+        });
+    });
+
+
+</script>
+
 
 <body>
         <!-- START BREADCRUMB -->
@@ -83,6 +113,7 @@
                                     <th id="nameHead">Name</th>
                                     <th id="numberHead">Number</th>
                                     <th id="emailHead">Email</th>
+                                    <th id="delete">Delete</th>
                                     <th id="action">Action</th>
                                 </tr>
                                 </thead>
@@ -95,9 +126,10 @@
                                         <form method="POST"  action="/delete/{{_id}}?_method=DELETE">
                                                 <button class="btn btn-danger" type="submit">Delete</button>
                                         </form>
-                                        <form method="POST">
-                                                <button class="btn btn-info" type="submit">Email</button>
-                                        </form>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-info" name="email" id= "{{email}} "
+                                                data-toggle="modal" data-target="#emailEmployee">Email</button>
                                         </td>
                                     </tr>
                                 {{/employees}}
@@ -187,6 +219,45 @@
     </div>
 </div>
 
+
+
+<div class="modal fade" id="emailEmployee" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                <h2 class="modal-title" id="exampleModalLabel">EMAIL EMPLOYEE</h2>
+            </div>
+            <div class="modal-body">
+                <form name="modalForm" method="POST" action="/email_employee" class="form-horizontal ws-validate" id="emailEmployeeForm">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <strong>To: </strong>
+                            <input type="email" name="to" class="form-control" id="to">
+                        </div>
+                    </div>
+                        <div class="form-group">
+                            <label for="message" class="col-sm-2 control-label">Body</label>
+                            <div class="col-sm-8">
+                                <textarea type="text" name="message" id="message" rows="7" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <button class="btn btn-info" name="send">Send Message</button>
+                            <button class="btn btn-default" data-dismiss="modal" id="cancel">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
 <!-- SIGN OUT MESSAGE BOX-->
 <div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
     <div class="mb-container">
@@ -273,36 +344,7 @@
             else
                 $('#okbuttonCSV').prop('disabled', true);
         });
-        /*var pathname = window.location.href;
-        var indexOfName = pathname.indexOf('name=');
-        var indexOfNumber = pathname.indexOf('number=');
-        var indexOfEmail = pathname.indexOf('email=');
-        if(indexOfName != -1 && indexOfNumber != -1 && indexOfEmail != -1)
-        {
-            var name = pathname.substring(indexOfName+5, indexOfNumber-1);
-            var number = pathname.substring(indexOfNumber+7, indexOfEmail-1);
-            var email = pathname.substring(indexOfEmail+6);
-            $('#employees').find('tbody').append('<tr><th style="width: 25%">' + name + '</th><th style="width: 25%">'  + number + '</th><th style="width: 50%">' + email + '</th></tr>');
-        }*/
-//        var rownumber = 0;
-//        $('#okbutton').click(function () {
-//            $('#employees').find('tbody').append('<tr id ="row' + rownumber + '"><td style="width: 25%">' + $('#modalName').val() + '</td><td style="width: 25%">' + $('#modalNumber').val() + '</td><td style="width: 40%">' + $('#modalEmail').val() + '</td><td style="width:10%;text-align:right"><a href = "#"><span class = "glyphicon glyphicon-pencil" id = "edit' + rownumber + '"></span></a><a href = "#" class = "delete"><span class = "glyphicon glyphicon-trash" id = "delete' + rownumber + '"></span></a><a href = "#"></a></td></tr>');
-//            rownumber++;
-//            $.bootstrapSortable(true);
-//            $("#addEmployeeForm")[0].reset();
-//        });
-//        $('#cancelbutton').click(function () {
-//            $("#addEmployeeForm")[0].reset();
-//        });
-        /*$('.delete').click(function(){
-    console.log("hi");
-    });
-    $('tr').mouseover(
-    function() {
-    alert('hi');
-    }, function() {
-    }
-    ); */
+
     }	);
 </script>
 <!-- END ADD EMPLOYEE SCRIPT -->
