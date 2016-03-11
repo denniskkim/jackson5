@@ -2,6 +2,32 @@ var moment = require('moment');
 var Patient = require('../models/Patient');
 var Employee = require('../models/Employee');
 
+
+/**
+ * TODO - This works but needs better handling error
+ * @param req
+ * @param res
+ */
+exports.createPatient = function(req,res) {
+    var name = req.query.name;
+    var phone_number = req.query.number;
+    var email = req.query.email;
+    var checkinDay = req.query.day;
+    var checkinHour = req.query.hour;
+    var subdomainurl = req.query.subdomainurl;
+    Patient.create({
+       "name": name,
+        "phone_number" : phone_number,
+        "email" : email,
+        "checkinDay" : checkinDay,
+        "checkinHour" : checkinHour,
+        "subdomainurl" : subdomainurl
+    }, function(err, patient){
+        res.json(patient);
+        console.log("Sucessful");
+    })
+};
+
 /**
  * API to get all patients for certain business ID
  * @param req
@@ -42,7 +68,7 @@ exports.getPatients = function(req,res) {
 };
 
 /**
- * Create new employee TODO - Currently not working
+ * Create new employee
  * @param req
  * @param res
  */
