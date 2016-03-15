@@ -8,6 +8,7 @@ var employeeSchema = new mongoose.Schema({
     email: { type: String, unique: true, lowercase: true },
     password: String,
     subdomainurl: String,
+    picture: String,
     _admin_id: { type: mongoose.Schema.Types.ObjectId, ref: 'Admin', required: true }
 });
 

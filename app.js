@@ -247,7 +247,17 @@ app.get('/settings', function(req, res){
   res.render('settings', { user: req.user });
 });
 
+//owner update
 app.post('/settings',passportConf.isAuthenticated, userController.postUpdateProfile );
+app.post('/updatepassword', passportConf.isAuthenticated, userController.postUpdatePassword);
+app.post('/delete', passportConf.isAuthenticated, userController.postDeleteAccount);
+
+
+//employee update
+
+app.post('/employeeUpdate',passportConf.isAuthenticated, employeeController.postUpdateProfile );
+app.post('/updateemployeepassword', passportConf.isAuthenticated, employeeController.postUpdatePassword);
+
 
 app.get('/viewform', function(req, res){
   res.render('viewform', { form: req.user.form });
