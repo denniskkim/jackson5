@@ -214,6 +214,10 @@ app.post('/createEmployee', restAPIController.createEmployee);
 app.get('/getPatients', restAPIController.getPatients);
 app.get('/getEmployees', restAPIController.getEmployees);
 app.get('/getAppointments', appointmentController.getAppointment);
+
+app.get('/deleteEmployee', restAPIController.deleteEmployee);
+app.get('/deletePatient', restAPIController.deletePatient);
+
 //app.get('/viewbusinesses', userController.viewBusinesses);
 app.get('/api', apiController.getApi);
 app.get('/api/facebook', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.getFacebook);

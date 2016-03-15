@@ -19,7 +19,7 @@ var User = require('../models/User');
  * @apiParam {String} email Patient's email
  * @apiParam {String} id Business' unique ID
  * @apiSuccess {Object} Patient New patient with information from parameters
- * @apiSuccessExample {json} Success-Response (example):
+ * @apiSuccessExample {Object} Success-Response (example):
  * HTTP/1.1 200 OK
   {
      "__v": 0,
@@ -68,6 +68,52 @@ exports.createPatient = function(req,res) {
     })
   // }
 };
+
+/**
+* @api {get} /deletePatient Delete patient from business
+* @apiName deletePatient
+* @apiGroup Patient
+* @apiParam {String} id Business' unique ID
+* @apiParam {String} email Patient's email
+* @apiSuccess {String} confirmation Confirmation message that you deleted the patient
+* @apiSuccessExample {json} Success-Response (example):
+* HTTP/1.1 200 OK
+{
+  "message": "Removed patient with email thomas@pint.com"
+}
+*/
+exports.deletePatient = function(req, res){
+  var email = req.query.email;
+  var id = req.query.id;
+  Patient.findOne({email : email}, function(err, patient) {
+    if(err) {
+      res.status(500);
+      res.json({
+          type: false,
+          data: "Error occured: " + err
+      })
+    }
+    else{
+      if(patient && patient._admin_id == id){
+        Patient.remove({email : email}, function (err){
+          if(err) {
+            res.status(500);
+            res.json({
+                type: false,
+                data: "Error occured: " + err
+            });
+          }
+          else {
+            res.json({
+              message : "Removed patient with email " + email
+            });
+          }
+        });
+      }
+    }
+  })
+};
+
 
 /**
  * API to get all patients for certain business ID
@@ -226,8 +272,6 @@ exports.createEmployee = function(req, res) {
   ]
 */
 exports.getEmployees = function(req,res) {
-    //_id: req.query.id
-    console.log("hi");
     Employee.find({_admin_id: req.query.id}, function (err, employees) {
         if (err) {
             res.status(500);
@@ -253,4 +297,49 @@ exports.getEmployees = function(req,res) {
             }
         }
     })
+};
+
+/**
+* @api {get} /deleteEmployee Delete employee from business
+* @apiName deleteEmployee
+* @apiGroup Employee
+* @apiParam {String} id Business' unique ID
+* @apiParam {String} email Employee's email
+* @apiSuccess {String} confirmation Confirmation message that you deleted the employee
+* @apiSuccessExample {json} Success-Response (example):
+* HTTP/1.1 200 OK
+{
+  "message": "Removed employee with email thomas@pint.com"
+}
+*/
+exports.deleteEmployee = function(req, res){
+  var email = req.query.email;
+  var id = req.query.id;
+  Employee.findOne({email : email}, function(err, employee) {
+    if(err) {
+      res.status(500);
+      res.json({
+          type: false,
+          data: "Error occured: " + err
+      })
+    }
+    else{
+      if(employee && employee._admin_id == id){
+        Employee.remove({email : email}, function (err){
+          if(err) {
+            res.status(500);
+            res.json({
+                type: false,
+                data: "Error occured: " + err
+            });
+          }
+          else {
+            res.json({
+              message : "Removed employee with email " + email
+            });
+          }
+        });
+      }
+    }
+  })
 };
