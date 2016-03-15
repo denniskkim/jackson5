@@ -13,12 +13,12 @@ var User = require('../models/User');
  /**
  * @api {post} /createPatient Create new patient
  * @apiName createPatient
- * @apiGroup patients
+ * @apiGroup Patient
  * @apiParam {String} name Patient's name
  * @apiParam {String} phone_number Patient's phone number
  * @apiParam {String} email Patient's email
  * @apiParam {String} id Business' unique ID
- * @apiSuccess {Object} Patient New patient with information in parameters
+ * @apiSuccess {Object} Patient New patient with information from parameters
  * @apiSuccessExample {json} Success-Response (example):
  * HTTP/1.1 200 OK
   {
@@ -78,7 +78,7 @@ exports.createPatient = function(req,res) {
  /**
  * @api {get} /getPatients View all patients for business
  * @apiName getPatients
- * @apiGroup patients
+ * @apiGroup Patient
  * @apiParam {String} id Business' unique ID
  * @apiSuccess {Object[]} patients List of patients with name and check in time
  * @apiSuccessExample {json} Success-Response (example):
@@ -133,70 +133,101 @@ exports.getPatients = function(req,res) {
 };
 
 /**
- * Create new employee
- * @param req
- * @param res
- */
+* @api {post} /createEmployee Create new employee
+* @apiName createEmployee
+* @apiGroup Employee
+* @apiParam {String} id Business' unique ID
+* @apiParam {String} name Employee's name
+* @apiParam {String} email Employee's email
+* @apiParam {String} number Employee's phone number
+* @apiSuccess {Object} Employee Creates new employee with information from parameters
+* @apiSuccessExample {json} Success-Response (example):
+* HTTP/1.1 200 OK
+{
+  "__v": 0,
+  "name": "Thomas Powell",
+  "phone_number": "123456789",
+  "email": "tpowell@ucsd.edu",
+  "password": "$2a$10$EgGQxiH3w2qK7YYTslwbpuTE8RYkJpDxsjqW.cA17h7m1TttU07O.",
+  "_admin_id": "56d62db4791ca1188b080c39",
+  "_id": "56e8775b350d8b70465fac3f"
+}
+*/
 exports.createEmployee = function(req, res) {
-    console.log("Created method");
-        Employee.find({email: req.query.email}, function (err, employee) {
-            if (employee.length == 0) {
-                console.log("Hi");
-                var name = req.query.name;
-                var number = req.query.number;
-                var email = req.query.email;
-                var password = "password";
-                var subdomainurl = req.query.subdomainurl;
-                var company_id = req.query.id;
-                req.assert('email', 'Email is not valid').isEmail();
-                Employee.create({
-                    name: name,
-                    phone_number: number,
-                    email: email,
-                    password: password,
-                    subdomainurl: subdomainurl,
-                    _admin_id: new Object(company_id)
-                }, function (err, employee) {
-                    if (err) {
-                        // Send logs to logentries
-                        //logger.log(4,"Create employee failed: "+err);
+    var name = req.query.name;
+    var number = req.query.number;
+    var email = req.query.email;
+    var password = "password";
+    var company_id = req.query.id;
+    Employee.find({email: req.query.email}, function (err, employee) {
+        if (employee.length == 0) {
+            Employee.create({
+                name: name,
+                phone_number: number,
+                email: email,
+                password: password,
+                _admin_id: new Object(company_id)
+            }, function (err, employee) {
+                if (err) {
+                    // Send logs to logentries
+                    //logger.log(4,"Create employee failed: "+err);
 
-                        console.log("ERROR creating employee: ");
-                        console.log(err);
+                    console.log("ERROR creating employee: ");
+                    console.log(err);
 
-                        //TODO - display error message
-                        res.redirect('/');
+                    //TODO - display error message
+                    res.redirect('/');
 
-                        //res.send("There was a problem adding the employee to the databaase");
-                    } else {
-                        // Send logs to logentries
-                        //logger.log(2,"Create employee Success: "+err);
+                    //res.send("There was a problem adding the employee to the databaase");
+                } else {
+                    // Send logs to logentries
+                    //logger.log(2,"Create employee Success: "+err);
 
-                        //console.log('Creating new employee: ' + employee);
-                        console.log("Success!");
+                    //console.log('Creating new employee: ' + employee);
+                    res.json(employee);
+                    console.log("Success!");
 
-                        //emailEmployee(employee, req.user, password);
-                    }
-                });
-            }
-            else if(err) {
-                res.json({"message" : err});
-            }
-            else {
-                res.json({"message" : "Found existing employee"});
-            }
-        })
+                    //emailEmployee(employee, req.user, password);
+                }
+            });
+        }
+        else if(err) {
+            res.json({"message" : err});
+        }
+        else {
+            res.json({"message" : "Found existing employee"});
+        }
+      })
     };
 
 
 
 /**
- * Gets all employees for business ID
- * @param req
- * @param res
- */
+* @api {get} /getEmployees View all employees for business
+* @apiName getEmployees
+* @apiGroup Employee
+* @apiParam {String} id Business' unique ID
+* @apiSuccess {Object[]} employees List of employees with name, email, and phone number
+* @apiSuccessExample {json} Success-Response (example):
+* HTTP/1.1 200 OK
+  [
+    {
+      "name": "Kevin Tran",
+      "email": "ktran@ucsd.edu"
+    },
+    {
+      "name": "Gabe Maze-Rogers",
+      "email": "gmazerog@ucsd.edu"
+    },
+    {
+      "name": "Marvin Chau",
+      "email": "mchau@ucsd.edu"
+    }
+  ]
+*/
 exports.getEmployees = function(req,res) {
     //_id: req.query.id
+    console.log("hi");
     Employee.find({_admin_id: req.query.id}, function (err, employees) {
         if (err) {
             res.status(500);
@@ -212,8 +243,7 @@ exports.getEmployees = function(req,res) {
                 for (var i = 0; i < employees.length; i++) {
                     employeeList.push({"name" : employees[i].name, "email" : employees[i].email, "phone" : employees[i].phonenumber });
                 }
-                res.send(employeeList);
-
+                res.json(employeeList);
             }
             else {
                 res.json({
