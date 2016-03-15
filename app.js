@@ -184,12 +184,40 @@ app.post('/subdomain_login', employeeController.postSubdomain);
 /**
  * API examples routes.
  */
-app.post('createEmployee', restAPIController.createEmployee, function(req,res){
-  res.render('add_employees', {user : req.user});
-});
+app.post('/createPatient', restAPIController.createPatient);
+app.post('/createEmployee', restAPIController.createEmployee);
+
+
+/**
+* @api {get} /getPatients Gets all patients for business
+* @apiName getPatients
+* @apiGroup patients
+* @apiParam {Number} id Business' unique ID
+* @apiSuccess {Object[]} patients List of patients with name and check in time
+* @apiSuccessExample {json} Success-Response (example):
+* HTTP/1.1 200 OK
+          [
+           {
+             "name": "Bob",
+             "Check-In Time": "3:47:11 pm"
+           },
+           {
+             "name": "Peter",
+             "Check-In Time": "3:51:46 pm"
+           },
+           {
+             "name": "Antonio",
+             "Check-In Time": "3:51:48 pm"
+           }
+         ]
+*/
 app.get('/getPatients', restAPIController.getPatients);
 app.get('/getEmployees', restAPIController.getEmployees);
 app.get('/getAppointments', appointmentController.getAppointment);
+
+app.get('/deleteEmployee', restAPIController.deleteEmployee);
+app.get('/deletePatient', restAPIController.deletePatient);
+
 //app.get('/viewbusinesses', userController.viewBusinesses);
 app.get('/api', apiController.getApi);
 app.get('/api/facebook', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.getFacebook);
@@ -235,25 +263,25 @@ app.get('/viewform', function(req, res){
   res.render('viewform', { form: req.user.form });
 });
 
-// Twilio Credentials 
-var accountSid = 'AC3008bf6b293131cc5a4c8410a1a5ceb8'; 
-var authToken = '63d3c91c8c7f774d0733ea16ccea533b'; 
- 
-//require the Twilio module and create a REST client 
-var client = require('twilio')(accountSid, authToken); 
+// Twilio Credentials
+var accountSid = 'AC3008bf6b293131cc5a4c8410a1a5ceb8';
+var authToken = '63d3c91c8c7f774d0733ea16ccea533b';
+
+//require the Twilio module and create a REST client
+var client = require('twilio')(accountSid, authToken);
 
   app.post('/test', function(req, res) {
         console.log(accountSid);
         console.log(authToken);
-      client.sendSms({ 
+      client.sendSms({
         body: req.body.message,
         to: req.body.to,
         from: "+18583467675"
-      }, function(err, message) { 
-        console.log(message); 
+      }, function(err, message) {
+        console.log(message);
         if(err){
           console.log(err.message);
-          console.log(err.message); 
+          console.log(err.message);
           res.render('test', { messageinfo: "fail sent" });
         }
       });
@@ -285,7 +313,7 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRe
 /**
  * Error Handler.
  */
- 
+
 app.use(errorHandler());
 
 /**
