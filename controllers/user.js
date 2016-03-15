@@ -243,23 +243,27 @@ exports.getAccount = function(req, res) {
  * Update profile information.
  */
 exports.postUpdateProfile = function(req, res, next) {
+  console.log("update profile");
   User.findById(req.user.id, function(err, user) {
+      console.log(req.user.id);
     if (err) {
       // Send logs to logentries
-      logger.log(4,"Edit profile failed: " + err);
+      console.log("Edit profile failed: " + err);
 
       return next(err);
     }
     user.email = req.body.email || '';
-    username = req.body.name || '';
+    user.companyname = req.body.name || '';
+    user.phonenumber = req.body.phone || '';
+    user.picture = req.body.photo || '';
     user.save(function(err) {
       if (err) {
         // Send logs to logentries
-        logger.log(4,"Edit profile failed: " + err);
+        console.log("Edit profile failed: " + err);
         return next(err);
       }
       // Send logs to logentries
-      logger.log(2,"Edit profile Success");
+      console.log("Edit profile Success");
 
       req.flash('success', { msg: 'Profile information updated.' });
       res.redirect('/settings');
@@ -302,27 +306,31 @@ exports.postUpdateForm = function(req, res, next) {
  * Update current password.
  */
 exports.postUpdatePassword = function(req, res, next) {
-  req.assert('password', 'Password must be at least 4 characters long').len(4);
-  req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
+  // req.assert('password', 'Password must be at least 4 characters long').len(4);
+  // req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
+  // console.log("get in update password ");
+  // var errors = req.validationErrors();
 
-  var errors = req.validationErrors();
-
-  if (errors) {
-    req.flash('errors', errors);
-    return res.redirect('/account');
-  }
+  // if (errors) {
+  //   console.log("update password failed: " + errors);
+  //   req.flash('errors', errors);
+  //   return res.redirect('/settings');
+  // }
 
   User.findById(req.user.id, function(err, user) {
     if (err) {
+      console.log(" failed: " + err);
       return next(err);
     }
     user.password = req.body.password;
     user.save(function(err) {
       if (err) {
+        console.log(" failed: " + err);
         return next(err);
       }
+      console.log("success ");
       req.flash('success', { msg: 'Password has been changed.' });
-      res.redirect('/account');
+      res.redirect('/settings');
     });
   });
 };

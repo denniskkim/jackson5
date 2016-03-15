@@ -34,8 +34,8 @@
                         <img src="assets/images/users/avatar.jpg" alt="John Doe"/>
                     </div>
                     <div class="profile-data">
-                        {{#if user._adminid}}
-                            <div class="profile-data-name">{{user._adminid}}</div>
+                        {{#if user._admin_id}}
+                            <div class="profile-data-name">{{user.name}}</div>
                             <div class="profile-data-title">Employee</div>
                         {{else}}
                             <div class="profile-data-name">{{user.name}}</div>
@@ -109,29 +109,37 @@
             <div class="container">
                 <div class="page-header">
                     <h3>Profile Information</h3></div>
-                <form action="" method="POST" class="form-horizontal">
+                {{#if user._admin_id}}
+
+                <form action="/employeeUpdate" method="POST" class="form-horizontal">
                     <input type="hidden" name="_csrf" value="kbVvSFA0FeOU53dEI1g6hA+S13No4sPlWW+I8=">
                     <div class="form-group">
                         <label for="email" class="col-sm-2 control-label">Email</label>
                         <div class="col-sm-4">
-                            <input type="email" name="email" id="email" value="" class="form-control">
+                            <input type="email" name="email" id="email" value="{{user.email}}" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="name" class="col-sm-2 control-label">Company Name</label>
+                        <label for="name" class="col-sm-2 control-label">Your Name</label>
                         <div class="col-sm-4">
-                            <input type="text" name="name" id="name" value="" class="form-control">
+                            <input type="text" name="name" id="name" value="{{user.name}}" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="location" class="col-sm-2 control-label">Location</label>
+                        <label for="location" class="col-sm-2 control-label">Your Phone</label>
                         <div class="col-sm-4">
-                            <input type="text" name="location" id="location" value="" class="form-control">
+                            <input type="text" name="phone" id="phone" value="{{user.phone_number}}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="website" class="col-sm-2 control-label">Picture URL</label>
+                        <div class="col-sm-4">
+                            <input type="text" name="photo" id="photo" value="{{user.picture}}"class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="logo" class="col-sm-2 control-label">User Photo </label>
-                        <div class="col-sm-4"><img src="" width="100" height="100" class="profile"></div>
+                        <div class="col-sm-4"><img src="{{user.picture}}" width="100" height="100" class="profile"></div>
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-4">
@@ -140,15 +148,92 @@
                         </div>
                     </div>
                 </form>
+
                 <div class="page-header">
                     <h3>Change Password</h3></div>
-                <form action="" method="POST" class="form-horizontal">
+                <form action="/updateemployeepassword" method="POST" class="form-horizontal">
 
                     <input type="hidden" name="_csrf" value="kbVvSFA0FeOU53dEI1g6hA+S13No4sPlWW+I8=">
                     <div class="form-group">
                         <label for="password" class="col-sm-3 control-label">Current Password</label>
                         <div class="col-sm-4">
-                            <input type="password" name="password" id="currentPassword" class="form-control">
+                            <input type="password" name="currentPassword" id="currentPassword" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="col-sm-3 control-label">New Password</label>
+                        <div class="col-sm-4">
+                            <input type="password" name="password" id="newPassword" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword" class="col-sm-3 control-label">Confirm Password</label>
+                        <div class="col-sm-4">
+                            <input type="password" name="confirmPassword" id="confirmPassword" class="form-control"
+                                   onkeyup="checkPass();">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-5">
+                            <button type="reset" class="btn btn btn-secondary">Clear Changes</button>
+                            <button type="submit" class="btn btn btn-primary" id="btnChange"><i class="fa fa-lock"></i>Change
+                                Password
+                            </button>
+                            <span id="confirmMessage" class="confirmMessage"></span>
+                        </div>
+                    </div>
+                </form>
+
+                {{else}}
+
+                <form action="" method="POST" class="form-horizontal">
+                    <input type="hidden" name="_csrf" value="kbVvSFA0FeOU53dEI1g6hA+S13No4sPlWW+I8=">
+                    <div class="form-group">
+                        <label for="email" class="col-sm-2 control-label">Email</label>
+                        <div class="col-sm-4">
+                            <input type="email" name="email" id="email" value="{{user.email}}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="name" class="col-sm-2 control-label">Company Name</label>
+                        <div class="col-sm-4">
+                            <input type="text" name="name" id="name" value="{{user.companyname}}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="location" class="col-sm-2 control-label">Your Phone</label>
+                        <div class="col-sm-4">
+                            <input type="text" name="phone" id="phone" value="{{user.phonenumber}}" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="website" class="col-sm-2 control-label">Picture URL</label>
+                        <div class="col-sm-4">
+                            <input type="text" name="photo" id="photo" value="{{user.picture}}"class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="logo" class="col-sm-2 control-label">User Photo </label>
+                        <div class="col-sm-4"><img src="{{user.picture}}" width="100" height="100" class="profile"></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-4">
+                            <button type="submit" class="btn btn btn-primary"><i class="fa fa-pencil"></i>Update Profile
+                            </button>
+                        </div>
+                    </div>
+                </form>
+
+                
+                <div class="page-header">
+                    <h3>Change Password</h3></div>
+                <form action="/updatepassword" method="POST" class="form-horizontal">
+
+                    <input type="hidden" name="_csrf" value="kbVvSFA0FeOU53dEI1g6hA+S13No4sPlWW+I8=">
+                    <div class="form-group">
+                        <label for="password" class="col-sm-3 control-label">Current Password</label>
+                        <div class="col-sm-4">
+                            <input type="password" name="currentPassword" id="currentPassword" class="form-control">
                         </div>
                     </div>
                     <div class="form-group">
@@ -181,6 +266,7 @@
                     <input type="hidden" name="_csrf" value="kbVvSFA0FeOU53dEI1g6hA+S13No4sPlWW+I8=">
                     <button type="submit" class="btn btn-danger"><i class="fa fa-trash"></i>Delete my account</button>
                 </form>
+                {{/if}}
 
                 <footer>
 
