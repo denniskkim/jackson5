@@ -1,37 +1,102 @@
 var moment = require('moment');
 var Patient = require('../models/Patient');
 var Employee = require('../models/Employee');
+var User = require('../models/User');
 
 
 /**
- * TODO - This works but needs better handling error
+ * TODO - This works but needs better handling error, subdomain searching isnt working
  * @param req
  * @param res
+ */
+
+ /**
+ * @api {post} /createPatient Create new patient
+ * @apiName createPatient
+ * @apiGroup patients
+ * @apiParam {String} name Patient's name
+ * @apiParam {String} phone_number Patient's phone number
+ * @apiParam {String} email Patient's email
+ * @apiParam {String} id Business' unique ID
+ * @apiSuccess {Object} Patient New patient with information in parameters
+ * @apiSuccessExample {json} Success-Response (example):
+ * HTTP/1.1 200 OK
+  {
+     "__v": 0,
+     "name": "Thomas Powell",
+     "email": "thomas@pint.com",
+     "checkinDay": "March 15th 2016",
+     "checkinHour": "1:27:28 pm",
+     "checkinTime": "2016-03-15T20:27:28.333Z",
+     "_admin_id": "56d62db4791ca1188b080c39",
+     "_id": "56e87030e9519f6744190dde"
+   }
  */
 exports.createPatient = function(req,res) {
     var name = req.query.name;
     var phone_number = req.query.number;
     var email = req.query.email;
-    var checkinDay = req.query.day;
-    var checkinHour = req.query.hour;
-    var subdomainurl = req.query.subdomainurl;
-    Patient.create({
-       "name": name,
-        "phone_number" : phone_number,
-        "email" : email,
-        "checkinDay" : checkinDay,
-        "checkinHour" : checkinHour,
-        "subdomainurl" : subdomainurl
-    }, function(err, patient){
-        res.json(patient);
-        console.log("Sucessful");
+    var id = req.query.id;
+    var subdomainurl = undefined;
+    User.find({_id : id}, function(err, user){
+      if(user){
+        console.log(user);
+          subdomainurl = user.subdomainurl;
+      }
+      else{
+        res.status(500);
+        res.json({
+            type: false,
+            data: "Error occured: " + err
+        })
+      }
+    });
+    // console.log("Subdomain url is " + subdomainurl);
+    // if(subdomainurl != undefined) {
+      Patient.create({
+         "name": name,
+          "phone_number" : phone_number,
+          "email" : email,
+          "checkinDay" : moment().format('MMMM Do YYYY') ,
+          "checkinHour" : moment().format('h:mm:ss a'),
+          "checkinTime" : Date.now(),
+          "subdomainurl" : subdomainurl,
+          "_admin_id" : id
+      }, function(err, patient){
+          res.json(patient);
+          console.log("Sucessful");
     })
+  // }
 };
 
 /**
  * API to get all patients for certain business ID
  * @param req
  * @param res
+ */
+
+ /**
+ * @api {get} /getPatients View all patients for business
+ * @apiName getPatients
+ * @apiGroup patients
+ * @apiParam {String} id Business' unique ID
+ * @apiSuccess {Object[]} patients List of patients with name and check in time
+ * @apiSuccessExample {json} Success-Response (example):
+ * HTTP/1.1 200 OK
+           [
+            {
+              "name": "Juni Cortez (from Spy Kids 2)",
+              "Check-In Time": "3:47:11 pm"
+            },
+            {
+              "name": "Peter",
+              "Check-In Time": "3:51:46 pm"
+            },
+            {
+              "name": "Antonio Banderas",
+              "Check-In Time": "3:51:48 pm"
+            }
+          ]
  */
 exports.getPatients = function(req,res) {
     //_id: req.query.id
