@@ -28,11 +28,19 @@
                     </li>
                     <li class="xn-profile">
                         <a href="#" class="profile-mini">
-                            <img src="assets/images/users/avatar.jpg" alt="John Doe"/>
+                            {{#if user.picture}}
+                        	<img src="{{user.picture}}">
+                            {{else}}
+                        	<img src="assets/images/users/avatar.jpg">
+                            {{/if}}
                         </a>
                         <div class="profile">
                             <div class="profile-image">
-                                <img src="assets/images/users/avatar.jpg" alt="John Doe"/>
+                                {{#if user.picture}}
+                        		<img src="{{user.picture}}">
+                        	{{else}}
+                        		<img src="assets/images/users/avatar.jpg">
+                		{{/if}}
                             </div>
                             <div class="profile-data">
                                 {{#if user.companyname}}

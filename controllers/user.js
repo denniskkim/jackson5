@@ -68,6 +68,9 @@ exports.postLogin = function(req, res, next) {
 
       req.flash('success', { msg: 'Success! You are logged in.' });
       //res.redirect(req.session.returnTo || '/dashboard_admin');
+      if(user.email === "petervenkmen@ghostbusters.com"){
+        res.redirect('/dashboard_peter');
+      }
       res.redirect('/dashboard_admin');
     });
   })(req, res, next);

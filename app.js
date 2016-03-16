@@ -177,6 +177,7 @@ app.delete('/delete_patient/:id', patientController.removePatient);
 
 app.get('/dashboard_admin', dashboardController.getBusinessOwnerDashboard);
 app.get('/dashboard_employee', dashboardController.getEmployeeDashboard);
+app.get('/dashboard_peter', dashboardController.getPeterDashboard);
 
 app.get('/subdomain_login', function(req, res){
   res.render('subdomain_login', { employee: req.employee });
