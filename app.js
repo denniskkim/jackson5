@@ -1,6 +1,8 @@
 /**
  * Module dependencies.
  */
+require('newrelic');
+
 var handlebars = require('express-handlebars');
 var bodyParser = require('body-parser');
 var express = require('express');
