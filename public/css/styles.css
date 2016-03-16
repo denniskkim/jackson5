@@ -62,7 +62,7 @@ a {
   transition: color 200ms ease;
 }
 a:hover {
-  color: #e0401d;
+  color: #6ec8ae;
   text-decoration: none;
 }
 /* START TEMPLATE */
@@ -123,7 +123,7 @@ a:hover {
   color: #454545;
 }
 .page-container .page-header .page-header-holder .navigation-toggle.active .navigation-toggle-button {
-  color: #e0401d;
+  color: #6ec8ae;
 }
 .page-container .page-header .page-header-holder .navigation {
   float: right;
@@ -168,7 +168,7 @@ a:hover {
   -webkit-box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
   box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
   border: 1px solid #E5E5E5;
-  border-top: 2px solid #e0401d;
+  border-top: 2px solid #6ec8ae;
   -moz-border-radius: 0px 0px 5px 5px;
   -webkit-border-radius: 0px 0px 5px 5px;
   border-radius: 0px 0px 5px 5px;
@@ -208,7 +208,7 @@ a:hover {
   background: transparent;
 }
 .page-container .page-header .page-header-holder .navigation > li > a:hover {
-  border-bottom-color: #e0401d;
+  border-bottom-color: #6ec8ae;
   background: transparent;
   border-bottom-width: 2px;
   -moz-border-radius: 0px;
@@ -217,7 +217,7 @@ a:hover {
   color: #454545;
 }
 .page-container .page-header .page-header-holder .navigation > li.active > a {
-  border-bottom-color: #e0401d;
+  border-bottom-color: #6ec8ae;
   background: transparent;
   border-bottom-width: 2px;
   -moz-border-radius: 0px;
@@ -287,7 +287,7 @@ a:hover {
   margin-left: -6px;
 }
 .page-container .page-header .page-header-holder .search.active .search-button {
-  color: #e0401d;
+  color: #6ec8ae;
 }
 .page-container .page-header .page-header-holder .search.active .search-container {
   display: block;
@@ -397,7 +397,7 @@ a:hover {
   bottom: 0px;
   width: 100px;
   height: 1px;
-  background: #e0401d;
+  background: #6ec8ae;
   left: 50%;
   margin-left: -50px;
 }
@@ -407,7 +407,7 @@ a:hover {
 .page-container .page-content .page-content-wrap .page-content-holder h4 strong,
 .page-container .page-content .page-content-wrap .page-content-holder h5 strong,
 .page-container .page-content .page-content-wrap .page-content-holder h6 strong {
-  color: #e0401d;
+  color: #6ec8ae;
   font-weight: 600;
 }
 .page-container .page-content .page-content-wrap .page-content-holder h1 {
@@ -514,7 +514,7 @@ a:hover {
 .page-container .page-content .page-content-wrap .page-content-holder .text-column .text-column-icon .fa {
   width: 50px;
   height: 50px;
-  background: #e0401d;
+  background: #6ec8ae;
   -moz-border-radius: 50%;
   -webkit-border-radius: 50%;
   border-radius: 50%;
@@ -561,7 +561,7 @@ a:hover {
 .page-container .page-content .page-content-wrap .page-content-holder .text-column h3 a:hover,
 .page-container .page-content .page-content-wrap .page-content-holder .text-column h4 a:hover,
 .page-container .page-content .page-content-wrap .page-content-holder .text-column .title a:hover {
-  color: #e0401d;
+  color: #6ec8ae;
 }
 .page-container .page-content .page-content-wrap .page-content-holder .text-column h1 .fa,
 .page-container .page-content .page-content-wrap .page-content-holder .text-column h2 .fa,
@@ -609,7 +609,7 @@ a:hover {
   color: #757575;
 }
 .page-container .page-content .page-content-wrap .page-content-holder .text-column .list-links a:hover {
-  color: #e0401d;
+  color: #6ec8ae;
 }
 .page-container .page-content .page-content-wrap .page-content-holder .blog-item {
   float: left;
@@ -658,7 +658,7 @@ a:hover {
 .page-container .page-content .page-content-wrap .page-content-holder .blog-item .blog-data h4 a:hover,
 .page-container .page-content .page-content-wrap .page-content-holder .blog-item .blog-data h5 a:hover,
 .page-container .page-content .page-content-wrap .page-content-holder .blog-item .blog-data h6 a:hover {
-  color: #e0401d;
+  color: #6ec8ae;
 }
 .page-container .page-content .page-content-wrap .page-content-holder .blog-item .blog-data .blog-date {
   font-size: 12px;
@@ -864,7 +864,7 @@ a:hover {
   text-align: center;
   line-height: 60px;
   font-size: 42px;
-  color: #e0401d;
+  color: #6ec8ae;
   font-weight: 600;
   border-bottom: 1px dashed #E5E5E5;
 }
@@ -876,17 +876,17 @@ a:hover {
 }
 .page-container .page-content .page-content-wrap .pricing-block.active {
   margin-top: 0px;
-  border-color: #e0401d;
+  border-color: #6ec8ae;
 }
 .page-container .page-content .page-content-wrap .pricing-block.active .pb-block {
-  border-color: #e0401d;
+  border-color: #6ec8ae;
 }
 .page-container .page-content .page-content-wrap .pricing-block.active .pb-block h3 {
-  color: #e0401d;
-  border-color: #e0401d;
+  color: #6ec8ae;
+  border-color: #6ec8ae;
 }
 .page-container .page-content .page-content-wrap .pricing-block.active .pb-price {
-  background: #e0401d;
+  background: #v;
   color: #FFF;
 }
 .page-container .page-content .page-content-wrap .pricing-block.active .pb-price span {
@@ -965,7 +965,7 @@ a:hover {
   color: #AAA;
 }
 .page-container .page-footer .page-footer-wrap .page-footer-holder a:hover {
-  color: #e0401d;
+  color: #6ec8ae;
 }
 .page-container .page-footer .page-footer-wrap .page-footer-holder h3 {
   font-size: 14px;
@@ -1117,7 +1117,7 @@ a:hover {
   color: #AAA;
 }
 .page-container .list-links a:hover {
-  color: #e0401d;
+  color: #6ec8ae;
 }
 .page-container .footer-contacts {
   float: left;
@@ -1177,7 +1177,7 @@ a:hover {
   opacity: 1;
 }
 .page-container .text-hightlight {
-  color: #e0401d;
+  color: #6ec8ae;
 }
 .page-container .push-up-0 {
   margin-top: 0px;
@@ -1377,7 +1377,7 @@ a:hover {
 /* BOOTSTRAP */
 blockquote {
   font-size: 13px;
-  border-left-color: #e0401d;
+  border-left-color: #6ec8ae;
   line-height: 20px;
   color: #828282;
 }
@@ -1440,9 +1440,9 @@ blockquote p {
 }
 .pagination > li.active > a,
 .pagination > li.active > a:hover {
-  background: #e0401d;
+  background: #6ec8ae;
   color: #FFF;
-  border-color: #e0401d;
+  border-color: #6ec8ae;
 }
 .pagination.pagination-sm {
   margin: 0px;
@@ -1506,8 +1506,8 @@ blockquote p {
   border-color: #DDD;
 }
 .btn-primary {
-  background-color: #e0401d;
-  border-color: #d73d1c;
+  background-color: #6ec8ae;
+  border-color: #67b9a1;
 }
 .btn-primary:hover,
 .btn-primary:focus,
@@ -1699,7 +1699,7 @@ blockquote p {
     left: 15px;
     top: 10px;
     text-align: center;
-    color: #e0401d;
+    color: #6ec8ae;
     font-size: 12px;
   }
   .page-container .page-header .page-header-holder .navigation li:hover ul {
