@@ -44,6 +44,7 @@
     "mongoose": "^4.3.7",
     "morgan": "^1.6.1",
     "multer": "^1.1.0",
+    "newrelic": "^1.25.5",
     "node-foursquare": "^0.3.0",
     "node-linkedin": "^0.5.3",
     "node-sass-middleware": "^0.9.7",
