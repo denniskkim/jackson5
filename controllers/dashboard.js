@@ -16,3 +16,10 @@ exports.getBusinessOwnerDashboard = function(req, res) {
     }
     res.render('dashboard_admin', {user : req.user, layout: 'navigation_admin'});
 };
+
+exports.getPeterDashboard = function(req, res) {
+    if (!req.user || req.user.email != "petervenkmen@ghostbusters.com") {
+        return res.redirect('/login');
+    }
+    res.render('dashboard_peter', {user : req.user, layout: 'navigation_peter'});
+};
