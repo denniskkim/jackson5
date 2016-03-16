@@ -55,7 +55,7 @@
 
             if(event.currentTarget.name=="email") {        
                 localStorage.setItem("employee_email", event.currentTarget.id);
-                document.getElementById("to").value =localStorage.getItem("employee_email");
+                document.getElementById("to").placeholder =localStorage.getItem("employee_email");
             }
             
         });
