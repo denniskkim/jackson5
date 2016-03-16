@@ -43,11 +43,6 @@
     <body>
         
         <div class="login-container lightmode">
-             <div class="col-md-1">
-                <div class= "home-button">
-                    <a href="/"><button class="btn btn-info btn-block btn-facebook" onclick="location.href = '/';"> Home </button></a>
-                </div>
-            </div>
             {{#if msg}}
             <div class="alert alert-success">
                 <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -55,6 +50,7 @@
             </div>
             {{/if}}
             <div class="login-box animated fadeInDown">
+                <div class="login-logo"></div>
                 <!-- START CLOCK WRAPPER -->
                 <div class="page-content-wrap">
 
@@ -74,22 +70,24 @@
                     </div>
                 </div>
                 <!-- END CLOCK WRAPPER-->
-                <div class="login-logo"></div>
                 <div class="login-body">
                     <div class="login-title"><strong>Check In</strong></div>
                     <form class="form-horizontal" method="POST">
                     <div class="form-group">
                         <div class="col-md-12">
-                            <input type="text" name="name" id="name" class="form-control" placeholder="Your Name"/>
+                            <label for="name" class="col-sm-2 control-label">Name</label>
+                            <input type="text" name="name" id="name" class="form-control" placeholder="YYur Name"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-12">
-                            <input type="text" name="number" id="number" class="form-control" placeholder="Your Phone Number in Form +1858123456"/>
+                            <label for="number" class="col-sm-2 control-label">Number</label>
+                            <input type="text" name="number" id="number" class="form-control" placeholder="Your Phone Number in form +1858123456"/>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-12">
+                            <label for="email" class="col-sm-2 control-label">Email</label>
                             <input type="text" name="email" id="email" class="form-control" placeholder="Your Email"/>
                         </div>
                     </div>
@@ -101,14 +99,10 @@
                     </form>
                 </div>
 
+
                 <div class="login-footer">
                     <div class="pull-left">
                         &copy; 2016 Receptional
-                    </div>
-                    <div class="pull-right">
-                        <a href="/about">About</a> |
-                        <a href="#">Privacy</a> |
-                        <a href="/contact">Contact Us</a>
                     </div>
                 </div>
             </div>

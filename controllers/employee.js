@@ -185,7 +185,7 @@ exports.emailEmployee = function(req, res) {
             var transporter = nodemailer.createTransport(options);
             // Setup email data
             var mailOptions = {
-                from: '"Receptional.xyz" <donotreply.receptional@gmail.com>',
+                from: req.user.email,
                 to: req.body.to,
                 subject: "Receptional",
                 text: emailtext,
@@ -311,7 +311,7 @@ function emailEmployee(employee, admin, password) {
     // Setup email data
     var mailOptions = {
         from: '"Receptional.xyz" <donotreply.receptional@gmail.com>',
-        to: /*employee.email **Hard coded for now */ 'donotreply.receptional@gmail.com',
+        to: employee.email,
         subject: "Welcome to Receptional",
         text: emailtext,
         html: emailtext

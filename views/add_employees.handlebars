@@ -55,7 +55,7 @@
 
             if(event.currentTarget.name=="email") {        
                 localStorage.setItem("employee_email", event.currentTarget.id);
-                document.getElementById("to").value =localStorage.getItem("employee_email");
+                document.getElementById("to").placeholder =localStorage.getItem("employee_email");
             }
             
         });
@@ -209,6 +209,7 @@
 </div>
 <!-- END ADD MODAL-->
 
+<!-- START IMPORT MODAL-->
 <div class="modal fade" id="addEmployeeCSV" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -237,9 +238,10 @@
         </div>
     </div>
 </div>
+<!-- END IMPORT MODAL-->
 
 
-
+<!-- START EMAIL MODAL -->
 <div class="modal fade" id="emailEmployee" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -256,12 +258,18 @@
                             <input type="email" name="to" class="form-control" id="to">
                         </div>
                     </div>
-                        <div class="form-group">
-                            <label for="message" class="col-sm-2 control-label">Body</label>
-                            <div class="col-sm-8">
-                                <textarea type="text" name="message" id="message" rows="7" class="form-control"></textarea>
-                            </div>
+                    <div class="form-group">
+                        <label for="message" class="col-sm-2 control-label">Subject</label>
+                        <div class="col-sm-8">
+                            <textarea type="text" name="subject" id="subject" rows="1" placeholder="Receptional" class="form-control"></textarea>
                         </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="message" class="col-sm-2 control-label">Body</label>
+                        <div class="col-sm-8">
+                            <textarea type="text" name="message" id="message" rows="7" class="form-control"></textarea>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <div class="col-md-6">
                             <button class="btn btn-info" name="send">Send Message</button>
@@ -273,7 +281,7 @@
         </div>
     </div>
 </div>
-
+<!-- END EMAIL MODULE -->
 
 
 
