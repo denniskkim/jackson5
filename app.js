@@ -26,6 +26,7 @@ var http = require('http');
 var subdomain = require('express-subdomain');
 var multer  = require('multer');
 var upload = multer({ dest: 'uploads/' });
+var rollbar = require('rollbar');
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -313,6 +314,18 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRe
 /**
  * Error Handler.
  */
+
+// Use the rollbar error handler to send exceptions to your rollbar account
+app.use(rollbar.errorHandler('a816c3c191b74a40b6ea6afa3e715d8f'));
+
+var options = {
+  // Call process.exit(1) when an uncaught exception occurs but after reporting all
+  // pending errors to Rollbar.
+  //
+  // Default: false
+  exitOnUncaughtException: true
+};
+rollbar.handleUncaughtExceptions("a816c3c191b74a40b6ea6afa3e715d8f", options);
 
 app.use(errorHandler());
 
