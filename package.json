@@ -60,6 +60,7 @@
     "passport-twitter": "^1.0.4",
     "paypal-rest-sdk": "^1.6.8",
     "request": "^2.69.0",
+    "rollbar": "0.2.6",
     "serve-favicon": "^2.3.0",
     "stripe": "^4.3.0",
     "tumblr.js": "^0.0.7",
