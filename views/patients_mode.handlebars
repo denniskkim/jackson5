@@ -24,8 +24,10 @@
     <body>
         
         <div class="login-container lightmode">
-            <div class="col-md-1">
-                <button class="btn btn-info btn-block" onclick="location.href='/logout'" >Home</button>
+             <div class="col-md-1">
+                <div class= "home-button">
+                    <a href="/"><button class="btn btn-info btn-block btn-facebook" onclick="location.href = '/';"> Home </button></a>
+                </div>
             </div>
             {{#if msg}}
             <div class="alert alert-success">
