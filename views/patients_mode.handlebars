@@ -43,9 +43,11 @@
     <body>
         
         <div class="login-container lightmode">
-             <div class="col-md-1">
-                <div class= "home-button">
-                    <a href="/"><button class="btn btn-info btn-block btn-facebook" onclick="location.href = '/';"> Home </button></a>
+            <div class="row">
+                <div class="col-sm-1">
+                    <div class= "home-button">
+                        <img src="../../public/img/home.png" width="25px" style="padding-top:5px;" onclick="location.href = '/';"/>
+                    </div>
                 </div>
             </div>
             {{#if msg}}
@@ -55,6 +57,7 @@
             </div>
             {{/if}}
             <div class="login-box animated fadeInDown">
+                <div class="login-logo"></div>
                 <!-- START CLOCK WRAPPER -->
                 <div class="page-content-wrap">
 
@@ -74,7 +77,6 @@
                     </div>
                 </div>
                 <!-- END CLOCK WRAPPER-->
-                <div class="login-logo"></div>
                 <div class="login-body">
                     <div class="login-title"><strong>Check In</strong></div>
                     <form class="form-horizontal" method="POST">
@@ -100,6 +102,7 @@
                     </div>
                     </form>
                 </div>
+
 
                 <div class="login-footer">
                     <div class="pull-left">
