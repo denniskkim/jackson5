@@ -95,7 +95,7 @@ a:hover {
   font-size: 1px;
   color: #FFF;
   text-indent: 99999px;
-  background: url("../img/logo.png") left top no-repeat;
+  background: url("../img/logo-grey.png") left top no-repeat;
   width: 220px;
   height: 50px;
   float: left;
@@ -1514,13 +1514,13 @@ blockquote p {
 .btn-primary:active,
 .btn-primary.active,
 .open > .dropdown-toggle.btn-primary {
-  background-color: #c93a1a;
-  border-color: #c93a1a;
+  background-color: #439b82;
+  border-color: #439b82;
 }
 .btn-primary[disabled],
 .btn-primary.disabled {
-  background: #e76549;
-  border-color: #e65d40;
+  background: #67b9a1;
+  border-color: #67b9a1;
 }
 .btn-danger {
   background-color: #B64645;
