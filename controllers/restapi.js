@@ -18,25 +18,25 @@ exports.getPatients = function(req,res) {
             })
         }
         else {
-            if (patients) {
-                var appointments = [];
-                var current_appointment = moment().format("MMMM Do YYYY");
-                console.log(patients.length);
-                for (var i = 0; i < patients.length; i++) {
-                    var patientName = patients[i].name;
-                    var checkinTime = patients[i].checkinHour;
-                    // appointments.push(patients[i].name, patients[i].checkinHour);
-                    appointments.push({"name" : patientName, "Check-In Time" : checkinTime});
-                }
-                res.send(appointments);
+                if (patients) {
+                    var appointments = [];
+                    var current_appointment = moment().format("MMMM Do YYYY");
+                    console.log(patients.length);
+                    for (var i = 0; i < patients.length; i++) {
+                        var patientName = patients[i].name;
+                        var checkinTime = patients[i].checkinHour;
+                        // appointments.push(patients[i].name, patients[i].checkinHour);
+                        appointments.push({"name" : patientName, "Check-In Time" : checkinTime});
+                    }
+                    res.send(appointments);
 
-            }
-            else {
-                res.json({
-                    type: false,
-                    data: "bad"
-                })
-            }
+                } // end of if (patients)
+                else {
+                    res.json({
+                        type: false,
+                        data: "bad"
+                    })
+                } // end of else (patients)
         }
     })
 };

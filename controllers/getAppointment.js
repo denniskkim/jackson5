@@ -5,7 +5,7 @@
 var moment = require('moment');
 var Patient = require('../models/Patient');
 
-exports.getAppointment = function(req,res) {
+exports.getAppointments = function(req,res) {
     //_id: req.query.id
     Patient.find({}, function (err, patients) {
         if (err) {
@@ -16,32 +16,36 @@ exports.getAppointment = function(req,res) {
             })
         }
         else {
-            if (patients) {
-                var appointments = [];
-                var current_appointment = moment().format("MMMM Do YYYY");
-                console.log(patients.length);
-                for (var i = 0; i < patients.length; i++) {
-                    var patientName = patients[i].name;
-                    var patient = 'Name: ' + patientName;
+          //  if(req.text === _admin_id) {
+                if (patients) {
+                    var appointments = [];
+                    var current_appointment = moment().format("MMMM Do YYYY");
+                    console.log(patients.length);
+                    for (var i = 0; i < patients.length; i++) {
+                        var patientName = patients[i].name;
+                        var checkinTime = patients[i].checkinHour;
+                        // appointments.push(patients[i].name, patients[i].checkinHour);
+                        appointments.push({"name": patientName, "Check-In Time": checkinTime});
+                    }
+                    res.send(appointments);
 
-                    var checkin_time = patients[i].checkinHour;
-                    //if(checkin_time === null){
-                    //    checkin_time = 'Error when checked-in';
-                    //    //add log message TODO
-                    //}
-                    var checkin = 'Check-in Time: ' + checkin_time;
-                   // appointments.push(patients[i].name, patients[i].checkinHour);
-                    appointments.push(patient, checkin);
-                }
-                res.send(appointments);
+                } // end of if (patients)
+                else {
+                    res.json({
+                        type: false,
+                        data: "bad"
+                    })
+                } // end of else (patients)
+          //  }
 
-            }
-            else {
-                res.json({
-                    type: false,
-                    data: "bad"
-                })
-            }
+            //else{
+            //    if(res.text !== _admin_id) {
+            //        res.send('Incorrect Admin ID. Please check again to make sure it is correct');
+            //    }
+            //    else if(res.text === null){
+            //        res.send('Please enter your Admin ID');
+            //    }
+            //}
         }
     })
 };
