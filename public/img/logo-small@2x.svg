@@ -11,3 +11,12 @@
 <rect x="32.6" y="14.7" class="st0" width="34.9" height="70.6"/>
 <text transform="matrix(1 0 0 1 32.5666 84.5756)" class="st1 st2 st3">r</text>
 </svg>
+
+<defs>
+  <style type="text/css">
+    @font-face {
+      font-family: Reckoner;
+      src: url('../fonts/Reckoner.ttf');
+    }
+  </style>
+</defs>
