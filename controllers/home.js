@@ -15,8 +15,6 @@ var sub_verify = 0;
 var subdomain_finder;
 
 exports.index = function(req, res) {
-    res.status(404)        // HTTP status 404: NotFound
-        .send('Not found');
    var domain = req.headers.host,
        subDomain = domain.split('.');
 
