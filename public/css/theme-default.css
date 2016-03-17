@@ -766,7 +766,7 @@ body.page-container-boxed .page-container {
 .x-navigation.x-navigation-minimized > li.xn-logo > a:first-child {
   padding: 0px;
   width: 50px;
-  background-image: url("../img/logo-small.png");
+  background-image: url("../img/logo-small.svg");
 }
 .x-navigation.x-navigation-minimized .xn-search input {
   width: 30px;
