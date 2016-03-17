@@ -119,6 +119,7 @@ exports.deletePatientSlack = function(req,res){
               //    res.send("Sorry patient does not exist");
               //}
           }
+          res.send("Removing Patient");
       }// end of else
   })
 };
