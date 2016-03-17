@@ -202,8 +202,14 @@ app.post('/createPatient', restAPIController.createPatient);
 app.post('/createEmployee', restAPIController.createEmployee);
 app.get('/getPatients', restAPIController.getPatients);
 app.get('/getEmployees', restAPIController.getEmployees);
-app.get('/getAppointments', appointmentController.getAppointments);
-app.post('/removePatient', patientController.deletePatientSlack);
+//app.get('/getAppointments', appointmentController.getAppointments);
+//app.post('/removePatient', patientController.deletePatientSlack);
+
+/**
+* Slack slash commands
+*/
+app.get('/getAppointments', restAPIController.getPatients);
+app.get('/removePatient', restAPIController.deletePatient);
 
 //app.get('/viewbusinesses', userController.viewBusinesses);
 app.get('/api', apiController.getApi);
