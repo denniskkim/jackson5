@@ -132,9 +132,7 @@ app.use(function(req, res, next) {
 });
 app.use(express.static(path.join(__dirname, 'public'), { maxAge: 31557600000 }));
 
-//grabbing subdomain
-/* TODO: check if the account was verified */
-//app.use(subdomain('api', router));
+
 
 /**
  * Primary app routes.
@@ -182,6 +180,7 @@ app.post('/patient_queue', patientController.notifyPatients);
 app.delete('/delete_patient/:id', patientController.removePatient);
 
 
+
 app.get('/dashboard_admin', dashboardController.getBusinessOwnerDashboard);
 app.get('/dashboard_employee', dashboardController.getEmployeeDashboard);
 app.get('/dashboard_peter', dashboardController.getPeterDashboard);
@@ -224,7 +223,8 @@ app.post('/createEmployee', restAPIController.createEmployee);
 */
 app.get('/getPatients', restAPIController.getPatients);
 app.get('/getEmployees', restAPIController.getEmployees);
-app.get('/getAppointments', appointmentController.getAppointment);
+app.get('/getAppointments', appointmentController.getAppointments);
+app.get('/removePatient', patientController.deletePatientSlack);
 
 app.get('/deleteEmployee', restAPIController.deleteEmployee);
 app.get('/deletePatient', restAPIController.deletePatient);

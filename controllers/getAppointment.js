@@ -5,7 +5,7 @@
 var moment = require('moment');
 var Patient = require('../models/Patient');
 
-exports.getAppointment = function(req,res) {
+exports.getAppointments = function(req,res) {
     //_id: req.query.id
     Patient.find({}, function (err, patients) {
         if (err) {
@@ -16,32 +16,29 @@ exports.getAppointment = function(req,res) {
             })
         }
         else {
-            if (patients) {
-                var appointments = [];
-                var current_appointment = moment().format("MMMM Do YYYY");
-                console.log(patients.length);
-                for (var i = 0; i < patients.length; i++) {
-                    var patientName = patients[i].name;
-                    var patient = 'Name: ' + patientName;
+          //  if(req.text === _admin_id) {
+                if (patients) {
+                    var appointments = [];
+                    var current_appointment = moment().format("MMMM Do YYYY");
+                    console.log(patients.length);
+                    for (var i = 0; i < patients.length; i++) {
+                        var patientName = patients[i].name;
+                        var checkinTime = patients[i].checkinHour;
+                        patientName = "Patient Name" + ": " + patientName + " -- ";
+                        checkinTime = "Check-In Time" + ": " + checkinTime;
+                        var patientAppointment = patientName + checkinTime + "\n";
+                        // appointments.push(patients[i].name, patients[i].checkinHour);
+                        appointments.push(patientAppointment);
+                    }
+                    res.send(appointments);
 
-                    var checkin_time = patients[i].checkinHour;
-                    //if(checkin_time === null){
-                    //    checkin_time = 'Error when checked-in';
-                    //    //add log message TODO
-                    //}
-                    var checkin = 'Check-in Time: ' + checkin_time;
-                   // appointments.push(patients[i].name, patients[i].checkinHour);
-                    appointments.push(patient, checkin);
+                } // end of if (patients)
+                else {
+                    res.json({
+                        type: false,
+                        data: "bad"
+                    })
                 }
-                res.send(appointments);
-
-            }
-            else {
-                res.json({
-                    type: false,
-                    data: "bad"
-                })
-            }
         }
     })
 };

@@ -99,6 +99,41 @@ exports.removePatient = function(req, res) {
     })
 };
 
+exports.deletePatientSlack = function(req,res){
+    //console.log(req.text);
+  Patient.find({}, function(err, patient){
+      if(err){
+          console.log("Error selecting patient: " + patient);
+          res.send("Sorry patient does not exist");
+      }
+      else {
+          if(patient) {
+              res.send("Parameter1" + req.text);
+              for (var i = 0; i < patient.length; i++) {
+                  res.send("Parameter" + req.text);
+                  if (patient[i].name === req.text) {
+                      patient.remove(function (err, patient) {
+                          if (err) {
+                              console.log("ERROR removing patient: " + patient);
+                              res.send("ERROR removing patient: " + patient);
+                              //res.send("There was an error removing the employee");
+                          } else {
+                              console.log("Successfully removed " + patient.name);
+                              res.send("Successfully removed patient " + patient.name);
+                              //res.redirect("/patient_queue");
+                          }
+                      })
+                  }
+                  //else{
+                  //    res.send("Sorry patient does not exist");
+                  //}
+              }
+          }
+          res.send("Removing Patient");
+      }// end of else
+  })
+};
+
 exports.notifyPatients = function(req, res) {
     
     Patient.find({email: req.body.currentID}, function(err, patient) {
