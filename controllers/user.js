@@ -289,6 +289,9 @@ exports.postUpdateProfile = function(req, res, next) {
  * Update profile information.
  */
 exports.postUpdateForm = function(req, res, next) {
+
+  console.log("html = " + req.body.form);
+
   User.findById(req.user.id, function(err, user) {
     if (err) {
       // Send logs to logentries
