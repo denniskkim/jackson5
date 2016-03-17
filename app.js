@@ -30,6 +30,10 @@ var multer  = require('multer');
 var upload = multer({ dest: 'uploads/' });
 var rollbar = require('rollbar');
 
+//var server = require('http').createServer(app);
+//var io = require('socket.io').listen(server);
+
+//server.listen(app.get('port'));
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
  *
@@ -235,6 +239,24 @@ app.get('/add_employees', function(req, res){
 app.get('/form', function(req, res){
   res.render('form', { user: req.user });
 });
+/**
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('name', function(name){
+    console.log('name: ' + name);
+    io.emit('name', name);
+  });
+  socket.on('number', function(num){
+    console.log('number: ' + num);
+    io.emit('number', num);
+  });
+  socket.on('email', function(email){
+    console.log('email: ' + email);
+    io.emit('email', email);
+  });
+
+}); **/
+
 app.get('/management', function(req, res){
   res.render('management', { user: req.user });
 });
