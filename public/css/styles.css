@@ -92,6 +92,7 @@ a:hover {
   padding: 15px 0px;
 }
 .page-container .page-header .page-header-holder .logo a {
+  font-family: Reckoner;
   font-size: 1px;
   color: #FFF;
   text-indent: 99999px;
