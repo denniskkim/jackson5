@@ -112,18 +112,7 @@
 </div>
 <script src="../public/js/socket.io.js"></script>
 <script src="../public/js/jquery.js"></script>
-<script>
-    var socket = io();
-    socket.on('name', function(name){
-        $('#name').append($('<td>').text(msg));
-    });
-    socket.on('number', function(num){
-        $('#number').append($('<td>').text(num));
-    });
-    socket.on('email', function(email){
-        $('#email').append($('<td>').text(email));
-    });
-</script>
+
 
 
 

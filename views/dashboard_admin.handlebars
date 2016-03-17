@@ -33,27 +33,11 @@
 
                     <!-- START WIDGET SLIDER -->
                     <div class="widget widget-default widget-carousel">
-                        <div class="owl-carousel" id="owl-example">
                             <div>
-                                <div class="widget-title">Total Visitors</div>
-                                <div class="widget-subtitle">27/08/2014 15:23</div>
-                                <div class="widget-int">3,548</div>
+                                <div class="widget-title">Total Patients</div>
+                                <div class="widget-subtitle">Number of Patients</div>
+                                <div class="widget-int">{{{patients.length}}}</div>
                             </div>
-                            <div>
-                                <div class="widget-title">Returned</div>
-                                <div class="widget-subtitle">Visitors</div>
-                                <div class="widget-int">1,695</div>
-                            </div>
-                            <div>
-                                <div class="widget-title">New</div>
-                                <div class="widget-subtitle">Visitors</div>
-                                <div class="widget-int">1,977</div>
-                            </div>
-                        </div>
-                        <div class="widget-controls">
-                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip"
-                               data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
-                        </div>
                     </div>
                     <!-- END WIDGET SLIDER -->
 
@@ -90,14 +74,10 @@
                             <span class="fa fa-user"></span>
                         </div>
                         <div class="widget-data">
-                            <div class="widget-int num-count">375</div>
-                            <div class="widget-title">Registred users</div>
+                            <div class="widget-title">Most recent Checkin</div>
                             <div class="widget-subtitle">On your website</div>
-                        </div>
-                        <div class="widget-controls">
-                            <a href="#" class="widget-control-right widget-remove"
-                               data-toggle="tooltip" data-placement="top"
-                               title="Remove Widget"><span class="fa fa-times"></span></a>
+                            <div class="widget-subtitle">{{{patients.0.checkinTime}}}</div>
+
                         </div>
                     </div>
                     <!-- END WIDGET REGISTRED -->
