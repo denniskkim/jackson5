@@ -173,64 +173,43 @@ exports.deletePatient = function(req, res){
             }
           ]
  */
-exports.getPatients = function(req,res) {
-    //_id: req.query.id
-    Patient.find({_admin_id: req.query.id}, function (err, patients) {
-        if (err) {
-            logger.log(5,"Error getting patients for ID: " + req.query.id + err);
-            res.status(500);
-            res.json({
-                type: false,
-                data: "Error occured: " + err
-            })
-        }
-        else {
-
-                if (patients) {
-                    var appointments = [];
-                    var current_appointment = moment().format("MMMM Do YYYY");
-                    console.log(patients.length);
-                    for (var i = 0; i < patients.length; i++) {
-                        var patientName = patients[i].name;
-                        var checkinTime = patients[i].checkinHour;
-                        // appointments.push(patients[i].name, patients[i].checkinHour);
-                        appointments.push({"name" : patientName, "Check-In Time" : checkinTime});
-                    }
-                    res.send(appointments);
-
-                } // end of if (patients)
-                else {
-                    res.json({
-                        type: false,
-                        data: "bad"
-                    })
-                } // end of else (patients)
-
-            if (patients.length >= 1) {
-                var appointments = [];
-                var current_appointment = moment().format("MMMM Do YYYY");
-                console.log(patients.length);
-                for (var i = 0; i < patients.length; i++) {
-                    var patientName = patients[i].name;
-                    var checkinTime = patients[i].checkinHour;
-                    // appointments.push(patients[i].name, patients[i].checkinHour);
-                    appointments.push({"name" : patientName, "Check-In Time" : checkinTime});
-                }
-                res.send(appointments);
-                res.status(200);
-                logger.log(2,"View Patients Success:" + patients);
-            }
-            else {
-                logger.log(5,"Error getting patients for ID: " + req.query.id);
-                res.status(500);
-                res.json({
-                    type: false,
-                    data: "Error getting patients for: " + req.query.id
-                })
-            }
-        }
-    })
-};
+ exports.getPatients = function(req,res) {
+     //_id: req.query.id
+     Patient.find({_admin_id: req.query.id}, function (err, patients) {
+         if (err) {
+             logger.log(5,"Error getting patients for ID: " + req.query.id + err);
+             res.status(500);
+             res.json({
+                 type: false,
+                 data: "Error occured: " + err
+             })
+         }
+         else {
+             if (patients.length >= 1) {
+                 var appointments = [];
+                 var current_appointment = moment().format("MMMM Do YYYY");
+                 console.log(patients.length);
+                 for (var i = 0; i < patients.length; i++) {
+                     var patientName = patients[i].name;
+                     var checkinTime = patients[i].checkinHour;
+                     // appointments.push(patients[i].name, patients[i].checkinHour);
+                     appointments.push({"name" : patientName, "Check-In Time" : checkinTime});
+                 }
+                 res.send(appointments);
+                 res.status(200);
+                 logger.log(2,"View Patients Success:" + patients);
+             }
+             else {
+                 logger.log(5,"Error getting patients for ID: " + req.query.id);
+                 res.status(500);
+                 res.json({
+                     type: false,
+                     data: "Error getting patients for: " + req.query.id
+                 })
+             }
+         }
+     })
+ };
 
 //TODO ADD SEND PASSWORD!
 /**
