@@ -46,9 +46,96 @@
             function drop(ev) {
                 ev.preventDefault();
                 var data = ev.dataTransfer.getData("text");
-                ev.target.appendChild(document.getElementById(data));
+                //Deep copy - drag & copy
+                var nodeCopy = document.getElementById(data).cloneNode(true);
+                ev.target.appendChild(nodeCopy);
             }
+
+            function changeTextID() {
+                $(this).on("drop", function() {
+                    var idChange = $('div[id^="textfield"]:last');
+                    var num = parseInt(idChange.prop('id').match(/\d+/g), 10) +1;
+                    idChange.prop('id', 'textfield' + num);
+                    var labelChange = $('label[id^="txtlabel"]:last');
+                    var num1= parseInt(labelChange.prop('id').match(/\d+/g), 10) +1;
+                    labelChange.prop('id', 'txtlabel' + num);
+                });
+            }
+
+            function changeDropID() {
+                $(this).on("drop", function() {
+                    var idChange = $('div[id^="dropdowndrop"]:last');
+                    var num = parseInt(idChange.prop('id').match(/\d+/g), 10) +1;
+                    idChange.prop('id', 'dropdowndrop' + num);
+                    var labelChange = $('label[id^="droplabel"]:last');
+                    var num1= parseInt(labelChange.prop('id').match(/\d+/g), 10) +1;
+                    labelChange.prop('id', 'droplabel' + num);
+                });
+            }
+
+            function changeRadioID() {
+                $(this).on("drop", function() {
+                    var idChange = $('div[id^="radiodrop"]:last');
+                    var num = parseInt(idChange.prop('id').match(/\d+/g), 10) +1;
+                    idChange.prop('id', 'radiodrop' + num);
+                    var labelChange = $('label[id^="radlabel"]:last');
+                    var num1= parseInt(labelChange.prop('id').match(/\d+/g), 10) +1;
+                    labelChange.prop('id', 'radlabel' + num);
+                });
+            }
+
+            function dropDelete(ev) {
+                ev.preventDefault();
+                var data = ev.dataTransfer.getData("text");
+                var element = document.getElementById(data);
+                element.parentNode.removeChild(element);
+            }
+
+            function addDropDownOption() {
+                var textArea = "<div class='col-md-9'><input type='text' class='form-control' name='labelname' id='defaultLabel' placeholder='Option 1' value=''/></div></br>";
+                var textLabel = "<label class='col-md-3 control-label'>Option</label>";
+                var optionDiv = $('#option-div');
+                optionDiv.append(textLabel);
+                optionDiv.append(textArea);
+            }
+
+            function addRadioOption() {
+                var textArea = "<div class='col-md-9'><input type='text' class='form-control' name='labelname' id='defaultLabel' placeholder='Option 1' value=''/></div></br>";
+                var textLabel = "<label class='col-md-3 control-label'>Radio Option</label>";
+                var optionDiv = $('#radio-option');
+                optionDiv.append(textLabel);
+                optionDiv.append(textArea);
+            }
+
+            function replaceTextField() {
+                var label = $('#txtlabel').val();
+                $('#textfield').text(label);
+            }
+
+            function replaceDefault() {
+                var label = $('#dropLabel').val();
+                $('#default').text(label);
+            }
+
+            function replaceMultRadio() {
+                var label = $('#radLabel').val();
+                $('#radiolabel').text(label);
+            }
+
+            function draggableFalse() {
+                /*var last = $('div[id^="firstnamedrag"]:last');
+                var num = parseInt(last.prop('id').match(/\d+/g), 10) +1;*/
+                //$('#firstnamedrag1').attr('draggable', 'false');
+            }
+
         </script>
+        <!-- Start This Page Script-->
+        <script>
+            test = function(){
+                document.getElementById("hiddenformhtml").value = document.getElementById("render").value;
+            };
+        </script>
+        <!-- End This Page Script-->
     </head>
 
 	<body>
@@ -63,72 +150,247 @@
             <!-- PAGE CONTENT WRAPPER -->
             <div class="page-content-wrap">
                 <!-- Start Form Builder-->
-                <div class="row clearfix">
-                    <!--<iframe id="formbuilder_iframe" src="http://bootsnipp.com/j87klPolka/formbuilder3.html" style="width:100%; height:1000px;" frameborder="0"></iframe>-->
-                    <div class="col-md-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Edit Forms</h3>
+                <!-- FORM START -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Customizable Fields</h3>
+                        <ul class="panel-controls">
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                <form class="form-horizontal col-md-6">
+                    <fieldset>
+
+                        <!-- Customizable Fields -->
+                        <span class="help-block">Drag and drop selected fields. Click to edit fields.</span>
+
+                        <hr/>
+
+                        <!-- Text Field -->
+
+                        <div id="textfield1" class="form-group" draggable="true" ondragstart="drag(event); changeTextID();">
+                            <label class="col-md-3 control-label" data-toggle="modal" data-target="#myTextModal" id="txtlabel1">Text Field</label>
+                            <div class="col-md-9">
+                                <input type="text" class="form-control" name="login"/>
                             </div>
-                            <div class="panel-body">
-                                <!-- Components -->
-                                <div class="col-md-6">
-                                    <p>Drag and drop components from the left side of the right side to create your patient form! </p>
-                                    <div class="tabbable" style="padding-top: 50px;">
-                                        <ul class="nav nav-tabs" id="formtabs">
-                                            <!-- Tab nav -->
-                                        </ul>
-                                        <hr>
-                                        <form class="form-horizontal" id="components">
+                        </div>
+                        <!-- TEXTFIELD Modal -->
+                        <div class="modal fade" id="myTextModal" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Edit Text Field</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="form-horizontal">
                                             <fieldset>
-                                                <div class="tab-content">
-                                                    <!-- Tabs of snippets go here -->
+                                                <div id="textfield" class="form-group">
+                                                    <label class="col-md-3 control-label">Label Name</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="labelname" id="textLabel" placeholder="" value=""/>
+                                                    </div>
                                                 </div>
                                             </fieldset>
                                         </form>
                                     </div>
-                                </div>
-                                <!-- / Components -->
-                                <!-- Building Form. -->
-                                <div class="col-md-6">
-                                    <div class="clearfix">
-                                        <h2 style="padding-top: 75px;">Your Form</h2>
-                                        <hr>
-                                        <div id="build">
-                                            <form id="target" class="form-horizontal">
-                                            </form>
-                                        </div>
-                                    </div>
-                                    <form class="form-horizontal" method="POST">
-                                        <div class="form-group">
-                                            <input type="hidden" id="hiddenformhtml" name="form">
-                                        </div>
-                                        <div>
-                                            <div class="col-lg-12 col-lg-offset-5">
-                                                <button id="saveform" class="btn btn-success" onclick="test()">Save Form</button>
-                                            </div>
-                                        </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="replaceTextField();">Save</button>
 
-                                    </form>
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                    </div>
                                 </div>
-                                <!-- / Building Form. -->
                             </div>
                         </div>
+
+                        <!-- Choose Doctor -->
+                        <div id ="dropdowndrop1" class="form-group" draggable="true" ondragstart="drag(event); changeDropID();">
+                            <label class="col-md-3 control-label" for="buttondropdown" data-toggle="modal" data-target="#myModal" value="default" id="default">Default</label>
+
+                            <div class="col-md-9">
+                                <select id="options" class="form-control select">
+                                    <option id="op">Option 1</option>
+                                    <option id="op">Option 2</option>
+                                    <option id="op">Option 3</option>
+                                    <option id="op">Option 4</option>
+                                    <option id="op">Option 5</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!-- DROP DOWN Modal -->
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Edit Drop Down Menu</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="form-horizontal">
+                                            <fieldset>
+                                                <div id="textfield" class="form-group">
+                                                    <label class="col-md-3 control-label">Label Name</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="labelname" id="defaultLabel" placeholder="Default" value=""/>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group" id="option-div">
+                                                    <label class="col-md-3 control-label">Option</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="labelname" id="defaultLabel" placeholder="Option 1" value=""/>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" onclick="addDropDownOption();" style="float: left;">Add option</button>
+
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="replaceDefault();">Save</button>
+
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <span class="help-block" style="text-align:left;">Click to add more options.</span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Multiple Radios -->
+                        <div id="radiodrop1" class="form-group" draggable="true" ondragstart="drag(event); changeRadioID();">
+                            <label id="radiolabel" class="col-md-3 control-label" for="radios" data-toggle="modal" data-target="#myRadioModal">Multiple Radios</label>
+                            <div class="col-md-9">
+                                <div class="radio">
+                                    <label for="radios-0">
+                                        <input type="radio" name="radios" id="radios-0" value="1" checked="checked">
+                                        Option one
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label for="radios-1">
+                                        <input type="radio" name="radios" id="radios-1" value="2">
+                                        Option two
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- RADIO Modal -->
+                        <div class="modal fade" id="myRadioModal" role="dialog">
+                            <div class="modal-dialog">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Edit Radio Buttons</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form class="form-horizontal">
+                                            <fieldset>
+                                                <div id="textfield" class="form-group">
+                                                    <label class="col-md-3 control-label">Label Name</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="labelname" id="radLabel" placeholder="Radio Buttons" value=""/>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group" id="radio-option">
+                                                    <label class="col-md-3 control-label">Radio Option</label>
+                                                    <div class="col-md-9">
+                                                        <input type="text" class="form-control" name="labelname" id="defaultLabel" placeholder="" value=""/>
+                                                    </div>
+                                                </div>
+                                            </fieldset>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-primary" onclick="addRadioOption();" style="float:left;">Add option</button>
+
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="replaceMultRadio();">Save</button>
+
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        <span class="help-block" style="text-align:left;">Click to add more options.</span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                    </fieldset>
+                </form>
+                        </div>
                     </div>
+
+                <!-- YOUR CUSTOM FORM HERE -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Your Form</h3>
+                        <ul class="panel-controls">
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                <div id="builder" class="col-md-6 panel panel-default">
+                    <form id="target" class="form-horizontal" method="POST">
+                        <fieldset>
+                            <div class="panel-body" ondrop="drop(event);" ondragover="allowDrop(event)">
+
+                                <!-- First Name -->
+                                <div id="firstnamedrag1" class="form-group" draggable="true" ondragstart="drag(event); draggableFalse();">
+                                    <label class="col-md-3 control-label" for="textinput">First Name</label>
+                                    <div class="col-md-9" >
+                                        <input id="textinput" name="textinput1" type="text" placeholder="John" class="form-control pull-right">
+                                    </div>
+                                </div>
+
+                                <!-- Last Name -->
+                                <div id="lastnamedrag" class="form-group" draggable="true" ondragend="changeID();" ondragstart="drag(event)">
+                                    <label class="col-md-3 control-label" for="textinput">Last Name</label>
+                                    <div class="col-md-9" >
+                                        <input id="textinput" name="textinput2" type="text" placeholder="Doe" class="form-control input-md">
+                                    </div>
+                                </div>
+
+                                <!-- Email -->
+                                <div id="emaildrag" class="form-group" draggable="true" ondragstart="drag(event)">
+                                    <label class="col-md-3 control-label" for="email">Email</label>
+                                    <div class="col-md-9">
+                                        <input type="email" class="form-control" id="email" placeholder="johndoe@gmail.com">
+                                    </div>
+                                </div>
+
+                                <!-- Phone Number -->
+                                <div id="phonedrag" class="form-group" draggable="true" ondragstart="drag(event)">
+                                    <label class="col-md-3 control-label" for="phone">Phone Number</label>
+                                    <div class="col-md-9">
+                                        <input type="phone" class="form-control mask-phones" id="phone" placeholder="+1 (555) 555-5555" data-format="+1(ddd)ddd-dddd">
+                                    </div>
+                                </div>
+
+                                <!-- DRAG FIELDS/DIV ELEMENTS INTO HERE -->
+
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6" ondrop="dropDelete(event)" ondragover="allowDrop(event)">
+                                    <button type="submit" class="btn btn-primary" disabled>
+                                        <span class="glyphicon glyphicon-trash"></span> Delete
+                                    </button>
+                                </div>
+                                <div class="col-md-6">
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+
+                            </div>
+                        </fieldset>
+                    </form>
                 </div>
                 <!-- End form builder-->
+                        </div></div>
                 <script data-main="http://bootsnipp.com/j87klPolka/assets3/js/main-built.js" src="http://bootsnipp.com/j87klPolka/assets3/js/lib/require.js" ></script>
-
             </div>
-
-    <!-- Start This Page Script-->
-    <script>
-        test = function(){
-            document.getElementById("hiddenformhtml").value = document.getElementById("render").value;
-        };
-    </script>
-    <!-- End This Page Script-->
-
 	</body>
 </html>
 

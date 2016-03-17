@@ -198,7 +198,7 @@
                     </div>
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-7">
-                            <button type="submit" class="btn btn-primary" id="okbutton" disabled>OK</button>
+                            <button type="submit" class="btn btn-primary" id="okbutton" >OK</button>
                             <button class="btn btn-default" data-dismiss="modal" id="cancelbutton">Cancel</button>
                         </div>
                     </div>
@@ -349,32 +349,6 @@
         $('.modal').on('hidden.bs.modal', function(){
             $(this).find('form')[0].reset();
         });
-        // Require fields to be filled out
-        $('input[name=name]').on('input', function () {
-            if ($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val())
-                $('#okbutton').prop('disabled', false);
-            else
-                $('#okbutton').prop('disabled', true);
-        });
-        $('input[name=number]').on('input', function () {
-            if ($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val())
-                $('#okbutton').prop('disabled', false);
-            else
-                $('#okbutton').prop('disabled', true);
-        });
-        $('input[name=email]').on('input', function () {
-            if ($('#modalName').val() && $('#modalNumber').val() && $('#modalEmail').val())
-                $('#okbutton').prop('disabled', false);
-            else
-                $('#okbutton').prop('disabled', true);
-        });
-        $('input[name=file]').on('input', function () {
-            if ($('#modalFile').val())
-                $('#okbuttonCSV').prop('disabled', false);
-            else
-                $('#okbuttonCSV').prop('disabled', true);
-        });
-
     }	);
 </script>
 <!-- END ADD EMPLOYEE SCRIPT -->

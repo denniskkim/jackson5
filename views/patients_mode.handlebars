@@ -94,18 +94,6 @@
 
                 <script src="/socket.io/socket.io.js"></script>
                 <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
-                <script>
-                    var socket = io();
-                    $('form').submit(function(){
-                        socket.emit('name', $('#name').val());
-                        $('#name').val('');
-                        socket.emit('number', $('#number').val());
-                        $('#number').val('');
-                        socket.emit('email', $('#email').val());
-                        $('#email').val('');
-                        return false;
-                    });
-                </script>
 
                 <div class="login-footer">
                     <div class="pull-left">
