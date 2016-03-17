@@ -101,24 +101,26 @@ exports.deletePatientSlack = function(req,res){
           res.send("Sorry patient does not exist");
       }
       else {
-          for (var i = 0; i < patient.length; i++){
-              res.send("Parameter" + req.text);
-              if (patient[i].name === req.text) {
-                  patient.remove(function (err, patient) {
-                      if (err) {
-                          console.log("ERROR removing patient: " + patient);
-                          res.send("ERROR removing patient: " + patient);
-                          //res.send("There was an error removing the employee");
-                      } else {
-                          console.log("Successfully removed " + patient.name);
-                          res.send("Successfully removed patient " + patient.name);
-                          //res.redirect("/patient_queue");
-                      }
-                  })
+          if(patient) {
+              for (var i = 0; i < patient.length; i++) {
+                  res.send("Parameter" + req.text);
+                  if (patient[i].name === req.text) {
+                      patient.remove(function (err, patient) {
+                          if (err) {
+                              console.log("ERROR removing patient: " + patient);
+                              res.send("ERROR removing patient: " + patient);
+                              //res.send("There was an error removing the employee");
+                          } else {
+                              console.log("Successfully removed " + patient.name);
+                              res.send("Successfully removed patient " + patient.name);
+                              //res.redirect("/patient_queue");
+                          }
+                      })
+                  }
+                  //else{
+                  //    res.send("Sorry patient does not exist");
+                  //}
               }
-              //else{
-              //    res.send("Sorry patient does not exist");
-              //}
           }
           res.send("Removing Patient");
       }// end of else
