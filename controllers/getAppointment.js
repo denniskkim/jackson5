@@ -42,7 +42,3 @@ exports.getAppointments = function(req,res) {
         }
     })
 };
-
-exports.deletePatient = function(req,res){
-    Patient.find
-}
