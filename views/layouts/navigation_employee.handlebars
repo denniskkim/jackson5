@@ -54,18 +54,42 @@
                         </div>
                     </li>
                     <li class="xn-title">Navigation</li>
-                    <li class="active">
-                        <a href="/"><span class="fa fa-dashboard"></span> <span class="xn-text">Overview</span></a>
-                    </li>
-                    <li class="active">
-                        <a href="patients_mode"><span class="fa fa-pencil"></span> <span class="xn-text">Visitor Mode</span></a>
-                    </li>
-                    <li class="active">
-                        <a href="patient_queue"><span class="fa fa-clock-o"></span> <span class="xn-text">Visitor Queue</span></a>
-                    </li>
-                    <li class="active">
-                        <a href="settings"><span class="fa fa-cogs"></span> <span class="xn-text">Settings</span></a>
-                    </li>
+                    {{#if user._admin_id}}
+                        <li class="active">
+                            <a href="/"><span class="fa fa-dashboard"></span> <span class="xn-text">Overview</span></a>
+                        </li>
+                        <li class="active">
+                            <a href="patients_mode"><span class="fa fa-desktop"></span> <span class="xn-text">Patient Mode</span></a>
+                        </li>
+                        <li class="active">
+                            <a href="patient_queue"><span class="fa fa-clock-o"></span> <span class="xn-text">Patient Queue</span></a>
+                        </li>
+                        <li class="active">
+                            <a href="settings"><span class="fa fa-cogs"></span> <span class="xn-text">Settings</span></a>
+                        </li>
+                    {{else}}
+                        <li class="active">
+                            <a href="/"><span class="fa fa-dashboard"></span> <span class="xn-text">Overview</span></a>
+                        </li>
+                        <li class="active">
+                            <a href="patients_mode"><span class="fa fa-desktop"></span> <span class="xn-text">Patient Mode</span></a>
+                        </li>
+                        <li class="active">
+                            <a href="patient_queue"><span class="fa fa-clock-o"></span> <span class="xn-text">Patient Queue</span></a>
+                        </li>
+                        <li class="active">
+                            <a href="add_employees"><span class="fa fa-users"></span> <span class="xn-text">Manage Employees</span></a>
+                        </li>
+                        <li class="active">
+                            <a href="form"><span class="fa fa-pencil"></span> <span class="xn-text">Edit Form</span></a>
+                        </li>
+                        <li class="active">
+                            <a href="viewform"><span class="fa fa-pencil"></span> <span class="xn-text">View Form</span></a>
+                        </li>
+                        <li class="active">
+                            <a href="settings"><span class="fa fa-cogs"></span> <span class="xn-text">Settings</span></a>
+                        </li>
+                    {{/if}}
                 </ul>
                 <!-- END X-NAVIGATION -->
             </div>
@@ -81,13 +105,6 @@
                         <a href="#" class="x-navigation-minimize"><span class="fa fa-dedent"></span></a>
                     </li>
                     <!-- END TOGGLE NAVIGATION -->
-                    <!-- SEARCH -->
-                    <li class="xn-search">
-                        <form role="form">
-                            <input type="text" name="search" placeholder="Search..."/>
-                        </form>
-                    </li>   
-                    <!-- END SEARCH -->
                     <!-- SIGN OUT -->
                     <li class="xn-icon-button pull-right">
                         <a href="/logout" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>

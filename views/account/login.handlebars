@@ -40,40 +40,35 @@
 
 
         <div class="login-container lightmode">
-            <div class="row">
-                <div class="col-sm-1">
-                    <div class= "home-button">
-                        <img src="../../public/img/home.png" width="25px" style="padding-top:5px;" onclick="location.href = '/';"/>
-                    </div>
-                </div>
-            </div>
-        
             <div class="login-box animated fadeInDown">
                 <div class="login-logo" onclick="location.href = '/';"></div>
                 <div class="login-body">
                     <div class="login-title"><strong>Log In</strong></div>
                     <form class="form-horizontal" method="POST">
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <input type="email" name="email" id="email" class="form-control" placeholder="E-mail"/>
+
+                        <div class="form-group has-feedback">
+                            <div class="col-md-12">
+                                <input type="email" name="email" id="email" class="form-control" placeholder="E-mail"/>
+                                <i class="glyphicon glyphicon-envelope form-control-feedback"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <input type="password" name="password" id="password" class="form-control" placeholder="Password"/>
+                        <div class="form-group has-feedback">
+                            <div class="col-md-12">
+                                <input type="password" name="password" id="password" class="form-control" placeholder="Password"/>
+                                <i class="glyphicon glyphicon-lock form-control-feedback"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-6">
-                            <a href="/forgot" class="btn btn-link btn-block">Forgot your password?</a>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <a href="/forgot" class="btn btn-link btn-block">Forgot your password?</a>
+                            </div>
+                            <div class="col-md-4 col-md-offset-2">
+                                <button class="btn btn-info btn-block">Log In</button>
+                            </div>
                         </div>
-                        <div class="col-md-4 col-md-offset-2">
-                            <button class="btn btn-info btn-block">Log In</button>
+                        <div class="login-subtitle">
+                            Don't have an account yet? <a href="/signup">Create an account</a>
                         </div>
-                    </div>
-                    <div class="login-subtitle">
-                        Don't have an account yet? <a href="/signup">Create an account</a>
-                    </div>
                     </form>
                 </div>
                 <div class="login-footer">

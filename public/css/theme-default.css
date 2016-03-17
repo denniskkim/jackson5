@@ -4,6 +4,7 @@
 @import "jquery/jquery-ui.min.css";
 @import "bootstrap/bootstrap.min.css";
 @import "fontawesome/font-awesome.min.css";
+@import "../fonts/Reckoner.ttf";
 @import "summernote/summernote.css";
 @import "codemirror/codemirror.css";
 @import "nvd3/nv.d3.css";
@@ -764,9 +765,10 @@ body.page-container-boxed .page-container {
   display: none;
 }
 .x-navigation.x-navigation-minimized > li.xn-logo > a:first-child {
+  font-family: Reckoner;
   padding: 0px;
   width: 50px;
-  background-image: url("../img/logo-small.svg");
+  background-image: url("../img/logo-small.png");
 }
 .x-navigation.x-navigation-minimized .xn-search input {
   width: 30px;
@@ -901,9 +903,10 @@ body.page-container-boxed .page-container {
   border-bottom: 0px;
 }
 .x-navigation > li.xn-logo > a:first-child {
+  font-family: Reckoner;
   font-size: 0px;
   text-indent: -9999px;
-  background: url("../img/logo.svg") top center no-repeat #fff;
+  background: url("../img/logo.png") top center no-repeat #fff;
   padding: 0px;
   border-bottom: 0px;
   color: #FFF;
@@ -3884,7 +3887,8 @@ td.dataTables_empty {
   padding-top: 100px;
 }
 .login-container .login-box .login-logo {
-  background: url("../img/logo.svg") top center no-repeat;
+  font-family: Reckoner;
+  background: url("../img/logo.png") top center no-repeat;
   width: 100%;
   height: 50px;
   float: left;
@@ -7336,23 +7340,26 @@ li.ext_zip {
 @media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
   .icheckbox_minimal,
   .iradio_minimal {
-    background-image: url("../img/icheck/grey@2x.svg");
+    background-image: url("../img/icheck/grey@2x.png");
     -webkit-background-size: 200px 20px;
     background-size: 200px 20px;
   }
   .ui-resizable-se {
-    background-image: url("../img/jqyery/resize-icon@2x.svg");
+    background-image: url("../img/jqyery/resize-icon@2x.png");
   }
   .x-navigation > li.xn-logo > a:first-child {
-    background-image: url("../img/logo@2x.svg");
+    font-family: Reckoner;
+    background-image: url("../img/logo@2x.png");
     background-size: 220px 50px;
   }
   .x-navigation.x-navigation-minimized > li.xn-logo > a:first-child {
-    background-image: url("../img/logo-small@2x.svg");
+    font-family: Reckoner;
+    background-image: url("../img/logo-small@2x.png");
     background-size: 50px 50px;
   }
   .login-container .login-box .login-logo {
-    background-image: url("../img/logo@2x.svg");
+    font-family: Reckoner;
+    background-image: url("../img/logo@2x.png");
     background-size: 220px 50px;
   }
 }
