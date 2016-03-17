@@ -194,40 +194,15 @@ app.post('/subdomain_login', employeeController.postSubdomain);
 /**
  * API examples routes.
  */
+app.get('/deleteEmployee', restAPIController.deleteEmployee);
+app.get('/deletePatient', restAPIController.deletePatient);
+app.get('/checkoutPatient', restAPIController.checkoutPatient);
 app.post('/createPatient', restAPIController.createPatient);
 app.post('/createEmployee', restAPIController.createEmployee);
-
-
-/**
-* @api {get} /getPatients Gets all patients for business
-* @apiName getPatients
-* @apiGroup patients
-* @apiParam {Number} id Business' unique ID
-* @apiSuccess {Object[]} patients List of patients with name and check in time
-* @apiSuccessExample {json} Success-Response (example):
-* HTTP/1.1 200 OK
-          [
-           {
-             "name": "Bob",
-             "Check-In Time": "3:47:11 pm"
-           },
-           {
-             "name": "Peter",
-             "Check-In Time": "3:51:46 pm"
-           },
-           {
-             "name": "Antonio",
-             "Check-In Time": "3:51:48 pm"
-           }
-         ]
-*/
 app.get('/getPatients', restAPIController.getPatients);
 app.get('/getEmployees', restAPIController.getEmployees);
 app.get('/getAppointments', appointmentController.getAppointments);
 app.post('/removePatient', patientController.deletePatientSlack);
-
-app.get('/deleteEmployee', restAPIController.deleteEmployee);
-app.get('/deletePatient', restAPIController.deletePatient);
 
 //app.get('/viewbusinesses', userController.viewBusinesses);
 app.get('/api', apiController.getApi);

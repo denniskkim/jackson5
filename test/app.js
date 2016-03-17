@@ -79,6 +79,24 @@ describe('POST /createPatient', function(){
   })
 });
 
+describe('GET /checkoutPatient', function(){
+  it("should check out employee that was just created", function(done){
+    request(app)
+      .get("/checkoutPatient?email=thomas@pint.com&id=56d62db4791ca1188b080c39")
+      .expect("Content-type",/json/)
+      .expect(200,done);
+  })
+});
+
+describe('GET /checkoutPatient', function(){
+  it("should fail to checkout a patient (duplicate)", function(done){
+    request(app)
+      .get("/checkoutPatient?id=56d62db4791ca1188b080c39&email=thomas@pint.com")
+      .expect("Content-type",/json/)
+      .expect(500, done);
+  })
+});
+
 describe('GET /deletePatient', function(){
   it("should delete a patient", function(done){
     request(app)
