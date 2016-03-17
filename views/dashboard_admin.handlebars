@@ -33,11 +33,20 @@
 
                     <!-- START WIDGET SLIDER -->
                     <div class="widget widget-default widget-carousel">
+                        <div class="owl-carousel" id="owl-example">
+
+                            <div>
+                                <div class="widget-title">Waiting Patients</div>
+                                <div class="widget-subtitle">Number of Patients Waiting</div>
+                                <div class="widget-int">{{{waiting}}}</div>
+                            </div>
+
                             <div>
                                 <div class="widget-title">Total Patients</div>
                                 <div class="widget-subtitle">Number of Patients</div>
                                 <div class="widget-int">{{{patients.length}}}</div>
                             </div>
+                        </div>
                     </div>
                     <!-- END WIDGET SLIDER -->
 
@@ -46,15 +55,14 @@
                 <div class="col-md-3">
 
                     <!-- START WIDGET MESSAGES -->
-                    <div class="widget widget-default widget-item-icon"
-                         onclick="location.href='pages-messages.html';">
+                    <div class="widget widget-default widget-item-icon">
                         <div class="widget-item-left">
-                            <span class="fa fa-envelope"></span>
+                            <span class="fa fa-clock-o"></span>
                         </div>
                         <div class="widget-data">
-                            <div class="widget-int num-count">48</div>
-                            <div class="widget-title">New messages</div>
-                            <div class="widget-subtitle">In your mailbox</div>
+                            <div class="widget-int num-count">{{{avg_time}}}</div>
+                            <div class="widget-title">Mins</div>
+                            <div class="widget-subtitle">Avg Wait time</div>
                         </div>
                         <div class="widget-controls">
                             <a href="#" class="widget-control-right widget-remove"
@@ -68,8 +76,7 @@
                 <div class="col-md-3">
 
                     <!-- START WIDGET REGISTRED -->
-                    <div class="widget widget-default widget-item-icon"
-                         onclick="location.href='pages-address-book.html';">
+                    <div class="widget widget-default widget-item-icon"">
                         <div class="widget-item-left">
                             <span class="fa fa-user"></span>
                         </div>
