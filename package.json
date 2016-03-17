@@ -75,7 +75,8 @@
     "chai": "^3.5.0",
     "mocha": "^2.4.5",
     "multiline": "^1.0.2",
-    "supertest": "^1.1.0"
+    "should": "^8.2.2",
+    "supertest": "^1.2.0"
   },
   "license": "MIT"
 }

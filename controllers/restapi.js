@@ -48,7 +48,7 @@ exports.createPatient = function(req,res) {
       }
       else{
         res.status(500);
-        logger.log("error","Error creating patient for ID: " + req.query.id + err);
+        logger.log(5,"Error creating patient for ID: " + req.query.id + err);
         res.json({
             type: false,
             data: "Error occured: " + err
@@ -69,7 +69,7 @@ exports.createPatient = function(req,res) {
       }, function(err, patient){
           if(err) {
             res.status(500);
-            logger.log("error","Error creating patient for ID: " + req.query.id + err);
+            logger.log(5,"Error creating patient for ID: " + req.query.id + err);
             res.json({
               type: false,
               data: "Error occured: " + err
@@ -97,34 +97,48 @@ exports.createPatient = function(req,res) {
 exports.deletePatient = function(req, res){
   var email = req.query.email;
   var id = req.query.id;
-  Patient.findOne({email : email}, function(err, patient) {
+  Patient.find({email : email}, function(err, patient) {
     if(err) {
       res.status(500);
-      logger.log("error","Error deleting patient for ID: " + req.query.id + err);
+      logger.log(5,"Error deleting patient for ID: " + req.query.id + err);
       res.json({
           type: false,
           data: "Error occured: " + err
       })
     }
-    else{
-      if(patient && patient._admin_id == id){
+    if(patient){
         Patient.remove({email : email}, function (err){
           if(err) {
             res.status(500);
-            logger.log("error","Error deleting patient for ID: " + req.query.id);
+            logger.log(5,"Error deleting patient for ID: " + req.query.id);
             res.json({
                 type: false,
                 data: "Error occured: " + err
             });
           }
-          else {
+          else if(patient.length >= 1){
+            res.status(200);
             logger.log(2,"Deleted Patient Success:" + email);
             res.json({
               message : "Removed patient with email " + email
             });
           }
+          else {
+            res.status(500);
+            logger.log(5,"Deleted Patient Failed, no Patient with Email:" + email);
+            res.json({
+              message : "No patient with email" + email + " found, nothing deleted."
+            });
+          }
         });
-      }
+    }
+    else{
+      res.status(500);
+      logger.log(5,"Error deleting patient for ID: " + req.query.id + err);
+      res.json({
+          type: false,
+          data: "Error occured: " + err
+      })
     }
   })
 };
@@ -163,7 +177,7 @@ exports.getPatients = function(req,res) {
     //_id: req.query.id
     Patient.find({_admin_id: req.query.id}, function (err, patients) {
         if (err) {
-            logger.log("error","Error getting patients for ID: " + req.query.id + err);
+            logger.log(5,"Error getting patients for ID: " + req.query.id + err);
             res.status(500);
             res.json({
                 type: false,
@@ -171,6 +185,7 @@ exports.getPatients = function(req,res) {
             })
         }
         else {
+
                 if (patients) {
                     var appointments = [];
                     var current_appointment = moment().format("MMMM Do YYYY");
@@ -190,7 +205,8 @@ exports.getPatients = function(req,res) {
                         data: "bad"
                     })
                 } // end of else (patients)
-            if (patients) {
+
+            if (patients.length >= 1) {
                 var appointments = [];
                 var current_appointment = moment().format("MMMM Do YYYY");
                 console.log(patients.length);
@@ -201,14 +217,15 @@ exports.getPatients = function(req,res) {
                     appointments.push({"name" : patientName, "Check-In Time" : checkinTime});
                 }
                 res.send(appointments);
+                res.status(200);
                 logger.log(2,"View Patients Success:" + patients);
             }
             else {
-                logger.log("error","Error getting patients for ID: " + req.query.id);
+                logger.log(5,"Error getting patients for ID: " + req.query.id);
                 res.status(500);
                 res.json({
                     type: false,
-                    data: "bad"
+                    data: "Error getting patients for: " + req.query.id
                 })
             }
         }
@@ -261,8 +278,12 @@ exports.createEmployee = function(req, res) {
 
                     //TODO - display error message
 
-                    //res.send("There was a problem adding the employee to the databaase");
-                } else {
+                    res.status(500)
+                    res.json({
+                        type: false,
+                        data: "Error occured: " + err
+                    });
+                } if(employee) {
                     // Send logs to logentries
                     //logger.log(2,"Create employee Success: "+err);
 
@@ -275,13 +296,13 @@ exports.createEmployee = function(req, res) {
             });
         }
         else if(err) {
-            logger.log("error","Error creating employee for ID: " + req.query.id + err);
+            logger.log(5,"Error creating employee for ID: " + req.query.id + err);
             res.status(500);
             res.json({"message" : err});
         }
         else {
             res.status(500);
-            logger.log("error","Error getting employees for ID: " + req.query.id);
+            logger.log(5,"Error getting employees for ID: " + req.query.id);
             res.json({"message" : "Found existing employee"});
         }
       })
@@ -315,7 +336,7 @@ exports.createEmployee = function(req, res) {
 exports.getEmployees = function(req,res) {
     Employee.find({_admin_id: req.query.id}, function (err, employees) {
         if (err) {
-            logger.log("error","Error getting employees for ID: " + req.query.id + err);
+            logger.log(5,"Error getting employees for ID: " + req.query.id + err);
             res.status(500);
             res.json({
                 type: false,
@@ -361,18 +382,18 @@ exports.deleteEmployee = function(req, res){
   var id = req.query.id;
   Employee.findOne({email : email}, function(err, employee) {
     if(err) {
-      logger.log("error","Error deleting employee with email: " + email + err);
+      logger.log(5,"Error deleting employee with email: " + email + err);
       res.status(500);
       res.json({
           type: false,
           data: "Error occured: " + err
       })
     }
-    else{
+    else if(employee){
       if(employee && employee._admin_id == id){
         Employee.remove({email : email}, function (err){
           if(err) {
-            logger.log("error","Error deleting employee with email: " + email);
+            logger.log(5,"Error deleting employee with email: " + email);
             res.status(500);
             res.json({
                 type: false,
@@ -387,6 +408,14 @@ exports.deleteEmployee = function(req, res){
           }
         });
       }
+    }
+    else {
+      logger.log(5,"Error deleting employee with email: " + email + err);
+      res.status(500);
+      res.json({
+          type: false,
+          data: "Error deleting patient for ID: " + req.query.id + " email : " + req.query.email
+      })
     }
   })
 };
