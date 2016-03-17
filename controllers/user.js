@@ -63,12 +63,16 @@ exports.postLogin = function(req, res, next) {
         return next(err);
       }
 
+      user.lastLoginDate = Date.now();
+      user.save();
+
       // Send logs to logentries
       logger.log(2,"User login Success:");
-
       req.flash('success', { msg: 'Success! You are logged in.' });
       //res.redirect(req.session.returnTo || '/dashboard_admin');
       if(user.email === "petervenkmen@ghostbusters.com"){
+        logger.log(1,"Peter login Success:");
+
         res.redirect('/dashboard_peter');
       }
       res.redirect('/dashboard_admin');

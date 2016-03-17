@@ -261,23 +261,35 @@ exports.postEmployeeLogin = function(req, res, next) {
     if (errors) {
         console.log(errors);
         req.flash('errors', errors);
+        logger.log(4,"User login Failed:" + errors);
         return res.redirect('/login_employee');
     }
 
     passport.authenticate('employee', function(err, employee, info) {
         console.log(info);
         if (err) {
+            logger.log(4,"User login Failed:" + err);
+
             return next(err);
         }
         if (!employee) {
             console.log(err);
             req.flash('errors', { msg: info.message });
+            logger.log(4,"User login Failed:" + err);
+
             return res.redirect('/login');
         }
         req.logIn(employee, function(err) {
             if (err) {
                 return next(err);
+                logger.log(4,"User login Failed:" + err);
+
             }
+
+            employee.lastLoginDate = Date.now();
+            employee.save();
+            logger.log(2,"User login Success:");
+
             req.flash('success', { msg: 'Success! You are logged in.' });
             //res.redirect(req.session.returnTo || '/dashboard_admin');
             res.redirect('/dashboard_employee');
