@@ -221,7 +221,7 @@ app.post('/createEmployee', restAPIController.createEmployee);
 app.get('/getPatients', restAPIController.getPatients);
 app.get('/getEmployees', restAPIController.getEmployees);
 app.get('/getAppointments', appointmentController.getAppointments);
-app.get('/removePatient', patientController.deletePatientSlack);
+app.post('/removePatient', patientController.deletePatientSlack);
 
 app.get('/deleteEmployee', restAPIController.deleteEmployee);
 app.get('/deletePatient', restAPIController.deletePatient);

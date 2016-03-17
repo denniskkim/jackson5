@@ -118,10 +118,11 @@ exports.deletePatientSlack = function(req,res){
                           }
                       })
                   }
-                  //else{
-                  //    res.send("Sorry patient does not exist");
-                  //}
               }
+          }
+
+          else{
+              res.send("There is currently no visitors");
           }
           res.send("Removing Patient");
       }// end of else
