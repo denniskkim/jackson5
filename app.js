@@ -175,7 +175,7 @@ app.get('/patients_mode', function(req, res){
 app.get('/patient_queue', patientController.getPatients);
 app.post('/patient_queue', patientController.notifyPatients);
 app.delete('/delete_patient/:id', patientController.removePatient);
-app.delete('/removePatient', patientController.deletePatientSlack);
+
 
 
 app.get('/dashboard_admin', dashboardController.getBusinessOwnerDashboard);
@@ -221,6 +221,7 @@ app.post('/createEmployee', restAPIController.createEmployee);
 app.get('/getPatients', restAPIController.getPatients);
 app.get('/getEmployees', restAPIController.getEmployees);
 app.get('/getAppointments', appointmentController.getAppointments);
+app.get('/removePatient', patientController.deletePatientSlack);
 
 app.get('/deleteEmployee', restAPIController.deleteEmployee);
 app.get('/deletePatient', restAPIController.deletePatient);
