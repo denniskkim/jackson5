@@ -22,10 +22,12 @@ exports.getAppointments = function(req,res) {
                     var current_appointment = moment().format("MMMM Do YYYY");
                     console.log(patients.length);
                     for (var i = 0; i < patients.length; i++) {
+                        var patient_name = "Patient Name";
+                        var check_time =  "Check-In Time"
                         var patientName = patients[i].name;
                         var checkinTime = patients[i].checkinHour;
-                        patientName = "name: " + patientName + "- ";
-                        checkinTime = "Check-In Time: " + checkinTime;
+                        patientName = patient_name + ": " + patientName + " -- ";
+                        checkinTime = check_time + ": " + checkinTime;
                         var patientAppointment = patientName + checkinTime + "\n";
                         // appointments.push(patients[i].name, patients[i].checkinHour);
                         appointments.push(patientAppointment);
