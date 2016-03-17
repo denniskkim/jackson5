@@ -102,6 +102,7 @@ exports.deletePatientSlack = function(req,res){
       }
       else {
           if(patient) {
+              res.send("Parameter1" + req.text);
               for (var i = 0; i < patient.length; i++) {
                   res.send("Parameter" + req.text);
                   if (patient[i].name === req.text) {
