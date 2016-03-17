@@ -1,25 +1,10 @@
-# Example text from header.md
+# Introduction
 
-This text is from file "header.md".
+This is the API component of Jackson 5's <http://www.receptional.xyz/>
 
-## HowTo include
+## Set Up
 
-In your projects "package.json" you can set "apidoc.header" with a title and a filename to include this file into your documentation.
+In order to use the API platform you first need to visit <http://www.receptional.xyz/> and setup an account for your business.
 
-This example attempts to integrate "header.md" and "footer.md".
+Once you setup an account you will be emailed your unique business ID which will be used to identify and authenticate yourself for the API calls. 
 
-    {
-      "name": "example",
-      "version": "0.3.0",
-      "description": "apidoc example project.",
-      "apidoc": {
-        "header": {
-          "title": "My own header title",
-          "filename": "header.md"
-        },
-        "footer": {
-          "title": "My own footer title",
-          "filename": "footer.md"
-        }
-      }
-    }
