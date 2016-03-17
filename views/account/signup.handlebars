@@ -36,14 +36,6 @@
     </head>
     <body>
         <div class="login-container lightmode">
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class= "home-button">
-                        <img src="../../public/img/home.png" width="25px" style="padding-top:10px;" onclick="location.href = '/';"/>
-                    </div>
-                </div>
-            </div>
-        
             <div class="login-box animated fadeInDown">
                 <div class="login-logo" onclick="location.href = '/';">
                 </div>
@@ -51,44 +43,51 @@
                     <div class="login-title"><strong>Sign-Up</strong> for your account</div>
                     <form id="signup-form" class="form-horizontal" method="POST">
                       <input type="hidden" name="_csrf"/>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <input type="text" name="companyname" id="companyname" class="form-control" placeholder="Company Name"/>
+
+                        <div class="form-group has-feedback">
+                            <div class="col-md-12">
+                                <input type="text" name="companyname" id="companyname" class="form-control" placeholder="Company Name"/>
+                                <i class="glyphicon glyphicon-briefcase form-control-feedback"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <input type="email" name="email" id="email" class="form-control" placeholder="Company E-mail"/>
+                        <div class="form-group has-feedback">
+                            <div class="col-md-12">
+                                <input type="email" name="email" id="email" class="form-control" placeholder="Company E-mail"/>
+                                <i class="glyphicon glyphicon-envelope form-control-feedback"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <input type="password" name="password" id="password" class="form-control" placeholder="Password"/>
+                        <div class="form-group has-feedback">
+                            <div class="col-md-12">
+                                <input type="password" name="password" id="password" class="form-control" placeholder="Password"/>
+                                <i class="glyphicon glyphicon-lock form-control-feedback"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="Confirm Password"/>
+                        <div class="form-group has-feedback">
+                            <div class="col-md-12">
+                                <input type="password" name="confirmPassword" id="confirmPassword" class="form-control" placeholder="Confirm Password"/>
+                                <i class="glyphicon glyphicon-ok form-control-feedback"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <input type="tel" name="companyphone" id="companyphone" class="form-control" placeholder="Company Phone"/>
+                        <div class="form-group has-feedback">
+                            <div class="col-md-12">
+                                <input type="tel" name="companyphone" id="companyphone" class="form-control" placeholder="Company Phone"/>
+                                <i class="glyphicon glyphicon-earphone form-control-feedback"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <input type="text" name="subdomainurl" id="subdomainurl" class="form-control" placeholder="Subdomain URL"/>
+                        <div class="form-group has-feedback">
+                            <div class="col-md-12">
+                                <input type="text" name="subdomainurl" id="subdomainurl" class="form-control" placeholder="Subdomain URL"/>
+                                <i class="glyphicon glyphicon-globe form-control-feedback"></i>
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                       <div class="col-md-5 col-md-offset-1">
-                            <button type="reset" class="btn btn-primary btn-block">Clear Input</button>
+                        <div class="form-group">
+                           <div class="col-md-5 col-md-offset-1">
+                                <button type="reset" class="btn btn-primary btn-block">Clear Input</button>
+                            </div>
+                            <div class="col-md-5 col-md-offset-0">
+                                <button type="submit" class="btn btn-success btn-block">Sign Up!</button>
+                            </div>
                         </div>
-                        <div class="col-md-5 col-md-offset-0">
-                            <button type="submit" class="btn btn-success btn-block">Sign Up!</button>
-                        </div>
-                    </div>
                     </form>
                 </div>
                 <div class="login-footer">

@@ -194,40 +194,15 @@ app.post('/subdomain_login', employeeController.postSubdomain);
 /**
  * API examples routes.
  */
+app.get('/deleteEmployee', restAPIController.deleteEmployee);
+app.get('/deletePatient', restAPIController.deletePatient);
+app.get('/checkoutPatient', restAPIController.checkoutPatient);
 app.post('/createPatient', restAPIController.createPatient);
 app.post('/createEmployee', restAPIController.createEmployee);
-
-
-/**
-* @api {get} /getPatients Gets all patients for business
-* @apiName getPatients
-* @apiGroup patients
-* @apiParam {Number} id Business' unique ID
-* @apiSuccess {Object[]} patients List of patients with name and check in time
-* @apiSuccessExample {json} Success-Response (example):
-* HTTP/1.1 200 OK
-          [
-           {
-             "name": "Bob",
-             "Check-In Time": "3:47:11 pm"
-           },
-           {
-             "name": "Peter",
-             "Check-In Time": "3:51:46 pm"
-           },
-           {
-             "name": "Antonio",
-             "Check-In Time": "3:51:48 pm"
-           }
-         ]
-*/
 app.get('/getPatients', restAPIController.getPatients);
 app.get('/getEmployees', restAPIController.getEmployees);
 app.get('/getAppointments', appointmentController.getAppointments);
-app.get('/removePatient', patientController.deletePatientSlack);
-
-app.get('/deleteEmployee', restAPIController.deleteEmployee);
-app.get('/deletePatient', restAPIController.deletePatient);
+app.post('/removePatient', patientController.deletePatientSlack);
 
 //app.get('/viewbusinesses', userController.viewBusinesses);
 app.get('/api', apiController.getApi);
@@ -240,7 +215,7 @@ app.get('/add_employees', function(req, res){
   res.render('add_employees', { user: req.user });
 });
 app.get('/form', function(req, res){
-  res.render('form', { user: req.user });
+  res.render('form', { user: req.user, layout: 'navigation_admin' });
 });
 /**
 io.on('connection', function(socket){
@@ -289,7 +264,7 @@ app.post('/updateemployeepassword', passportConf.isAuthenticated, employeeContro
 
 
 app.get('/viewform', function(req, res){
-  res.render('viewform', { form: req.user.form });
+  res.render('viewform', { form: req.user.form, layout: 'navigation_admin' });
 });
 
 // Twilio Credentials

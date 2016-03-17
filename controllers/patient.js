@@ -100,7 +100,7 @@ exports.removePatient = function(req, res) {
 };
 
 exports.deletePatientSlack = function(req,res){
-    //console.log(req.text);
+  console.log(req.text);
   Patient.find({}, function(err, patient){
       if(err){
           console.log("Error selecting patient: " + patient);
@@ -124,10 +124,11 @@ exports.deletePatientSlack = function(req,res){
                           }
                       })
                   }
-                  //else{
-                  //    res.send("Sorry patient does not exist");
-                  //}
               }
+          }
+
+          else{
+              res.send("There is currently no visitors");
           }
           res.send("Removing Patient");
       }// end of else

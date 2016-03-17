@@ -28,11 +28,19 @@
             </li>
             <li class="xn-profile">
                 <a href="#" class="profile-mini">
-                    <img src="assets/images/users/avatar.jpg" alt="Peter"/>
+                    {{#if user.picture}}
+                        <img src="{{user.picture}}">
+                    {{else}}
+                        <img src="assets/images/users/avatar.jpg alt="Peter">
+                    {{/if}}
                 </a>
                 <div class="profile">
                     <div class="profile-image">
-                        <img src="assets/images/users/avatar.jpg" alt="Peter"/>
+                        {{#if user.picture}}
+                            <img src="{{user.picture}}">
+                        {{else}}
+                            <img src="assets/images/users/avatar.jpg alt="Peter">
+                        {{/if}}
                     </div>
                     <div class="profile-data">
                         <div class="profile-data-name">[Peter]</div>
@@ -41,11 +49,11 @@
                 </div>
             </li>
             <li class="xn-title">Navigation</li>
-            <li class="active">
+            <li class="">
                 <a href="dashboard_peter"><span class="fa fa-dashboard"></span> <span class="xn-text">Overview</span></a>
             </li>
-            <li class="active">
-                <a href="/settings_peter"><span class="fa fa-desktop"></span> <span class="xn-text">Settings</span></a>
+            <li class="">
+                <a href="/settings"><span class="fa fa-desktop"></span> <span class="xn-text">Settings</span></a>
             </li>
         </ul>
         <!-- END X-NAVIGATION -->
@@ -118,7 +126,7 @@
                 <div class="col-md-3">
 
                     <!-- START WIDGET MESSAGES -->
-                    <div class="widget widget-default widget-item-icon" onclick="location.href='pages-messages.html';">
+                    <div class="widget widget-default widget-item-icon" onclick="location.href='/404';">
                         <div class="widget-item-left">
                             <span class="fa fa-envelope"></span>
                         </div>
@@ -360,11 +368,13 @@
 <script type="text/javascript" src="js/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- END THIS PAGE PLUGINS-->
 
-<!-- START TEMPLATE -->
+<!-- START TEMPLATE
+// ISSUE: Theme change isnt saved when navigating to another page.
+<script type="text/javascript" src="js/settings.js"></script> -->
+
 <script type="text/javascript" src="js/plugins.js"></script>
 <script type="text/javascript" src="js/actions.js"></script>
 
-<script type="text/javascript" src="js/demo_dashboard.js"></script>
 <!-- END TEMPLATE -->
 <!-- END SCRIPTS -->
 </body>

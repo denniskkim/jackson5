@@ -64,6 +64,8 @@ exports.createPatient = function(req,res) {
           "checkinDay" : moment().format('MMMM Do YYYY') ,
           "checkinHour" : moment().format('h:mm:ss a'),
           "checkinTime" : Date.now(),
+          "checkoutTime" : null,
+          "checkedout" : false,
           "subdomainurl" : subdomainurl,
           "_admin_id" : id
       }, function(err, patient){
@@ -107,37 +109,97 @@ exports.deletePatient = function(req, res){
       })
     }
     if(patient){
-        patient.checkoutTime = Date.now();
-        patient.checkedout = true;
-        patient.save();
-        //Patient.remove({email : email}, function (err){
-        //  if(err) {
-        //    res.status(500);
-        //    logger.log(5,"Error deleting patient for ID: " + req.query.id);
-        //    res.json({
-        //        type: false,
-        //        data: "Error occured: " + err
-        //    });
-        //  }
-        //  else if(patient.length >= 1){
-        //    res.status(200);
-        //    logger.log(2,"Deleted Patient Success:" + email);
-        //    res.json({
-        //      message : "Removed patient with email " + email
-        //    });
-        //  }
-        //  else {
-        //    res.status(500);
-        //    logger.log(5,"Deleted Patient Failed, no Patient with Email:" + email);
-        //    res.json({
-        //      message : "No patient with email" + email + " found, nothing deleted."
-        //    });
-        //  }
-        //});
+        Patient.remove({email : email}, function (err){
+         if(err) {
+           res.status(500);
+           logger.log(5,"Error deleting patient for ID: " + req.query.id);
+           res.json({
+               type: false,
+               data: "Error occured: " + err
+           });
+         }
+         else if(patient.length >= 1){
+           res.status(200);
+           logger.log(2,"Deleted Patient Success:" + email);
+           res.json({
+             message : "Removed patient with email " + email
+           });
+         }
+         else {
+           res.status(500);
+           logger.log(5,"Deleted Patient Failed, no Patient with Email:" + email);
+           res.json({
+             message : "No patient with email" + email + " found, nothing deleted."
+           });
+         }
+        });
     }
     else{
       res.status(500);
       logger.log(5,"Error deleting patient for ID: " + req.query.id + err);
+      res.json({
+          type: false,
+          data: "Error occured: " + err
+      })
+    }
+  })
+};
+
+/**
+* @api {get} /checkoutPatient Checkout patient from business
+* @apiName checkoutPatient
+* @apiGroup Patient
+* @apiParam {String} id Business' unique ID
+* @apiParam {String} email Patient's email
+* @apiSuccess {String} confirmation Confirmation message that you checked out the patient
+* @apiSuccessExample {json} Success-Response (example):
+* HTTP/1.1 200 OK
+{
+  "message": "Checked out patient with email thomas@pint.com"
+}
+*/
+exports.checkoutPatient = function(req, res){
+  var email = req.query.email;
+  var id = req.query.id;
+  Patient.findOne({email : email}, function(err, patient) {
+    if(err) {
+      res.status(500);
+      logger.log(5,"Error checking out patient for ID: " + req.query.id + err);
+      res.json({
+          type: false,
+          data: "Error occured: " + err
+      })
+    }
+    if(patient){
+      console.log(patient.checkedout);
+      if(patient.checkedout == false){
+        patient.checkoutTime = Date.now();
+        patient.checkedout = true;
+        patient.save();
+        res.status(200);
+        logger.log(2,"Checked out Patient Success:" + email);
+        res.json({
+          message : "Checked out patient with email " + email
+        });
+      }
+      else if(patient.checkedout == true){
+        res.status(500);
+        logger.log(5,"Error checking out patient for ID, patient already checked out: " + req.query.id + err);
+        res.json({
+          message : "Already checked out patient with email " + email
+        })
+      }
+      else{
+        res.status(500);
+        logger.log(5,"Trying to checkout patient that doesnt exist: " + req.query.id + err);
+        res.json({
+          message : "Trying to checkout patient that doesn't exist with email: " + email
+        })
+      }
+    }
+    else{
+      res.status(500);
+      logger.log(5,"Error checking out patient for ID: " + req.query.id + err);
       res.json({
           type: false,
           data: "Error occured: " + err
