@@ -24,8 +24,11 @@ exports.getAppointments = function(req,res) {
                     for (var i = 0; i < patients.length; i++) {
                         var patientName = patients[i].name;
                         var checkinTime = patients[i].checkinHour;
+                        patientName = "name: " + patientName + "- ";
+                        checkinTime = "Check-In Time: " + checkinTime;
+                        var patientAppointment = patientName + checkinTime + "\n";
                         // appointments.push(patients[i].name, patients[i].checkinHour);
-                        appointments.push({"name": patientName, "Check-In Time": checkinTime});
+                        appointments.push(patientAppointment);
                     }
                     res.send(appointments);
 
