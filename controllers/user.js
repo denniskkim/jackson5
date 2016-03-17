@@ -564,8 +564,6 @@ exports.postForgot = function(req, res, next) {
   });
 };
 
-asdlfghkladgshakljdsfgha sdlkjghlkagfdh -2- 280938 
-
 function emailEmployee(employee, admin, password) {
     // Create SMTP transporter object
     var options = {
