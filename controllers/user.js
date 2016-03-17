@@ -10,11 +10,14 @@ var logger = new Logger({
   token:'4ed0e98c-c21f-42f0-82ee-0031f09ca161'
 });
 
+var analytics = require('../controllers/analytics');
+
 /**
  * GET /login
  * Login page.
  */
 exports.getLogin = function(req, res) {
+  
   if (req.user) {
     return res.redirect('/');
   }
@@ -153,6 +156,9 @@ exports.postSignup = function(req, res, next) {
 
           return next(err);
         }
+
+        analytics.updateBusinessCount();
+
         // Send logs to logentries
         logger.log(2,"New user successfully created Business owner account");
         res.redirect('/');

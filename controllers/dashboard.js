@@ -2,6 +2,8 @@
  * Created by zizhouzhai on 3/1/16.
  */
 
+var Analytics = require('../controllers/analytics');
+
 exports.getEmployeeDashboard = function(req, res) {
     if (!req.user) {
 
@@ -18,8 +20,12 @@ exports.getBusinessOwnerDashboard = function(req, res) {
 };
 
 exports.getPeterDashboard = function(req, res) {
+
+
     if (!req.user || req.user.email != "petervenkmen@ghostbusters.com") {
         return res.redirect('/login');
     }
-    res.render('dashboard_peter', {user : req.user, layout: 'navigation_peter'});
+
+    res.render('dashboard_peter', {user : req.user, layout: 'navigation_peter', analyticData : Analytics.AnalyticData});
+
 };

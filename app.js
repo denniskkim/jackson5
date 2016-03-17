@@ -29,6 +29,9 @@ var subdomain = require('express-subdomain');
 var multer  = require('multer');
 var upload = multer({ dest: 'uploads/' });
 var rollbar = require('rollbar');
+var Analytics = require('./controllers/analytics');
+
+Analytics.startAnalytics();
 
 //var server = require('http').createServer(app);
 //var io = require('socket.io').listen(server);
@@ -237,7 +240,7 @@ app.get('/add_employees', function(req, res){
   res.render('add_employees', { user: req.user });
 });
 app.get('/form', function(req, res){
-  res.render('form', { user: req.user });
+  res.render('form', { user: req.user, layout: 'navigation_admin' });
 });
 /**
 io.on('connection', function(socket){
@@ -286,7 +289,7 @@ app.post('/updateemployeepassword', passportConf.isAuthenticated, employeeContro
 
 
 app.get('/viewform', function(req, res){
-  res.render('viewform', { form: req.user.form });
+  res.render('viewform', { form: req.user.form, layout: 'navigation_admin' });
 });
 
 // Twilio Credentials

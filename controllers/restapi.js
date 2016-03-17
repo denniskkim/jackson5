@@ -107,30 +107,33 @@ exports.deletePatient = function(req, res){
       })
     }
     if(patient){
-        Patient.remove({email : email}, function (err){
-          if(err) {
-            res.status(500);
-            logger.log(5,"Error deleting patient for ID: " + req.query.id);
-            res.json({
-                type: false,
-                data: "Error occured: " + err
-            });
-          }
-          else if(patient.length >= 1){
-            res.status(200);
-            logger.log(2,"Deleted Patient Success:" + email);
-            res.json({
-              message : "Removed patient with email " + email
-            });
-          }
-          else {
-            res.status(500);
-            logger.log(5,"Deleted Patient Failed, no Patient with Email:" + email);
-            res.json({
-              message : "No patient with email" + email + " found, nothing deleted."
-            });
-          }
-        });
+        patient.checkoutTime = Date.now();
+        patient.checkedout = true;
+        patient.save();
+        //Patient.remove({email : email}, function (err){
+        //  if(err) {
+        //    res.status(500);
+        //    logger.log(5,"Error deleting patient for ID: " + req.query.id);
+        //    res.json({
+        //        type: false,
+        //        data: "Error occured: " + err
+        //    });
+        //  }
+        //  else if(patient.length >= 1){
+        //    res.status(200);
+        //    logger.log(2,"Deleted Patient Success:" + email);
+        //    res.json({
+        //      message : "Removed patient with email " + email
+        //    });
+        //  }
+        //  else {
+        //    res.status(500);
+        //    logger.log(5,"Deleted Patient Failed, no Patient with Email:" + email);
+        //    res.json({
+        //      message : "No patient with email" + email + " found, nothing deleted."
+        //    });
+        //  }
+        //});
     }
     else{
       res.status(500);

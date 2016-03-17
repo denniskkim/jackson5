@@ -54,18 +54,42 @@
                         </div>
                     </li>
                     <li class="xn-title">Navigation</li>
-                    <li class="active">
-                        <a href="/"><span class="fa fa-dashboard"></span> <span class="xn-text">Overview</span></a>
-                    </li>
-                    <li class="active">
-                        <a href="patients_mode"><span class="fa fa-pencil"></span> <span class="xn-text">Visitor Mode</span></a>
-                    </li>
-                    <li class="active">
-                        <a href="patient_queue"><span class="fa fa-clock-o"></span> <span class="xn-text">Visitor Queue</span></a>
-                    </li>
-                    <li class="active">
-                        <a href="settings"><span class="fa fa-cogs"></span> <span class="xn-text">Settings</span></a>
-                    </li>
+                    {{#if user._admin_id}}
+                        <li class="">
+                            <a href="/"><span class="fa fa-dashboard"></span> <span class="xn-text">Overview</span></a>
+                        </li>
+                        <li class="">
+                            <a href="patients_mode"><span class="fa fa-desktop"></span> <span class="xn-text">Patient Mode</span></a>
+                        </li>
+                        <li class="">
+                            <a href="patient_queue"><span class="fa fa-clock-o"></span> <span class="xn-text">Patient Queue</span></a>
+                        </li>
+                        <li class="">
+                            <a href="settings"><span class="fa fa-cogs"></span> <span class="xn-text">Settings</span></a>
+                        </li>
+                    {{else}}
+                        <li class="">
+                            <a href="/"><span class="fa fa-dashboard"></span> <span class="xn-text">Overview</span></a>
+                        </li>
+                        <li class="">
+                            <a href="patients_mode"><span class="fa fa-desktop"></span> <span class="xn-text">Patient Mode</span></a>
+                        </li>
+                        <li class="">
+                            <a href="patient_queue"><span class="fa fa-clock-o"></span> <span class="xn-text">Patient Queue</span></a>
+                        </li>
+                        <li class="">
+                            <a href="add_employees"><span class="fa fa-users"></span> <span class="xn-text">Manage Employees</span></a>
+                        </li>
+                        <li class="">
+                            <a href="form"><span class="fa fa-pencil"></span> <span class="xn-text">Edit Form</span></a>
+                        </li>
+                        <li class="">
+                            <a href="viewform"><span class="fa fa-pencil"></span> <span class="xn-text">View Form</span></a>
+                        </li>
+                        <li class="">
+                            <a href="settings"><span class="fa fa-cogs"></span> <span class="xn-text">Settings</span></a>
+                        </li>
+                    {{/if}}
                 </ul>
                 <!-- END X-NAVIGATION -->
             </div>
@@ -81,13 +105,6 @@
                         <a href="#" class="x-navigation-minimize"><span class="fa fa-dedent"></span></a>
                     </li>
                     <!-- END TOGGLE NAVIGATION -->
-                    <!-- SEARCH -->
-                    <li class="xn-search">
-                        <form role="form">
-                            <input type="text" name="search" placeholder="Search..."/>
-                        </form>
-                    </li>   
-                    <!-- END SEARCH -->
                     <!-- SIGN OUT -->
                     <li class="xn-icon-button pull-right">
                         <a href="/logout" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>
@@ -97,28 +114,38 @@
                 <!-- END X-NAVIGATION VERTICAL -->
 
 		{{{body}}}
+            </div>
+            <!-- START SCRIPTS -->
+            <!-- START PLUGINS -->
+            <script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
+            <script type="text/javascript" src="js/plugins/jquery/jquery-ui.min.js"></script>
+            <script type="text/javascript" src="js/plugins/bootstrap/bootstrap.min.js"></script>
+            <!-- END PLUGINS -->
 
-    <!-- START SCRIPTS -->
-                <!-- START SCRIPTS -->
-                <!-- START PLUGINS -->
-                <script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
-                <script type="text/javascript" src="js/plugins/jquery/jquery-ui.min.js"></script>
-                <script type="text/javascript" src="js/plugins/bootstrap/bootstrap.min.js"></script>
-                <!-- END PLUGINS -->
+            <!-- START THIS PAGE PLUGINS-->
+            <script type='text/javascript' src='js/plugins/icheck/icheck.min.js'></script>
+            <script type="text/javascript" src="js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+            <script type="text/javascript" src="js/plugins/scrolltotop/scrolltopcontrol.js"></script>
 
-                <!-- START THIS PAGE PLUGINS-->
-                <script type='text/javascript' src='js/plugins/icheck/icheck.min.js'></script>
-                <script type="text/javascript" src="js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
-                <script type="text/javascript" src="js/plugins/scrolltotop/scrolltopcontrol.js"></script>
+            <script type="text/javascript" src="js/plugins/morris/raphael-min.js"></script>
+            <script type="text/javascript" src="js/plugins/morris/morris.min.js"></script>
+            <script type="text/javascript" src="js/plugins/rickshaw/d3.v3.js"></script>
+            <script type="text/javascript" src="js/plugins/rickshaw/rickshaw.min.js"></script>
+            <script type='text/javascript' src='js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js'></script>
+            <script type='text/javascript' src='js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js'></script>
+            <script type='text/javascript' src='js/plugins/bootstrap/bootstrap-datepicker.js'></script>
+            <script type="text/javascript" src="js/plugins/owl/owl.carousel.min.js"></script>
 
+            <script type="text/javascript" src="js/plugins/moment.min.js"></script>
+            <script type="text/javascript" src="js/plugins/daterangepicker/daterangepicker.js"></script>
+            <!-- END THIS PAGE PLUGINS-->
 
-                <script type="text/javascript" src="js/plugins/owl/owl.carousel.min.js"></script>
+            <!-- START TEMPLATE
+            // ISSUE: Theme change isnt saved when navigating to another page.
+            <script type="text/javascript" src="js/settings.js"></script> -->
 
-                <script type="text/javascript" src="js/plugins/moment.min.js"></script>
-                <!-- END THIS PAGE PLUGINS-->
-
-                <!-- START TEMPLATE -->
-                <script type="text/javascript" src="js/plugins.js"></script>
-                <script type="text/javascript" src="js/actions.js"></script>
-    <!-- END SCRIPTS -->
+            <script type="text/javascript" src="js/plugins.js"></script>
+            <script type="text/javascript" src="js/actions.js"></script>
+            <!-- END TEMPLATE -->
+            <!-- END SCRIPTS -->
 </html>

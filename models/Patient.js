@@ -13,6 +13,7 @@ var patientSchema = new mongoose.Schema({
     checkinTime: Date,
     checkoutTime: Date,
     subdomainurl: String,
+    checkedout: Boolean,
     _admin_id: String
 });
 
