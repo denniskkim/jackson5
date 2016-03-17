@@ -1,9 +1,9 @@
 {
-  "name": "hackathon-starter",
+  "name": "Receptional",
   "version": "3.4.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/sahat/hackathon-starter.git"
+    "url": "https://github.com/denniskkim/jackson5.git"
   },
   "scripts": {
     "start": "node app.js",
@@ -44,6 +44,7 @@
     "mongoose": "^4.3.7",
     "morgan": "^1.6.1",
     "multer": "^1.1.0",
+    "newrelic": "^1.25.5",
     "node-foursquare": "^0.3.0",
     "node-linkedin": "^0.5.3",
     "node-sass-middleware": "^0.9.7",
@@ -60,6 +61,7 @@
     "passport-twitter": "^1.0.4",
     "paypal-rest-sdk": "^1.6.8",
     "request": "^2.69.0",
+    "rollbar": "0.2.6",
     "serve-favicon": "^2.3.0",
     "stripe": "^4.3.0",
     "tumblr.js": "^0.0.7",

@@ -173,6 +173,40 @@ exports.editEmployee = function(req, res) {
     })
 };
 
+exports.emailEmployee = function(req, res) {
+            var options = {
+                service: 'gmail',
+                auth: {
+                user: 'donotreply.receptional@gmail.com',
+                pass: 'nightowls1'
+                }
+            };
+            var emailtext = req.body.message;
+            var transporter = nodemailer.createTransport(options);
+            // Setup email data
+            var mailOptions = {
+                from: req.user.email,
+                to: req.body.to,
+                subject: "Receptional",
+                text: emailtext,
+                html: emailtext
+            };
+            // Send email
+            transporter.sendMail(mailOptions, function(error, info) {
+                if(error) {
+                    console.log("Fail sending" + error);
+                }
+                else {
+                    console.log('Message sent: ' + info);
+                    console.log(emailtext);
+                }
+            });
+
+            res.redirect("/add_employees");
+};
+
+
+
 exports.removeEmployee = function(req, res) {
     Employee.findById(req.params.id, function(err, employee) {
         if (err) {
@@ -227,23 +261,35 @@ exports.postEmployeeLogin = function(req, res, next) {
     if (errors) {
         console.log(errors);
         req.flash('errors', errors);
+        logger.log(4,"User login Failed:" + errors);
         return res.redirect('/login_employee');
     }
 
     passport.authenticate('employee', function(err, employee, info) {
         console.log(info);
         if (err) {
+            logger.log(4,"User login Failed:" + err);
+
             return next(err);
         }
         if (!employee) {
             console.log(err);
             req.flash('errors', { msg: info.message });
+            logger.log(4,"User login Failed:" + err);
+
             return res.redirect('/login');
         }
         req.logIn(employee, function(err) {
             if (err) {
                 return next(err);
+                logger.log(4,"User login Failed:" + err);
+
             }
+
+            employee.lastLoginDate = Date.now();
+            employee.save();
+            logger.log(2,"User login Success:");
+
             req.flash('success', { msg: 'Success! You are logged in.' });
             //res.redirect(req.session.returnTo || '/dashboard_admin');
             res.redirect('/dashboard_employee');
@@ -277,7 +323,7 @@ function emailEmployee(employee, admin, password) {
     // Setup email data
     var mailOptions = {
         from: '"Receptional.xyz" <donotreply.receptional@gmail.com>',
-        to: /*employee.email **Hard coded for now */ 'donotreply.receptional@gmail.com',
+        to: employee.email,
         subject: "Welcome to Receptional",
         text: emailtext,
         html: emailtext
@@ -293,3 +339,70 @@ function emailEmployee(employee, admin, password) {
         }
     });
 }
+
+/**
+ * POST /account/password
+ * Update current password.
+ */
+exports.postUpdatePassword = function(req, res, next) {
+  // req.assert('password', 'Password must be at least 4 characters long').len(4);
+  // req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
+  // console.log("get in update password ");
+  // var errors = req.validationErrors();
+
+  // if (errors) {
+  //   console.log("update password failed: " + errors);
+  //   req.flash('errors', errors);
+  //   return res.redirect('/settings');
+  // }
+
+  Employee.findById(req.user.id, function(err, user) {
+    if (err) {
+      console.log(" failed: " + err);
+      return next(err);
+    }
+    user.password = req.body.password;
+    user.save(function(err) {
+      if (err) {
+        console.log(" failed: " + err);
+        return next(err);
+      }
+      console.log("success ");
+      req.flash('success', { msg: 'Password has been changed.' });
+      res.redirect('/settings');
+    });
+  });
+};
+
+/**
+ * POST /account/profile
+ * Update profile information.
+ */
+exports.postUpdateProfile = function(req, res, next) {
+  console.log("update profile");
+  Employee.findById(req.user.id, function(err, user) {
+      console.log(req.user.id);
+    if (err) {
+      // Send logs to logentries
+      console.log("Edit profile failed: " + err);
+
+      return next(err);
+    }
+    user.email = req.body.email || '';
+    user.name = req.body.name || '';
+    user.phone_number = req.body.phone || '';
+    user.picture = req.body.photo || '';
+    user.save(function(err) {
+      if (err) {
+        // Send logs to logentries
+        console.log("Edit profile failed: " + err);
+        return next(err);
+      }
+      // Send logs to logentries
+      console.log("Edit profile Success");
+
+      req.flash('success', { msg: 'Profile information updated.' });
+      res.redirect('/settings');
+    });
+  });
+};

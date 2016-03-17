@@ -1,6 +1,8 @@
 /**
  * Module dependencies.
  */
+require('newrelic');
+
 var handlebars = require('express-handlebars');
 var bodyParser = require('body-parser');
 var express = require('express');
@@ -26,6 +28,7 @@ var http = require('http');
 var subdomain = require('express-subdomain');
 var multer  = require('multer');
 var upload = multer({ dest: 'uploads/' });
+var rollbar = require('rollbar');
 
 /**
  * Load environment variables from .env file, where API keys and passwords are configured.
@@ -153,6 +156,7 @@ app.post('/add_EmployeesCSV', upload.single('file'), employeeController.addEmplo
 app.get('/login_employee', employeeController.getEmployeeLogin);
 app.post('/login_employee', employeeController.postEmployeeLogin);
 app.delete('/delete/:id', employeeController.removeEmployee);
+app.post('/email_employee', employeeController.emailEmployee);
 
 app.post('/form', passportConf.isAuthenticated, userController.postUpdateForm);
 
@@ -167,9 +171,13 @@ app.get('/patients_mode', function(req, res){
 });
 
 app.get('/patient_queue', patientController.getPatients);
+app.post('/patient_queue', patientController.notifyPatients);
+app.delete('/delete_patient/:id', patientController.removePatient);
+
 
 app.get('/dashboard_admin', dashboardController.getBusinessOwnerDashboard);
 app.get('/dashboard_employee', dashboardController.getEmployeeDashboard);
+app.get('/dashboard_peter', dashboardController.getPeterDashboard);
 
 app.get('/subdomain_login', function(req, res){
   res.render('subdomain_login', { employee: req.employee });
@@ -180,12 +188,40 @@ app.post('/subdomain_login', employeeController.postSubdomain);
 /**
  * API examples routes.
  */
-app.post('createEmployee', restAPIController.createEmployee, function(req,res){
-  res.render('add_employees', {user : req.user});
-});
+app.post('/createPatient', restAPIController.createPatient);
+app.post('/createEmployee', restAPIController.createEmployee);
+
+
+/**
+* @api {get} /getPatients Gets all patients for business
+* @apiName getPatients
+* @apiGroup patients
+* @apiParam {Number} id Business' unique ID
+* @apiSuccess {Object[]} patients List of patients with name and check in time
+* @apiSuccessExample {json} Success-Response (example):
+* HTTP/1.1 200 OK
+          [
+           {
+             "name": "Bob",
+             "Check-In Time": "3:47:11 pm"
+           },
+           {
+             "name": "Peter",
+             "Check-In Time": "3:51:46 pm"
+           },
+           {
+             "name": "Antonio",
+             "Check-In Time": "3:51:48 pm"
+           }
+         ]
+*/
 app.get('/getPatients', restAPIController.getPatients);
 app.get('/getEmployees', restAPIController.getEmployees);
 app.get('/getAppointments', appointmentController.getAppointment);
+
+app.get('/deleteEmployee', restAPIController.deleteEmployee);
+app.get('/deletePatient', restAPIController.deletePatient);
+
 //app.get('/viewbusinesses', userController.viewBusinesses);
 app.get('/api', apiController.getApi);
 app.get('/api/facebook', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.getFacebook);
@@ -215,31 +251,41 @@ app.get('/settings', function(req, res){
   res.render('settings', { user: req.user });
 });
 
+//owner update
 app.post('/settings',passportConf.isAuthenticated, userController.postUpdateProfile );
+app.post('/updatepassword', passportConf.isAuthenticated, userController.postUpdatePassword);
+app.post('/delete', passportConf.isAuthenticated, userController.postDeleteAccount);
+
+
+//employee update
+
+app.post('/employeeUpdate',passportConf.isAuthenticated, employeeController.postUpdateProfile );
+app.post('/updateemployeepassword', passportConf.isAuthenticated, employeeController.postUpdatePassword);
+
 
 app.get('/viewform', function(req, res){
   res.render('viewform', { form: req.user.form });
 });
 
-// Twilio Credentials 
-var accountSid = 'AC3008bf6b293131cc5a4c8410a1a5ceb8'; 
-var authToken = '63d3c91c8c7f774d0733ea16ccea533b'; 
- 
-//require the Twilio module and create a REST client 
-var client = require('twilio')(accountSid, authToken); 
+// Twilio Credentials
+var accountSid = 'AC3008bf6b293131cc5a4c8410a1a5ceb8';
+var authToken = '63d3c91c8c7f774d0733ea16ccea533b';
+
+//require the Twilio module and create a REST client
+var client = require('twilio')(accountSid, authToken);
 
   app.post('/test', function(req, res) {
         console.log(accountSid);
         console.log(authToken);
-      client.sendSms({ 
+      client.sendSms({
         body: req.body.message,
         to: req.body.to,
         from: "+18583467675"
-      }, function(err, message) { 
-        console.log(message); 
+      }, function(err, message) {
+        console.log(message);
         if(err){
           console.log(err.message);
-          console.log(err.message); 
+          console.log(err.message);
           res.render('test', { messageinfo: "fail sent" });
         }
       });
@@ -271,7 +317,19 @@ app.get('/auth/facebook/callback', passport.authenticate('facebook', { failureRe
 /**
  * Error Handler.
  */
- 
+
+// Use the rollbar error handler to send exceptions to your rollbar account
+app.use(rollbar.errorHandler('a816c3c191b74a40b6ea6afa3e715d8f'));
+
+var options = {
+  // Call process.exit(1) when an uncaught exception occurs but after reporting all
+  // pending errors to Rollbar.
+  //
+  // Default: false
+  exitOnUncaughtException: true
+};
+rollbar.handleUncaughtExceptions("a816c3c191b74a40b6ea6afa3e715d8f", options);
+
 app.use(errorHandler());
 
 /**

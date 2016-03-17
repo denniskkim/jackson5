@@ -21,6 +21,7 @@ var userSchema = new mongoose.Schema({
   //linkedin: String,
   //steam: String,
   //tokens: Array,
+  lastLoginDate: Date,
   resetPasswordToken: String,
   resetPasswordExpires: Date
 });
