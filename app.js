@@ -180,6 +180,7 @@ app.post('/patient_queue', patientController.notifyPatients);
 app.delete('/delete_patient/:id', patientController.removePatient);
 
 
+app.delete('/removePatient/:id', patientController.removePatient);
 
 app.get('/dashboard_admin', dashboardController.getBusinessOwnerDashboard);
 app.get('/dashboard_employee', dashboardController.getEmployeeDashboard);
