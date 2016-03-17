@@ -240,7 +240,7 @@ app.get('/add_employees', function(req, res){
   res.render('add_employees', { user: req.user });
 });
 app.get('/form', function(req, res){
-  res.render('form', { user: req.user });
+  res.render('form', { user: req.user, layout: 'navigation_admin' });
 });
 /**
 io.on('connection', function(socket){
@@ -289,7 +289,7 @@ app.post('/updateemployeepassword', passportConf.isAuthenticated, employeeContro
 
 
 app.get('/viewform', function(req, res){
-  res.render('viewform', { form: req.user.form });
+  res.render('viewform', { form: req.user.form, layout: 'navigation_admin' });
 });
 
 // Twilio Credentials
