@@ -7336,12 +7336,12 @@ li.ext_zip {
 @media (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi) {
   .icheckbox_minimal,
   .iradio_minimal {
-    background-image: url("../img/icheck/grey@2x.png");
+    background-image: url("../img/icheck/grey@2x.svg");
     -webkit-background-size: 200px 20px;
     background-size: 200px 20px;
   }
   .ui-resizable-se {
-    background-image: url("../img/jqyery/resize-icon@2x.png");
+    background-image: url("../img/jqyery/resize-icon@2x.svg");
   }
   .x-navigation > li.xn-logo > a:first-child {
     background-image: url("../img/logo@2x.svg");
