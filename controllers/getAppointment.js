@@ -23,7 +23,7 @@ exports.getAppointments = function(req,res) {
                     console.log(patients.length);
                     for (var i = 0; i < patients.length; i++) {
                         var patient_name = "Patient Name";
-                        var check_time =  "Check-In Time"
+                        var check_time =  "Check-In Time";
                         var patientName = patients[i].name;
                         var checkinTime = patients[i].checkinHour;
                         patientName = patient_name + ": " + patientName + " -- ";
