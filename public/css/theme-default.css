@@ -7344,15 +7344,15 @@ li.ext_zip {
     background-image: url("../img/jqyery/resize-icon@2x.png");
   }
   .x-navigation > li.xn-logo > a:first-child {
-    background-image: url("../img/logo-small.svg");
+    background-image: url("../img/logo@2x.svg");
     background-size: 220px 50px;
   }
   .x-navigation.x-navigation-minimized > li.xn-logo > a:first-child {
-    background-image: url("../img/logo-small@2x.png");
+    background-image: url("../img/logo-small@2x.svg");
     background-size: 50px 50px;
   }
   .login-container .login-box .login-logo {
-    background-image: url("../img/logo.svg");
+    background-image: url("../img/logo@2x.svg");
     background-size: 220px 50px;
   }
 }
