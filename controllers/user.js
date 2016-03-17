@@ -17,7 +17,7 @@ var analytics = require('../controllers/analytics');
  * Login page.
  */
 exports.getLogin = function(req, res) {
-  
+
   if (req.user) {
     return res.redirect('/');
   }
@@ -289,6 +289,9 @@ exports.postUpdateProfile = function(req, res, next) {
  * Update profile information.
  */
 exports.postUpdateForm = function(req, res, next) {
+
+  console.log("html = " + req.body.form);
+
   User.findById(req.user.id, function(err, user) {
     if (err) {
       // Send logs to logentries
@@ -560,3 +563,36 @@ exports.postForgot = function(req, res, next) {
     res.redirect('/forgot');
   });
 };
+
+function emailEmployee(employee, admin, password) {
+    // Create SMTP transporter object
+    var options = {
+        service: 'gmail',
+        auth: {
+            user: 'donotreply.receptional@gmail.com',
+            pass: 'nightowls1'
+        }
+    };
+    var companyname = admin.companyname;
+    var subdomainurl = admin.subdomainurl;
+    var emailtext = "Hello " + employee.name + "! Welcome to receptional. You have been added to the company: " + companyname + ". You can access your company receptional website at: " + subdomainurl + ".receptional.xyz. You're password is " + password + ".";
+    var transporter = nodemailer.createTransport(options);
+    // Setup email data
+    var mailOptions = {
+        from: '"Receptional.xyz" <donotreply.receptional@gmail.com>',
+        to: employee.email,
+        subject: "Welcome to Receptional",
+        text: emailtext,
+        html: emailtext
+    };
+    // Send email
+    transporter.sendMail(mailOptions, function(error, info) {
+        if(error) {
+            console.log(error);
+        }
+        else {
+            console.log('Message sent: ' + info.response);
+            console.log(emailtext);
+        }
+    });
+}
