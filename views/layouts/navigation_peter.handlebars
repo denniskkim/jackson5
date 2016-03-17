@@ -147,7 +147,7 @@
                         <div class="widget-data">
                             <div class="widget-int num-count">{{{analyticData.count}}}</div>
                             <div class="widget-title">Registered Businesses</div>
-                            <div class="widget-subtitle">On your website</div>
+                            <div class="widget-subtitle">Use your product</div>
                         </div>
                         <div class="widget-controls">
                             <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
@@ -204,7 +204,7 @@
 
                         </div>
                         <div class="panel-body">
-                            <iframe id="newrelic_frame" src="https://rpm.newrelic.com/public/charts/9WRz3BkdpQw" width="750" height="300" scrolling="yes" frameborder="no"></iframe>
+                            <iframe id="newrelic_frame" src="https://rpm.newrelic.com/public/charts/kRPxIEc5t3a" width="750" height="300" scrolling="yes" frameborder="no"></iframe>
                         </div>
                     </div>
                     <!-- END SALES BLOCK -->
@@ -280,14 +280,14 @@
             </div>
 
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
 
-                    <!-- START SALES & EVENTS BLOCK -->
+                    <!-- START OldLogins BLOCK -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <div class="panel-title-box">
-                                <h3>Sales & Event</h3>
-                                <span>Event "Purchase Button"</span>
+                                <h3>Old Logins</h3>
+                                <span>Businesses that haven't logged in for a while</span>
                             </div>
                             <ul class="panel-controls" style="margin-top: 2px;">
                                 <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
@@ -301,67 +301,49 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="panel-body padding-0">
-                            <div class="chart-holder" id="dashboard-line-1" style="height: 200px;"></div>
-                        </div>
-                    </div>
-                    <!-- END SALES & EVENTS BLOCK -->
+                        <div class="panel-body panel-body-table">
 
-                </div>
-                <div class="col-md-4">
-
-                    <!-- START USERS ACTIVITY BLOCK -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <div class="panel-title-box">
-                                <h3>Users Activity</h3>
-                                <span>Users vs returning</span>
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th width="30%">Company</th>
+                                        <th width="60%">Email</th>
+                                        <th width="10%">Days Since</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><strong>{{{analyticData.oldLogins.0.companyname}}}</strong></td>
+                                        <td><strong>{{{analyticData.oldLogins.0.email}}}</strong></td>
+                                        <td><span class="label label-danger">{{{analyticData.oldLogins.0.daysSince}}}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>{{{analyticData.oldLogins.1.companyname}}}</strong></td>
+                                        <td><strong>{{{analyticData.oldLogins.1.email}}}</strong></td>
+                                        <td><span class="label label-danger">{{{analyticData.oldLogins.1.daysSince}}}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>{{{analyticData.oldLogins.2.companyname}}}</strong></td>
+                                        <td><strong>{{{analyticData.oldLogins.2.email}}}</strong></td>
+                                        <td><span class="label label-danger">{{{analyticData.oldLogins.2.daysSince}}}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>{{{analyticData.oldLogins.3.companyname}}}</strong></td>
+                                        <td><strong>{{{analyticData.oldLogins.3.email}}}</strong></td>
+                                        <td><span class="label label-danger">{{{analyticData.oldLogins.3.daysSince}}}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>{{{analyticData.oldLogins.4.companyname}}}</strong></td>
+                                        <td><strong>{{{analyticData.oldLogins.4.email}}}</strong></td>
+                                        <td><span class="label label-danger">{{{analyticData.oldLogins.4.daysSince}}}</span></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                            <ul class="panel-controls" style="margin-top: 2px;">
-                                <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
-                                <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span> Collapse</a></li>
-                                        <li><a href="#" class="panel-remove"><span class="fa fa-times"></span> Remove</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="panel-body padding-0">
-                            <div class="chart-holder" id="dashboard-bar-1" style="height: 200px;"></div>
+
                         </div>
                     </div>
-                    <!-- END USERS ACTIVITY BLOCK -->
-
-                </div>
-                <div class="col-md-4">
-
-                    <!-- START VISITORS BLOCK -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <div class="panel-title-box">
-                                <h3>Visitors</h3>
-                                <span>Visitors (last month)</span>
-                            </div>
-                            <ul class="panel-controls" style="margin-top: 2px;">
-                                <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
-                                <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span> Collapse</a></li>
-                                        <li><a href="#" class="panel-remove"><span class="fa fa-times"></span> Remove</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="panel-body padding-0">
-                            <div class="chart-holder" id="dashboard-donut-1" style="height: 200px;"></div>
-                        </div>
-                    </div>
-                    <!-- END VISITORS BLOCK -->
 
                 </div>
             </div>

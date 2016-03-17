@@ -13,7 +13,9 @@ var Patient = require('../models/Patient');
 exports.AnalyticData = {
     'count' : 19,
     'patient_count' : 87,
-    'recentSignups' : []
+    'recentSignups' : [],
+    'oldLogins' : []
+
 };
 
 exports.startAnalytics = function(){
@@ -22,6 +24,7 @@ exports.startAnalytics = function(){
     updateBusinessCount();
     updateLastSignup();
     updatePatientCount();
+    updateold();
 
     var minutes = 15, the_interval = minutes * 60 * 1000;
     setInterval(function() {
@@ -30,6 +33,7 @@ exports.startAnalytics = function(){
         updateBusinessCount();
         updateLastSignup();
         updatePatientCount();
+        updateold();
 
     }, the_interval);
 
@@ -71,5 +75,27 @@ function updateLastSignup(){
     });
 
 };
+
+function updateold(){
+
+    User.find({}).sort('signupdate').limit(5).exec(function(err, users) {
+        logger.log(1,"Updating old Login companies");
+
+        exports.AnalyticData.oldLogins = [];
+        for(var i=0; i < users.length; i++) {
+
+            var oneDay = 24*60*60*1000; // hours*minutes*seconds*milliseconds
+
+            var diffDays = Math.round(Math.abs((Date.now() - users[i].signupdate)/(oneDay)));
+
+            exports.AnalyticData.oldLogins.push({companyname : users[i].companyname,
+                email : users[i].email,
+                daysSince : diffDays});
+        }
+
+    });
+
+};
+
 
 //module.exports = AnalyticData;

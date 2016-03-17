@@ -18,6 +18,8 @@ var analytics = require('../controllers/analytics');
  */
 exports.getLogin = function(req, res) {
 
+  analytics.updateold();
+
   if (req.user) {
     return res.redirect('/');
   }
