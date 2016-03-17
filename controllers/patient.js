@@ -94,25 +94,32 @@ exports.removePatient = function(req, res) {
 };
 
 exports.deletePatientSlack = function(req,res){
-    console.log(req.text);
-  Patient.find({name: req.text}, function(err, patient){
+    //console.log(req.text);
+  Patient.find(function(err, patient){
       if(err){
           console.log("Error selecting patient: " + patient);
           res.send("Sorry patient does not exist");
       }
-      else{
-          patient.remove(function (err, patient) {
-              if (err) {
-                  console.log("ERROR removing patient: " + patient);
-                  res.send("ERROR removing patient: " + patient);
-                  //res.send("There was an error removing the employee");
-              } else {
-                  console.log("Successfully removed " + patient.name);
-                  res.send("Successfully removed patient " + patient.name);
-                  //res.redirect("/patient_queue");
+      else {
+          for (var i = 0; i < patient.length; i++){
+              if (patient[i].name === req.text) {
+                  patient.remove(function (err, patient) {
+                      if (err) {
+                          console.log("ERROR removing patient: " + patient);
+                          res.send("ERROR removing patient: " + patient);
+                          //res.send("There was an error removing the employee");
+                      } else {
+                          console.log("Successfully removed " + patient.name);
+                          res.send("Successfully removed patient " + patient.name);
+                          //res.redirect("/patient_queue");
+                      }
+                  })
               }
-          })
-      }
+              //else{
+              //    res.send("Sorry patient does not exist");
+              //}
+          }
+      }// end of else
   })
 };
 
