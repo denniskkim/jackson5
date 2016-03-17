@@ -29,6 +29,9 @@ var subdomain = require('express-subdomain');
 var multer  = require('multer');
 var upload = multer({ dest: 'uploads/' });
 var rollbar = require('rollbar');
+var Analytics = require('./controllers/analytics');
+
+Analytics.startAnalytics();
 
 //var server = require('http').createServer(app);
 //var io = require('socket.io').listen(server);

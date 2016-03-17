@@ -28,6 +28,8 @@ exports.addPatient = function(req, res) {
          checkinHour: moment().subtract(Date.now().getTimezoneOffset(),'hour').format('h:mm:ss a'),
          */
         checkinTime: Date.now(),
+        checkoutTime: null,
+        checkedout: false,
         subdomainurl: req.user.subdomainurl,
         _admin_id: req.user.id
     }, function (err, patient) {
@@ -47,7 +49,7 @@ exports.addPatient = function(req, res) {
 exports.getPatients = function(req, res) {
 
 
-    Patient.find({subdomainurl: req.user.subdomainurl }, function (err, patients) {
+    Patient.find({subdomainurl: req.user.subdomainurl, checkedout: false }, function (err, patients) {
 
         if (err) { return next(err);  }
         if(!patients) { return next(new Error('Error finding patients'));}
@@ -80,15 +82,19 @@ exports.removePatient = function(req, res) {
             console.log("ERROR selecting patient: " + patient);
             //res.send("There was an error selecting the employee");
         } else {
-            patient.remove(function (err, patient) {
-                if (err) {
-                    console.log("ERROR removing patient: " + patient);
-                    //res.send("There was an error removing the employee");
-                } else {
-                    console.log("Successfully removed " + patient.name);
-                    res.redirect("/patient_queue");
-                }
-            })
+            patient.checkoutTime = Date.now();
+            patient.checkedout = true;
+            patient.save();
+
+            //patient.remove(function (err, patient) {
+            //    if (err) {
+            //        console.log("ERROR removing patient: " + patient);
+            //        //res.send("There was an error removing the employee");
+            //    } else {
+            //        console.log("Successfully removed " + patient.name);
+            //        res.redirect("/patient_queue");
+            //    }
+            //})
         }
     })
 };
