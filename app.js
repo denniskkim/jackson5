@@ -175,6 +175,7 @@ app.get('/patients_mode', function(req, res){
 app.get('/patient_queue', patientController.getPatients);
 app.post('/patient_queue', patientController.notifyPatients);
 app.delete('/delete_patient/:id', patientController.removePatient);
+app.delete('/removePatient', patientController.deletePatientSlack);
 
 
 app.get('/dashboard_admin', dashboardController.getBusinessOwnerDashboard);

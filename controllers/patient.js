@@ -94,6 +94,7 @@ exports.removePatient = function(req, res) {
 };
 
 exports.deletePatientSlack = function(req,res){
+    console.log(req.text);
   Patient.find({name: req.text}, function(err, patient){
       if(err){
           console.log("Error selecting patient: " + patient);
