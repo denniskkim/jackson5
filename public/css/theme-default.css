@@ -827,7 +827,7 @@ body.page-container-boxed .page-container {
   border-left: 0px;
 }
 .x-navigation.x-navigation-custom > li.xn-logo > a:hover {
-  background-color: #e0401d;
+  background-color: #fff;
 }
 .x-navigation.x-navigation-custom.x-navigation-minimized > li > a {
   padding: 15px 10px 15px 7px;
@@ -884,7 +884,7 @@ body.page-container-boxed .page-container {
   display: none;
 }
 .x-navigation .x-navigation-control:hover {
-  background: #e0401d;
+  background: #fff;
   border-bottom: 0px;
 }
 .x-navigation .x-navigation-control:before {
@@ -903,14 +903,14 @@ body.page-container-boxed .page-container {
 .x-navigation > li.xn-logo > a:first-child {
   font-size: 0px;
   text-indent: -9999px;
-  background: url("../img/logo.png") top center no-repeat #e34724;
+  background: url("../img/logo.svg") top center no-repeat #fff;
   padding: 0px;
   border-bottom: 0px;
   color: #FFF;
   height: 50px;
 }
 .x-navigation > li.xn-logo > a:first-child:hover {
-  background-color: #e0401d;
+  background-color: #fff;
 }
 .x-navigation > li.xn-profile {
   padding: 0px;
@@ -3884,7 +3884,7 @@ td.dataTables_empty {
   padding-top: 100px;
 }
 .login-container .login-box .login-logo {
-  background: url("../img/logo.png") top center no-repeat;
+  background: url("../img/logo.svg") top center no-repeat;
   width: 100%;
   height: 50px;
   float: left;
@@ -7344,7 +7344,7 @@ li.ext_zip {
     background-image: url("../img/jqyery/resize-icon@2x.png");
   }
   .x-navigation > li.xn-logo > a:first-child {
-    background-image: url("../img/logo@2x.png");
+    background-image: url("../img/logo-small.svg");
     background-size: 220px 50px;
   }
   .x-navigation.x-navigation-minimized > li.xn-logo > a:first-child {
