@@ -342,6 +342,9 @@
 <!-- START ADD EMPLOYEE  SCRIPT -->
 <script type="text/javascript">
     $(function () {
+        $(document).ready(function() {
+            $(".dropdown-toggle").dropdown();
+        });
         // Reset form when form is hidden
         $('.modal').on('hidden.bs.modal', function(){
             $(this).find('form')[0].reset();

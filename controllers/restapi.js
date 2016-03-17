@@ -2,7 +2,10 @@ var moment = require('moment');
 var Patient = require('../models/Patient');
 var Employee = require('../models/Employee');
 var User = require('../models/User');
-
+var Logger = require('le_node');
+var logger = new Logger({
+  token:'4ed0e98c-c21f-42f0-82ee-0031f09ca161'
+});
 
 /**
  * TODO - This works but needs better handling error, subdomain searching isnt working
@@ -45,10 +48,11 @@ exports.createPatient = function(req,res) {
       }
       else{
         res.status(500);
+        logger.log("error","Error creating patient for ID: " + req.query.id + err);
         res.json({
             type: false,
             data: "Error occured: " + err
-        })
+        });
       }
     });
     // console.log("Subdomain url is " + subdomainurl);
@@ -63,8 +67,16 @@ exports.createPatient = function(req,res) {
           "subdomainurl" : subdomainurl,
           "_admin_id" : id
       }, function(err, patient){
+          if(err) {
+            res.status(500);
+            logger.log("error","Error creating patient for ID: " + req.query.id + err);
+            res.json({
+              type: false,
+              data: "Error occured: " + err
+            });
+          }
           res.json(patient);
-          console.log("Sucessful");
+          logger.log(2,"Create Patient Success:" + patient);
     })
   // }
 };
@@ -88,6 +100,7 @@ exports.deletePatient = function(req, res){
   Patient.findOne({email : email}, function(err, patient) {
     if(err) {
       res.status(500);
+      logger.log("error","Error deleting patient for ID: " + req.query.id + err);
       res.json({
           type: false,
           data: "Error occured: " + err
@@ -98,12 +111,14 @@ exports.deletePatient = function(req, res){
         Patient.remove({email : email}, function (err){
           if(err) {
             res.status(500);
+            logger.log("error","Error deleting patient for ID: " + req.query.id);
             res.json({
                 type: false,
                 data: "Error occured: " + err
             });
           }
           else {
+            logger.log(2,"Deleted Patient Success:" + email);
             res.json({
               message : "Removed patient with email " + email
             });
@@ -148,6 +163,7 @@ exports.getPatients = function(req,res) {
     //_id: req.query.id
     Patient.find({_admin_id: req.query.id}, function (err, patients) {
         if (err) {
+            logger.log("error","Error getting patients for ID: " + req.query.id + err);
             res.status(500);
             res.json({
                 type: false,
@@ -166,9 +182,11 @@ exports.getPatients = function(req,res) {
                     appointments.push({"name" : patientName, "Check-In Time" : checkinTime});
                 }
                 res.send(appointments);
-
+                logger.log(2,"View Patients Success:" + patients);
             }
             else {
+                logger.log("error","Error getting patients for ID: " + req.query.id);
+                res.status(500);
                 res.json({
                     type: false,
                     data: "bad"
@@ -178,6 +196,7 @@ exports.getPatients = function(req,res) {
     })
 };
 
+//TODO ADD SEND PASSWORD!
 /**
 * @api {post} /createEmployee Create new employee
 * @apiName createEmployee
@@ -222,7 +241,6 @@ exports.createEmployee = function(req, res) {
                     console.log(err);
 
                     //TODO - display error message
-                    res.redirect('/');
 
                     //res.send("There was a problem adding the employee to the databaase");
                 } else {
@@ -231,16 +249,20 @@ exports.createEmployee = function(req, res) {
 
                     //console.log('Creating new employee: ' + employee);
                     res.json(employee);
-                    console.log("Success!");
+                    logger.log(2,"Create Employee Success:" + employee);
 
                     //emailEmployee(employee, req.user, password);
                 }
             });
         }
         else if(err) {
+            logger.log("error","Error creating employee for ID: " + req.query.id + err);
+            res.status(500);
             res.json({"message" : err});
         }
         else {
+            res.status(500);
+            logger.log("error","Error getting employees for ID: " + req.query.id);
             res.json({"message" : "Found existing employee"});
         }
       })
@@ -274,6 +296,7 @@ exports.createEmployee = function(req, res) {
 exports.getEmployees = function(req,res) {
     Employee.find({_admin_id: req.query.id}, function (err, employees) {
         if (err) {
+            logger.log("error","Error getting employees for ID: " + req.query.id + err);
             res.status(500);
             res.json({
                 type: false,
@@ -288,11 +311,13 @@ exports.getEmployees = function(req,res) {
                     employeeList.push({"name" : employees[i].name, "email" : employees[i].email, "phone" : employees[i].phonenumber });
                 }
                 res.json(employeeList);
+                logger.log(2,"Find Employee Success:" + employees);
             }
             else {
+              res.status(500);
                 res.json({
                     type: false,
-                    data: "bad"
+                    data: "Error occured: "
                 })
             }
         }
@@ -317,6 +342,7 @@ exports.deleteEmployee = function(req, res){
   var id = req.query.id;
   Employee.findOne({email : email}, function(err, employee) {
     if(err) {
+      logger.log("error","Error deleting employee with email: " + email + err);
       res.status(500);
       res.json({
           type: false,
@@ -327,6 +353,7 @@ exports.deleteEmployee = function(req, res){
       if(employee && employee._admin_id == id){
         Employee.remove({email : email}, function (err){
           if(err) {
+            logger.log("error","Error deleting employee with email: " + email);
             res.status(500);
             res.json({
                 type: false,
@@ -334,6 +361,7 @@ exports.deleteEmployee = function(req, res){
             });
           }
           else {
+            logger.log(2,"Deleted Employee Success:" + email);
             res.json({
               message : "Removed employee with email " + email
             });
