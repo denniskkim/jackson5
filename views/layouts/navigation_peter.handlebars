@@ -111,9 +111,6 @@
                                 <div class="widget-int">1,977</div>
                             </div>
                         </div>
-                        <div class="widget-controls">
-                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
-                        </div>
                     </div>
                     <!-- END WIDGET SLIDER -->
 
@@ -129,9 +126,6 @@
                             <div class="widget-int num-count">48</div>
                             <div class="widget-title">New messages</div>
                             <div class="widget-subtitle">In your mailbox</div>
-                        </div>
-                        <div class="widget-controls">
-                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
                         </div>
                     </div>
                     <!-- END WIDGET MESSAGES -->
@@ -149,9 +143,6 @@
                             <div class="widget-title">Registered Businesses</div>
                             <div class="widget-subtitle">Use your product</div>
                         </div>
-                        <div class="widget-controls">
-                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
-                        </div>
                     </div>
                     <!-- END WIDGET REGISTRED -->
 
@@ -162,9 +153,6 @@
                     <div class="widget widget-danger widget-padding-sm">
                         <div class="widget-big-int plugin-clock">00:00</div>
                         <div class="widget-subtitle plugin-date">Loading...</div>
-                        <div class="widget-controls">
-                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="left" title="Remove Widget"><span class="fa fa-times"></span></a>
-                        </div>
                         <div class="widget-buttons widget-c3">
                             <div class="col">
                                 <a href="#"><span class="fa fa-clock-o"></span></a>
@@ -184,7 +172,7 @@
             <!-- END WIDGETS -->
 
             <div class="row">
-                <div class="col-md-8">
+                <div class="col-md-12">
 
                     <!-- START SALES BLOCK -->
                     <div class="panel panel-default">
@@ -193,24 +181,75 @@
                                 <h3>Website Throughput</h3>
                                 <span>View the traffic visiting your website</span>
                             </div>
-                            <ul class="panel-controls panel-controls-title">
-                                <li>
-                                    <div id="reportrange" class="dtrange">
-                                        <span></span><b class="caret"></b>
-                                    </div>
-                                </li>
-                                <li><a href="#" class="panel-fullscreen rounded"><span class="fa fa-expand"></span></a></li>
-                            </ul>
 
                         </div>
                         <div class="panel-body">
-                            <iframe id="newrelic_frame" src="https://rpm.newrelic.com/public/charts/kRPxIEc5t3a" width="750" height="300" scrolling="yes" frameborder="no"></iframe>
+                            <iframe id="newrelic_frame" src="https://rpm.newrelic.com/public/charts/dHU0Ot8k6RN" width="1130" height="300" scrolling="yes" frameborder="no"></iframe>
                         </div>
                     </div>
                     <!-- END SALES BLOCK -->
 
                 </div>
-                <div class="col-md-4">
+
+            </div>
+
+            <div class="row">
+                <div class="col-md-6">
+
+                    <!-- START OldLogins BLOCK -->
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title-box">
+                                <h3>Old Logins</h3>
+                                <span>Businesses that haven't logged in for a while</span>
+                            </div>
+                        </div>
+                        <div class="panel-body panel-body-table">
+
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped">
+                                    <thead>
+                                    <tr>
+                                        <th width="30%">Company</th>
+                                        <th width="50%">Email</th>
+                                        <th width="20%">Days Since</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td><strong>{{{analyticData.oldLogins.0.companyname}}}</strong></td>
+                                        <td><strong>{{{analyticData.oldLogins.0.email}}}</strong></td>
+                                        <td><span class="label label-danger">{{{analyticData.oldLogins.0.daysSince}}}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>{{{analyticData.oldLogins.1.companyname}}}</strong></td>
+                                        <td><strong>{{{analyticData.oldLogins.1.email}}}</strong></td>
+                                        <td><span class="label label-danger">{{{analyticData.oldLogins.1.daysSince}}}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>{{{analyticData.oldLogins.2.companyname}}}</strong></td>
+                                        <td><strong>{{{analyticData.oldLogins.2.email}}}</strong></td>
+                                        <td><span class="label label-danger">{{{analyticData.oldLogins.2.daysSince}}}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>{{{analyticData.oldLogins.3.companyname}}}</strong></td>
+                                        <td><strong>{{{analyticData.oldLogins.3.email}}}</strong></td>
+                                        <td><span class="label label-danger">{{{analyticData.oldLogins.3.daysSince}}}</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>{{{analyticData.oldLogins.4.companyname}}}</strong></td>
+                                        <td><strong>{{{analyticData.oldLogins.4.email}}}</strong></td>
+                                        <td><span class="label label-danger">{{{analyticData.oldLogins.4.daysSince}}}</span></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
 
                     <!-- START PROJECTS BLOCK -->
                     <div class="panel panel-default">
@@ -219,17 +258,6 @@
                                 <h3>New Businesses</h3>
                                 <span>Signup activity</span>
                             </div>
-                            <ul class="panel-controls" style="margin-top: 2px;">
-                                <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
-                                <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span> Collapse</a></li>
-                                        <li><a href="#" class="panel-remove"><span class="fa fa-times"></span> Remove</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
                         </div>
                         <div class="panel-body panel-body-table">
 
@@ -275,75 +303,6 @@
                         </div>
                     </div>
                     <!-- END PROJECTS BLOCK -->
-
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-
-                    <!-- START OldLogins BLOCK -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <div class="panel-title-box">
-                                <h3>Old Logins</h3>
-                                <span>Businesses that haven't logged in for a while</span>
-                            </div>
-                            <ul class="panel-controls" style="margin-top: 2px;">
-                                <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
-                                <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span></a></li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-cog"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span> Collapse</a></li>
-                                        <li><a href="#" class="panel-remove"><span class="fa fa-times"></span> Remove</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="panel-body panel-body-table">
-
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th width="30%">Company</th>
-                                        <th width="60%">Email</th>
-                                        <th width="10%">Days Since</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td><strong>{{{analyticData.oldLogins.0.companyname}}}</strong></td>
-                                        <td><strong>{{{analyticData.oldLogins.0.email}}}</strong></td>
-                                        <td><span class="label label-danger">{{{analyticData.oldLogins.0.daysSince}}}</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>{{{analyticData.oldLogins.1.companyname}}}</strong></td>
-                                        <td><strong>{{{analyticData.oldLogins.1.email}}}</strong></td>
-                                        <td><span class="label label-danger">{{{analyticData.oldLogins.1.daysSince}}}</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>{{{analyticData.oldLogins.2.companyname}}}</strong></td>
-                                        <td><strong>{{{analyticData.oldLogins.2.email}}}</strong></td>
-                                        <td><span class="label label-danger">{{{analyticData.oldLogins.2.daysSince}}}</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>{{{analyticData.oldLogins.3.companyname}}}</strong></td>
-                                        <td><strong>{{{analyticData.oldLogins.3.email}}}</strong></td>
-                                        <td><span class="label label-danger">{{{analyticData.oldLogins.3.daysSince}}}</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>{{{analyticData.oldLogins.4.companyname}}}</strong></td>
-                                        <td><strong>{{{analyticData.oldLogins.4.email}}}</strong></td>
-                                        <td><span class="label label-danger">{{{analyticData.oldLogins.4.daysSince}}}</span></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-
-                        </div>
-                    </div>
 
                 </div>
             </div>

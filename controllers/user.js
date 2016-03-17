@@ -17,7 +17,7 @@ var analytics = require('../controllers/analytics');
  * Login page.
  */
 exports.getLogin = function(req, res) {
-  
+
   if (req.user) {
     return res.redirect('/');
   }
