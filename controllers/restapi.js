@@ -1,6 +1,7 @@
 var moment = require('moment');
 var Patient = require('../models/Patient');
 var Employee = require('../models/Employee');
+var nodemailer = require('nodemailer');
 var User = require('../models/User');
 var Logger = require('le_node');
 var logger = new Logger({
@@ -55,8 +56,6 @@ exports.createPatient = function(req,res) {
         });
       }
     });
-    // console.log("Subdomain url is " + subdomainurl);
-    // if(subdomainurl != undefined) {
       Patient.create({
          "name": name,
           "phone_number" : phone_number,
@@ -84,7 +83,7 @@ exports.createPatient = function(req,res) {
 };
 
 /**
-* @api {get} /deletePatient Delete patient from business
+* @api {get} /deletePatient Delete patient
 * @apiName deletePatient
 * @apiGroup Patient
 * @apiParam {String} id Business' unique ID
@@ -146,7 +145,7 @@ exports.deletePatient = function(req, res){
 };
 
 /**
-* @api {get} /checkoutPatient Checkout patient from business
+* @api {get} /checkoutPatient Checkout patient
 * @apiName checkoutPatient
 * @apiGroup Patient
 * @apiParam {String} id Business' unique ID
@@ -239,7 +238,6 @@ exports.checkoutPatient = function(req, res){
           ]
  */
  exports.getPatients = function(req,res) {
-     //_id: req.query.id
      Patient.find({_admin_id: req.query.id}, function (err, patients) {
          if (err) {
              logger.log(5,"Error getting patients for ID: " + req.query.id + err);
@@ -257,7 +255,6 @@ exports.checkoutPatient = function(req, res){
                  for (var i = 0; i < patients.length; i++) {
                      var patientName = patients[i].name;
                      var checkinTime = patients[i].checkinHour;
-                     // appointments.push(patients[i].name, patients[i].checkinHour);
                      appointments.push({"name" : patientName, "Check-In Time" : checkinTime});
                  }
                  res.send(appointments);
@@ -302,10 +299,11 @@ exports.createEmployee = function(req, res) {
     var name = req.query.name;
     var number = req.query.number;
     var email = req.query.email;
-    var password = "password";
+    var password = generateRandomString();
     var company_id = req.query.id;
     Employee.find({email: req.query.email}, function (err, employee) {
         if (employee.length == 0) {
+
             Employee.create({
                 name: name,
                 phone_number: number,
@@ -314,28 +312,29 @@ exports.createEmployee = function(req, res) {
                 _admin_id: new Object(company_id)
             }, function (err, employee) {
                 if (err) {
-                    // Send logs to logentries
-                    //logger.log(4,"Create employee failed: "+err);
-
-                    console.log("ERROR creating employee: ");
-                    console.log(err);
-
-                    //TODO - display error message
-
                     res.status(500)
                     res.json({
                         type: false,
                         data: "Error occured: " + err
                     });
                 } if(employee) {
-                    // Send logs to logentries
-                    //logger.log(2,"Create employee Success: "+err);
+                    User.findOne({_id : company_id}, function(err, user) {
+                      if(user){
+                        emailEmployee(employee, user, password);
+                        res.status(200);
+                        res.json(employee);
+                        logger.log(2,"Create Employee Success:" + employee);
+                        console.log(user);
+                      }
+                      else {
+                        res.status(500)
+                        res.json({
+                            type: false,
+                            data: "Could not find user with id: " + company_id
+                        });
+                      }
+                    })
 
-                    //console.log('Creating new employee: ' + employee);
-                    res.json(employee);
-                    logger.log(2,"Create Employee Success:" + employee);
-
-                    //emailEmployee(employee, req.user, password);
                 }
             });
         }
@@ -409,7 +408,7 @@ exports.getEmployees = function(req,res) {
 };
 
 /**
-* @api {get} /deleteEmployee Delete employee from business
+* @api {get} /deleteEmployee Delete employee
 * @apiName deleteEmployee
 * @apiGroup Employee
 * @apiParam {String} id Business' unique ID
@@ -463,3 +462,47 @@ exports.deleteEmployee = function(req, res){
     }
   })
 };
+
+function generateRandomString() {
+    var text = "";
+    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    for( var i=0; i < 8; i++ )
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+    return text;
+}
+
+function emailEmployee(employee, admin, password) {
+    // Create SMTP transporter object
+    var options = {
+        service: 'gmail',
+        auth: {
+            user: 'donotreply.receptional@gmail.com',
+            pass: 'nightowls1'
+        }
+    };
+    console.log(admin);
+    var companyname = admin.companyname;
+    var subdomainurl = admin.subdomainurl;
+    var emailtext = "Hello " + employee.name + "! Welcome to receptional. You have been added to the company: " + companyname + ". You can access your company receptional website at: " + subdomainurl + ".receptional.xyz. You're password is " + password + ".";
+    var transporter = nodemailer.createTransport(options);
+    // Setup email data
+    var mailOptions = {
+        from: '"Receptional.xyz" <donotreply.receptional@gmail.com>',
+        to: employee.email,
+        subject: "Welcome to Receptional",
+        text: emailtext,
+        html: emailtext
+    };
+    // Send email
+    transporter.sendMail(mailOptions, function(error, info) {
+        if(error) {
+            console.log(error);
+        }
+        else {
+            console.log('Message sent: ' + info.response);
+            console.log(emailtext);
+        }
+    });
+}
