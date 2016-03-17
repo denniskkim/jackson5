@@ -99,42 +99,42 @@ exports.removePatient = function(req, res) {
     })
 };
 
-//exports.deletePatientSlack = function(req,res){
-//
-//  Patient.find({}, function(err, patient){
-//      if(err){
-//          console.log("Error selecting patient: " + patient);
-//          res.send("Sorry patient does not exist");
-//      }
-//      else {
-//          if(patient) {
-//              console.log("This is the error rororororor");
-//              //res.send("Parameter1" + req.text);
-//              //for (var i = 0; i < patient.length; i++) {
-//              //    res.send("Parameter" + req.text);
-//              //    if (patient[i].name === req.text) {
-//              //        patient.remove(function (err, patient) {
-//              //            if (err) {
-//              //                console.log("ERROR removing patient: " + patient);
-//              //                res.send("ERROR removing patient: " + patient);
-//              //                //res.send("There was an error removing the employee");
-//              //            } else {
-//              //                console.log("Successfully removed " + patient.name);
-//              //                res.send("Successfully removed patient " + patient.name);
-//              //                //res.redirect("/patient_queue");
-//              //            }
-//              //        })
-//              //    }
-//              //}
-//          }
-//
-//          else{
-//              res.send("There is currently no visitors");
-//          }
-//          res.send("Removing Patient");
-//      }// end of else
-//  })
-//};
+exports.deletePatientSlack = function(req,res){
+
+  Patient.find({}, function(err, patient){
+      if(err){
+          console.log("Error selecting patient: " + patient);
+          res.send("Sorry patient does not exist");
+      }
+      else {
+          if(patient) {
+              console.log("This is the error rororororor");
+              res.send("Parameter1" + req.text);
+              for (var i = 0; i < patient.length; i++) {
+                  res.send("Parameter" + req.text);
+                  if (patient[i].name === req.text) {
+                      patient.remove(function (err, patient) {
+                          if (err) {
+                              console.log("ERROR removing patient: " + patient);
+                              res.send("ERROR removing patient: " + patient);
+                              //res.send("There was an error removing the employee");
+                          } else {
+                              console.log("Successfully removed " + patient.name);
+                              res.send("Successfully removed patient " + patient.name);
+                              //res.redirect("/patient_queue");
+                          }
+                      })
+                  }
+              }
+          }
+
+          else{
+              res.send("There is currently no visitors");
+          }
+          res.send("Removing Patient");
+      }// end of else
+  })
+};
 
 exports.notifyPatients = function(req, res) {
     
