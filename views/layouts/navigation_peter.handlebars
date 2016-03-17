@@ -49,11 +49,11 @@
                 </div>
             </li>
             <li class="xn-title">Navigation</li>
-            <li class="active">
+            <li class="">
                 <a href="dashboard_peter"><span class="fa fa-dashboard"></span> <span class="xn-text">Overview</span></a>
             </li>
-            <li class="active">
-                <a href="/settings_peter"><span class="fa fa-desktop"></span> <span class="xn-text">Settings</span></a>
+            <li class="">
+                <a href="/settings"><span class="fa fa-desktop"></span> <span class="xn-text">Settings</span></a>
             </li>
         </ul>
         <!-- END X-NAVIGATION -->
@@ -119,9 +119,6 @@
                                 <div class="widget-int">1,977</div>
                             </div>
                         </div>
-                        <div class="widget-controls">
-                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
-                        </div>
                     </div>
                     <!-- END WIDGET SLIDER -->
 
@@ -129,7 +126,7 @@
                 <div class="col-md-3">
 
                     <!-- START WIDGET MESSAGES -->
-                    <div class="widget widget-default widget-item-icon" onclick="location.href='pages-messages.html';">
+                    <div class="widget widget-default widget-item-icon" onclick="location.href='/404';">
                         <div class="widget-item-left">
                             <span class="fa fa-envelope"></span>
                         </div>
@@ -137,9 +134,6 @@
                             <div class="widget-int num-count">48</div>
                             <div class="widget-title">New messages</div>
                             <div class="widget-subtitle">In your mailbox</div>
-                        </div>
-                        <div class="widget-controls">
-                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
                         </div>
                     </div>
                     <!-- END WIDGET MESSAGES -->
@@ -157,9 +151,6 @@
                             <div class="widget-title">Registered Businesses</div>
                             <div class="widget-subtitle">Use your product</div>
                         </div>
-                        <div class="widget-controls">
-                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="top" title="Remove Widget"><span class="fa fa-times"></span></a>
-                        </div>
                     </div>
                     <!-- END WIDGET REGISTRED -->
 
@@ -170,9 +161,6 @@
                     <div class="widget widget-danger widget-padding-sm">
                         <div class="widget-big-int plugin-clock">00:00</div>
                         <div class="widget-subtitle plugin-date">Loading...</div>
-                        <div class="widget-controls">
-                            <a href="#" class="widget-control-right widget-remove" data-toggle="tooltip" data-placement="left" title="Remove Widget"><span class="fa fa-times"></span></a>
-                        </div>
                         <div class="widget-buttons widget-c3">
                             <div class="col">
                                 <a href="#"><span class="fa fa-clock-o"></span></a>
@@ -409,11 +397,13 @@
 <script type="text/javascript" src="js/plugins/daterangepicker/daterangepicker.js"></script>
 <!-- END THIS PAGE PLUGINS-->
 
-<!-- START TEMPLATE -->
+<!-- START TEMPLATE
+// ISSUE: Theme change isnt saved when navigating to another page.
+<script type="text/javascript" src="js/settings.js"></script> -->
+
 <script type="text/javascript" src="js/plugins.js"></script>
 <script type="text/javascript" src="js/actions.js"></script>
 
-<script type="text/javascript" src="js/demo_dashboard.js"></script>
 <!-- END TEMPLATE -->
 <!-- END SCRIPTS -->
 </body>
