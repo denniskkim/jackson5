@@ -1,425 +1,369 @@
 <html>
-	<head>
-		<title>Form Builder</title>
-        <link href="http://bootsnipp.com/j87klPolka/assets3/css/custom.css" rel="stylesheet">
+<head>
+    <title>Form Builder</title>
+    <link href="http://bootsnipp.com/j87klPolka/assets3/css/custom.css" rel="stylesheet">
 
-        <!--<link rel="stylesheet" type="text/css" href="css/Sign_in.css">-->
+    <!--<link rel="stylesheet" type="text/css" href="css/Sign_in.css">-->
 
-    	<!-- Custom CSS -->
-        <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" id="theme" href="css/theme-default.css"/>
 
 
-        <title>Form Builder</title>
+    <title>Form Builder</title>
 
-        <!-- Custom Fonts -->
-        <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-        <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
-        <!-- Script for Rollbar (Captures JS exceptions) -->
-        <script>
-            var _rollbarConfig = {
-                accessToken: "91a2c9cd50784fb88107e52b567f71e3",
-                captureUncaught: true,
-                payload: {
-                    environment: "test"
-                }
-            };
-            !function(r){function o(e){if(t[e])return t[e].exports;var n=t[e]={exports:{},id:e,loaded:!1};return r[e].call(n.exports,n,n.exports,o),n.loaded=!0,n.exports}var t={};return o.m=r,o.c=t,o.p="",o(0)}([function(r,o,t){"use strict";var e=t(1).Rollbar,n=t(2);_rollbarConfig.rollbarJsUrl=_rollbarConfig.rollbarJsUrl||"//d37gvrvc0wt4s1.cloudfront.net/js/v1.8/rollbar.min.js";var a=e.init(window,_rollbarConfig),i=n(a,_rollbarConfig);a.loadFull(window,document,!_rollbarConfig.async,_rollbarConfig,i)},function(r,o){"use strict";function t(r){return function(){try{return r.apply(this,arguments)}catch(o){try{console.error("[Rollbar]: Internal error",o)}catch(t){}}}}function e(r,o,t){window._rollbarWrappedError&&(t[4]||(t[4]=window._rollbarWrappedError),t[5]||(t[5]=window._rollbarWrappedError._rollbarContext),window._rollbarWrappedError=null),r.uncaughtError.apply(r,t),o&&o.apply(window,t)}function n(r){var o=function(){var o=Array.prototype.slice.call(arguments,0);e(r,r._rollbarOldOnError,o)};return o.belongsToShim=!0,o}function a(r){this.shimId=++s,this.notifier=null,this.parentShim=r,this._rollbarOldOnError=null}function i(r){var o=a;return t(function(){if(this.notifier)return this.notifier[r].apply(this.notifier,arguments);var t=this,e="scope"===r;e&&(t=new o(this));var n=Array.prototype.slice.call(arguments,0),a={shim:t,method:r,args:n,ts:new Date};return window._rollbarShimQueue.push(a),e?t:void 0})}function l(r,o){if(o.hasOwnProperty&&o.hasOwnProperty("addEventListener")){var t=o.addEventListener;o.addEventListener=function(o,e,n){t.call(this,o,r.wrap(e),n)};var e=o.removeEventListener;o.removeEventListener=function(r,o,t){e.call(this,r,o&&o._wrapped?o._wrapped:o,t)}}}var s=0;a.init=function(r,o){var e=o.globalAlias||"Rollbar";if("object"==typeof r[e])return r[e];r._rollbarShimQueue=[],r._rollbarWrappedError=null,o=o||{};var i=new a;return t(function(){if(i.configure(o),o.captureUncaught){i._rollbarOldOnError=r.onerror,r.onerror=n(i);var t,a,s="EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");for(t=0;t<s.length;++t)a=s[t],r[a]&&r[a].prototype&&l(i,r[a].prototype)}return r[e]=i,i})()},a.prototype.loadFull=function(r,o,e,n,a){var i=function(){var o;if(void 0===r._rollbarPayloadQueue){var t,e,n,i;for(o=new Error("rollbar.js did not load");t=r._rollbarShimQueue.shift();)for(n=t.args,i=0;i<n.length;++i)if(e=n[i],"function"==typeof e){e(o);break}}"function"==typeof a&&a(o)},l=!1,s=o.createElement("script"),u=o.getElementsByTagName("script")[0],p=u.parentNode;s.crossOrigin="",s.src=n.rollbarJsUrl,s.async=!e,s.onload=s.onreadystatechange=t(function(){if(!(l||this.readyState&&"loaded"!==this.readyState&&"complete"!==this.readyState)){s.onload=s.onreadystatechange=null;try{p.removeChild(s)}catch(r){}l=!0,i()}}),p.insertBefore(s,u)},a.prototype.wrap=function(r,o){try{var t;if(t="function"==typeof o?o:function(){return o||{}},"function"!=typeof r)return r;if(r._isWrap)return r;if(!r._wrapped){r._wrapped=function(){try{return r.apply(this,arguments)}catch(o){throw o._rollbarContext=t()||{},o._rollbarContext._wrappedSource=r.toString(),window._rollbarWrappedError=o,o}},r._wrapped._isWrap=!0;for(var e in r)r.hasOwnProperty(e)&&(r._wrapped[e]=r[e])}return r._wrapped}catch(n){return r}};for(var u="log,debug,info,warn,warning,error,critical,global,configure,scope,uncaughtError".split(","),p=0;p<u.length;++p)a.prototype[u[p]]=i(u[p]);r.exports={Rollbar:a,_rollbarWindowOnError:e}},function(r,o){"use strict";r.exports=function(r,o){return function(t){if(!t&&!window._rollbarInitialized){var e=window.RollbarNotifier,n=o||{},a=n.globalAlias||"Rollbar",i=window.Rollbar.init(n,r);i._processShimQueue(window._rollbarShimQueue||[]),window[a]=i,window._rollbarInitialized=!0,e.processPayloads()}}}}]);
-        </script>
-
-        <!-- Scripts for Logentries -->
-        <script src="../public/js/le.min.js"></script>
-        <script>
-            // Set up le.js
-            LE.init({token: '02da12dd-d09a-4c93-86da-ec1deb507831', page_info: 'per-entry'})
-        </script>
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <script>
-            function allowDrop(ev) {
-                ev.preventDefault();
+    <!-- Script for Rollbar (Captures JS exceptions) -->
+    <script>
+        var _rollbarConfig = {
+            accessToken: "91a2c9cd50784fb88107e52b567f71e3",
+            captureUncaught: true,
+            payload: {
+                environment: "test"
             }
-            function drag(ev) {
-                ev.dataTransfer.setData("text", ev.target.id);
+        };
+        !function(r){function o(e){if(t[e])return t[e].exports;var n=t[e]={exports:{},id:e,loaded:!1};return r[e].call(n.exports,n,n.exports,o),n.loaded=!0,n.exports}var t={};return o.m=r,o.c=t,o.p="",o(0)}([function(r,o,t){"use strict";var e=t(1).Rollbar,n=t(2);_rollbarConfig.rollbarJsUrl=_rollbarConfig.rollbarJsUrl||"//d37gvrvc0wt4s1.cloudfront.net/js/v1.8/rollbar.min.js";var a=e.init(window,_rollbarConfig),i=n(a,_rollbarConfig);a.loadFull(window,document,!_rollbarConfig.async,_rollbarConfig,i)},function(r,o){"use strict";function t(r){return function(){try{return r.apply(this,arguments)}catch(o){try{console.error("[Rollbar]: Internal error",o)}catch(t){}}}}function e(r,o,t){window._rollbarWrappedError&&(t[4]||(t[4]=window._rollbarWrappedError),t[5]||(t[5]=window._rollbarWrappedError._rollbarContext),window._rollbarWrappedError=null),r.uncaughtError.apply(r,t),o&&o.apply(window,t)}function n(r){var o=function(){var o=Array.prototype.slice.call(arguments,0);e(r,r._rollbarOldOnError,o)};return o.belongsToShim=!0,o}function a(r){this.shimId=++s,this.notifier=null,this.parentShim=r,this._rollbarOldOnError=null}function i(r){var o=a;return t(function(){if(this.notifier)return this.notifier[r].apply(this.notifier,arguments);var t=this,e="scope"===r;e&&(t=new o(this));var n=Array.prototype.slice.call(arguments,0),a={shim:t,method:r,args:n,ts:new Date};return window._rollbarShimQueue.push(a),e?t:void 0})}function l(r,o){if(o.hasOwnProperty&&o.hasOwnProperty("addEventListener")){var t=o.addEventListener;o.addEventListener=function(o,e,n){t.call(this,o,r.wrap(e),n)};var e=o.removeEventListener;o.removeEventListener=function(r,o,t){e.call(this,r,o&&o._wrapped?o._wrapped:o,t)}}}var s=0;a.init=function(r,o){var e=o.globalAlias||"Rollbar";if("object"==typeof r[e])return r[e];r._rollbarShimQueue=[],r._rollbarWrappedError=null,o=o||{};var i=new a;return t(function(){if(i.configure(o),o.captureUncaught){i._rollbarOldOnError=r.onerror,r.onerror=n(i);var t,a,s="EventTarget,Window,Node,ApplicationCache,AudioTrackList,ChannelMergerNode,CryptoOperation,EventSource,FileReader,HTMLUnknownElement,IDBDatabase,IDBRequest,IDBTransaction,KeyOperation,MediaController,MessagePort,ModalWindow,Notification,SVGElementInstance,Screen,TextTrack,TextTrackCue,TextTrackList,WebSocket,WebSocketWorker,Worker,XMLHttpRequest,XMLHttpRequestEventTarget,XMLHttpRequestUpload".split(",");for(t=0;t<s.length;++t)a=s[t],r[a]&&r[a].prototype&&l(i,r[a].prototype)}return r[e]=i,i})()},a.prototype.loadFull=function(r,o,e,n,a){var i=function(){var o;if(void 0===r._rollbarPayloadQueue){var t,e,n,i;for(o=new Error("rollbar.js did not load");t=r._rollbarShimQueue.shift();)for(n=t.args,i=0;i<n.length;++i)if(e=n[i],"function"==typeof e){e(o);break}}"function"==typeof a&&a(o)},l=!1,s=o.createElement("script"),u=o.getElementsByTagName("script")[0],p=u.parentNode;s.crossOrigin="",s.src=n.rollbarJsUrl,s.async=!e,s.onload=s.onreadystatechange=t(function(){if(!(l||this.readyState&&"loaded"!==this.readyState&&"complete"!==this.readyState)){s.onload=s.onreadystatechange=null;try{p.removeChild(s)}catch(r){}l=!0,i()}}),p.insertBefore(s,u)},a.prototype.wrap=function(r,o){try{var t;if(t="function"==typeof o?o:function(){return o||{}},"function"!=typeof r)return r;if(r._isWrap)return r;if(!r._wrapped){r._wrapped=function(){try{return r.apply(this,arguments)}catch(o){throw o._rollbarContext=t()||{},o._rollbarContext._wrappedSource=r.toString(),window._rollbarWrappedError=o,o}},r._wrapped._isWrap=!0;for(var e in r)r.hasOwnProperty(e)&&(r._wrapped[e]=r[e])}return r._wrapped}catch(n){return r}};for(var u="log,debug,info,warn,warning,error,critical,global,configure,scope,uncaughtError".split(","),p=0;p<u.length;++p)a.prototype[u[p]]=i(u[p]);r.exports={Rollbar:a,_rollbarWindowOnError:e}},function(r,o){"use strict";r.exports=function(r,o){return function(t){if(!t&&!window._rollbarInitialized){var e=window.RollbarNotifier,n=o||{},a=n.globalAlias||"Rollbar",i=window.Rollbar.init(n,r);i._processShimQueue(window._rollbarShimQueue||[]),window[a]=i,window._rollbarInitialized=!0,e.processPayloads()}}}}]);
+    </script>
+
+    <!-- Scripts for Logentries -->
+    <script src="frontend/js/le.min.js"></script>
+    <script>
+        // Set up le.js
+        LE.init({token: '02da12dd-d09a-4c93-86da-ec1deb507831', page_info: 'per-entry'})
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <script>
+        var counter = 0;
+
+        function allowDrop(ev) {
+            ev.preventDefault();
+        }
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+        function drop(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            //Deep copy - drag & copy
+            var nodeCopy = document.getElementById(data).cloneNode(true);
+            ev.target.appendChild(nodeCopy);
+        }
+
+        function changeTextID() {
+            $(this).on("drop", function() {
+                var idChange = $('div[id^="textfield"]:last');
+                var num = parseInt(idChange.prop('id').match(/\d+/g), 10) +1;
+                idChange.prop('id', 'textfield' + num);
+                var labelChange = $('label[id^="txtlabel"]:last');
+                var num1= parseInt(labelChange.prop('id').match(/\d+/g), 10) +1;
+                labelChange.prop('id', 'txtlabel' + num);
+            });
+        }
+
+        function changeDropID() {
+            $(this).on("drop", function() {
+                var idChange = $('div[id^="dropdowndrop"]:last');
+                var num = parseInt(idChange.prop('id').match(/\d+/g), 10) +1;
+                idChange.prop('id', 'dropdowndrop' + num);
+                var labelChange = $('label[id^="droplabel"]:last');
+                var num1= parseInt(labelChange.prop('id').match(/\d+/g), 10) +1;
+                labelChange.prop('id', 'droplabel' + num);
+            });
+        }
+
+        function changeRadioID() {
+            $(this).on("drop", function() {
+                var idChange = $('div[id^="radiodrop"]:last');
+                var num = parseInt(idChange.prop('id').match(/\d+/g), 10) +1;
+                idChange.prop('id', 'radiodrop' + num);
+                var labelChange = $('label[id^="radlabel"]:last');
+                var num1= parseInt(labelChange.prop('id').match(/\d+/g), 10) +1;
+                labelChange.prop('id', 'radlabel' + num);
+            });
+        }
+
+        function dropDelete(ev) {
+            ev.preventDefault();
+            var data = ev.dataTransfer.getData("text");
+            var element = document.getElementById(data);
+            element.parentNode.removeChild(element);
+        }
+
+        function addDropDownOption() {
+            var textArea = "<div class='col-md-9'><input type='text' class='form-control' name='labelname' id='defaultOption' placeholder='Option 1' value=''/></div></br>";
+
+            /*for (i = 1; i < 10; i++) {
+                $('#defaultOption').attr('id', 'id' + i);
+            }*/
+
+            var textLabel = "<label class='col-md-3 control-label'>Option</label>";
+            var optionDiv = $('#option-div');
+            optionDiv.append(textLabel);
+            optionDiv.append(textArea);
+        }
+
+        function changeOption() {
+            for (i = 0; i <= counter; i++) {
+                var text = $('#defaultOption').val();
+                var option = $('<option></option>').text(text);
+                $("#options").append(option);
             }
-            function drop(ev) {
-                ev.preventDefault();
-                var data = ev.dataTransfer.getData("text");
-                //Deep copy - drag & copy
-                var nodeCopy = document.getElementById(data).cloneNode(true);
-                ev.target.appendChild(nodeCopy);
-            }
+        }
 
-            function changeTextID() {
-                $(this).on("drop", function() {
-                    var idChange = $('div[id^="textfield"]:last');
-                    var num = parseInt(idChange.prop('id').match(/\d+/g), 10) +1;
-                    idChange.prop('id', 'textfield' + num);
-                    var labelChange = $('label[id^="txtlabel"]:last');
-                    var num1= parseInt(labelChange.prop('id').match(/\d+/g), 10) +1;
-                    labelChange.prop('id', 'txtlabel' + num);
-                });
-            }
+        function replaceTextField() {
+            var label = $('#textLabel').val();
+            $('#txtlabel1').text(label);
+        }
 
-            function changeDropID() {
-                $(this).on("drop", function() {
-                    var idChange = $('div[id^="dropdowndrop"]:last');
-                    var num = parseInt(idChange.prop('id').match(/\d+/g), 10) +1;
-                    idChange.prop('id', 'dropdowndrop' + num);
-                    var labelChange = $('label[id^="droplabel"]:last');
-                    var num1= parseInt(labelChange.prop('id').match(/\d+/g), 10) +1;
-                    labelChange.prop('id', 'droplabel' + num);
-                });
-            }
+        function replaceDefault() {
+            var label = $('#defaultLabel').val();
+            $('#dropMenu').text(label);
+        }
 
-            function changeRadioID() {
-                $(this).on("drop", function() {
-                    var idChange = $('div[id^="radiodrop"]:last');
-                    var num = parseInt(idChange.prop('id').match(/\d+/g), 10) +1;
-                    idChange.prop('id', 'radiodrop' + num);
-                    var labelChange = $('label[id^="radlabel"]:last');
-                    var num1= parseInt(labelChange.prop('id').match(/\d+/g), 10) +1;
-                    labelChange.prop('id', 'radlabel' + num);
-                });
-            }
+        function addCounter() {
+            $('#editOption').click(function() {
+                counter++;
+            });
+        }
 
-            function dropDelete(ev) {
-                ev.preventDefault();
-                var data = ev.dataTransfer.getData("text");
-                var element = document.getElementById(data);
-                element.parentNode.removeChild(element);
-            }
+        function reset() {
+            counter = 0;
+        }
 
-            function addDropDownOption() {
-                var textArea = "<div class='col-md-9'><input type='text' class='form-control' name='labelname' id='defaultLabel' placeholder='Option 1' value=''/></div></br>";
-                var textLabel = "<label class='col-md-3 control-label'>Option</label>";
-                var optionDiv = $('#option-div');
-                optionDiv.append(textLabel);
-                optionDiv.append(textArea);
-            }
+    </script>
+</head>
 
-            function addRadioOption() {
-                var textArea = "<div class='col-md-9'><input type='text' class='form-control' name='labelname' id='defaultLabel' placeholder='Option 1' value=''/></div></br>";
-                var textLabel = "<label class='col-md-3 control-label'>Radio Option</label>";
-                var optionDiv = $('#radio-option');
-                optionDiv.append(textLabel);
-                optionDiv.append(textArea);
-            }
-
-            function replaceTextField() {
-                var label = $('#txtlabel').val();
-                $('#textfield').text(label);
-            }
-
-            function replaceDefault() {
-                var label = $('#dropLabel').val();
-                $('#default').text(label);
-            }
-
-            function replaceMultRadio() {
-                var label = $('#radLabel').val();
-                $('#radiolabel').text(label);
-            }
-
-            function draggableFalse() {
-                /*var last = $('div[id^="firstnamedrag"]:last');
-                var num = parseInt(last.prop('id').match(/\d+/g), 10) +1;*/
-                //$('#firstnamedrag1').attr('draggable', 'false');
-            }
-
-        </script>
-        <!-- Start This Page Script-->
-        <script>
-            test = function(){
-                document.getElementById("hiddenformhtml").value = document.getElementById("render").value;
-            };
-        </script>
-        <!-- End This Page Script-->
-    </head>
-
-	<body>
-  
-            <!-- START BREADCRUMB -->
-            <ul class="breadcrumb">
-                <li><a href="/">Overview</a></li>
-                <li class="active">Edit Form</li>
-            </ul>
-            <!-- END BREADCRUMB -->
-
-            <!-- PAGE CONTENT WRAPPER -->
-            <div class="page-content-wrap">
-                <!-- Start Form Builder-->
-                <!-- FORM START -->
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Customizable Fields</h3>
-                        <ul class="panel-controls">
-                        </ul>
-                    </div>
-                    <div class="panel-body">
-                <form class="form-horizontal col-md-6">
-                    <fieldset>
-
-                        <!-- Customizable Fields -->
-                        <span class="help-block">Drag and drop selected fields. Click to edit fields.</span>
-
-                        <hr/>
-
-                        <!-- Text Field -->
-
-                        <div id="textfield1" class="form-group" draggable="true" ondragstart="drag(event); changeTextID();">
-                            <label class="col-md-3 control-label" data-toggle="modal" data-target="#myTextModal" id="txtlabel1">Text Field</label>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" name="login"/>
-                            </div>
-                        </div>
-                        <!-- TEXTFIELD Modal -->
-                        <div class="modal fade" id="myTextModal" role="dialog">
-                            <div class="modal-dialog">
-
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Edit Text Field</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form class="form-horizontal">
-                                            <fieldset>
-                                                <div id="textfield" class="form-group">
-                                                    <label class="col-md-3 control-label">Label Name</label>
-                                                    <div class="col-md-9">
-                                                        <input type="text" class="form-control" name="labelname" id="textLabel" placeholder="" value=""/>
-                                                    </div>
-                                                </div>
-                                            </fieldset>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="replaceTextField();">Save</button>
-
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Choose Doctor -->
-                        <div id ="dropdowndrop1" class="form-group" draggable="true" ondragstart="drag(event); changeDropID();">
-                            <label class="col-md-3 control-label" for="buttondropdown" data-toggle="modal" data-target="#myModal" value="default" id="default">Default</label>
-
-                            <div class="col-md-9">
-                                <select id="options" class="form-control select">
-                                    <option id="op">Option 1</option>
-                                    <option id="op">Option 2</option>
-                                    <option id="op">Option 3</option>
-                                    <option id="op">Option 4</option>
-                                    <option id="op">Option 5</option>
-                                </select>
-                            </div>
-                        </div>
-                        <!-- DROP DOWN Modal -->
-                        <div class="modal fade" id="myModal" role="dialog">
-                            <div class="modal-dialog">
-
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Edit Drop Down Menu</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form class="form-horizontal">
-                                            <fieldset>
-                                                <div id="textfield" class="form-group">
-                                                    <label class="col-md-3 control-label">Label Name</label>
-                                                    <div class="col-md-9">
-                                                        <input type="text" class="form-control" name="labelname" id="defaultLabel" placeholder="Default" value=""/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group" id="option-div">
-                                                    <label class="col-md-3 control-label">Option</label>
-                                                    <div class="col-md-9">
-                                                        <input type="text" class="form-control" name="labelname" id="defaultLabel" placeholder="Option 1" value=""/>
-                                                    </div>
-                                                </div>
-                                            </fieldset>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" onclick="addDropDownOption();" style="float: left;">Add option</button>
-
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="replaceDefault();">Save</button>
-
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        <span class="help-block" style="text-align:left;">Click to add more options.</span>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Multiple Radios -->
-                        <div id="radiodrop1" class="form-group" draggable="true" ondragstart="drag(event); changeRadioID();">
-                            <label id="radiolabel" class="col-md-3 control-label" for="radios" data-toggle="modal" data-target="#myRadioModal">Multiple Radios</label>
-                            <div class="col-md-9">
-                                <div class="radio">
-                                    <label for="radios-0">
-                                        <input type="radio" name="radios" id="radios-0" value="1" checked="checked">
-                                        Option one
-                                    </label>
-                                </div>
-                                <div class="radio">
-                                    <label for="radios-1">
-                                        <input type="radio" name="radios" id="radios-1" value="2">
-                                        Option two
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- RADIO Modal -->
-                        <div class="modal fade" id="myRadioModal" role="dialog">
-                            <div class="modal-dialog">
-
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                        <h4 class="modal-title">Edit Radio Buttons</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form class="form-horizontal">
-                                            <fieldset>
-                                                <div id="textfield" class="form-group">
-                                                    <label class="col-md-3 control-label">Label Name</label>
-                                                    <div class="col-md-9">
-                                                        <input type="text" class="form-control" name="labelname" id="radLabel" placeholder="Radio Buttons" value=""/>
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group" id="radio-option">
-                                                    <label class="col-md-3 control-label">Radio Option</label>
-                                                    <div class="col-md-9">
-                                                        <input type="text" class="form-control" name="labelname" id="defaultLabel" placeholder="" value=""/>
-                                                    </div>
-                                                </div>
-                                            </fieldset>
-                                        </form>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-primary" onclick="addRadioOption();" style="float:left;">Add option</button>
-
-                                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="replaceMultRadio();">Save</button>
-
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                        <span class="help-block" style="text-align:left;">Click to add more options.</span>
-
-                                    </div>
-                                </div>
-                            </div>
-
-                    </fieldset>
-                </form>
-                        </div>
-                    </div>
-
-                <!-- YOUR CUSTOM FORM HERE -->
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Your Form</h3>
-                        <ul class="panel-controls">
-                        </ul>
-                    </div>
-                    <div class="panel-body">
-                <div id="builder" class="col-md-6 panel panel-default">
-                    <form id="target" class="form-horizontal" method="POST">
-                        <fieldset>
-                            <div class="panel-body" ondrop="drop(event);" ondragover="allowDrop(event)">
-
-                                <!-- First Name -->
-                                <div id="firstnamedrag1" class="form-group" draggable="true" ondragstart="drag(event); draggableFalse();">
-                                    <label class="col-md-3 control-label" for="textinput">First Name</label>
-                                    <div class="col-md-9" >
-                                        <input id="textinput" name="textinput1" type="text" placeholder="John" class="form-control pull-right">
-                                    </div>
-                                </div>
-
-                                <!-- Last Name -->
-                                <div id="lastnamedrag" class="form-group" draggable="true" ondragend="changeID();" ondragstart="drag(event)">
-                                    <label class="col-md-3 control-label" for="textinput">Last Name</label>
-                                    <div class="col-md-9" >
-                                        <input id="textinput" name="textinput2" type="text" placeholder="Doe" class="form-control input-md">
-                                    </div>
-                                </div>
-
-                                <!-- Email -->
-                                <div id="emaildrag" class="form-group" draggable="true" ondragstart="drag(event)">
-                                    <label class="col-md-3 control-label" for="email">Email</label>
-                                    <div class="col-md-9">
-                                        <input type="email" class="form-control" id="email" placeholder="johndoe@gmail.com">
-                                    </div>
-                                </div>
-
-                                <!-- Phone Number -->
-                                <div id="phonedrag" class="form-group" draggable="true" ondragstart="drag(event)">
-                                    <label class="col-md-3 control-label" for="phone">Phone Number</label>
-                                    <div class="col-md-9">
-                                        <input type="phone" class="form-control mask-phones" id="phone" placeholder="+1 (555) 555-5555" data-format="+1(ddd)ddd-dddd">
-                                    </div>
-                                </div>
-
-                                <!-- DRAG FIELDS/DIV ELEMENTS INTO HERE -->
-
-                            </div>
-                            <div class="form-group">
-                                <div class="col-md-6" ondrop="dropDelete(event)" ondragover="allowDrop(event)">
-                                    <button type="submit" class="btn btn-primary" id="deletedrop" disabled>
-                                        <span class="glyphicon glyphicon-trash"></span> Delete
-                                    </button>
-                                </div>
-                                <div class="col-md-6">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </div>
-
-                            </div>
-                        </fieldset>
-                    </form>
+<body>
+<!-- START BREADCRUMB -->
+<ul class="breadcrumb">
+    <li><a href="dashboard_admin">Overview</a></li>
+    <li class="active">Edit Form</li>
+</ul>
+<div class="page-content-wrap">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- START MANAGE EMPLOYEES DATATABLE -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Customize Your Form</h3>
                 </div>
-                        <form class="form-horizontal" method="POST">
-                            <div class="form-group">
-                                <input type="hidden" id="hiddenformhtml" name="form">
-                            </div>
-                            <div>
-                                <div class="col-lg-12 col-lg-offset-5">
-                                    <button id="saveform" class="btn btn-success" onclick="test()">Save Form</button>
-                                </div>
-                            </div>
+                <div class="panel-body">
+<!-- FORM START -->
+<form class="form-horizontal col-md-6">
+    <fieldset>
 
-                        </form>
+        <!-- Customizable Fields -->
+        <span class="help-block">Drag and drop selected fields. Click to edit fields.</span>
 
-                        <!-- End form builder-->
-                        </div></div>
-                <!-- Start This Page Script-->
-                <script>
-                    test = function(){
+        <hr/>
 
-                        var div = document.getElementById("deletedrop");
-                        div.parentNode.removeChild(div);
+        <!-- Text Field -->
 
-                        document.getElementById("hiddenformhtml").value = document.getElementById("builder").innerHTML;
-
-                    };
-                </script>
-                <!-- End This Page Script-->
-
-                <script data-main="http://bootsnipp.com/j87klPolka/assets3/js/main-built.js" src="http://bootsnipp.com/j87klPolka/assets3/js/lib/require.js" ></script>
+        <div id="textfield1" class="form-group" draggable="true" ondragstart="drag(event); changeTextID();">
+            <label class="col-md-3 control-label" data-toggle="modal" data-target="#myTextModal" id="txtlabel1">Text Field</label>
+            <div class="col-md-9">
+                <input type="text" class="form-control" name="login"/>
             </div>
-	</body>
+        </div>
+        <!-- TEXTFIELD Modal -->
+        <div class="modal fade" id="myTextModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Edit Text Field</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal">
+                            <fieldset>
+                                <div id="textfield" class="form-group">
+                                    <label class="col-md-3 control-label">Label Name</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="labelname" id="textLabel" placeholder="" value=""/>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="replaceTextField();">Save</button>
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Choose Doctor -->
+        <div id ="dropdowndrop1" class="form-group" draggable="true" ondragstart="drag(event); changeDropID();">
+            <label class="col-md-3 control-label" for="buttondropdown" data-toggle="modal" data-target="#myModal" value="default" id="dropMenu">Drop Down</label>
+
+            <div class="col-md-9">
+                <select id="options" class="form-control select">
+                    <!-- Options inserted here -->
+                </select>
+            </div>
+        </div>
+        <!-- DROP DOWN Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Edit Drop Down Menu</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form class="form-horizontal">
+                            <fieldset>
+                                <div id="textfield" class="form-group">
+                                    <label class="col-md-3 control-label">Label Name</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="labelname" id="defaultLabel" placeholder="Default" value=""/>
+                                    </div>
+                                </div>
+
+                                <div class="form-group" id="option-div">
+                                    <label class="col-md-3 control-label">Option</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="labelname" id="defaultOption" placeholder="Option 1" value=""/>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="editOption" onclick="addDropDownOption(); addCounter();" style="float: left;">Add option</button>
+
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="replaceDefault(); changeOption(); reset();">Save</button>
+
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <span class="help-block" style="text-align:left;">Click to add more options.</span>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </fieldset>
+</form>
+</div>
+                </div>
+            </div>
+        </div>
+<!-- YOUR CUSTOM FORM HERE -->
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Your Form</h3>
+
+                </div>
+                <div class="panel-body">
+<div id="builder" class="col-md-6 panel panel-default">
+
+    <form id="target" class="form-horizontal" method="POST">
+        <fieldset>
+            <div class="panel-body" ondrop="drop(event);" ondragover="allowDrop(event)">
+
+                <!-- First Name -->
+                <div id="firstnamedrag1" class="form-group" draggable="true" ondragstart="drag(event); draggableFalse();">
+                    <label class="col-md-3 control-label" for="textinput">First Name</label>
+                    <div class="col-md-9" >
+                        <input id="textinput" name="textinput1" type="text" placeholder="John" class="form-control pull-right">
+                    </div>
+                </div>
+
+                <!-- Last Name -->
+                <div id="lastnamedrag" class="form-group" draggable="true" ondragend="changeID();" ondragstart="drag(event)">
+                    <label class="col-md-3 control-label" for="textinput">Last Name</label>
+                    <div class="col-md-9" >
+                        <input id="textinput" name="textinput2" type="text" placeholder="Doe" class="form-control input-md">
+                    </div>
+                </div>
+
+                <!-- Email -->
+                <div id="emaildrag" class="form-group" draggable="true" ondragstart="drag(event)">
+                    <label class="col-md-3 control-label" for="email">Email</label>
+                    <div class="col-md-9">
+                        <input type="email" class="form-control" id="email" placeholder="johndoe@gmail.com">
+                    </div>
+                </div>
+
+                <!-- Phone Number -->
+                <div id="phonedrag" class="form-group" draggable="true" ondragstart="drag(event)">
+                    <label class="col-md-3 control-label" for="phone">Phone Number</label>
+                    <div class="col-md-9">
+                        <input type="phone" class="form-control mask-phones" id="phone" placeholder="+1 (555) 555-5555" data-format="+1(ddd)ddd-dddd">
+                    </div>
+                </div>
+
+                <!-- DRAG FIELDS/DIV ELEMENTS INTO HERE -->
+
+            </div>
+            <div class="form-group">
+                <div class="col-md-6 col-md-offset-1" ondrop="dropDelete(event)" ondragover="allowDrop(event)">
+                    <button type="submit" class="btn btn-danger" id="deletedrop"disabled>
+                        <span class="glyphicon glyphicon-trash"></span> Delete
+                    </button>
+                </div>
+                <div class="col-md-6">
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+
+            </div>
+        </fieldset>
+    </form>
+</div>
+</div>
+</div>
+
+</div>
+        </div>
+    </div>
+<form class="form-horizontal" method="POST">
+    <div class="form-group">
+        <input type="hidden" id="hiddenformhtml" name="form">
+    </div>
+    <div>
+        <div class="col-lg-12 col-lg-offset-5">
+            <button id="saveform" class="btn btn-success" onclick="test()">Save Form</button>
+        </div>
+    </div>
+
+</form>
+</div>
+</div>
+</div>
+
+
+<!-- End form builder-->
+</div></div>
+</div>
+
+<!-- Start This Page Script-->
+<script>
+    test = function(){
+        var div = document.getElementById("deletedrop");
+        div.parentNode.removeChild(div);
+        document.getElementById("hiddenformhtml").value = document.getElementById("builder").innerHTML;
+    };
+</script>
+<!-- End This Page Script-->
+
+<script data-main="http://bootsnipp.com/j87klPolka/assets3/js/main-built.js" src="http://bootsnipp.com/j87klPolka/assets3/js/lib/require.js" ></script>
+
+</body>
 </html>
-
-
-<!--
-<iframe src="http://bootsnipp.com/j87klPolka/formbuilder3.html" style="width:100%; height:1000px;" frameborder="0"></iframe>
--->
