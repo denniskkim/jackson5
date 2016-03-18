@@ -13,7 +13,7 @@
 
 # How To run entire app 
 1. npm start
-2. This will run on port 3000 and you can access the web app at (http://localhost:3000/)[http://localhost:3000/]
+2. This will run on port 3000 and you can access the web app at [(http://localhost:3000/)][http://localhost:3000/]
 
 # How to test our app
 1. npm test
@@ -24,4 +24,4 @@
 2. apidoc -i controllers/ -o apidoc/ -t template/ 
 3. This will build new API docs that will be located in apidoc/
 
-API Documentation is located at (http://receptional.s3-website-us-west-1.amazonaws.com/)[http://receptional.s3-website-us-west-1.amazonaws.com/]
+API Documentation is located at [(http://receptional.s3-website-us-west-1.amazonaws.com/)][http://receptional.s3-website-us-west-1.amazonaws.com/]
