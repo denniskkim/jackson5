@@ -31,7 +31,9 @@ exports.getEmployeeDashboard = function(req, res) {
 
         if (err) { return next(err);  }
         if(!patients) { return next(new Error('Error finding patients'));}
-        res.render('dashboard_employee', {user : req.user, layout: 'navigation_employee', patients : patients, avg_time : Math.round(totaltime/count), waiting : patients.length - count});
+        var avg_time = count==0?0:Math.round(totaltime/count);
+
+        res.render('dashboard_employee', {user : req.user, layout: 'navigation_employee', patients : patients, avg_time : avg_time, waiting : patients.length - count});
     });
 
 
@@ -60,7 +62,9 @@ exports.getBusinessOwnerDashboard = function(req, res) {
 
             if (err) { return next(err);  }
         if(!patients) { return next(new Error('Error finding patients'));}
-        res.render('dashboard_admin', {user : req.user, layout: 'navigation_admin', patients : patients, avg_time : Math.round(totaltime/count), waiting : patients.length - count});
+
+        var avg_time = count==0?0:Math.round(totaltime/count);
+        res.render('dashboard_admin', {user : req.user, layout: 'navigation_admin', patients : patients, avg_time : avg_time, waiting : patients.length - count});
     });
 
 };
