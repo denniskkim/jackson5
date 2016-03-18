@@ -26,6 +26,8 @@
 
 API Documentation is located at <http://receptional.s3-website-us-west-1.amazonaws.com/>
 
-#Jackson 5 Heroku: http://jackson5.herokuapp.com/
+###Jackson 5 Heroku: 
+http://jackson5.herokuapp.com/
 
-#Jackson 5's domain: http://www.receptional.xyz/
+###Jackson 5's domain: 
+http://www.receptional.xyz/
