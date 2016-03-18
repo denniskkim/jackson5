@@ -42,8 +42,14 @@ exports.index = function(req, res) {
     if (req.user) {
       if(req.user._admin_id)
         return res.redirect('/dashboard_employee');
-      else
-        return res.redirect('/dashboard_admin');
+      else{
+          if(req.user.email === "petervenkmen@ghostbusters.com") {
+              return res.redirect('/dashboard_peter');
+          }
+          else{
+              return res.redirect('/dashboard_admin');
+          }
+      }
     }
     else {
       res.render('home');

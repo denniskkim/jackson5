@@ -28,14 +28,6 @@ describe('GET /signup', function() {
   });
 });
 
-describe('GET /api', function() {
-  it('should return 200 OK', function(done) {
-    request(app)
-      .get('/api')
-      .expect(200, done);
-  });
-});
-
 describe('GET /contact', function() {
   it('should return 200 OK', function(done) {
     request(app)
@@ -118,7 +110,7 @@ describe('GET /deletePatient', function(){
 describe('POST /createEmployee', function(){
   it("should create a new employee", function(done){
     request(app)
-      .post("/createEmployee?email=unittestaccount@gmail.com&number=123456789&name=Unit Test&id=56d62db4791ca1188b080c39")
+      .post("/createEmployee?email=jackson5@gmail.com&number=123456789&name=Unit Test&id=56d62db4791ca1188b080c39")
       .expect("Content-type",/json/)
       .expect(200, done);
   })
@@ -145,7 +137,7 @@ describe('GET /getEmployees', function(){
 describe('POST /createEmployee', function(){
   it("should fail to create a new employee (duplicate)", function(done){
     request(app)
-      .post("/createEmployee?email=unittestaccount@gmail.com&number=123456789&name=Unit Test&id=56d62db4791ca1188b080c39")
+      .post("/createEmployee?email=jackson5@gmail.com&number=123456789&name=Unit Test&id=56d62db4791ca1188b080c39")
       .expect("Content-type",/json/)
       .expect(500, done);
   })
@@ -154,7 +146,7 @@ describe('POST /createEmployee', function(){
 describe('GET /deleteEmployee', function(){
   it("should delete employee that was just created", function(done){
     request(app)
-      .get("/deleteEmployee?email=unittestaccount@gmail.com&id=56d62db4791ca1188b080c39")
+      .get("/deleteEmployee?email=jackson5@gmail.com&id=56d62db4791ca1188b080c39")
       .expect("Content-type",/json/)
       .expect(200,done);
   })
@@ -163,7 +155,7 @@ describe('GET /deleteEmployee', function(){
 describe('GET /deleteEmployee', function(){
   it("should fail to delete employee that was just created (duplicate)", function(done){
     request(app)
-      .get("/deleteEmployee?email=unittestaccount@gmail.com&id=56d62db4791ca1188b080c39")
+      .get("/deleteEmployee?email=jackson5@gmail.com&id=56d62db4791ca1188b080c39")
       .expect("Content-type",/json/)
       .expect(500,done);
   })

@@ -156,9 +156,7 @@ exports.postSignup = function(req, res, next) {
 
           return next(err);
         }
-
-        analytics.updateBusinessCount();
-
+        
         // Send logs to logentries
         logger.log(2,"New user successfully created Business owner account");
         res.redirect('/');
