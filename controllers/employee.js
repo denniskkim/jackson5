@@ -277,7 +277,7 @@ exports.emailEmployee = function(req, res) {
             req.flash('errors', { msg: info.message });
             logger.log(4,"User login Failed:" + err);
 
-            return res.redirect('/login');
+            return res.redirect('/login_employee');
         }
         req.logIn(employee, function(err) {
             if (err) {
