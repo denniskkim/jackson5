@@ -1,6 +1,6 @@
 # Receptional [![Build Status](https://codeship.com/projects/411647d0-c246-0133-543e-66aebc4c133d/status?branch=master)](https://codeship.com/projects/411647d0-c246-0133-543e-66aebc4c133d/status?branch=master)
 
-# How to install
+# How to install 
 1. Download the repo
 2. Make sure you're into the jackson5 directory 
 3. `npm install`
