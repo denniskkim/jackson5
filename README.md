@@ -13,7 +13,7 @@
 
 # How To run entire app 
 1. npm start
-2. This will run on port 3000 and you can access the web app at [(http://localhost:3000/)][http://localhost:3000/]
+2. This will run on port 3000 and you can access the web app at <http://localhost:3000/>
 
 # How to test our app
 1. npm test
