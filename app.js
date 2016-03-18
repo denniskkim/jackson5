@@ -210,10 +210,6 @@ app.get('/getAppointments', restAPIController.getPatients);
 app.get('/removePatient', restAPIController.deletePatient);
 
 
-//app.get('/viewbusinesses', userController.viewBusinesses);
-app.get('/api', apiController.getApi);
-app.get('/api/facebook', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.getFacebook);
-
 app.get('/Billing_info', function(req, res){
   res.render('Billing_info', { user: req.user });
 });
@@ -255,6 +251,11 @@ app.get('/dashboard', function(req, res){
 
 app.get('/settings', function(req, res){
   res.render('settings', { user: req.user });
+});
+
+
+app.get('/settings_p', function(req, res){
+  res.render('settings_p', { user: req.user });
 });
 
 //owner update
