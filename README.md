@@ -24,4 +24,4 @@
 2. apidoc -i controllers/ -o apidoc/ -t template/ 
 3. This will build new API docs that will be located in apidoc/
 
-API Documentation is located at [(http://receptional.s3-website-us-west-1.amazonaws.com/)][http://receptional.s3-website-us-west-1.amazonaws.com/]
+API Documentation is located at <http://receptional.s3-website-us-west-1.amazonaws.com/>
