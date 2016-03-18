@@ -17,7 +17,7 @@ var Employee = require('../models/Employee');
 
 passport.serializeUser(function(user, done) {
   console.log(user);
-    done(null, user._id);
+  done(null, user._id);
 });
 
 passport.deserializeUser(function(id, done) {
@@ -90,7 +90,7 @@ passport.deserializeUser(function(id, done) {
 /**
  * Sign in using Email and Password. User (Business owner) login
  */
-passport.use("business_owner",new LocalStrategy({ usernameField: 'email' }, function(email, password, done) {
+ passport.use("business_owner",new LocalStrategy({ usernameField: 'email' }, function(email, password, done) {
   email = email.toLowerCase();
   User.findOne({ email: email }, function(err, user) {
     if (!user) {
@@ -109,7 +109,7 @@ passport.use("business_owner",new LocalStrategy({ usernameField: 'email' }, func
 /**
  * Sign in using Email and Password. User (Business owner) login
  */
-passport.use("employee",new LocalStrategy({ usernameField: 'email' }, function(email, password, done) {
+ passport.use("employee",new LocalStrategy({ usernameField: 'email' }, function(email, password, done) {
   email = email.toLowerCase();
   Employee.findOne({ email: email }, function(err, employee) {
     if (!employee) {
@@ -516,7 +516,7 @@ passport.use("employee",new LocalStrategy({ usernameField: 'email' }, function(e
 /**
  * Login Required middleware.
  */
-exports.isAuthenticated = function(req, res, next) {
+ exports.isAuthenticated = function(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
@@ -526,7 +526,7 @@ exports.isAuthenticated = function(req, res, next) {
 /**
  * Authorization Required middleware.
  */
-exports.isAuthorized = function(req, res, next) {
+ exports.isAuthorized = function(req, res, next) {
   var provider = req.path.split('/').slice(-1)[0];
 
   if (_.find(req.user.tokens, { kind: provider })) {

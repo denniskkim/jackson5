@@ -42,29 +42,29 @@
                 });
 
             }
-        	
-		});
+            
+        });
     });
 
 
 </script>
-        <!-- START BREADCRUMB -->
-        <ul class="breadcrumb">
-            <li><a href="/">Home</a></li>
-            <li class="active">Patient Queue</li>
-        </ul>
-        <!-- END BREADCRUMB -->
+<!-- START BREADCRUMB -->
+<ul class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li class="active">Patient Queue</li>
+</ul>
+<!-- END BREADCRUMB -->
 
 <!-- PAGE CONTENT WRAPPER -->
 <div class="page-content-wrap">
     <div class="row">
         <div class="col-md-12">
             {{#if msg}}
-                        <div class="alert alert-success">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
-                            <strong>{{msg}}</strong>
-                        </div>
-             {{/if}}
+            <div class="alert alert-success">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close"></a>
+                <strong>{{msg}}</strong>
+            </div>
+            {{/if}}
             <!-- START MANAGE EMPLOYEES DATATABLE -->
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -73,17 +73,17 @@
                     </ul>
                 </div>
                 <div class="panel-body">
-                        
+                    
                     <table class="table datatable sortable" id="patientqueue">
                         <thead>
-                        <tr>
-                            <th id="patientName">Name</th>
-                            <th id="patientTel">Phone</th>
-                            <th id="patientEmail">Email</th>
-                            <th id="patientIn">Time in</th>
-                            <th id="patientOut">Check Out</th>
-                            <th id="action">Action</th>
-                        </tr>
+                            <tr>
+                                <th id="patientName">Name</th>
+                                <th id="patientTel">Phone</th>
+                                <th id="patientEmail">Email</th>
+                                <th id="patientIn">Time in</th>
+                                <th id="patientOut">Check Out</th>
+                                <th id="action">Action</th>
+                            </tr>
                         </thead>
                         {{#patients}}
                         <tr>
@@ -93,7 +93,7 @@
                             <td>{{checkinTime}}</td>
                             <td>
                                 <form method="POST"  action="/delete_patient/{{_id}}?_method=DELETE">
-                                        <button class="btn btn-danger"  type="submit">Check Out</button>
+                                    <button class="btn btn-danger"  type="submit">Check Out</button>
                                 </form>
 
                             </td>
@@ -105,16 +105,16 @@
                         {{/patients}}
                         <tbody>
                         </tbody>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<script src="../public/js/socket.io.js"></script>
-<script src="../public/js/jquery.js"></script>
+    <script src="../public/js/socket.io.js"></script>
+    <script src="../public/js/jquery.js"></script>
 
 
 
 
 
-</html>
+    </html>

@@ -2,10 +2,10 @@
  * Created by zizhouzhai on 3/1/16.
  */
 
-var Analytics = require('../controllers/analytics');
-var Patient = require('../models/Patient');
+ var Analytics = require('../controllers/analytics');
+ var Patient = require('../models/Patient');
 
-exports.getEmployeeDashboard = function(req, res) {
+ exports.getEmployeeDashboard = function(req, res) {
     if (!req.user) {
 
         return res.redirect('/login_employee');
@@ -60,7 +60,7 @@ exports.getBusinessOwnerDashboard = function(req, res) {
 
         }
 
-            if (err) { return next(err);  }
+        if (err) { return next(err);  }
         if(!patients) { return next(new Error('Error finding patients'));}
 
         var avg_time = count==0?0:Math.round(totaltime/count);

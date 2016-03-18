@@ -1,21 +1,21 @@
 /**
  * Created by zizhouzhai on 2/28/16.
  */
-var Patient = require('../models/Patient');
-var nodemailer = require('nodemailer');
-var _ = require('lodash');
-var async = require('async');
-var nodemailer = require('nodemailer');
-var passport = require('passport');
-var fs = require('fs');
-var validator = require('validator');
+ var Patient = require('../models/Patient');
+ var nodemailer = require('nodemailer');
+ var _ = require('lodash');
+ var async = require('async');
+ var nodemailer = require('nodemailer');
+ var passport = require('passport');
+ var fs = require('fs');
+ var validator = require('validator');
 
-var moment = require('moment');
+ var moment = require('moment');
 
 /**
  * Add an patient using form.
  */
-exports.addPatient = function(req, res) {
+ exports.addPatient = function(req, res) {
 
     Patient.create({
         name: req.body.name,
@@ -27,12 +27,12 @@ exports.addPatient = function(req, res) {
          checkinDay: moment().format('MMMM Do YYYY') ,
          checkinHour: moment().subtract(Date.now().getTimezoneOffset(),'hour').format('h:mm:ss a'),
          */
-        checkinTime: Date.now(),
-        checkoutTime: null,
-        checkedout: false,
-        subdomainurl: req.user.subdomainurl,
-        _admin_id: req.user.id
-    }, function (err, patient) {
+         checkinTime: Date.now(),
+         checkoutTime: null,
+         checkedout: false,
+         subdomainurl: req.user.subdomainurl,
+         _admin_id: req.user.id
+     }, function (err, patient) {
         if (err) {
             console.log("ERROR creating patient: " + err);
             //res.send("There was a problem adding the employee to the databaase");
@@ -147,8 +147,8 @@ exports.notifyPatients = function(req, res) {
             var options = {
                 service: 'gmail',
                 auth: {
-                user: 'donotreply.receptional@gmail.com',
-                pass: 'nightowls1'
+                    user: 'donotreply.receptional@gmail.com',
+                    pass: 'nightowls1'
                 }
             };
             var emailtext = "Hello " +req.body.name + " You are next. Please Come Forward !!!";
@@ -178,15 +178,15 @@ exports.notifyPatients = function(req, res) {
 
             //require the Twilio module and create a REST client 
             var client = require('twilio')(accountSid, authToken); 
-              client.sendSms({ 
+            client.sendSms({ 
                 body: "Hello " +req.body.name + " You are next. Please Come Forward !!!",
                 to: "+18583808909",
                 from: "+18583467675"
-              }, function(err, message) { 
+            }, function(err, message) { 
                 if(err){
                   console.log(err.message); 
-                }
-              });
+              }
+          });
             res.redirect("/patient_queue");
         }
     });

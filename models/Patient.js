@@ -1,9 +1,9 @@
 /**
  * Created by zizhouzhai on 2/28/16.
  */
-var mongoose = require('mongoose');
+ var mongoose = require('mongoose');
 
-var patientSchema = new mongoose.Schema({
+ var patientSchema = new mongoose.Schema({
     name: String,
     phone_number: String, /* or Number */
     email: String,
@@ -17,4 +17,4 @@ var patientSchema = new mongoose.Schema({
     _admin_id: String
 });
 
-module.exports = mongoose.model('Patient', patientSchema);
+ module.exports = mongoose.model('Patient', patientSchema);

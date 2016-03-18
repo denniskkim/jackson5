@@ -1,34 +1,34 @@
 /**
  * Split into declaration and initialization for better startup performance.
  */
-var validator;
-var cheerio;
-var graph;
-var LastFmNode;
-var tumblr;
-var foursquare;
-var Github;
-var Twit;
-var stripe;
-var twilio;
-var Linkedin;
-var BitGo;
-var clockwork;
-var paypal;
-var lob;
-var ig;
-var Y;
-var request;
+ var validator;
+ var cheerio;
+ var graph;
+ var LastFmNode;
+ var tumblr;
+ var foursquare;
+ var Github;
+ var Twit;
+ var stripe;
+ var twilio;
+ var Linkedin;
+ var BitGo;
+ var clockwork;
+ var paypal;
+ var lob;
+ var ig;
+ var Y;
+ var request;
 
-var _ = require('lodash');
-var async = require('async');
-var querystring = require('querystring');
+ var _ = require('lodash');
+ var async = require('async');
+ var querystring = require('querystring');
 
 /**
  * GET /api
  * List of API examples.
  */
-exports.getApi = function(req, res) {
+ exports.getApi = function(req, res) {
   res.render('api/index', {
     title: 'API Examples'
   });
@@ -38,7 +38,7 @@ exports.getApi = function(req, res) {
  * GET /api/foursquare
  * Foursquare API example.
  */
-exports.getFoursquare = function(req, res, next) {
+ exports.getFoursquare = function(req, res, next) {
   foursquare = require('node-foursquare')({
     secrets: {
       clientId: process.env.FOURSQUARE_ID,
@@ -82,7 +82,7 @@ exports.getFoursquare = function(req, res, next) {
  * GET /api/tumblr
  * Tumblr API example.
  */
-exports.getTumblr = function(req, res, next) {
+ exports.getTumblr = function(req, res, next) {
   tumblr = require('tumblr.js');
 
   var token = _.find(req.user.tokens, { kind: 'tumblr' });
@@ -108,7 +108,7 @@ exports.getTumblr = function(req, res, next) {
  * GET /api/facebook
  * Facebook API example.
  */
-exports.getFacebook = function(req, res, next) {
+ exports.getFacebook = function(req, res, next) {
   graph = require('fbgraph');
 
   var token = _.find(req.user.tokens, { kind: 'facebook' });
@@ -141,7 +141,7 @@ exports.getFacebook = function(req, res, next) {
  * GET /api/scraping
  * Web scraping example using Cheerio library.
  */
-exports.getScraping = function(req, res, next) {
+ exports.getScraping = function(req, res, next) {
   cheerio = require('cheerio');
   request = require('request');
 
@@ -165,7 +165,7 @@ exports.getScraping = function(req, res, next) {
  * GET /api/github
  * GitHub API Example.
  */
-exports.getGithub = function(req, res, next) {
+ exports.getGithub = function(req, res, next) {
   Github = require('github-api');
 
   var token = _.find(req.user.tokens, { kind: 'github' });
@@ -187,7 +187,7 @@ exports.getGithub = function(req, res, next) {
  * GET /api/aviary
  * Aviary image processing example.
  */
-exports.getAviary = function(req, res) {
+ exports.getAviary = function(req, res) {
   res.render('api/aviary', {
     title: 'Aviary API'
   });
@@ -197,7 +197,7 @@ exports.getAviary = function(req, res) {
  * GET /api/nyt
  * New York Times API example.
  */
-exports.getNewYorkTimes = function(req, res, next) {
+ exports.getNewYorkTimes = function(req, res, next) {
   request = require('request');
 
   var query = querystring.stringify({
@@ -225,7 +225,7 @@ exports.getNewYorkTimes = function(req, res, next) {
  * GET /api/lastfm
  * Last.fm API example.
  */
-exports.getLastfm = function(req, res, next) {
+ exports.getLastfm = function(req, res, next) {
   request = require('request');
   LastFmNode = require('lastfm').LastFmNode;
 
@@ -308,7 +308,7 @@ exports.getLastfm = function(req, res, next) {
  * GET /api/twitter
  * Twiter API example.
  */
-exports.getTwitter = function(req, res, next) {
+ exports.getTwitter = function(req, res, next) {
   Twit = require('twit');
 
   var token = _.find(req.user.tokens, { kind: 'twitter' });
@@ -333,7 +333,7 @@ exports.getTwitter = function(req, res, next) {
  * POST /api/twitter
  * Post a tweet.
  */
-exports.postTwitter = function(req, res, next) {
+ exports.postTwitter = function(req, res, next) {
   req.assert('tweet', 'Tweet cannot be empty.').notEmpty();
 
   var errors = req.validationErrors();
@@ -363,7 +363,7 @@ exports.postTwitter = function(req, res, next) {
  * GET /api/steam
  * Steam API example.
  */
-exports.getSteam = function(req, res, next) {
+ exports.getSteam = function(req, res, next) {
   request = require('request');
 
   var steamId = '76561197982488301';
@@ -418,7 +418,7 @@ exports.getSteam = function(req, res, next) {
  * GET /api/stripe
  * Stripe API example.
  */
-exports.getStripe = function(req, res) {
+ exports.getStripe = function(req, res) {
   stripe = require('stripe')(process.env.STRIPE_SKEY);
 
   res.render('api/stripe', {
@@ -431,7 +431,7 @@ exports.getStripe = function(req, res) {
  * POST /api/stripe
  * Make a payment.
  */
-exports.postStripe = function(req, res, next) {
+ exports.postStripe = function(req, res, next) {
   var stripeToken = req.body.stripeToken;
   var stripeEmail = req.body.stripeEmail;
   stripe.charges.create({
@@ -453,7 +453,7 @@ exports.postStripe = function(req, res, next) {
  * GET /api/twilio
  * Twilio API example.
  */
-exports.getTwilio = function(req, res) {
+ exports.getTwilio = function(req, res) {
   twilio = require('twilio')(process.env.TWILIO_SID, process.env.TWILIO_TOKEN);
 
   res.render('api/twilio', {
@@ -465,7 +465,7 @@ exports.getTwilio = function(req, res) {
  * POST /api/twilio
  * Send a text message using Twilio.
  */
-exports.postTwilio = function(req, res, next) {
+ exports.postTwilio = function(req, res, next) {
   req.assert('number', 'Phone number is required.').notEmpty();
   req.assert('message', 'Message cannot be blank.').notEmpty();
 
@@ -494,7 +494,7 @@ exports.postTwilio = function(req, res, next) {
  * GET /api/clockwork
  * Clockwork SMS API example.
  */
-exports.getClockwork = function(req, res) {
+ exports.getClockwork = function(req, res) {
   clockwork = require('clockwork')({ key: process.env.CLOCKWORK_KEY });
 
   res.render('api/clockwork', {
@@ -506,7 +506,7 @@ exports.getClockwork = function(req, res) {
  * POST /api/clockwork
  * Send a text message using Clockwork SMS
  */
-exports.postClockwork = function(req, res, next) {
+ exports.postClockwork = function(req, res, next) {
   var message = {
     To: req.body.telephone,
     From: 'Hackathon',
@@ -525,7 +525,7 @@ exports.postClockwork = function(req, res, next) {
  * GET /api/venmo
  * Venmo API example.
  */
-exports.getVenmo = function(req, res, next) {
+ exports.getVenmo = function(req, res, next) {
   request = require('request');
 
   var token = _.find(req.user.tokens, { kind: 'venmo' });
@@ -559,7 +559,7 @@ exports.getVenmo = function(req, res, next) {
  * POST /api/venmo
  * Send money.
  */
-exports.postVenmo = function(req, res, next) {
+ exports.postVenmo = function(req, res, next) {
   validator = require('validator');
 
   req.assert('user', 'Phone, Email or Venmo User ID cannot be blank').notEmpty();
@@ -603,7 +603,7 @@ exports.postVenmo = function(req, res, next) {
  * GET /api/linkedin
  * LinkedIn API example.
  */
-exports.getLinkedin = function(req, res, next) {
+ exports.getLinkedin = function(req, res, next) {
   Linkedin = require('node-linkedin')(process.env.LINKEDIN_ID, process.env.LINKEDIN_SECRET, process.env.LINKEDIN_CALLBACK_URL);
 
   var token = _.find(req.user.tokens, { kind: 'linkedin' });
@@ -623,7 +623,7 @@ exports.getLinkedin = function(req, res, next) {
  * GET /api/instagram
  * Instagram API example.
  */
-exports.getInstagram = function(req, res, next) {
+ exports.getInstagram = function(req, res, next) {
   ig = require('instagram-node').instagram();
 
   var token = _.find(req.user.tokens, { kind: 'instagram' });
@@ -668,7 +668,7 @@ exports.getInstagram = function(req, res, next) {
  * GET /api/yahoo
  * Yahoo API example.
  */
-exports.getYahoo = function(req, res) {
+ exports.getYahoo = function(req, res) {
   Y = require('yui/yql');
 
   Y.YQL('SELECT * FROM weather.forecast WHERE (location = 10007)', function(response) {
@@ -686,7 +686,7 @@ exports.getYahoo = function(req, res) {
  * GET /api/paypal
  * PayPal SDK example.
  */
-exports.getPayPal = function(req, res, next) {
+ exports.getPayPal = function(req, res, next) {
   paypal = require('paypal-rest-sdk');
 
   paypal.configure({
@@ -733,7 +733,7 @@ exports.getPayPal = function(req, res, next) {
  * GET /api/paypal/success
  * PayPal SDK example.
  */
-exports.getPayPalSuccess = function(req, res) {
+ exports.getPayPalSuccess = function(req, res) {
   var paymentId = req.session.paymentId;
   var paymentDetails = { payer_id: req.query.PayerID };
   paypal.payment.execute(paymentId, paymentDetails, function(err) {
@@ -755,7 +755,7 @@ exports.getPayPalSuccess = function(req, res) {
  * GET /api/paypal/cancel
  * PayPal SDK example.
  */
-exports.getPayPalCancel = function(req, res) {
+ exports.getPayPalCancel = function(req, res) {
   req.session.paymentId = null;
   res.render('api/paypal', {
     result: true,
@@ -767,7 +767,7 @@ exports.getPayPalCancel = function(req, res) {
  * GET /api/lob
  * Lob API example.
  */
-exports.getLob = function(req, res, next) {
+ exports.getLob = function(req, res, next) {
   lob = require('lob')(process.env.LOB_KEY);
 
   lob.routes.list({
@@ -787,7 +787,7 @@ exports.getLob = function(req, res, next) {
  * GET /api/bitgo
  * BitGo wallet example
  */
-exports.getBitGo = function(req, res, next) {
+ exports.getBitGo = function(req, res, next) {
   BitGo = require('bitgo');
 
   var bitgo = new BitGo.BitGo({ env: 'test', accessToken: process.env.BITGO_ACCESS_TOKEN });
@@ -819,7 +819,7 @@ exports.getBitGo = function(req, res, next) {
         req.session.walletId = res.wallet.wallet.id;
         renderWalletInfo(req.session.walletId);
       }
-    );
+      );
   }
 };
 
@@ -827,7 +827,7 @@ exports.getBitGo = function(req, res, next) {
  * POST /api/bitgo
  * BitGo send coins example
  */
-exports.postBitGo = function(req, res, next) {
+ exports.postBitGo = function(req, res, next) {
   var bitgo = new BitGo.BitGo({ env: 'test', accessToken: process.env.BITGO_ACCESS_TOKEN });
   var walletId = req.session.walletId;
 

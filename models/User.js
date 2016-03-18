@@ -29,7 +29,7 @@ var userSchema = new mongoose.Schema({
 /**
  * Password hash middleware.
  */
-userSchema.pre('save', function(next) {
+ userSchema.pre('save', function(next) {
   var user = this;
   if (!user.isModified('password')) {
     return next();
@@ -51,7 +51,7 @@ userSchema.pre('save', function(next) {
 /**
  * Helper method for validating user's password.
  */
-userSchema.methods.comparePassword = function(candidatePassword, cb) {
+ userSchema.methods.comparePassword = function(candidatePassword, cb) {
   bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
     if (err) {
       return cb(err);
@@ -63,7 +63,7 @@ userSchema.methods.comparePassword = function(candidatePassword, cb) {
 /**
  * Helper method for getting user's gravatar.
  */
-userSchema.methods.gravatar = function(size) {
+ userSchema.methods.gravatar = function(size) {
   if (!size) {
     size = 200;
   }

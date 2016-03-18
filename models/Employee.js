@@ -16,7 +16,7 @@ var employeeSchema = new mongoose.Schema({
 /**
  * Password hash middleware.
  */
-employeeSchema.pre('save', function(next) {
+ employeeSchema.pre('save', function(next) {
     var employee = this;
     if (!employee.isModified('password')) {
         return next();
@@ -38,7 +38,7 @@ employeeSchema.pre('save', function(next) {
 /**
  * Helper method for validating user's password.
  */
-employeeSchema.methods.comparePassword = function(candidatePassword, cb) {
+ employeeSchema.methods.comparePassword = function(candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
         if (err) {
             return cb(err);

@@ -3,20 +3,20 @@
  * Home page.
  */
 
-var User = require('../models/User');
-var express = require('express');
-var subdomain = require('express-subdomain');
+ var User = require('../models/User');
+ var express = require('express');
+ var subdomain = require('express-subdomain');
 
-var app = express();
+ var app = express();
 
-var router = express.Router();
+ var router = express.Router();
 
-var sub_verify = 0;
-var subdomain_finder;
+ var sub_verify = 0;
+ var subdomain_finder;
 
-exports.index = function(req, res) {
+ exports.index = function(req, res) {
    var domain = req.headers.host,
-       subDomain = domain.split('.');
+   subDomain = domain.split('.');
 
   //User.findOne({ subdomainurl: subDomain }, function(err, user) {
   //  sub_verify = 1;
@@ -43,12 +43,12 @@ exports.index = function(req, res) {
       if(req.user._admin_id)
         return res.redirect('/dashboard_employee');
       else{
-          if(req.user.email === "petervenkmen@ghostbusters.com") {
-              return res.redirect('/dashboard_peter');
-          }
-          else{
-              return res.redirect('/dashboard_admin');
-          }
+        if(req.user.email === "petervenkmen@ghostbusters.com") {
+          return res.redirect('/dashboard_peter');
+        }
+        else{
+          return res.redirect('/dashboard_admin');
+        }
       }
     }
     else {

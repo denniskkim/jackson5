@@ -11,7 +11,7 @@ var transporter = nodemailer.createTransport({
  * GET /contact
  * Contact form page.
  */
-exports.getContact = function(req, res) {
+ exports.getContact = function(req, res) {
   res.render('contact', {
     title: 'Contact'
   });
@@ -21,7 +21,7 @@ exports.getContact = function(req, res) {
  * POST /contact
  * Send a contact form via Nodemailer.
  */
-exports.postContact = function(req, res) {
+ exports.postContact = function(req, res) {
 
   var to = req.body.email;
   var name = req.body.name;

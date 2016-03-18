@@ -35,8 +35,8 @@ var logger = new Logger({
      "_admin_id": "56d62db4791ca1188b080c39",
      "_id": "56e87030e9519f6744190dde"
    }
- */
-exports.createPatient = function(req,res) {
+   */
+   exports.createPatient = function(req,res) {
     var name = req.query.name;
     var phone_number = req.query.number;
     var email = req.query.email;
@@ -45,40 +45,40 @@ exports.createPatient = function(req,res) {
     User.find({_id : id}, function(err, user){
       if(user){
         console.log(user);
-          subdomainurl = user.subdomainurl;
+        subdomainurl = user.subdomainurl;
       }
       else{
         res.status(500);
         logger.log(5,"Error creating patient for ID: " + req.query.id + err);
         res.json({
-            type: false,
-            data: "Error occured: " + err
+          type: false,
+          data: "Error occured: " + err
         });
       }
     });
-      Patient.create({
-         "name": name,
-          "phone_number" : phone_number,
-          "email" : email,
-          "checkinDay" : moment().format('MMMM Do YYYY') ,
-          "checkinHour" : moment().format('h:mm:ss a'),
-          "checkinTime" : Date.now(),
-          "checkoutTime" : null,
-          "checkedout" : false,
-          "subdomainurl" : subdomainurl,
-          "_admin_id" : id
-      }, function(err, patient){
-          if(err) {
-            res.status(500);
-            logger.log(5,"Error creating patient for ID: " + req.query.id + err);
-            res.json({
-              type: false,
-              data: "Error occured: " + err
-            });
-          }
-          res.json(patient);
-          logger.log(2,"Create Patient Success:" + patient);
-    })
+    Patient.create({
+     "name": name,
+     "phone_number" : phone_number,
+     "email" : email,
+     "checkinDay" : moment().format('MMMM Do YYYY') ,
+     "checkinHour" : moment().format('h:mm:ss a'),
+     "checkinTime" : Date.now(),
+     "checkoutTime" : null,
+     "checkedout" : false,
+     "subdomainurl" : subdomainurl,
+     "_admin_id" : id
+   }, function(err, patient){
+    if(err) {
+      res.status(500);
+      logger.log(5,"Error creating patient for ID: " + req.query.id + err);
+      res.json({
+        type: false,
+        data: "Error occured: " + err
+      });
+    }
+    res.json(patient);
+    logger.log(2,"Create Patient Success:" + patient);
+  })
   // }
 };
 
@@ -103,42 +103,42 @@ exports.deletePatient = function(req, res){
       res.status(500);
       logger.log(5,"Error deleting patient for ID: " + req.query.id + err);
       res.json({
-          type: false,
-          data: "Error occured: " + err
+        type: false,
+        data: "Error occured: " + err
       })
     }
     if(patient){
-        Patient.remove({email : email}, function (err){
-         if(err) {
-           res.status(500);
-           logger.log(5,"Error deleting patient for ID: " + req.query.id);
-           res.json({
-               type: false,
-               data: "Error occured: " + err
-           });
-         }
-         else if(patient.length >= 1){
-           res.status(200);
-           logger.log(2,"Deleted Patient Success:" + email);
-           res.json({
-             message : "Removed patient with email " + email
-           });
-         }
-         else {
-           res.status(500);
-           logger.log(5,"Deleted Patient Failed, no Patient with Email:" + email);
-           res.json({
-             message : "No patient with email" + email + " found, nothing deleted."
-           });
-         }
-        });
+      Patient.remove({email : email}, function (err){
+       if(err) {
+         res.status(500);
+         logger.log(5,"Error deleting patient for ID: " + req.query.id);
+         res.json({
+           type: false,
+           data: "Error occured: " + err
+         });
+       }
+       else if(patient.length >= 1){
+         res.status(200);
+         logger.log(2,"Deleted Patient Success:" + email);
+         res.json({
+           message : "Removed patient with email " + email
+         });
+       }
+       else {
+         res.status(500);
+         logger.log(5,"Deleted Patient Failed, no Patient with Email:" + email);
+         res.json({
+           message : "No patient with email" + email + " found, nothing deleted."
+         });
+       }
+     });
     }
     else{
       res.status(500);
       logger.log(5,"Error deleting patient for ID: " + req.query.id + err);
       res.json({
-          type: false,
-          data: "Error occured: " + err
+        type: false,
+        data: "Error occured: " + err
       })
     }
   })
@@ -165,8 +165,8 @@ exports.checkoutPatient = function(req, res){
       res.status(500);
       logger.log(5,"Error checking out patient for ID: " + req.query.id + err);
       res.json({
-          type: false,
-          data: "Error occured: " + err
+        type: false,
+        data: "Error occured: " + err
       })
     }
     if(patient){
@@ -200,8 +200,8 @@ exports.checkoutPatient = function(req, res){
       res.status(500);
       logger.log(5,"Error checking out patient for ID: " + req.query.id + err);
       res.json({
-          type: false,
-          data: "Error occured: " + err
+        type: false,
+        data: "Error occured: " + err
       })
     }
   })
@@ -236,42 +236,42 @@ exports.checkoutPatient = function(req, res){
               "Check-In Time": "3:51:48 pm"
             }
           ]
- */
- exports.getPatients = function(req,res) {
-     Patient.find({_admin_id: req.query.id}, function (err, patients) {
-         if (err) {
-             logger.log(5,"Error getting patients for ID: " + req.query.id + err);
-             res.status(500);
-             res.json({
+          */
+          exports.getPatients = function(req,res) {
+           Patient.find({_admin_id: req.query.id}, function (err, patients) {
+             if (err) {
+               logger.log(5,"Error getting patients for ID: " + req.query.id + err);
+               res.status(500);
+               res.json({
                  type: false,
                  data: "Error occured: " + err
-             })
-         }
-         else {
-             if (patients.length >= 1) {
+               })
+             }
+             else {
+               if (patients.length >= 1) {
                  var appointments = [];
                  var current_appointment = moment().format("MMMM Do YYYY");
                  console.log(patients.length);
                  for (var i = 0; i < patients.length; i++) {
-                     var patientName = patients[i].name;
-                     var checkinTime = patients[i].checkinHour;
-                     appointments.push({"name" : patientName, "Check-In Time" : checkinTime});
+                   var patientName = patients[i].name;
+                   var checkinTime = patients[i].checkinHour;
+                   appointments.push({"name" : patientName, "Check-In Time" : checkinTime});
                  }
                  res.send(appointments);
                  res.status(200);
                  logger.log(2,"View Patients Success:" + patients);
-             }
-             else {
+               }
+               else {
                  logger.log(5,"Error getting patients for ID: " + req.query.id);
                  res.status(500);
                  res.json({
-                     type: false,
-                     data: "Error getting patients for: " + req.query.id
+                   type: false,
+                   data: "Error getting patients for: " + req.query.id
                  })
+               }
              }
-         }
-     })
- };
+           })
+         };
 
 //TODO ADD SEND PASSWORD!
 /**
@@ -296,60 +296,60 @@ exports.checkoutPatient = function(req, res){
 }
 */
 exports.createEmployee = function(req, res) {
-    var name = req.query.name;
-    var number = req.query.number;
-    var email = req.query.email;
-    var password = generateRandomString();
-    var company_id = req.query.id;
-    Employee.find({email: req.query.email}, function (err, employee) {
-        if (employee.length == 0) {
+  var name = req.query.name;
+  var number = req.query.number;
+  var email = req.query.email;
+  var password = generateRandomString();
+  var company_id = req.query.id;
+  Employee.find({email: req.query.email}, function (err, employee) {
+    if (employee.length == 0) {
 
-            Employee.create({
-                name: name,
-                phone_number: number,
-                email: email,
-                password: password,
-                _admin_id: new Object(company_id)
-            }, function (err, employee) {
-                if (err) {
-                    res.status(500)
-                    res.json({
-                        type: false,
-                        data: "Error occured: " + err
-                    });
-                } if(employee) {
-                    User.findOne({_id : company_id}, function(err, user) {
-                      if(user){
-                        emailEmployee(employee, user, password);
-                        res.status(200);
-                        res.json(employee);
-                        logger.log(2,"Create Employee Success:" + employee);
-                        console.log(user);
-                      }
-                      else {
-                        res.status(500)
-                        res.json({
-                            type: false,
-                            data: "Could not find user with id: " + company_id
-                        });
-                      }
-                    })
+      Employee.create({
+        name: name,
+        phone_number: number,
+        email: email,
+        password: password,
+        _admin_id: new Object(company_id)
+      }, function (err, employee) {
+        if (err) {
+          res.status(500)
+          res.json({
+            type: false,
+            data: "Error occured: " + err
+          });
+        } if(employee) {
+          User.findOne({_id : company_id}, function(err, user) {
+            if(user){
+              emailEmployee(employee, user, password);
+              res.status(200);
+              res.json(employee);
+              logger.log(2,"Create Employee Success:" + employee);
+              console.log(user);
+            }
+            else {
+              res.status(500)
+              res.json({
+                type: false,
+                data: "Could not find user with id: " + company_id
+              });
+            }
+          })
 
-                }
-            });
         }
-        else if(err) {
-            logger.log(5,"Error creating employee for ID: " + req.query.id + err);
-            res.status(500);
-            res.json({"message" : err});
-        }
-        else {
-            res.status(500);
-            logger.log(5,"Error getting employees for ID: " + req.query.id);
-            res.json({"message" : "Found existing employee"});
-        }
-      })
-    };
+      });
+    }
+    else if(err) {
+      logger.log(5,"Error creating employee for ID: " + req.query.id + err);
+      res.status(500);
+      res.json({"message" : err});
+    }
+    else {
+      res.status(500);
+      logger.log(5,"Error getting employees for ID: " + req.query.id);
+      res.json({"message" : "Found existing employee"});
+    }
+  })
+};
 
 
 
@@ -375,37 +375,37 @@ exports.createEmployee = function(req, res) {
       "email": "mchau@ucsd.edu"
     }
   ]
-*/
-exports.getEmployees = function(req,res) {
+  */
+  exports.getEmployees = function(req,res) {
     Employee.find({_admin_id: req.query.id}, function (err, employees) {
-        if (err) {
-            logger.log(5,"Error getting employees for ID: " + req.query.id + err);
-            res.status(500);
-            res.json({
-                type: false,
-                data: "Error occured: " + err
-            })
+      if (err) {
+        logger.log(5,"Error getting employees for ID: " + req.query.id + err);
+        res.status(500);
+        res.json({
+          type: false,
+          data: "Error occured: " + err
+        })
+      }
+      else {
+        if (employees) {
+          var employeeList = [];
+          console.log(employees.length);
+          for (var i = 0; i < employees.length; i++) {
+            employeeList.push({"name" : employees[i].name, "email" : employees[i].email, "phone" : employees[i].phonenumber });
+          }
+          res.json(employeeList);
+          logger.log(2,"Find Employee Success:" + employees);
         }
         else {
-            if (employees) {
-                var employeeList = [];
-                console.log(employees.length);
-                for (var i = 0; i < employees.length; i++) {
-                    employeeList.push({"name" : employees[i].name, "email" : employees[i].email, "phone" : employees[i].phonenumber });
-                }
-                res.json(employeeList);
-                logger.log(2,"Find Employee Success:" + employees);
-            }
-            else {
-              res.status(500);
-                res.json({
-                    type: false,
-                    data: "Error occured: "
-                })
-            }
+          res.status(500);
+          res.json({
+            type: false,
+            data: "Error occured: "
+          })
         }
+      }
     })
-};
+  };
 
 /**
 * @api {get} /deleteEmployee Delete employee
@@ -428,8 +428,8 @@ exports.deleteEmployee = function(req, res){
       logger.log(5,"Error deleting employee with email: " + email + err);
       res.status(500);
       res.json({
-          type: false,
-          data: "Error occured: " + err
+        type: false,
+        data: "Error occured: " + err
       })
     }
     else if(employee){
@@ -439,8 +439,8 @@ exports.deleteEmployee = function(req, res){
             logger.log(5,"Error deleting employee with email: " + email);
             res.status(500);
             res.json({
-                type: false,
-                data: "Error occured: " + err
+              type: false,
+              data: "Error occured: " + err
             });
           }
           else {
@@ -456,31 +456,31 @@ exports.deleteEmployee = function(req, res){
       logger.log(5,"Error deleting employee with email: " + email + err);
       res.status(500);
       res.json({
-          type: false,
-          data: "Error deleting patient for ID: " + req.query.id + " email : " + req.query.email
+        type: false,
+        data: "Error deleting patient for ID: " + req.query.id + " email : " + req.query.email
       })
     }
   })
 };
 
 function generateRandomString() {
-    var text = "";
-    var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
 
-    for( var i=0; i < 8; i++ )
-        text += possible.charAt(Math.floor(Math.random() * possible.length));
+  for( var i=0; i < 8; i++ )
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
 
-    return text;
+  return text;
 }
 
 function emailEmployee(employee, admin, password) {
     // Create SMTP transporter object
     var options = {
-        service: 'gmail',
-        auth: {
-            user: 'donotreply.receptional@gmail.com',
-            pass: 'nightowls1'
-        }
+      service: 'gmail',
+      auth: {
+        user: 'donotreply.receptional@gmail.com',
+        pass: 'nightowls1'
+      }
     };
     console.log(admin);
     var companyname = admin.companyname;
@@ -489,20 +489,20 @@ function emailEmployee(employee, admin, password) {
     var transporter = nodemailer.createTransport(options);
     // Setup email data
     var mailOptions = {
-        from: '"Receptional.xyz" <donotreply.receptional@gmail.com>',
-        to: employee.email,
-        subject: "Welcome to Receptional",
-        text: emailtext,
-        html: emailtext
+      from: '"Receptional.xyz" <donotreply.receptional@gmail.com>',
+      to: employee.email,
+      subject: "Welcome to Receptional",
+      text: emailtext,
+      html: emailtext
     };
     // Send email
     transporter.sendMail(mailOptions, function(error, info) {
-        if(error) {
-            console.log(error);
-        }
-        else {
-            console.log('Message sent: ' + info.response);
-            console.log(emailtext);
-        }
+      if(error) {
+        console.log(error);
+      }
+      else {
+        console.log('Message sent: ' + info.response);
+        console.log(emailtext);
+      }
     });
-}
+  }

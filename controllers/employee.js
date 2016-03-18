@@ -16,7 +16,7 @@ var logger = new Logger({
  + * GET /subdomain login
  + * Employees page.
  + */
-exports.postSubdomain = function(req, res){
+ exports.postSubdomain = function(req, res){
     Owner.findOne({subdomainurl: req.body.subdomain}, function(err, domain) {
         if (err) {
             // Send logs to logentries
@@ -43,8 +43,8 @@ exports.postSubdomain = function(req, res){
  * GET /add_employees
  * Employees page.
  */
-exports.getEmployees = function(req, res){
-    Employee.find({_admin_id: req.user.id/*, name: "Jane Doe"*/}, function (err, employees) {
+ exports.getEmployees = function(req, res){
+ Employee.find({_admin_id: req.user.id/*, name: "Jane Doe"*/}, function (err, employees) {
         //console.log(employee);
         // Send logs to logentries
         logger.log(2,"Find Employee Success:" + employees);
@@ -57,7 +57,7 @@ exports.getEmployees = function(req, res){
  * POST /add_employees
  * Add an employee using form.
  */
-exports.addEmployee = function(req, res) {
+ exports.addEmployee = function(req, res) {
     var name = req.body.name;
     var number = req.body.number;
     var email = req.body.email;
@@ -115,21 +115,21 @@ exports.addEmployeesThroughCSV = function(req, res) {
         } else {
             (function(password) { //anonymous function to enforce password is not outside closure
                 Employee.create({
-                        name: name,
-                        phone_number: phone,
-                        email: email,
-                        password: password,
-                        _admin_id: admin_id
-                    }, function (err, employee) {
-                        if (err) {
-                            console.log("ERROR creating employee");
-                            console.log(err);
+                    name: name,
+                    phone_number: phone,
+                    email: email,
+                    password: password,
+                    _admin_id: admin_id
+                }, function (err, employee) {
+                    if (err) {
+                        console.log("ERROR creating employee");
+                        console.log(err);
                             //res.send("There was a problem adding the employee to the database");
                         } else {
                             //emailEmployee(employee, req.user, password);
                         }
                     }
-                );
+                    );
             })(generateRandomString());
         }
     }
@@ -174,15 +174,15 @@ exports.editEmployee = function(req, res) {
 };
 
 exports.emailEmployee = function(req, res) {
-            var options = {
-                service: 'gmail',
-                auth: {
-                user: 'donotreply.receptional@gmail.com',
-                pass: 'nightowls1'
-                }
-            };
-            var emailtext = req.body.message;
-            var transporter = nodemailer.createTransport(options);
+    var options = {
+        service: 'gmail',
+        auth: {
+            user: 'donotreply.receptional@gmail.com',
+            pass: 'nightowls1'
+        }
+    };
+    var emailtext = req.body.message;
+    var transporter = nodemailer.createTransport(options);
             // Setup email data
             var mailOptions = {
                 from: req.user.email,
@@ -203,14 +203,14 @@ exports.emailEmployee = function(req, res) {
             });
 
             res.redirect("/add_employees");
-};
+        };
 
 
 
-exports.removeEmployee = function(req, res) {
-    Employee.findById(req.params.id, function(err, employee) {
-        if (err) {
-            console.log("ERROR selecting employee: " + employee);
+        exports.removeEmployee = function(req, res) {
+            Employee.findById(req.params.id, function(err, employee) {
+                if (err) {
+                    console.log("ERROR selecting employee: " + employee);
             //res.send("There was an error selecting the employee");
         } else {
             employee.remove(function (err, employee) {
@@ -224,13 +224,13 @@ exports.removeEmployee = function(req, res) {
             })
         }
     })
-};
+        };
 
 /**
  * GET /login
  * Login page.
  */
-exports.getEmployeeLogin = function(req, res) {
+ exports.getEmployeeLogin = function(req, res) {
 
 
     if (req.user) {
@@ -238,7 +238,7 @@ exports.getEmployeeLogin = function(req, res) {
     }
 
     var domain = req.headers.host,
-        subDomain = domain.split('.');
+    subDomain = domain.split('.');
 
     if(subDomain.length > 1) {
         subDomain = subDomain[0].split("-").join(" ");
@@ -252,7 +252,7 @@ exports.getEmployeeLogin = function(req, res) {
  * POST /login
  * Sign in using email and password.
  */
-exports.postEmployeeLogin = function(req, res, next) {
+ exports.postEmployeeLogin = function(req, res, next) {
     req.assert('email', 'Email is not valid').isEmail();
     req.assert('password', 'Password cannot be blank').notEmpty();
 
@@ -344,7 +344,7 @@ function emailEmployee(employee, admin, password) {
  * POST /account/password
  * Update current password.
  */
-exports.postUpdatePassword = function(req, res, next) {
+ exports.postUpdatePassword = function(req, res, next) {
   // req.assert('password', 'Password must be at least 4 characters long').len(4);
   // req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
   // console.log("get in update password ");
@@ -360,49 +360,49 @@ exports.postUpdatePassword = function(req, res, next) {
     if (err) {
       console.log(" failed: " + err);
       return next(err);
-    }
-    user.password = req.body.password;
-    user.save(function(err) {
+  }
+  user.password = req.body.password;
+  user.save(function(err) {
       if (err) {
         console.log(" failed: " + err);
         return next(err);
-      }
-      console.log("success ");
-      req.flash('success', { msg: 'Password has been changed.' });
-      res.redirect('/settings');
-    });
-  });
+    }
+    console.log("success ");
+    req.flash('success', { msg: 'Password has been changed.' });
+    res.redirect('/settings');
+});
+});
 };
 
 /**
  * POST /account/profile
  * Update profile information.
  */
-exports.postUpdateProfile = function(req, res, next) {
+ exports.postUpdateProfile = function(req, res, next) {
   console.log("update profile");
   Employee.findById(req.user.id, function(err, user) {
       console.log(req.user.id);
-    if (err) {
+      if (err) {
       // Send logs to logentries
       console.log("Edit profile failed: " + err);
 
       return next(err);
-    }
-    user.email = req.body.email || '';
-    user.name = req.body.name || '';
-    user.phone_number = req.body.phone || '';
-    user.picture = req.body.photo || '';
-    user.save(function(err) {
+  }
+  user.email = req.body.email || '';
+  user.name = req.body.name || '';
+  user.phone_number = req.body.phone || '';
+  user.picture = req.body.photo || '';
+  user.save(function(err) {
       if (err) {
         // Send logs to logentries
         console.log("Edit profile failed: " + err);
         return next(err);
-      }
+    }
       // Send logs to logentries
       console.log("Edit profile Success");
 
       req.flash('success', { msg: 'Profile information updated.' });
       res.redirect('/settings');
-    });
   });
+});
 };

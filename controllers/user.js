@@ -16,7 +16,7 @@ var analytics = require('../controllers/analytics');
  * GET /login
  * Login page.
  */
-exports.getLogin = function(req, res) {
+ exports.getLogin = function(req, res) {
 
   if (req.user) {
     return res.redirect('/');
@@ -30,7 +30,7 @@ exports.getLogin = function(req, res) {
  * POST /login
  * Sign in using email and password.
  */
-exports.postLogin = function(req, res, next) {
+ exports.postLogin = function(req, res, next) {
   req.assert('email', 'Email is not valid').isEmail();
   req.assert('password', 'Password cannot be blank').notEmpty();
 
@@ -88,7 +88,7 @@ exports.postLogin = function(req, res, next) {
  * GET /logout
  * Log out.
  */
-exports.logout = function(req, res) {
+ exports.logout = function(req, res) {
   req.logout();
   res.redirect('/');
 };
@@ -97,7 +97,7 @@ exports.logout = function(req, res) {
  * GET /signup
  * Signup page.
  */
-exports.getSignup = function(req, res) {
+ exports.getSignup = function(req, res) {
   if (req.user) {
     return res.redirect('/');
   }
@@ -110,7 +110,7 @@ exports.getSignup = function(req, res) {
  * POST /signup
  * Create a new local account.
  */
-exports.postSignup = function(req, res, next) {
+ exports.postSignup = function(req, res, next) {
   req.assert('email', 'Email is not valid').isEmail();
   req.assert('password', 'Password must be at least 4 characters long').len(4);
   req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
@@ -243,7 +243,7 @@ exports.postSignup = function(req, res, next) {
  * GET /account
  * Profile page.
  */
-exports.getAccount = function(req, res) {
+ exports.getAccount = function(req, res) {
   res.render('account/profile', {
     title: 'Account Management'
   });
@@ -254,10 +254,10 @@ exports.getAccount = function(req, res) {
  * POST /account/profile
  * Update profile information.
  */
-exports.postUpdateProfile = function(req, res, next) {
+ exports.postUpdateProfile = function(req, res, next) {
   console.log("update profile");
   User.findById(req.user.id, function(err, user) {
-      console.log(req.user.id);
+    console.log(req.user.id);
     if (err) {
       // Send logs to logentries
       console.log("Edit profile failed: " + err);
@@ -287,7 +287,7 @@ exports.postUpdateProfile = function(req, res, next) {
  * POST /account/profile
  * Update profile information.
  */
-exports.postUpdateForm = function(req, res, next) {
+ exports.postUpdateForm = function(req, res, next) {
 
   console.log("html = " + req.body.form);
 
@@ -320,7 +320,7 @@ exports.postUpdateForm = function(req, res, next) {
  * POST /account/password
  * Update current password.
  */
-exports.postUpdatePassword = function(req, res, next) {
+ exports.postUpdatePassword = function(req, res, next) {
   // req.assert('password', 'Password must be at least 4 characters long').len(4);
   // req.assert('confirmPassword', 'Passwords do not match').equals(req.body.password);
   // console.log("get in update password ");
@@ -354,7 +354,7 @@ exports.postUpdatePassword = function(req, res, next) {
  * POST /account/delete
  * Delete user account.
  */
-exports.postDeleteAccount = function(req, res, next) {
+ exports.postDeleteAccount = function(req, res, next) {
   User.remove({ _id: req.user.id }, function(err) {
     if (err) {
       // Send logs to logentries
@@ -376,7 +376,7 @@ exports.postDeleteAccount = function(req, res, next) {
  * GET /account/unlink/:provider
  * Unlink OAuth provider.
  */
-exports.getOauthUnlink = function(req, res, next) {
+ exports.getOauthUnlink = function(req, res, next) {
   var provider = req.params.provider;
   User.findById(req.user.id, function(err, user) {
     if (err) {
@@ -396,32 +396,32 @@ exports.getOauthUnlink = function(req, res, next) {
  * GET /reset/:token
  * Reset Password page.
  */
-exports.getReset = function(req, res) {
+ exports.getReset = function(req, res) {
   if (req.isAuthenticated()) {
     return res.redirect('/');
   }
   User
-    .findOne({ resetPasswordToken: req.params.token })
-    .where('resetPasswordExpires').gt(Date.now())
-    .exec(function(err, user) {
-      if (err) {
-        return next(err);
-      }
-      if (!user) {
-        req.flash('errors', { msg: 'Password reset token is invalid or has expired.' });
-        return res.redirect('/forgot');
-      }
-      res.render('account/reset', {
-        title: 'Password Reset'
-      });
+  .findOne({ resetPasswordToken: req.params.token })
+  .where('resetPasswordExpires').gt(Date.now())
+  .exec(function(err, user) {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      req.flash('errors', { msg: 'Password reset token is invalid or has expired.' });
+      return res.redirect('/forgot');
+    }
+    res.render('account/reset', {
+      title: 'Password Reset'
     });
+  });
 };
 
 /**
  * POST /reset/:token
  * Process the reset password request.
  */
-exports.postReset = function(req, res, next) {
+ exports.postReset = function(req, res, next) {
   req.assert('password', 'Password must be at least 4 characters long.').len(4);
   req.assert('confirm', 'Passwords must match.').equals(req.body.password);
 
@@ -435,28 +435,28 @@ exports.postReset = function(req, res, next) {
   async.waterfall([
     function(done) {
       User
-        .findOne({ resetPasswordToken: req.params.token })
-        .where('resetPasswordExpires').gt(Date.now())
-        .exec(function(err, user) {
+      .findOne({ resetPasswordToken: req.params.token })
+      .where('resetPasswordExpires').gt(Date.now())
+      .exec(function(err, user) {
+        if (err) {
+          return next(err);
+        }
+        if (!user) {
+          req.flash('errors', { msg: 'Password reset token is invalid or has expired.' });
+          return res.redirect('back');
+        }
+        user.password = req.body.password;
+        user.resetPasswordToken = undefined;
+        user.resetPasswordExpires = undefined;
+        user.save(function(err) {
           if (err) {
             return next(err);
           }
-          if (!user) {
-            req.flash('errors', { msg: 'Password reset token is invalid or has expired.' });
-            return res.redirect('back');
-          }
-          user.password = req.body.password;
-          user.resetPasswordToken = undefined;
-          user.resetPasswordExpires = undefined;
-          user.save(function(err) {
-            if (err) {
-              return next(err);
-            }
-            req.logIn(user, function(err) {
-              done(err, user);
-            });
+          req.logIn(user, function(err) {
+            done(err, user);
           });
         });
+      });
     },
     function(user, done) {
       var transporter = nodemailer.createTransport({
@@ -471,26 +471,26 @@ exports.postReset = function(req, res, next) {
         from: 'hackathon@starter.com',
         subject: 'Your Hackathon Starter password has been changed',
         text: 'Hello,\n\n' +
-          'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
+        'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
       };
       transporter.sendMail(mailOptions, function(err) {
         req.flash('success', { msg: 'Success! Your password has been changed.' });
         done(err);
       });
     }
-  ], function(err) {
-    if (err) {
-      return next(err);
-    }
-    res.redirect('/');
-  });
+    ], function(err) {
+      if (err) {
+        return next(err);
+      }
+      res.redirect('/');
+    });
 };
 
 /**
  * GET /forgot
  * Forgot Password page.
  */
-exports.getForgot = function(req, res) {
+ exports.getForgot = function(req, res) {
   if (req.isAuthenticated()) {
     return res.redirect('/');
   }
@@ -503,7 +503,7 @@ exports.getForgot = function(req, res) {
  * POST /forgot
  * Create a random token, then the send user an email with a reset link.
  */
-exports.postForgot = function(req, res, next) {
+ exports.postForgot = function(req, res, next) {
   req.assert('email', 'Please enter a valid email address.').isEmail();
 
   var errors = req.validationErrors();
@@ -546,31 +546,31 @@ exports.postForgot = function(req, res, next) {
         from: 'hackathon@starter.com',
         subject: 'Reset your password on Hackathon Starter',
         text: 'You are receiving this email because you (or someone else) have requested the reset of the password for your account.\n\n' +
-          'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-          'http://' + req.headers.host + '/reset/' + token + '\n\n' +
-          'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+        'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+        'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+        'If you did not request this, please ignore this email and your password will remain unchanged.\n'
       };
       transporter.sendMail(mailOptions, function(err) {
         req.flash('info', { msg: 'An e-mail has been sent to ' + user.email + ' with further instructions.' });
         done(err, 'done');
       });
     }
-  ], function(err) {
-    if (err) {
-      return next(err);
-    }
-    res.redirect('/forgot');
-  });
+    ], function(err) {
+      if (err) {
+        return next(err);
+      }
+      res.redirect('/forgot');
+    });
 };
 
 function emailEmployee(employee, admin, password) {
     // Create SMTP transporter object
     var options = {
-        service: 'gmail',
-        auth: {
-            user: 'donotreply.receptional@gmail.com',
-            pass: 'nightowls1'
-        }
+      service: 'gmail',
+      auth: {
+        user: 'donotreply.receptional@gmail.com',
+        pass: 'nightowls1'
+      }
     };
     var companyname = admin.companyname;
     var subdomainurl = admin.subdomainurl;
@@ -578,20 +578,20 @@ function emailEmployee(employee, admin, password) {
     var transporter = nodemailer.createTransport(options);
     // Setup email data
     var mailOptions = {
-        from: '"Receptional.xyz" <donotreply.receptional@gmail.com>',
-        to: employee.email,
-        subject: "Welcome to Receptional",
-        text: emailtext,
-        html: emailtext
+      from: '"Receptional.xyz" <donotreply.receptional@gmail.com>',
+      to: employee.email,
+      subject: "Welcome to Receptional",
+      text: emailtext,
+      html: emailtext
     };
     // Send email
     transporter.sendMail(mailOptions, function(error, info) {
-        if(error) {
-            console.log(error);
-        }
-        else {
-            console.log('Message sent: ' + info.response);
-            console.log(emailtext);
-        }
+      if(error) {
+        console.log(error);
+      }
+      else {
+        console.log('Message sent: ' + info.response);
+        console.log(emailtext);
+      }
     });
-}
+  }

@@ -66,68 +66,68 @@
 
 
 <body>
-        <!-- START BREADCRUMB -->
-        <ul class="breadcrumb">
-            <li><a href="dashboard_admin">Overview</a></li>
-            <li class="active">Manage Employees</li>
-        </ul>
-        <!-- END BREADCRUMB -->
+    <!-- START BREADCRUMB -->
+    <ul class="breadcrumb">
+        <li><a href="dashboard_admin">Overview</a></li>
+        <li class="active">Manage Employees</li>
+    </ul>
+    <!-- END BREADCRUMB -->
 
-        <!-- PAGE CONTENT WRAPPER -->
-        <div class="page-content-wrap">
-            <div class="row">
-                <div class="col-md-12">
-                    <!-- START MANAGE EMPLOYEES DATATABLE -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Manage Employees</h3>
-                            <ul class="panel-controls">
+    <!-- PAGE CONTENT WRAPPER -->
+    <div class="page-content-wrap">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- START MANAGE EMPLOYEES DATATABLE -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Manage Employees</h3>
+                        <ul class="panel-controls">
+                            <li>
+                                <button class="btn btn-default" data-toggle="modal" data-target="#addEmployeeCSV"> Import Data</button>
+                            </li>
+                            <li>
+                                <button class="btn btn-default" data-toggle="modal" data-target="#addEmployee">Add Employee</button>
+                            </li>
+                        </ul>
+                        <div class="btn-group pull-right">
+                            <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Data</button>
+                            <ul class="dropdown-menu">
                                 <li>
-                                    <button class="btn btn-default" data-toggle="modal" data-target="#addEmployeeCSV"> Import Data</button>
+                                    <a href="#" onClick="$('#employeesList').tableExport({type:'json',escape:'false'});"><img src='img/icons/json.png' width="24" /> JSON</a>
                                 </li>
                                 <li>
-                                    <button class="btn btn-default" data-toggle="modal" data-target="#addEmployee">Add Employee</button>
+                                    <a href="#" onClick="$('#employeesList').tableExport({type:'json',escape:'false',ignoreColumn:'[2,3]'});"><img src='img/icons/json.png' width="24" /> JSON (ignoreColumn)</a>
+                                </li>
+                                <li>
+                                    <a href="#" onClick="$('#employeesList').tableExport({type:'json',escape:'true'});"><img src='img/icons/json.png' width="24" /> JSON (with Escape)</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#" onClick="$('#employeesList').tableExport({type:'xml',escape:'false'});"><img src='img/icons/xml.png' width="24" /> XML</a>
+                                </li>
+                                <li>
+                                    <a href="#" onClick="$('#employeesList').tableExport({type:'sql'});"><img src='img/icons/sql.png' width="24" /> SQL</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#" onClick="$('#employeesList').tableExport({type:'csv',escape:'false'});"><img src='img/icons/csv.png' width="40" /> CSV</a>
+                                </li>
+                                <li>
+                                    <a href="#" onClick="$('#employeesList').tableExport({type:'txt',escape:'false'});"><img src='img/icons/txt.png' width="40" /> TXT</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#" onClick="$('#employeesList').tableExport({type:'png',escape:'false'});"><img src='img/icons/png.png' width="24" /> PNG</a>
+                                </li>
+                                <li>
+                                    <a href="#" onClick="$('#employeesList').tableExport({type:'pdf',escape:'false'});"><img src='img/icons/pdf.png' width="24" /> PDF</a>
                                 </li>
                             </ul>
-                            <div class="btn-group pull-right">
-                                <button class="btn btn-danger dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Data</button>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="#" onClick="$('#employeesList').tableExport({type:'json',escape:'false'});"><img src='img/icons/json.png' width="24" /> JSON</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onClick="$('#employeesList').tableExport({type:'json',escape:'false',ignoreColumn:'[2,3]'});"><img src='img/icons/json.png' width="24" /> JSON (ignoreColumn)</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onClick="$('#employeesList').tableExport({type:'json',escape:'true'});"><img src='img/icons/json.png' width="24" /> JSON (with Escape)</a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="#" onClick="$('#employeesList').tableExport({type:'xml',escape:'false'});"><img src='img/icons/xml.png' width="24" /> XML</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onClick="$('#employeesList').tableExport({type:'sql'});"><img src='img/icons/sql.png' width="24" /> SQL</a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="#" onClick="$('#employeesList').tableExport({type:'csv',escape:'false'});"><img src='img/icons/csv.png' width="40" /> CSV</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onClick="$('#employeesList').tableExport({type:'txt',escape:'false'});"><img src='img/icons/txt.png' width="40" /> TXT</a>
-                                    </li>
-                                    <li class="divider"></li>
-                                    <li>
-                                        <a href="#" onClick="$('#employeesList').tableExport({type:'png',escape:'false'});"><img src='img/icons/png.png' width="24" /> PNG</a>
-                                    </li>
-                                    <li>
-                                        <a href="#" onClick="$('#employeesList').tableExport({type:'pdf',escape:'false'});"><img src='img/icons/pdf.png' width="24" /> PDF</a>
-                                    </li>
-                                </ul>
-                            </div>
                         </div>
-                        <div class="panel-body">
-                            <table id="employeesList" class="table datatable">
-                                <thead>
+                    </div>
+                    <div class="panel-body">
+                        <table id="employeesList" class="table datatable">
+                            <thead>
                                 <tr>
                                     <th id="nameHead">Name</th>
                                     <th id="numberHead">Number</th>
@@ -135,223 +135,223 @@
                                     <th id="delete">Delete</th>
                                     <th id="action">Action</th>
                                 </tr>
-                                </thead>
-                                {{#employees}}
-                                    <tr>
-                                        <td>{{name}}</td>
-                                        <td>{{phone_number}}</td>
-                                        <td>{{email}}</td>
-                                        <td>
-                                        <form method="POST"  action="/delete/{{_id}}?_method=DELETE">
-                                                <button class="btn btn-danger" type="submit">Delete</button>
-                                        </form>
-                                        </td>
-                                        <td>
-                                            <button class="btn btn-info" name="email" id= "{{email}} "
-                                                data-toggle="modal" data-target="#emailEmployee">Email</button>
-                                        </td>
-                                    </tr>
-                                {{/employees}}
-                                <tbody>
+                            </thead>
+                            {{#employees}}
+                            <tr>
+                                <td>{{name}}</td>
+                                <td>{{phone_number}}</td>
+                                <td>{{email}}</td>
+                                <td>
+                                    <form method="POST"  action="/delete/{{_id}}?_method=DELETE">
+                                        <button class="btn btn-danger" type="submit">Delete</button>
+                                    </form>
+                                </td>
+                                <td>
+                                    <button class="btn btn-info" name="email" id= "{{email}} "
+                                    data-toggle="modal" data-target="#emailEmployee">Email</button>
+                                </td>
+                            </tr>
+                            {{/employees}}
+                            <tbody>
 
-                                </tbody>
-                            </table>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
-                    <!-- END MANAGE EMPLOYEES DATATABLE -->
+                </div>
+                <!-- END MANAGE EMPLOYEES DATATABLE -->
+            </div>
+        </div>
+    </div>
+    <!-- END CONTENT WRAPPER -->
+
+    <!-- START ADD MODAL-->
+    <div class="modal fade" id="addEmployee" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                        <h2 class="modal-title" id="exampleModalLabel">ADD EMPLOYEE</h2>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" name="modalForm" class="form-horizontal ws-validate" id="addEmployeeForm">
+                            <div class="form-group">
+                                <label for="modalName" class="col-sm-2 control-label">Name</label>
+                                <div class="col-sm-10">
+                                    <input name="name" type="text" class="form-control" id="modalName" placeholder="Jane Doe" required>
+                                    <p class="help-block" id="invalidName">Please enter first and last name. Ex: First Last</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="modalNumber" class="col-sm-2 control-label">Number</label>
+                                <div class="col-sm-10">
+                                    <input type="tel" name="number" class="form-control" id="modalNumber" required>
+                                    <p class="help-block" id="invalidNumber">Please enter a valid phone number Ex: 1234567890</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-2 control-label" for="modalEmail">Email</label>
+                                <div class="col-sm-10">
+                                    <input type="email" name="email" class="form-control" id="modalEmail" placeholder="jane.doe@example.com" required>
+                                    <p class="help-block" id="invalidEmail">Please enter a valid email Ex: email@address.com</p>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-offset-3 col-sm-7">
+                                    <button type="submit" class="btn btn-primary" id="okbutton" >OK</button>
+                                    <button class="btn btn-default" data-dismiss="modal" id="cancelbutton">Cancel</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-        <!-- END CONTENT WRAPPER -->
+        <!-- END ADD MODAL-->
 
-<!-- START ADD MODAL-->
-<div class="modal fade" id="addEmployee" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span></button>
-                <h2 class="modal-title" id="exampleModalLabel">ADD EMPLOYEE</h2>
-            </div>
-            <div class="modal-body">
-                <form method="POST" name="modalForm" class="form-horizontal ws-validate" id="addEmployeeForm">
-                    <div class="form-group">
-                        <label for="modalName" class="col-sm-2 control-label">Name</label>
-                        <div class="col-sm-10">
-                            <input name="name" type="text" class="form-control" id="modalName" placeholder="Jane Doe" required>
-                            <p class="help-block" id="invalidName">Please enter first and last name. Ex: First Last</p>
+        <!-- START IMPORT MODAL-->
+        <div class="modal fade" id="addEmployeeCSV" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span></button>
+                            <h2 class="modal-title" id="exampleModalLabel">ADD EMPLOYEES</h2>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" action="/add_EmployeesCSV" name="modalCSVInput" class="form-horizontal ws-validate" enctype="multipart/form-data" id="addEmployeeCSVForm">
+                                <div class="form-group">
+                                    <div class="col-sm-10">
+                                        <p>Upload a CSV file containing your employees.</p>
+                                        <p class="help-block">Each line should formatted:<br>name, phone number, email</p>
+                                        <input type="file" name="file" class="form-control" accept="application/csv" id="modalFile" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-offset-3 col-sm-7">
+                                        <button type="submit" class="btn btn-primary" id="okbuttonCSV" >OK</button>
+                                        <button class="btn btn-default" data-dismiss="modal" id="cancelbuttonCSV">Cancel</button>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label for="modalNumber" class="col-sm-2 control-label">Number</label>
-                        <div class="col-sm-10">
-                            <input type="tel" name="number" class="form-control" id="modalNumber" required>
-                            <p class="help-block" id="invalidNumber">Please enter a valid phone number Ex: 1234567890</p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-2 control-label" for="modalEmail">Email</label>
-                        <div class="col-sm-10">
-                            <input type="email" name="email" class="form-control" id="modalEmail" placeholder="jane.doe@example.com" required>
-                            <p class="help-block" id="invalidEmail">Please enter a valid email Ex: email@address.com</p>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-3 col-sm-7">
-                            <button type="submit" class="btn btn-primary" id="okbutton" >OK</button>
-                            <button class="btn btn-default" data-dismiss="modal" id="cancelbutton">Cancel</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- END ADD MODAL-->
-
-<!-- START IMPORT MODAL-->
-<div class="modal fade" id="addEmployeeCSV" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span></button>
-                <h2 class="modal-title" id="exampleModalLabel">ADD EMPLOYEES</h2>
-            </div>
-            <div class="modal-body">
-                <form method="POST" action="/add_EmployeesCSV" name="modalCSVInput" class="form-horizontal ws-validate" enctype="multipart/form-data" id="addEmployeeCSVForm">
-                    <div class="form-group">
-                        <div class="col-sm-10">
-                            <p>Upload a CSV file containing your employees.</p>
-                            <p class="help-block">Each line should formatted:<br>name, phone number, email</p>
-                            <input type="file" name="file" class="form-control" accept="application/csv" id="modalFile" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-sm-offset-3 col-sm-7">
-                            <button type="submit" class="btn btn-primary" id="okbuttonCSV" >OK</button>
-                            <button class="btn btn-default" data-dismiss="modal" id="cancelbuttonCSV">Cancel</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- END IMPORT MODAL-->
-
-
-<!-- START EMAIL MODAL -->
-<div class="modal fade" id="emailEmployee" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span></button>
-                <h2 class="modal-title" id="exampleModalLabel">EMAIL EMPLOYEE</h2>
-            </div>
-            <div class="modal-body">
-                <form name="modalForm" method="POST" action="/email_employee" class="form-horizontal ws-validate" id="emailEmployeeForm">
-                    <div class="form-group">
-                        <div class="col-md-12">
-                            <strong>To: </strong>
-                            <input type="email" name="to" class="form-control" id="to">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="message" class="col-sm-2 control-label">Subject</label>
-                        <div class="col-sm-8">
-                            <textarea type="text" name="subject" id="subject" rows="1" placeholder="Receptional" class="form-control"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="message" class="col-sm-2 control-label">Body</label>
-                        <div class="col-sm-8">
-                            <textarea type="text" name="message" id="message" rows="7" class="form-control"></textarea>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="col-md-6">
-                            <button class="btn btn-info" name="send">Send Message</button>
-                            <button class="btn btn-default" data-dismiss="modal" id="cancel">Cancel</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- END EMAIL MODULE -->
-
-
-
-<!-- SIGN OUT MESSAGE BOX-->
-<div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
-    <div class="mb-container">
-        <div class="mb-middle">
-            <div class="mb-title"><span class="fa fa-sign-out"></span> Log <strong>Out</strong> ?</div>
-            <div class="mb-content">
-                <p>Are you sure you want to log out?</p>
-                <p>Press No if youwant to continue work. Press Yes to logout current user.</p>
-            </div>
-            <div class="mb-footer">
-                <div class="pull-right">
-                    <a href="pages-login.html" class="btn btn-success btn-lg">Yes</a>
-                    <button class="btn btn-default btn-lg mb-control-close">No</button>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<!-- END SIGN OUT MESSAGE BOX-->
+            <!-- END IMPORT MODAL-->
 
-<!-- START PRELOADS -->
-<audio id="audio-alert" src="audio/alert.mp3" preload="auto"></audio>
-<audio id="audio-fail" src="audio/fail.mp3" preload="auto"></audio>
-<!-- END PRELOADS -->
 
-<!-- START SCRIPTS -->
-<!-- START PLUGINS -->
-<script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="js/plugins/jquery/jquery-ui.min.js"></script>
-<script type="text/javascript" src="js/plugins/bootstrap/bootstrap.min.js"></script>
-<!-- END PLUGINS -->
+            <!-- START EMAIL MODAL -->
+            <div class="modal fade" id="emailEmployee" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span></button>
+                                <h2 class="modal-title" id="exampleModalLabel">EMAIL EMPLOYEE</h2>
+                            </div>
+                            <div class="modal-body">
+                                <form name="modalForm" method="POST" action="/email_employee" class="form-horizontal ws-validate" id="emailEmployeeForm">
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <strong>To: </strong>
+                                            <input type="email" name="to" class="form-control" id="to">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message" class="col-sm-2 control-label">Subject</label>
+                                        <div class="col-sm-8">
+                                            <textarea type="text" name="subject" id="subject" rows="1" placeholder="Receptional" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message" class="col-sm-2 control-label">Body</label>
+                                        <div class="col-sm-8">
+                                            <textarea type="text" name="message" id="message" rows="7" class="form-control"></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <button class="btn btn-info" name="send">Send Message</button>
+                                            <button class="btn btn-default" data-dismiss="modal" id="cancel">Cancel</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END EMAIL MODULE -->
 
-<!-- THIS PAGE PLUGINS -->
-<script type='text/javascript' src='js/plugins/icheck/icheck.min.js'></script>
-<script type="text/javascript" src="js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
-<script type="text/javascript" src="js/plugins/scrolltotop/scrolltopcontrol.js"></script>
 
-<script type="text/javascript" src="js/plugins/datatables/jquery.dataTables.min.js"></script>
-<script type="text/javascript" src="js/plugins/tableexport/tableExport.js"></script>
-<script type="text/javascript" src="js/plugins/tableexport/jquery.base64.js"></script>
-<script type="text/javascript" src="js/plugins/tableexport/html2canvas.js"></script>
-<script type="text/javascript" src="js/plugins/tableexport/jspdf/libs/sprintf.js"></script>
-<script type="text/javascript" src="js/plugins/tableexport/jspdf/jspdf.js"></script>
-<script type="text/javascript" src="js/plugins/tableexport/jspdf/libs/base64.js"></script>
-<!-- END PAGE PLUGINS -->
 
-<!-- START TEMPLATE -->
-<script type="text/javascript" src="js/plugins.js"></script>
-<script type="text/javascript" src="js/actions.js"></script>
-<!-- END TEMPLATE -->
+                <!-- SIGN OUT MESSAGE BOX-->
+                <div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
+                    <div class="mb-container">
+                        <div class="mb-middle">
+                            <div class="mb-title"><span class="fa fa-sign-out"></span> Log <strong>Out</strong> ?</div>
+                            <div class="mb-content">
+                                <p>Are you sure you want to log out?</p>
+                                <p>Press No if youwant to continue work. Press Yes to logout current user.</p>
+                            </div>
+                            <div class="mb-footer">
+                                <div class="pull-right">
+                                    <a href="pages-login.html" class="btn btn-success btn-lg">Yes</a>
+                                    <button class="btn btn-default btn-lg mb-control-close">No</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END SIGN OUT MESSAGE BOX-->
 
-<script type="text/javascript" src="js/moment.min.js"></script>
-<script type="text/javascript" src="js/bootstrap-sortable.js"></script>
+                <!-- START PRELOADS -->
+                <audio id="audio-alert" src="audio/alert.mp3" preload="auto"></audio>
+                <audio id="audio-fail" src="audio/fail.mp3" preload="auto"></audio>
+                <!-- END PRELOADS -->
 
-<!-- START ADD EMPLOYEE  SCRIPT -->
-<script type="text/javascript">
-    $(function () {
-        $(document).ready(function() {
-            $(".dropdown-toggle").dropdown();
-        });
+                <!-- START SCRIPTS -->
+                <!-- START PLUGINS -->
+                <script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
+                <script type="text/javascript" src="js/plugins/jquery/jquery-ui.min.js"></script>
+                <script type="text/javascript" src="js/plugins/bootstrap/bootstrap.min.js"></script>
+                <!-- END PLUGINS -->
+
+                <!-- THIS PAGE PLUGINS -->
+                <script type='text/javascript' src='js/plugins/icheck/icheck.min.js'></script>
+                <script type="text/javascript" src="js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+                <script type="text/javascript" src="js/plugins/scrolltotop/scrolltopcontrol.js"></script>
+
+                <script type="text/javascript" src="js/plugins/datatables/jquery.dataTables.min.js"></script>
+                <script type="text/javascript" src="js/plugins/tableexport/tableExport.js"></script>
+                <script type="text/javascript" src="js/plugins/tableexport/jquery.base64.js"></script>
+                <script type="text/javascript" src="js/plugins/tableexport/html2canvas.js"></script>
+                <script type="text/javascript" src="js/plugins/tableexport/jspdf/libs/sprintf.js"></script>
+                <script type="text/javascript" src="js/plugins/tableexport/jspdf/jspdf.js"></script>
+                <script type="text/javascript" src="js/plugins/tableexport/jspdf/libs/base64.js"></script>
+                <!-- END PAGE PLUGINS -->
+
+                <!-- START TEMPLATE -->
+                <script type="text/javascript" src="js/plugins.js"></script>
+                <script type="text/javascript" src="js/actions.js"></script>
+                <!-- END TEMPLATE -->
+
+                <script type="text/javascript" src="js/moment.min.js"></script>
+                <script type="text/javascript" src="js/bootstrap-sortable.js"></script>
+
+                <!-- START ADD EMPLOYEE  SCRIPT -->
+                <script type="text/javascript">
+                    $(function () {
+                        $(document).ready(function() {
+                            $(".dropdown-toggle").dropdown();
+                        });
         // Reset form when form is hidden
         $('.modal').on('hidden.bs.modal', function(){
             $(this).find('form')[0].reset();
         });
     }	);
-</script>
-<!-- END ADD EMPLOYEE SCRIPT -->
-<!-- END SCRIPTS -->
-</body>
-</html>
+                </script>
+                <!-- END ADD EMPLOYEE SCRIPT -->
+                <!-- END SCRIPTS -->
+            </body>
+            </html>

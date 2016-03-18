@@ -60,11 +60,11 @@
                     <li><a href="/about">About</a></li>
                     <li><a href="/contact">Contact</a></li>
                     {{#if user}}
-                        <li><a href="/logout">Log Out</a></li>
+                    <li><a href="/logout">Log Out</a></li>
                     {{else}}
-                        <li><a href="/signup">Sign Up</a></li>
-                        <li><a href="/login">Owner Login</a></li>
-                        <li><a href="/subdomain_login">Find Your Company</a></li>
+                    <li><a href="/signup">Sign Up</a></li>
+                    <li><a href="/login">Owner Login</a></li>
+                    <li><a href="/subdomain_login">Find Your Company</a></li>
                     {{/if}}
                 </ul>
                 <!-- ./navigation -->
@@ -128,31 +128,31 @@
                                 </div>
                             </div>
                             <form  method="post">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>Name <span class="text-hightlight">*</span></label>
-                                        <input type="text" id= "name" name="name"class="form-control" />
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>Name <span class="text-hightlight">*</span></label>
+                                            <input type="text" id= "name" name="name"class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label>E-mail <span class="text-hightlight">*</span></label>
+                                            <input type="text" id= "email" name="email" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label>Subject <span class="text-hightlight">*</span></label>
+                                            <input type="text" id= "subject" name="subject" class="form-control" />
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Message <span class="text-hightlight">*</span></label>
+                                            <textarea class="form-control" id= "message" name="message" rows="8"></textarea>
+                                        </div>
+                                        <button class="btn btn-primary btn-lg pull-right">Send Message</button>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="form-group">
-                                        <label>E-mail <span class="text-hightlight">*</span></label>
-                                        <input type="text" id= "email" name="email" class="form-control" />
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <label>Subject <span class="text-hightlight">*</span></label>
-                                        <input type="text" id= "subject" name="subject" class="form-control" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Message <span class="text-hightlight">*</span></label>
-                                        <textarea class="form-control" id= "message" name="message" rows="8"></textarea>
-                                    </div>
-                                    <button class="btn btn-primary btn-lg pull-right">Send Message</button>
-                                </div>
-                            </div>
                             </form>
                         </div>
                         <div class="col-md-5 this-animate" data-animate="fadeInRight">

@@ -15,358 +15,351 @@
     <!-- EOF CSS INCLUDE -->
 </head>
 <body>
-<!-- START PAGE CONTAINER -->
-<div class="page-container">
+    <!-- START PAGE CONTAINER -->
+    <div class="page-container">
 
-    <!-- START PAGE SIDEBAR -->
-    <div class="page-sidebar">
-        <!-- START X-NAVIGATION -->
-        <ul class="x-navigation">
-            <li class="xn-logo">
-                <a href=/dashboard_peter>
-                <a href="#" class="x-navigation-control"></a>
-            </li>
-            <li class="xn-profile">
-                <a href="#" class="profile-mini">
-                    {{#if user.picture}}
-                        <img src="{{user.picture}}">
-                    {{else}}
-                        <img src="assets/images/users/avatar.jpg alt="Peter">
-                    {{/if}}
-                </a>
-                <div class="profile">
-                    <div class="profile-image">
-                        {{#if user.picture}}
+        <!-- START PAGE SIDEBAR -->
+        <div class="page-sidebar">
+            <!-- START X-NAVIGATION -->
+            <ul class="x-navigation">
+                <li class="xn-logo">
+                    <a href=/dashboard_peter>
+                        <a href="#" class="x-navigation-control"></a>
+                    </li>
+                    <li class="xn-profile">
+                        <a href="#" class="profile-mini">
+                            {{#if user.picture}}
                             <img src="{{user.picture}}">
-                        {{else}}
+                            {{else}}
                             <img src="assets/images/users/avatar.jpg alt="Peter">
-                        {{/if}}
-                    </div>
-                    <div class="profile-data">
-                        <div class="profile-data-name">[Peter]</div>
-                        <div class="profile-data-title">Product Owner</div>
-                    </div>
-                </div>
-            </li>
-            <li class="xn-title">Navigation</li>
-            <li class="">
-                <a href="dashboard_peter"><span class="fa fa-dashboard"></span> <span class="xn-text">Overview</span></a>
-            </li>
-            <li class="">
-                <a href="/settings_p"><span class="fa fa-desktop"></span> <span class="xn-text">Settings</span></a>
-            </li>
-        </ul>
-        <!-- END X-NAVIGATION -->
-    </div>
-    <!-- END PAGE SIDEBAR -->
-
-
-
-    <!-- PAGE CONTENT -->
-    <div class="page-content">
-
-        <!-- START X-NAVIGATION VERTICAL -->
-        <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
-            <!-- TOGGLE NAVIGATION -->
-            <li class="xn-icon-button">
-                <a href="#" class="x-navigation-minimize"><span class="fa fa-dedent"></span></a>
-            </li>
-            <!-- END TOGGLE NAVIGATION -->
-            <!-- SEARCH -->
-            <li class="xn-search">
-                <form role="form">
-                    <input type="text" name="search" placeholder="Search..."/>
-                </form>
-            </li>
-            <!-- END SEARCH -->
-            <!-- SIGN OUT -->
-            <li class="xn-icon-button pull-right">
-                <a href="/logout" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>
-            </li>
-            <!-- END SIGN OUT -->
-        </ul>
-        <!-- END X-NAVIGATION VERTICAL -->
-        <!-- START BREADCRUMB -->
-        <ul class="breadcrumb">
-            <li><a href="#">Home</a></li>
-            <li class="active">Dashboard</li>
-        </ul>
-        <!-- END BREADCRUMB -->
-
-        <!-- PAGE CONTENT WRAPPER -->
-        <div class="page-content-wrap">
-
-            <!-- START WIDGETS -->
-            <div class="row">
-                <div class="col-md-3">
-
-                    <!-- START WIDGET SLIDER -->
-                    <div class="widget widget-default widget-carousel">
-                        <div class="owl-carousel" id="owl-example">
-                            <div>
-                                <div class="widget-title">Total Patients</div>
-                                <div class="widget-subtitle">03/17/2016 19:23</div>
-                                <div class="widget-int">{{{analyticData.patient_count}}}</div>
+                            {{/if}}
+                        </a>
+                        <div class="profile">
+                            <div class="profile-image">
+                                {{#if user.picture}}
+                                <img src="{{user.picture}}">
+                                {{else}}
+                                <img src="assets/images/users/avatar.jpg alt="Peter">
+                                {{/if}}
                             </div>
-                            <div>
-                                <div class="widget-title">Returned</div>
-                                <div class="widget-subtitle">Visitors</div>
-                                <div class="widget-int">1,695</div>
-                            </div>
-                            <div>
-                                <div class="widget-title">New</div>
-                                <div class="widget-subtitle">Visitors</div>
-                                <div class="widget-int">1,977</div>
+                            <div class="profile-data">
+                                <div class="profile-data-name">[Peter]</div>
+                                <div class="profile-data-title">Product Owner</div>
                             </div>
                         </div>
-                    </div>
-                    <!-- END WIDGET SLIDER -->
-
-                </div>
-                <div class="col-md-3">
-
-                    <!-- START WIDGET MESSAGES -->
-                    <div class="widget widget-default widget-item-icon" onclick="location.href='/404';">
-                        <div class="widget-item-left">
-                            <span class="fa fa-envelope"></span>
-                        </div>
-                        <div class="widget-data">
-                            <div class="widget-int num-count">48</div>
-                            <div class="widget-title">New messages</div>
-                            <div class="widget-subtitle">In your mailbox</div>
-                        </div>
-                    </div>
-                    <!-- END WIDGET MESSAGES -->
-
-                </div>
-                <div class="col-md-3">
-
-                    <!-- START WIDGET REGISTRED -->
-                    <div class="widget widget-default widget-item-icon">
-                        <div class="widget-item-left">
-                            <span class="fa fa-user"></span>
-                        </div>
-                        <div class="widget-data">
-                            <div class="widget-int num-count">{{{analyticData.count}}}</div>
-                            <div class="widget-title">Registered Businesses</div>
-                            <div class="widget-subtitle">Use your product</div>
-                        </div>
-                    </div>
-                    <!-- END WIDGET REGISTRED -->
-
-                </div>
-                <div class="col-md-3">
-
-                    <!-- START WIDGET CLOCK -->
-                    <div class="widget widget-danger widget-padding-sm">
-                        <div class="widget-big-int plugin-clock">00:00</div>
-                        <div class="widget-subtitle plugin-date">Loading...</div>
-                        <div class="widget-buttons widget-c3">
-                            <div class="col">
-                                <a href="#"><span class="fa fa-clock-o"></span></a>
-                            </div>
-                            <div class="col">
-                                <a href="#"><span class="fa fa-bell"></span></a>
-                            </div>
-                            <div class="col">
-                                <a href="#"><span class="fa fa-calendar"></span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- END WIDGET CLOCK -->
-
-                </div>
+                    </li>
+                    <li class="xn-title">Navigation</li>
+                    <li class="">
+                        <a href="dashboard_peter"><span class="fa fa-dashboard"></span> <span class="xn-text">Overview</span></a>
+                    </li>
+                    <li class="">
+                        <a href="/settings_p"><span class="fa fa-desktop"></span> <span class="xn-text">Settings</span></a>
+                    </li>
+                </ul>
+                <!-- END X-NAVIGATION -->
             </div>
-            <!-- END WIDGETS -->
+            <!-- END PAGE SIDEBAR -->
 
-            <div class="row">
-                <div class="col-md-12">
 
-                    <!-- START SALES BLOCK -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <div class="panel-title-box">
-                                <h3>Website Throughput</h3>
-                                <span>View the traffic visiting your website</span>
+
+            <!-- PAGE CONTENT -->
+            <div class="page-content">
+
+                <!-- START X-NAVIGATION VERTICAL -->
+                <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
+                    <!-- TOGGLE NAVIGATION -->
+                    <li class="xn-icon-button">
+                        <a href="#" class="x-navigation-minimize"><span class="fa fa-dedent"></span></a>
+                    </li>
+                    <!-- END TOGGLE NAVIGATION -->
+                    <!-- SIGN OUT -->
+                    <li class="xn-icon-button pull-right">
+                        <a href="/logout" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>
+                    </li>
+                    <!-- END SIGN OUT -->
+                </ul>
+                <!-- END X-NAVIGATION VERTICAL -->
+                <!-- START BREADCRUMB -->
+                <ul class="breadcrumb">
+                    <li><a href="#">Home</a></li>
+                    <li class="active">Dashboard</li>
+                </ul>
+                <!-- END BREADCRUMB -->
+
+                <!-- PAGE CONTENT WRAPPER -->
+                <div class="page-content-wrap">
+
+                    <!-- START WIDGETS -->
+                    <div class="row">
+                        <div class="col-md-3">
+
+                            <!-- START WIDGET SLIDER -->
+                            <div class="widget widget-default widget-carousel">
+                                <div class="owl-carousel" id="owl-example">
+                                    <div>
+                                        <div class="widget-title">Total Patients</div>
+                                        <div class="widget-subtitle">03/17/2016 19:23</div>
+                                        <div class="widget-int">{{{analyticData.patient_count}}}</div>
+                                    </div>
+                                    <div>
+                                        <div class="widget-title">Returned</div>
+                                        <div class="widget-subtitle">Visitors</div>
+                                        <div class="widget-int">1,695</div>
+                                    </div>
+                                    <div>
+                                        <div class="widget-title">New</div>
+                                        <div class="widget-subtitle">Visitors</div>
+                                        <div class="widget-int">1,977</div>
+                                    </div>
+                                </div>
                             </div>
+                            <!-- END WIDGET SLIDER -->
 
                         </div>
-                        <div class="panel-body">
-                            <iframe id="newrelic_frame" src="https://rpm.newrelic.com/public/charts/dHU0Ot8k6RN" width="1130" height="300" scrolling="yes" frameborder="no"></iframe>
-                        </div>
-                    </div>
-                    <!-- END SALES BLOCK -->
+                        <div class="col-md-3">
 
-                </div>
-
-            </div>
-
-            <div class="row">
-                <div class="col-md-6">
-
-                    <!-- START OldLogins BLOCK -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <div class="panel-title-box">
-                                <h3>Old Logins</h3>
-                                <span>Businesses that haven't logged in for a while</span>
+                            <!-- START WIDGET MESSAGES -->
+                            <div class="widget widget-default widget-item-icon";">
+                                <div class="widget-item-left">
+                                    <span class="fa fa-envelope"></span>
+                                </div>
+                                <div class="widget-data">
+                                    <div class="widget-int num-count">48</div>
+                                    <div class="widget-title">New messages</div>
+                                    <div class="widget-subtitle">In your mailbox</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="panel-body panel-body-table">
-
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th width="30%">Company</th>
-                                        <th width="50%">Email</th>
-                                        <th width="20%">Days Since</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td><strong>{{{analyticData.oldLogins.0.companyname}}}</strong></td>
-                                        <td><strong>{{{analyticData.oldLogins.0.email}}}</strong></td>
-                                        <td><span class="label label-danger">{{{analyticData.oldLogins.0.daysSince}}}</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>{{{analyticData.oldLogins.1.companyname}}}</strong></td>
-                                        <td><strong>{{{analyticData.oldLogins.1.email}}}</strong></td>
-                                        <td><span class="label label-danger">{{{analyticData.oldLogins.1.daysSince}}}</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>{{{analyticData.oldLogins.2.companyname}}}</strong></td>
-                                        <td><strong>{{{analyticData.oldLogins.2.email}}}</strong></td>
-                                        <td><span class="label label-danger">{{{analyticData.oldLogins.2.daysSince}}}</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>{{{analyticData.oldLogins.3.companyname}}}</strong></td>
-                                        <td><strong>{{{analyticData.oldLogins.3.email}}}</strong></td>
-                                        <td><span class="label label-danger">{{{analyticData.oldLogins.3.daysSince}}}</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>{{{analyticData.oldLogins.4.companyname}}}</strong></td>
-                                        <td><strong>{{{analyticData.oldLogins.4.email}}}</strong></td>
-                                        <td><span class="label label-danger">{{{analyticData.oldLogins.4.daysSince}}}</span></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            <!-- END WIDGET MESSAGES -->
 
                         </div>
-                    </div>
+                        <div class="col-md-3">
 
-                </div>
-                <div class="col-md-6">
-
-                    <!-- START PROJECTS BLOCK -->
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <div class="panel-title-box">
-                                <h3>New Businesses</h3>
-                                <span>Signup activity</span>
+                            <!-- START WIDGET REGISTRED -->
+                            <div class="widget widget-default widget-item-icon">
+                                <div class="widget-item-left">
+                                    <span class="fa fa-user"></span>
+                                </div>
+                                <div class="widget-data">
+                                    <div class="widget-int num-count">{{{analyticData.count}}}</div>
+                                    <div class="widget-title">Registered Businesses</div>
+                                    <div class="widget-subtitle">Use your product</div>
+                                </div>
                             </div>
+                            <!-- END WIDGET REGISTRED -->
+
                         </div>
-                        <div class="panel-body panel-body-table">
+                        <div class="col-md-3">
 
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped">
-                                    <thead>
-                                    <tr>
-                                        <th width="30%">Company</th>
-                                        <th width="60%">Email</th>
-                                        <th width="10%">Plan</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td><strong>{{{analyticData.recentSignups.0.companyname}}}</strong></td>
-                                        <td><strong>{{{analyticData.recentSignups.0.email}}}</strong></td>
-                                        <td><span class="label label-success">{{{analyticData.recentSignups.0.pricingplan}}}</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>{{{analyticData.recentSignups.1.companyname}}}</strong></td>
-                                        <td><strong>{{{analyticData.recentSignups.1.email}}}</strong></td>
-                                        <td><span class="label label-success">{{{analyticData.recentSignups.1.pricingplan}}}</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>{{{analyticData.recentSignups.2.companyname}}}</strong></td>
-                                        <td><strong>{{{analyticData.recentSignups.2.email}}}</strong></td>
-                                        <td><span class="label label-success">{{{analyticData.recentSignups.2.pricingplan}}}</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>{{{analyticData.recentSignups.3.companyname}}}</strong></td>
-                                        <td><strong>{{{analyticData.recentSignups.3.email}}}</strong></td>
-                                        <td><span class="label label-success">{{{analyticData.recentSignups.3.pricingplan}}}</span></td>
-                                    </tr>
-                                    <tr>
-                                        <td><strong>{{{analyticData.recentSignups.4.companyname}}}</strong></td>
-                                        <td><strong>{{{analyticData.recentSignups.4.email}}}</strong></td>
-                                        <td><span class="label label-success">{{{analyticData.recentSignups.4.pricingplan}}}</span></td>
-                                    </tr>
-                                    </tbody>
-                                </table>
+                            <!-- START WIDGET CLOCK -->
+                            <div class="widget widget-danger widget-padding-sm">
+                                <div class="widget-big-int plugin-clock">00:00</div>
+                                <div class="widget-subtitle plugin-date">Loading...</div>
+                                <div class="widget-buttons widget-c3">
+                                    <div class="col">
+                                        <a href="#"><span class="fa fa-clock-o"></span></a>
+                                    </div>
+                                    <div class="col">
+                                        <a href="#"><span class="fa fa-bell"></span></a>
+                                    </div>
+                                    <div class="col">
+                                        <a href="#"><span class="fa fa-calendar"></span></a>
+                                    </div>
+                                </div>
                             </div>
+                            <!-- END WIDGET CLOCK -->
 
                         </div>
                     </div>
-                    <!-- END PROJECTS BLOCK -->
+                    <!-- END WIDGETS -->
+
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            <!-- START SALES BLOCK -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="panel-title-box">
+                                        <h3>Website Throughput</h3>
+                                        <span>View the traffic visiting your website</span>
+                                    </div>
+
+                                </div>
+                                <div class="panel-body">
+                                    <iframe id="newrelic_frame" src="https://rpm.newrelic.com/public/charts/dHU0Ot8k6RN" width="1130" height="300" scrolling="yes" frameborder="no"></iframe>
+                                </div>
+                            </div>
+                            <!-- END SALES BLOCK -->
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+
+                            <!-- START OldLogins BLOCK -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="panel-title-box">
+                                        <h3>Old Logins</h3>
+                                        <span>Businesses that haven't logged in for a while</span>
+                                    </div>
+                                </div>
+                                <div class="panel-body panel-body-table">
+
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th width="30%">Company</th>
+                                                    <th width="50%">Email</th>
+                                                    <th width="20%">Days Since</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><strong>{{{analyticData.oldLogins.0.companyname}}}</strong></td>
+                                                    <td><strong>{{{analyticData.oldLogins.0.email}}}</strong></td>
+                                                    <td><span class="label label-danger">{{{analyticData.oldLogins.0.daysSince}}}</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>{{{analyticData.oldLogins.1.companyname}}}</strong></td>
+                                                    <td><strong>{{{analyticData.oldLogins.1.email}}}</strong></td>
+                                                    <td><span class="label label-danger">{{{analyticData.oldLogins.1.daysSince}}}</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>{{{analyticData.oldLogins.2.companyname}}}</strong></td>
+                                                    <td><strong>{{{analyticData.oldLogins.2.email}}}</strong></td>
+                                                    <td><span class="label label-danger">{{{analyticData.oldLogins.2.daysSince}}}</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>{{{analyticData.oldLogins.3.companyname}}}</strong></td>
+                                                    <td><strong>{{{analyticData.oldLogins.3.email}}}</strong></td>
+                                                    <td><span class="label label-danger">{{{analyticData.oldLogins.3.daysSince}}}</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>{{{analyticData.oldLogins.4.companyname}}}</strong></td>
+                                                    <td><strong>{{{analyticData.oldLogins.4.email}}}</strong></td>
+                                                    <td><span class="label label-danger">{{{analyticData.oldLogins.4.daysSince}}}</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+
+                            <!-- START PROJECTS BLOCK -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <div class="panel-title-box">
+                                        <h3>New Businesses</h3>
+                                        <span>Signup activity</span>
+                                    </div>
+                                </div>
+                                <div class="panel-body panel-body-table">
+
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped">
+                                            <thead>
+                                                <tr>
+                                                    <th width="30%">Company</th>
+                                                    <th width="60%">Email</th>
+                                                    <th width="10%">Plan</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td><strong>{{{analyticData.recentSignups.0.companyname}}}</strong></td>
+                                                    <td><strong>{{{analyticData.recentSignups.0.email}}}</strong></td>
+                                                    <td><span class="label label-success">{{{analyticData.recentSignups.0.pricingplan}}}</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>{{{analyticData.recentSignups.1.companyname}}}</strong></td>
+                                                    <td><strong>{{{analyticData.recentSignups.1.email}}}</strong></td>
+                                                    <td><span class="label label-success">{{{analyticData.recentSignups.1.pricingplan}}}</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>{{{analyticData.recentSignups.2.companyname}}}</strong></td>
+                                                    <td><strong>{{{analyticData.recentSignups.2.email}}}</strong></td>
+                                                    <td><span class="label label-success">{{{analyticData.recentSignups.2.pricingplan}}}</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>{{{analyticData.recentSignups.3.companyname}}}</strong></td>
+                                                    <td><strong>{{{analyticData.recentSignups.3.email}}}</strong></td>
+                                                    <td><span class="label label-success">{{{analyticData.recentSignups.3.pricingplan}}}</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td><strong>{{{analyticData.recentSignups.4.companyname}}}</strong></td>
+                                                    <td><strong>{{{analyticData.recentSignups.4.email}}}</strong></td>
+                                                    <td><span class="label label-success">{{{analyticData.recentSignups.4.pricingplan}}}</span></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- END PROJECTS BLOCK -->
+
+                        </div>
+                    </div>
+
+                    <!-- START DASHBOARD CHART -->
+                    <div class="block-full-width">
+                        <div id="dashboard-chart" style="height: 250px; width: 100%; float: left;"></div>
+                        <div class="chart-legend">
+                            <div id="dashboard-legend"></div>
+                        </div>
+                    </div>
+                    <!-- END DASHBOARD CHART -->
 
                 </div>
-            </div>
+                <!-- END PAGE CONTENT WRAPPER -->
+                {{{body}}}
 
-            <!-- START DASHBOARD CHART -->
-            <div class="block-full-width">
-                <div id="dashboard-chart" style="height: 250px; width: 100%; float: left;"></div>
-                <div class="chart-legend">
-                    <div id="dashboard-legend"></div>
-                </div>
-            </div>
-            <!-- END DASHBOARD CHART -->
+                <script>
+                    window.onload = function(){
+                        var iframe = document.getElementById('newrelic_frame');
+                        iframe.src = iframe.src;
 
+                    }
+                </script>
+            </div>
         </div>
-        <!-- END PAGE CONTENT WRAPPER -->
-		{{{body}}}
 
-        <script>
-            window.onload = function(){
-                var iframe = document.getElementById('newrelic_frame');
-                iframe.src = iframe.src;
+        <!-- START PRELOADS -->
+        <audio id="audio-alert" src="audio/alert.mp3" preload="auto"></audio>
+        <audio id="audio-fail" src="audio/fail.mp3" preload="auto"></audio>
+        <!-- END PRELOADS -->
 
-            }
-        </script>
-    </div>
-</div>
+        <!-- START SCRIPTS -->
+        <!-- START PLUGINS -->
+        <script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="js/plugins/jquery/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="js/plugins/bootstrap/bootstrap.min.js"></script>
+        <!-- END PLUGINS -->
 
-		<!-- START PRELOADS -->
-<audio id="audio-alert" src="audio/alert.mp3" preload="auto"></audio>
-<audio id="audio-fail" src="audio/fail.mp3" preload="auto"></audio>
-<!-- END PRELOADS -->
+        <!-- START THIS PAGE PLUGINS-->
+        <script type='text/javascript' src='js/plugins/icheck/icheck.min.js'></script>
+        <script type="text/javascript" src="js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+        <script type="text/javascript" src="js/plugins/scrolltotop/scrolltopcontrol.js"></script>
 
-<!-- START SCRIPTS -->
-<!-- START PLUGINS -->
-<script type="text/javascript" src="js/plugins/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="js/plugins/jquery/jquery-ui.min.js"></script>
-<script type="text/javascript" src="js/plugins/bootstrap/bootstrap.min.js"></script>
-<!-- END PLUGINS -->
+        <script type="text/javascript" src="js/plugins/morris/raphael-min.js"></script>
+        <script type="text/javascript" src="js/plugins/morris/morris.min.js"></script>
+        <script type="text/javascript" src="js/plugins/rickshaw/d3.v3.js"></script>
+        <script type="text/javascript" src="js/plugins/rickshaw/rickshaw.min.js"></script>
+        <script type='text/javascript' src='js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js'></script>
+        <script type='text/javascript' src='js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js'></script>
+        <script type='text/javascript' src='js/plugins/bootstrap/bootstrap-datepicker.js'></script>
+        <script type="text/javascript" src="js/plugins/owl/owl.carousel.min.js"></script>
 
-<!-- START THIS PAGE PLUGINS-->
-<script type='text/javascript' src='js/plugins/icheck/icheck.min.js'></script>
-<script type="text/javascript" src="js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
-<script type="text/javascript" src="js/plugins/scrolltotop/scrolltopcontrol.js"></script>
-
-<script type="text/javascript" src="js/plugins/morris/raphael-min.js"></script>
-<script type="text/javascript" src="js/plugins/morris/morris.min.js"></script>
-<script type="text/javascript" src="js/plugins/rickshaw/d3.v3.js"></script>
-<script type="text/javascript" src="js/plugins/rickshaw/rickshaw.min.js"></script>
-<script type='text/javascript' src='js/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js'></script>
-<script type='text/javascript' src='js/plugins/jvectormap/jquery-jvectormap-world-mill-en.js'></script>
-<script type='text/javascript' src='js/plugins/bootstrap/bootstrap-datepicker.js'></script>
-<script type="text/javascript" src="js/plugins/owl/owl.carousel.min.js"></script>
-
-<script type="text/javascript" src="js/plugins/moment.min.js"></script>
-<script type="text/javascript" src="js/plugins/daterangepicker/daterangepicker.js"></script>
-<!-- END THIS PAGE PLUGINS-->
+        <script type="text/javascript" src="js/plugins/moment.min.js"></script>
+        <script type="text/javascript" src="js/plugins/daterangepicker/daterangepicker.js"></script>
+        <!-- END THIS PAGE PLUGINS-->
 
 <!-- START TEMPLATE
 // ISSUE: Theme change isnt saved when navigating to another page.
