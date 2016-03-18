@@ -77,6 +77,7 @@ exports.postLogin = function(req, res, next) {
         logger.log(1,"Peter login Success:");
 
         res.redirect('/dashboard_peter');
+        return;
       }
       res.redirect('/dashboard_admin');
     });
