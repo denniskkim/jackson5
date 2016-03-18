@@ -208,9 +208,8 @@ app.get('/getEmployees', restAPIController.getEmployees);
 */
 app.get('/getAppointments', restAPIController.getPatients);
 app.get('/removePatient', restAPIController.deletePatient);
+app.get('/getEmployee', restAPIController.getEmployees);
 
-
-//app.get('/viewbusinesses', userController.viewBusinesses);
 app.get('/api', apiController.getApi);
 app.get('/api/facebook', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.getFacebook);
 
