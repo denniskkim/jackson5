@@ -202,8 +202,13 @@ app.post('/createPatient', restAPIController.createPatient);
 app.post('/createEmployee', restAPIController.createEmployee);
 app.get('/getPatients', restAPIController.getPatients);
 app.get('/getEmployees', restAPIController.getEmployees);
-app.get('/getAppointments', appointmentController.getAppointments);
-app.post('/removePatient', patientController.deletePatientSlack);
+
+/**
+* Slack slash commands
+*/
+app.get('/getAppointments', restAPIController.getPatients);
+app.get('/removePatient', restAPIController.deletePatient);
+
 
 app.get('/Billing_info', function(req, res){
   res.render('Billing_info', { user: req.user });
