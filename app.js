@@ -205,10 +205,6 @@ app.get('/getEmployees', restAPIController.getEmployees);
 app.get('/getAppointments', appointmentController.getAppointments);
 app.post('/removePatient', patientController.deletePatientSlack);
 
-//app.get('/viewbusinesses', userController.viewBusinesses);
-app.get('/api', apiController.getApi);
-app.get('/api/facebook', passportConf.isAuthenticated, passportConf.isAuthorized, apiController.getFacebook);
-
 app.get('/Billing_info', function(req, res){
   res.render('Billing_info', { user: req.user });
 });
