@@ -253,6 +253,11 @@ app.get('/settings', function(req, res){
   res.render('settings', { user: req.user });
 });
 
+
+app.get('/settings_p', function(req, res){
+  res.render('settings_p', { user: req.user });
+});
+
 //owner update
 app.post('/settings',passportConf.isAuthenticated, userController.postUpdateProfile );
 app.post('/updatepassword', passportConf.isAuthenticated, userController.postUpdatePassword);
