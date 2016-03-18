@@ -208,6 +208,8 @@ app.get('/getEmployees', restAPIController.getEmployees);
 */
 app.get('/getAppointments', restAPIController.getPatients);
 app.get('/removePatient', restAPIController.deletePatient);
+app.get('/getEmployee', restAPIController.getEmployees);
+
 
 
 app.get('/Billing_info', function(req, res){
