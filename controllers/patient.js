@@ -85,6 +85,7 @@ exports.removePatient = function(req, res) {
             patient.checkoutTime = Date.now();
             patient.checkedout = true;
             patient.save();
+            res.redirect("/patient_queue");
 
             //patient.remove(function (err, patient) {
             //    if (err) {
